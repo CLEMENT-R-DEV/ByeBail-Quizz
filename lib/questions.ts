@@ -63,7 +63,7 @@ export const questions: Question[] = [
     id: 5,
     type: 'choice',
     text: 'Combien de pièces veux-tu dans ton appartement ?',
-    choiceStyle: 'image', // Afficher seulement les images sans cartes
+    choiceStyle: 'image', // Afficher seulement les images sans carte
     choices: [
       {
         id: 'studio',
