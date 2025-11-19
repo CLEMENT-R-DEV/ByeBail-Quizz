@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+:root {
+  --background: #EDF3FD;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-satoshi);
+}
+
+body {
+  background: #EDF3FD;
+  color: var(--foreground);
+  font-family: var(--font-satoshi), sans-serif;
+  min-height: 100vh;
+}
