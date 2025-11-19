@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
+import SimpleHeader from '@/components/quiz/SimpleHeader';
 import ContinueButton from '@/components/quiz/ContinueButton';
 import { storage } from '@/lib/storage';
 
@@ -26,94 +28,93 @@ export default function CalculationPage() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      {/* Header simple */}
-      <header className="bg-white">
-        <div className="px-4 pt-4 pb-3 flex items-center">
-          <button
-            onClick={() => router.back()}
-            className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
-            aria-label="Retour"
-          >
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M15 18l-6-6 6-6" />
-            </svg>
-          </button>
-          <h1 className="flex-1 text-center text-lg font-semibold pr-10">Quiz ByeBail</h1>
-        </div>
-      </header>
+      <SimpleHeader />
 
       <main className="flex-1 flex flex-col mx-4 pt-8">
-        {/* Contenu */}
-        <div className="bg-white rounded-3xl p-6 mb-8">
-          {/* Titre */}
-          <h2 className="text-3xl font-bold mb-4">Petite question rapide...</h2>
+        {/* Contenu principal */}
+        <div className="w-full max-w-md mx-auto p-5 bg-white rounded-3xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.04)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 flex flex-col justify-start items-start gap-5 mb-8">
 
-          {/* Sous-titre avec montant */}
-          <p className="text-base mb-8">
-            Ton loyer de <span className="font-semibold">{loyer} €/mois</span>, ça représente
-            combien sur 10 ans ?
-          </p>
+          {/* Section 1 - Titre et question */}
+          <div className="self-stretch flex flex-col justify-start items-center gap-1.5">
+            <div className="self-stretch text-center justify-center text-gray-900 text-3xl font-semibold font-['Bricolage_Grotesque'] leading-8">
+              Petite question rapide...
+            </div>
+            <div className="self-stretch text-center justify-center">
+              <span className="text-gray-900 text-base font-normal font-['Satoshi'] leading-5">Ton loyer de </span>
+              <span className="text-gray-900 text-base font-bold font-['Satoshi'] leading-5">{loyer} €/mois</span>
+              <span className="text-gray-900 text-base font-normal font-['Satoshi'] leading-5">, ça représente combien sur 10 ans ?</span>
+            </div>
+          </div>
 
-          {/* Cercle de progression */}
-          <div className="flex flex-col items-center mb-8">
-            <div className="relative w-64 h-64">
-              {/* Cercle de fond (gris clair) */}
-              <svg className="w-full h-full transform -rotate-90">
+          {/* Section 2 - Carte avec cercle et résultats */}
+          <div className="self-stretch p-5 bg-white rounded-2xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.10)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 flex flex-col justify-start items-center gap-9">
+
+            {/* Cercle de progression */}
+            <div className="relative w-44 h-44">
+              <svg className="w-full h-full transform -rotate-205">
                 <circle
-                  cx="128"
-                  cy="128"
-                  r="100"
-                  stroke="#E5E7EB"
-                  strokeWidth="20"
+                  cx="88"
+                  cy="88"
+                  r="75"
+                  stroke="#E0E7FF"
+                  strokeWidth="16"
                   fill="none"
                 />
-                {/* Cercle de progression (violet) */}
                 <circle
-                  cx="128"
-                  cy="128"
-                  r="100"
-                  stroke="#A78BFA"
-                  strokeWidth="20"
+                  cx="88"
+                  cy="88"
+                  r="75"
+                  stroke="#9A7BF8"
+                  strokeWidth="16"
                   fill="none"
-                  strokeDasharray={`${2 * Math.PI * 100}`}
-                  strokeDashoffset={`${2 * Math.PI * 100 * (1 - pourcentageAppartement / 100)}`}
+                  strokeDasharray={`${2 * Math.PI * 75}`}
+                  strokeDashoffset={`${2 * Math.PI * 75 * (1 - pourcentageAppartement / 100)}`}
                   strokeLinecap="round"
                 />
               </svg>
-              {/* Texte au centre */}
-              <div className="absolute inset-0 flex flex-col items-center justify-center">
-                <p className="text-5xl font-bold">{pourcentageAppartement}%</p>
-                <p className="text-gray-500">d'un appartement</p>
+              {/* Overlay 3D effet */}
+              <div className="absolute top-[4%] left-[18%] w-[30%] h-[20%]">
+                <Image
+                  src="/images/Ellipse 10.svg"
+                  alt=""
+                  fill
+                  className="pointer-events-none object-contain"
+                />
+              </div>
+              {/* Texte au centre du cercle */}
+              <div className="absolute inset-0 flex flex-col justify-center items-center gap-1">
+                <div className="text-center justify-center text-gray-900 text-4xl font-semibold font-['Bricolage_Grotesque'] leading-9">
+                  {pourcentageAppartement}%
+                </div>
+                <div className="text-center justify-center text-gray-900/60 text-sm font-normal font-['Satoshi'] leading-4">
+                  d&apos;un appartement
+                </div>
+              </div>
+            </div>
+
+            {/* Montant total */}
+            <div className="self-stretch flex flex-col justify-start items-center">
+              <div className="self-stretch text-center justify-center text-orange-500 text-3xl font-semibold font-['Bricolage_Grotesque'] leading-7">
+                {totalSur10Ans.toLocaleString('fr-FR')} €
+              </div>
+              <div className="self-stretch text-center justify-center text-gray-900 text-base font-normal font-['Satoshi'] leading-5">
+                C&apos;est ce que tu auras payé en 10 ans
               </div>
             </div>
           </div>
 
-          {/* Montant total */}
-          <div className="text-center mb-6">
-            <p className="text-5xl font-bold text-[#FE8253] mb-2">
-              {totalSur10Ans.toLocaleString('fr-FR')} €
-            </p>
-            <p className="text-base">C'est ce que tu auras payé en 10 ans</p>
+          {/* Section 3 - Textes explicatifs */}
+          <div className="self-stretch flex flex-col justify-start items-start gap-4">
+            <div className="self-stretch text-center justify-center">
+              <span className="text-gray-900 text-base font-normal font-['Satoshi'] leading-5">Avec </span>
+              <span className="text-orange-500 text-base font-bold font-['Satoshi'] leading-5">{totalSur10Ans.toLocaleString('fr-FR')} €</span>
+              <span className="text-gray-900 text-base font-normal font-['Satoshi'] leading-5">, tu aurais déjà payé {pourcentageAppartement}% d&apos;un appartement à Tours.</span>
+            </div>
+            <div className="self-stretch text-center justify-center text-gray-900 text-base font-normal font-['Satoshi'] leading-5">
+              Sauf que là, cet argent... il est parti. Pour toujours.
+            </div>
           </div>
 
-          {/* Texte informatif */}
-          <p className="text-base mb-4">
-            Avec <span className="font-semibold text-[#FE8253]">{totalSur10Ans.toLocaleString('fr-FR')} €</span>,
-            tu aurais déjà payé {pourcentageAppartement}% d'un appartement à Tours.
-          </p>
-
-          <p className="text-base text-gray-600">
-            Sauf que là, cet argent... il est parti. Pour toujours.
-          </p>
         </div>
 
         {/* Spacer */}

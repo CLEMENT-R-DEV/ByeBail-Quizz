@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import SimpleHeader from '@/components/quiz/SimpleHeader';
 import ContinueButton from '@/components/quiz/ContinueButton';
 
 export default function InflationPage() {
@@ -13,30 +14,7 @@ export default function InflationPage() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      {/* Header simple */}
-      <header className="bg-white">
-        <div className="px-4 pt-4 pb-3 flex items-center">
-          <button
-            onClick={() => router.back()}
-            className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
-            aria-label="Retour"
-          >
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M15 18l-6-6 6-6" />
-            </svg>
-          </button>
-          <h1 className="flex-1 text-center text-lg font-semibold pr-10">Quiz ByeBail</h1>
-        </div>
-      </header>
+      <SimpleHeader />
 
       <main className="flex-1 flex flex-col mx-4 pt-8">
         {/* Contenu */}
@@ -47,35 +25,49 @@ export default function InflationPage() {
           </h2>
 
           {/* Comparaison Big Mac */}
-          <div className="grid grid-cols-2 gap-4 mb-6">
+          <div className="self-stretch h-48 inline-flex justify-start items-start gap-2">
             {/* Menu complet 2015 */}
-            <div className="bg-white rounded-2xl p-4 flex flex-col items-center border-2 border-gray-200">
-              <div className="mb-3 relative w-24 h-24">
-                <Image
-                  src="/images/Meal.svg"
-                  alt="Menu complet"
-                  fill
-                  className="object-contain"
-                />
+            <div className="flex-1 p-2.5 bg-white rounded-2xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.10)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 inline-flex flex-col justify-center items-center gap-2.5">
+              <div className="self-stretch p-3 bg-white rounded-lg shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.10)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/10 flex flex-col justify-center items-center gap-2.5">
+                <div className="relative w-24 h-24">
+                  <Image
+                    src="/images/Meal.svg"
+                    alt="Menu complet"
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+                <div className="flex flex-col justify-start items-center gap-0.5">
+                  <div className="text-center justify-center text-gray-900/60 text-sm font-medium font-['Satoshi'] leading-4">2015</div>
+                  <div className="text-center justify-center">
+                    <span className="text-gray-900 text-base font-medium font-['Satoshi'] leading-4">10</span>
+                    <span className="text-gray-900 text-base font-bold font-['Satoshi_Variable'] leading-4">€</span>
+                  </div>
+                  <div className="text-center justify-center text-gray-900/60 text-sm font-medium font-['Satoshi'] leading-4">Menu complet</div>
+                </div>
               </div>
-              <p className="text-sm font-semibold mb-1">2015</p>
-              <p className="text-xl font-bold mb-1">10€</p>
-              <p className="text-sm text-gray-600">Menu complet</p>
             </div>
 
             {/* Big Mac 2025 */}
-            <div className="bg-white rounded-2xl p-4 flex flex-col items-center border-2 border-gray-200">
-              <div className="mb-3 relative w-24 h-24">
-                <Image
-                  src="/images/Burger.svg"
-                  alt="Burger"
-                  fill
-                  className="object-contain"
-                />
+            <div className="flex-1 self-stretch p-2.5 bg-white rounded-2xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.10)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 inline-flex flex-col justify-center items-center gap-2.5">
+              <div className="self-stretch flex-1 p-3 bg-white rounded-lg shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.10)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/10 flex flex-col justify-center items-center gap-2.5">
+                <div className="relative w-24 h-24">
+                  <Image
+                    src="/images/Burger.svg"
+                    alt="Burger"
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+                <div className="flex flex-col justify-start items-center gap-0.5">
+                  <div className="text-center justify-center text-gray-900/60 text-sm font-medium font-['Satoshi'] leading-4">2025</div>
+                  <div className="text-center justify-center">
+                    <span className="text-orange-700 text-base font-medium font-['Satoshi'] leading-4">10</span>
+                    <span className="text-orange-700 text-base font-bold font-['Satoshi_Variable'] leading-4">€</span>
+                  </div>
+                  <div className="text-center justify-center text-gray-900/60 text-sm font-medium font-['Satoshi'] leading-4">Juste le Big Mac</div>
+                </div>
               </div>
-              <p className="text-sm font-semibold mb-1">2025</p>
-              <p className="text-xl font-bold mb-1 text-[#FE8253]">10€</p>
-              <p className="text-sm text-gray-600">Juste le Big Mac</p>
             </div>
           </div>
 
@@ -83,8 +75,9 @@ export default function InflationPage() {
           <p className="text-center text-base mb-2">
             Même billet. Moins de burger.
           </p>
-          <p className="text-center text-base font-semibold mb-6">
-            C&apos;est ça, <span className="text-[#FE8253]">l&apos;inflation.</span>
+          <p className="text-center text-base mb-6">
+            <span className="text-gray-900 font-normal font-['Satoshi'] leading-5">C&apos;est ça, </span>
+            <span className="text-gray-900 font-bold font-['Satoshi_Variable'] leading-5">l&apos;inflation.</span>
           </p>
 
           {/* Question */}
@@ -93,64 +86,86 @@ export default function InflationPage() {
           {/* Cartes Locataire vs Propriétaire */}
           <div className="grid grid-cols-2 gap-4">
             {/* Locataire */}
-            <div className="rounded-2xl p-4 border-4 border-red-300 bg-red-50">
-              <div className="flex flex-col items-center mb-4">
-                <div className="w-20 h-20 relative mb-2">
+            <div className="self-stretch p-1 bg-red-300 rounded-2xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.10)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 inline-flex flex-col justify-center items-center gap-2.5">
+              <div className="self-stretch p-3 bg-red-50 rounded-2xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.10)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/10 flex flex-col justify-center items-center gap-2.5">
+              <div className="w-24 h-24 relative mb-2">
+                <Image
+                  src="/images/Locataire.svg"
+                  alt="Locataire"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+              <div className="text-center justify-center text-gray-900 text-base font-bold font-['Satoshi_Variable'] leading-4">Locataire</div>
+
+              <div className="self-stretch flex flex-col justify-start items-center gap-0.5">
+                <div className="w-full p-2 bg-white rounded-lg flex flex-col justify-start items-start gap-0.5">
+                  <div className="w-full text-center justify-center text-gray-900/60 text-xs font-medium font-['Satoshi'] leading-3">2015</div>
+                  <div className="w-full text-center justify-center">
+                    <span className="text-gray-900 text-sm font-bold font-['Satoshi_Variable'] leading-4">815€</span>
+                    <span className="text-gray-900 text-xs font-medium font-['Satoshi'] leading-3">/mois</span>
+                  </div>
+                </div>
+                <div className="w-6 h-6 relative flex items-center justify-center">
                   <Image
-                    src="/images/Locataire.svg"
-                    alt="Locataire"
-                    fill
-                    className="object-contain"
+                    src="/images/CaretDown.svg"
+                    alt="Augmentation"
+                    width={24}
+                    height={24}
+                    className="text-orange-400"
+                    style={{ filter: 'invert(60%) sepia(85%) saturate(1500%) hue-rotate(340deg) brightness(100%) contrast(100%)' }}
                   />
                 </div>
-                <p className="font-bold text-lg">Locataire</p>
+                <div className="w-full p-2 bg-white rounded-lg outline outline-2 outline-offset-[-2px] outline-orange-400 flex flex-col justify-start items-start gap-0.5">
+                  <div className="w-full text-center justify-center text-gray-900/60 text-xs font-medium font-['Satoshi'] leading-3">2025</div>
+                  <div className="w-full text-center justify-center">
+                    <span className="text-orange-800 text-sm font-bold font-['Satoshi_Variable'] leading-4">915€</span>
+                    <span className="text-orange-800 text-xs font-medium font-['Satoshi'] leading-3">/mois</span>
+                  </div>
+                </div>
               </div>
-
-              <div className="space-y-2">
-                <div className="text-center">
-                  <p className="text-xs text-gray-600">2015</p>
-                  <p className="font-bold">815€<span className="text-xs">/mois</span></p>
-                </div>
-                <div className="flex justify-center">
-                  <svg className="w-6 h-6 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </div>
-                <div className="text-center border-2 border-red-400 rounded-lg p-2 bg-white">
-                  <p className="text-xs text-gray-600">2025</p>
-                  <p className="font-bold text-red-600">915€<span className="text-xs">/mois</span></p>
-                </div>
               </div>
             </div>
 
             {/* Propriétaire */}
-            <div className="rounded-2xl p-4 border-4 border-green-300 bg-green-50">
-              <div className="flex flex-col items-center mb-4">
-                <div className="w-20 h-20 relative mb-2">
+            <div className="self-stretch p-1 bg-emerald-200 rounded-2xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.10)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 inline-flex flex-col justify-center items-center gap-2.5">
+              <div className="self-stretch p-3 bg-teal-50 rounded-2xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.10)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/10 flex flex-col justify-center items-center gap-2.5">
+              <div className="w-24 h-24 relative mb-2">
+                <Image
+                  src="/images/Proprietaire.svg"
+                  alt="Propriétaire"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+              <div className="text-center justify-center text-gray-900 text-base font-bold font-['Satoshi_Variable'] leading-4">Propriétaire</div>
+
+              <div className="self-stretch flex flex-col justify-start items-center gap-0.5">
+                <div className="w-full p-2 bg-white rounded-lg flex flex-col justify-start items-start gap-0.5">
+                  <div className="w-full text-center justify-center text-gray-900/60 text-xs font-medium font-['Satoshi'] leading-3">2015</div>
+                  <div className="w-full text-center justify-center">
+                    <span className="text-gray-900 text-sm font-bold font-['Satoshi_Variable'] leading-4">815€</span>
+                    <span className="text-gray-900 text-xs font-medium font-['Satoshi'] leading-3">/mois</span>
+                  </div>
+                </div>
+                <div className="w-6 h-6 relative flex items-center justify-center">
                   <Image
-                    src="/images/Proprietaire.svg"
-                    alt="Propriétaire"
-                    fill
-                    className="object-contain"
+                    src="/images/CaretDown.svg"
+                    alt="Stable"
+                    width={24}
+                    height={24}
+                    className="text-emerald-500"
+                    style={{ filter: 'invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%)' }}
                   />
                 </div>
-                <p className="font-bold text-lg">Propriétaire</p>
+                <div className="w-full p-2 bg-white rounded-lg outline outline-2 outline-offset-[-2px] outline-emerald-500 flex flex-col justify-start items-start gap-0.5">
+                  <div className="w-full text-center justify-center text-gray-900/60 text-xs font-medium font-['Satoshi'] leading-3">2015</div>
+                  <div className="w-full text-center justify-center">
+                    <span className="text-emerald-900 text-sm font-bold font-['Satoshi_Variable'] leading-4">815€</span>
+                    <span className="text-emerald-900 text-xs font-medium font-['Satoshi'] leading-3">/mois</span>
+                  </div>
+                </div>
               </div>
-
-              <div className="space-y-2">
-                <div className="text-center">
-                  <p className="text-xs text-gray-600">2015</p>
-                  <p className="font-bold">815€<span className="text-xs">/mois</span></p>
-                </div>
-                <div className="flex justify-center">
-                  <svg className="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-                <div className="text-center border-2 border-green-400 rounded-lg p-2 bg-white">
-                  <p className="text-xs text-gray-600">2015</p>
-                  <p className="font-bold text-green-600">815€<span className="text-xs">/mois</span></p>
-                </div>
               </div>
             </div>
           </div>
