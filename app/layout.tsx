@@ -12,24 +12,19 @@ const satoshi = localFont({
 const optima = localFont({
   src: [
     {
-      path: "../public/fonts/OPTIMA.TTF",
+      path: "../public/fonts/OPTIMA.ttf",
       weight: "400",
       style: "normal",
     },
     {
-      path: "../public/fonts/Optima Medium.ttf",
+      path: "../public/fonts/Optima_Medium.ttf",
       weight: "500",
       style: "normal",
     },
     {
-      path: "../public/fonts/OPTIMA_B.TTF",
+      path: "../public/fonts/OPTIMA_B.ttf",
       weight: "700",
       style: "normal",
-    },
-    {
-      path: "../public/fonts/Optima_Italic.ttf",
-      weight: "400",
-      style: "italic",
     },
   ],
   variable: "--font-optima",

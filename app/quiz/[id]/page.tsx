@@ -107,7 +107,7 @@ export default function QuizQuestionPage() {
         const ChoiceComponent = question.choiceStyle === 'image' ? ImageChoice : ChoiceCard;
 
         return (
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2">
             {question.choices?.map((choice) => (
               <ChoiceComponent
                 key={choice.id}
@@ -131,9 +131,9 @@ export default function QuizQuestionPage() {
     <div className="min-h-screen flex flex-col">
       <QuizHeader currentQuestion={questionId} />
 
-      <main className="flex-1 flex flex-col mx-4 pt-8">
+      <main className="flex-1 flex flex-col mx-4 pt-5">
         {/* Question bubble */}
-        <div className="mb-6">
+        <div className="mb-5">
           <QuestionBubble
             questionNumber={questionId}
             text={question.text}

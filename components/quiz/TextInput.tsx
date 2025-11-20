@@ -28,8 +28,8 @@ export default function TextInput({
       {/* Icônes up/down */}
       <div className="h-6 px-1 inline-flex flex-col justify-start items-start gap-1">
         {/* Flèche haut */}
-        <div className="self-stretch flex-1 p-1 flex flex-col justify-center items-center gap-2.5 overflow-hidden">
-          <div className="relative w-3 h-3">
+        <div className="self-stretch flex-1 flex flex-col justify-center items-center gap-2.5 overflow-hidden">
+          <div className="relative w-2 h-[5px]">
             <Image
               src="/images/CaretUp.svg"
               alt="Augmenter"
@@ -39,8 +39,8 @@ export default function TextInput({
           </div>
         </div>
         {/* Flèche bas */}
-        <div className="self-stretch flex-1 p-1 flex flex-col justify-center items-center gap-2.5 overflow-hidden">
-          <div className="relative w-3 h-3">
+        <div className="self-stretch flex-1 flex flex-col justify-center items-center gap-2.5 overflow-hidden">
+          <div className="relative w-2 h-[5px]">
             <Image
               src="/images/CaretDown.svg"
               alt="Diminuer"
