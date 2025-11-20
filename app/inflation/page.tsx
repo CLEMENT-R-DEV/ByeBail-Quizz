@@ -16,12 +16,12 @@ export default function InflationPage() {
     <div className="min-h-screen flex flex-col">
       <SimpleHeader />
 
-      <main className="flex-1 flex flex-col mx-4 pt-8">
+      <main className="flex-1 flex flex-col mx-4 pt-5">
         {/* Contenu */}
         <div className="w-full max-w-md mx-auto p-2.5 bg-white rounded-3xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.04)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 inline-flex flex-col justify-start items-start gap-5 mb-8">
           {/* Titre */}
           <div className="self-stretch h-20 inline-flex flex-col justify-center items-center gap-1.5">
-            <div className="self-stretch text-center justify-center text-gray-900 text-2xl font-semibold font-['Bricolage_Grotesque'] leading-7">
+            <div className="self-stretch text-center justify-center text-gray-900 text-[28px] font-semibold font-['Bricolage_Grotesque'] leading-[100%] tracking-[-0.28px]">
               Pendant qu&apos;on prépare tes résultats, petit rappel économique...
             </div>
           </div>

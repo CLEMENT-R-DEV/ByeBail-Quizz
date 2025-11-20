@@ -12,7 +12,7 @@ export default function CongratulationsPage() {
       <SimpleHeader />
 
       {/* Main content */}
-      <main className="flex-1 flex flex-col px-4 pt-8 pb-6">
+      <main className="flex-1 flex flex-col px-4 pt-5 pb-6">
         {/* Carte principale */}
         <div className="rounded-3xl flex flex-col justify-center items-center gap-5 mb-2.5">
           <div className="w-28 h-20 relative rounded-lg overflow-hidden">

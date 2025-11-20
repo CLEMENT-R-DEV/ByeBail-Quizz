@@ -17,7 +17,7 @@ export default function VideoPausePage() {
       <SimpleHeader />
 
       {/* Main content */}
-      <main className="flex-1 flex flex-col mx-4 pt-8 pb-6">
+      <main className="flex-1 flex flex-col mx-4 pt-5 pb-6">
         {/* Carte principale */}
         <div className="px-2.5 py-5 bg-white rounded-2xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.04)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 flex flex-col justify-start items-start gap-6">
           {/* Titre et sous-titre */}

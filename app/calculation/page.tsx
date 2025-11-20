@@ -56,7 +56,7 @@ export default function CalculationPage() {
     <div className="min-h-screen flex flex-col">
       <SimpleHeader />
 
-      <main className="flex-1 flex flex-col mx-4 pt-8">
+      <main className="flex-1 flex flex-col mx-4 pt-5">
         {/* Contenu principal */}
         <div className="w-full max-w-md mx-auto p-5 bg-white rounded-3xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.04)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 flex flex-col justify-start items-start gap-5 mb-8">
 

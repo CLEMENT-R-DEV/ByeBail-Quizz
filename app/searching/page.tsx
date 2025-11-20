@@ -79,7 +79,7 @@ export default function SearchingPage() {
       <SimpleHeader />
 
       {/* Main content */}
-      <main className="flex-1 flex flex-col mx-4 pt-8 pb-6">
+      <main className="flex-1 flex flex-col mx-4 pt-5 pb-6">
         {/* Carte principale blanche */}
         <div className="p-5 bg-white rounded-3xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.04)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 flex flex-col justify-center items-center gap-5">
           {/* Titre et image */}

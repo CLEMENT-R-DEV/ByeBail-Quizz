@@ -17,7 +17,7 @@ export default function ChangeAvisPage() {
       <SimpleHeader />
 
       {/* Main content */}
-      <main className="flex-1 flex flex-col mx-4 pt-8 pb-6">
+      <main className="flex-1 flex flex-col mx-4 pt-5 pb-6">
         {/* Carte principale blanche */}
         <div className="p-5 bg-white rounded-3xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.04)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 flex flex-col justify-center items-center gap-5">
           {/* Titre et image */}
@@ -42,7 +42,7 @@ export default function ChangeAvisPage() {
           {/* Section cartes comparatives */}
           <div className="self-stretch flex flex-col justify-start items-start gap-5">
             {/* Carte rouge - Locataire */}
-            <div className="self-stretch p-4 bg-white rounded-2xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.04)] outline outline-4 outline-offset-[-4px] outline-[#FF9191] flex flex-col justify-start items-start gap-2.5">
+            <div className="self-stretch p-4 rounded-2xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.04)] outline outline-4 outline-offset-[-4px] outline-[#FF9191] flex flex-col justify-start items-start gap-2.5">
               <div className="self-stretch flex justify-start items-start gap-2.5">
                 <div className="w-14 h-14 relative rounded-lg overflow-hidden">
                   <Image
@@ -64,7 +64,7 @@ export default function ChangeAvisPage() {
             </div>
 
             {/* Carte verte - Propriétaire */}
-            <div className="self-stretch p-4 bg-white rounded-2xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.04)] outline outline-4 outline-offset-[-4px] outline-[#AAFFC3] flex flex-col justify-start items-start gap-2.5">
+            <div className="self-stretch p-4 rounded-2xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.04)] outline outline-4 outline-offset-[-4px] outline-[#AAFFC3] flex flex-col justify-start items-start gap-2.5">
               <div className="self-stretch flex justify-start items-start gap-2.5">
                 <div className="w-14 h-14 relative bg-indigo-100 rounded-lg overflow-hidden">
                   <Image
@@ -112,7 +112,7 @@ export default function ChangeAvisPage() {
                     className="object-contain"
                   />
                 </div>
-                <div className="flex-1 rounded-lg shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.10)] flex flex-col justify-center items-center gap-2.5">
+                <div className="flex-1 rounded-lg flex flex-col justify-center items-center gap-2.5">
                   <div className="self-stretch justify-center text-gray-900 text-base font-semibold font-['Bricolage_Grotesque'] leading-4">Bonus</div>
                   <div className="self-stretch justify-center">
                     <span className="text-gray-900 text-sm font-normal font-['Satoshi'] leading-4">Et nous, on a même une </span>
