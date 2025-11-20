@@ -113,15 +113,13 @@ export default function InflationPage() {
                 </div>
                 <div className="w-6 h-6 relative flex items-center justify-center">
                   <Image
-                    src="/images/CaretDown.svg"
+                    src="/images/CaretDownOrange.svg"
                     alt="Augmentation"
                     width={24}
                     height={24}
-                    className="text-orange-400"
-                    style={{ filter: 'invert(60%) sepia(85%) saturate(1500%) hue-rotate(340deg) brightness(100%) contrast(100%)' }}
                   />
                 </div>
-                <div className="w-full p-2 bg-white rounded-lg outline outline-2 outline-offset-[-2px] outline-orange-400 flex flex-col justify-start items-start gap-0.5">
+                <div className="w-full p-2 bg-white rounded-lg outline outline-2 outline-offset-[-2px] outline-[#FE8253] flex flex-col justify-start items-start gap-0.5">
                   <div className="w-full text-left text-gray-900/60 text-xs font-medium font-['Satoshi'] leading-3">2025</div>
                   <div className="w-full text-left">
                     <span className="text-orange-800 text-sm font-bold font-['Satoshi_Variable'] leading-4">915€</span>
@@ -155,12 +153,10 @@ export default function InflationPage() {
                 </div>
                 <div className="w-6 h-6 relative flex items-center justify-center">
                   <Image
-                    src="/images/CaretDown.svg"
+                    src="/images/CaretDownGreen.svg"
                     alt="Stable"
                     width={24}
                     height={24}
-                    className="text-emerald-500"
-                    style={{ filter: 'invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%)' }}
                   />
                 </div>
                 <div className="w-full p-2 bg-white rounded-lg outline outline-2 outline-offset-[-2px] outline-emerald-500 flex flex-col justify-start items-start gap-0.5">
