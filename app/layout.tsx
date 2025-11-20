@@ -9,6 +9,32 @@ const satoshi = localFont({
   weight: "300 900",
 });
 
+const optima = localFont({
+  src: [
+    {
+      path: "../public/fonts/OPTIMA.TTF",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/Optima Medium.ttf",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/OPTIMA_B.TTF",
+      weight: "700",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/Optima_Italic.ttf",
+      weight: "400",
+      style: "italic",
+    },
+  ],
+  variable: "--font-optima",
+});
+
 const crimsonPro = Crimson_Pro({
   subsets: ["latin"],
   weight: ["400", "600"],
@@ -34,7 +60,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${satoshi.variable} ${crimsonPro.variable} ${bricolageGrotesque.variable} antialiased`}
+        className={`${satoshi.variable} ${optima.variable} ${crimsonPro.variable} ${bricolageGrotesque.variable} antialiased`}
       >
         {children}
       </body>

@@ -27,7 +27,7 @@ export default function SimpleHeader() {
             />
           </button>
           <div className="absolute left-1/2 -translate-x-1/2 inline-flex flex-col justify-start items-center gap-1">
-            <div className="text-center justify-center text-gray-900 text-base font-bold font-['Optima'] leading-4">
+            <div className="text-center justify-center text-gray-900 text-base font-bold leading-4" style={{ fontFamily: 'var(--font-optima)' }}>
               Quiz ByeBail
             </div>
           </div>
