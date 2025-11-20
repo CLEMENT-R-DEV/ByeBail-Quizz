@@ -23,10 +23,10 @@ export default function QuestionBubble({ questionNumber, text, infoText, titleTe
           </div>
 
           {/* Avatar + Bulle */}
-          <div className="self-stretch flex justify-start items-center gap-2">
+          <div className="self-stretch flex justify-start items-start gap-2">
             {/* Avatar */}
-            <div className="w-14 h-14 bg-[#9B7BF8] rounded-2xl flex justify-center items-center gap-2.5">
-              <div className="relative w-6 h-7">
+            <div className="w-[53px] h-[53px] bg-[#9B7BF8] rounded-[18px] flex justify-center items-center gap-2.5">
+              <div className="relative w-[29px] h-[34px]">
                 <Image
                   src="/images/B.svg"
                   alt="ByeBail"
