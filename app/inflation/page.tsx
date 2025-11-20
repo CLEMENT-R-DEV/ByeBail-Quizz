@@ -18,16 +18,18 @@ export default function InflationPage() {
 
       <main className="flex-1 flex flex-col mx-4 pt-8">
         {/* Contenu */}
-        <div className="bg-white rounded-3xl p-6 mb-8">
+        <div className="w-full max-w-md mx-auto p-2.5 bg-white rounded-3xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.04)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 inline-flex flex-col justify-start items-start gap-5 mb-8">
           {/* Titre */}
-          <h2 className="text-2xl font-bold mb-6 text-center leading-tight">
-            Pendant qu&apos;on prépare tes résultats, petit rappel économique...
-          </h2>
+          <div className="self-stretch h-20 inline-flex flex-col justify-center items-center gap-1.5">
+            <div className="self-stretch text-center justify-center text-gray-900 text-2xl font-semibold font-['Bricolage_Grotesque'] leading-7">
+              Pendant qu&apos;on prépare tes résultats, petit rappel économique...
+            </div>
+          </div>
 
           {/* Comparaison Big Mac */}
-          <div className="self-stretch h-48 inline-flex justify-start items-start gap-2">
+          <div className="self-stretch inline-flex justify-start items-start gap-2">
             {/* Menu complet 2015 */}
-            <div className="flex-1 p-2.5 bg-white rounded-2xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.10)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 inline-flex flex-col justify-center items-center gap-2.5">
+            <div className="w-[calc(50%-4px)] p-2.5 bg-white rounded-2xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.10)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 inline-flex flex-col justify-center items-center gap-2.5">
               <div className="self-stretch p-3 bg-white rounded-lg shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.10)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/10 flex flex-col justify-center items-center gap-2.5">
                 <div className="relative w-24 h-24">
                   <Image
@@ -49,8 +51,8 @@ export default function InflationPage() {
             </div>
 
             {/* Big Mac 2025 */}
-            <div className="flex-1 self-stretch p-2.5 bg-white rounded-2xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.10)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 inline-flex flex-col justify-center items-center gap-2.5">
-              <div className="self-stretch flex-1 p-3 bg-white rounded-lg shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.10)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/10 flex flex-col justify-center items-center gap-2.5">
+            <div className="w-[calc(50%-4px)] p-2.5 bg-white rounded-2xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.10)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 inline-flex flex-col justify-center items-center gap-2.5">
+              <div className="self-stretch p-3 bg-white rounded-lg shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.10)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/10 flex flex-col justify-center items-center gap-2.5">
                 <div className="relative w-24 h-24">
                   <Image
                     src="/images/Burger.svg"
@@ -72,21 +74,24 @@ export default function InflationPage() {
           </div>
 
           {/* Texte explicatif */}
-          <p className="text-center text-base mb-2">
+          <div className="self-stretch text-center justify-center text-gray-900 text-base font-normal font-['Satoshi'] leading-5">
             Même billet. Moins de burger.
-          </p>
-          <p className="text-center text-base mb-6">
-            <span className="text-gray-900 font-normal font-['Satoshi'] leading-5">C&apos;est ça, </span>
-            <span className="text-gray-900 font-bold font-['Satoshi_Variable'] leading-5">l&apos;inflation.</span>
-          </p>
+          </div>
+
+          <div className="self-stretch text-center justify-center">
+            <span className="text-gray-900 text-base font-normal font-['Satoshi'] leading-5">C&apos;est ça, </span>
+            <span className="text-gray-900 text-base font-bold font-['Satoshi'] leading-5">l&apos;inflation.</span>
+          </div>
 
           {/* Question */}
-          <p className="text-center text-base mb-6">Mais devine quoi ?</p>
+          <div className="self-stretch text-center justify-center text-gray-900 text-base font-normal font-['Satoshi'] leading-5">
+            Mais devine quoi ?
+          </div>
 
           {/* Cartes Locataire vs Propriétaire */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="self-stretch inline-flex justify-start items-start gap-2">
             {/* Locataire */}
-            <div className="self-stretch p-1 bg-red-300 rounded-2xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.10)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 inline-flex flex-col justify-center items-center gap-2.5">
+            <div className="w-[calc(50%-4px)] p-1 bg-red-300 rounded-2xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.10)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 inline-flex flex-col justify-center items-center gap-2.5">
               <div className="self-stretch p-3 bg-red-50 rounded-2xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.10)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/10 flex flex-col justify-center items-center gap-2.5">
               <div className="w-24 h-24 relative mb-2">
                 <Image
@@ -100,8 +105,8 @@ export default function InflationPage() {
 
               <div className="self-stretch flex flex-col justify-start items-center gap-0.5">
                 <div className="w-full p-2 bg-white rounded-lg flex flex-col justify-start items-start gap-0.5">
-                  <div className="w-full text-center justify-center text-gray-900/60 text-xs font-medium font-['Satoshi'] leading-3">2015</div>
-                  <div className="w-full text-center justify-center">
+                  <div className="w-full text-left text-gray-900/60 text-xs font-medium font-['Satoshi'] leading-3">2015</div>
+                  <div className="w-full text-left">
                     <span className="text-gray-900 text-sm font-bold font-['Satoshi_Variable'] leading-4">815€</span>
                     <span className="text-gray-900 text-xs font-medium font-['Satoshi'] leading-3">/mois</span>
                   </div>
@@ -117,8 +122,8 @@ export default function InflationPage() {
                   />
                 </div>
                 <div className="w-full p-2 bg-white rounded-lg outline outline-2 outline-offset-[-2px] outline-orange-400 flex flex-col justify-start items-start gap-0.5">
-                  <div className="w-full text-center justify-center text-gray-900/60 text-xs font-medium font-['Satoshi'] leading-3">2025</div>
-                  <div className="w-full text-center justify-center">
+                  <div className="w-full text-left text-gray-900/60 text-xs font-medium font-['Satoshi'] leading-3">2025</div>
+                  <div className="w-full text-left">
                     <span className="text-orange-800 text-sm font-bold font-['Satoshi_Variable'] leading-4">915€</span>
                     <span className="text-orange-800 text-xs font-medium font-['Satoshi'] leading-3">/mois</span>
                   </div>
@@ -128,7 +133,7 @@ export default function InflationPage() {
             </div>
 
             {/* Propriétaire */}
-            <div className="self-stretch p-1 bg-emerald-200 rounded-2xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.10)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 inline-flex flex-col justify-center items-center gap-2.5">
+            <div className="w-[calc(50%-4px)] p-1 bg-emerald-200 rounded-2xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.10)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 inline-flex flex-col justify-center items-center gap-2.5">
               <div className="self-stretch p-3 bg-teal-50 rounded-2xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.10)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/10 flex flex-col justify-center items-center gap-2.5">
               <div className="w-24 h-24 relative mb-2">
                 <Image
@@ -142,8 +147,8 @@ export default function InflationPage() {
 
               <div className="self-stretch flex flex-col justify-start items-center gap-0.5">
                 <div className="w-full p-2 bg-white rounded-lg flex flex-col justify-start items-start gap-0.5">
-                  <div className="w-full text-center justify-center text-gray-900/60 text-xs font-medium font-['Satoshi'] leading-3">2015</div>
-                  <div className="w-full text-center justify-center">
+                  <div className="w-full text-left text-gray-900/60 text-xs font-medium font-['Satoshi'] leading-3">2015</div>
+                  <div className="w-full text-left">
                     <span className="text-gray-900 text-sm font-bold font-['Satoshi_Variable'] leading-4">815€</span>
                     <span className="text-gray-900 text-xs font-medium font-['Satoshi'] leading-3">/mois</span>
                   </div>
@@ -159,8 +164,8 @@ export default function InflationPage() {
                   />
                 </div>
                 <div className="w-full p-2 bg-white rounded-lg outline outline-2 outline-offset-[-2px] outline-emerald-500 flex flex-col justify-start items-start gap-0.5">
-                  <div className="w-full text-center justify-center text-gray-900/60 text-xs font-medium font-['Satoshi'] leading-3">2015</div>
-                  <div className="w-full text-center justify-center">
+                  <div className="w-full text-left text-gray-900/60 text-xs font-medium font-['Satoshi'] leading-3">2015</div>
+                  <div className="w-full text-left">
                     <span className="text-emerald-900 text-sm font-bold font-['Satoshi_Variable'] leading-4">815€</span>
                     <span className="text-emerald-900 text-xs font-medium font-['Satoshi'] leading-3">/mois</span>
                   </div>
