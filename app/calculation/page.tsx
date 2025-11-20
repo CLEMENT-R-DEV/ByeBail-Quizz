@@ -10,6 +10,7 @@ import { storage } from '@/lib/storage';
 export default function CalculationPage() {
   const router = useRouter();
   const [loyer, setLoyer] = useState<number>(0);
+  const [animatedPercentage, setAnimatedPercentage] = useState<number>(0);
 
   useEffect(() => {
     // Récupérer le loyer de la question 4
@@ -21,6 +22,31 @@ export default function CalculationPage() {
 
   const totalSur10Ans = loyer * 12 * 10;
   const pourcentageAppartement = 48; // Statique pour le moment
+
+  // Animation du pourcentage de 0 à 48
+  useEffect(() => {
+    const duration = 2500; // 2.5 secondes
+    const startTime = Date.now();
+    const targetPercentage = pourcentageAppartement;
+
+    const animate = () => {
+      const currentTime = Date.now();
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+
+      // Easing function (easeOutCubic) pour une animation fluide
+      const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
+      const easedProgress = easeOutCubic(progress);
+
+      setAnimatedPercentage(easedProgress * targetPercentage);
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
+    };
+
+    animate();
+  }, [pourcentageAppartement]);
 
   const handleContinue = () => {
     router.push('/quiz/5');
@@ -68,7 +94,7 @@ export default function CalculationPage() {
                   strokeWidth="16"
                   fill="none"
                   strokeDasharray={`${2 * Math.PI * 75}`}
-                  strokeDashoffset={`${2 * Math.PI * 75 * (1 - pourcentageAppartement / 100)}`}
+                  strokeDashoffset={`${2 * Math.PI * 75 * (1 - animatedPercentage / 100)}`}
                   strokeLinecap="round"
                 />
               </svg>
@@ -84,7 +110,7 @@ export default function CalculationPage() {
               {/* Texte au centre du cercle */}
               <div className="absolute inset-0 flex flex-col justify-center items-center gap-1">
                 <div className="text-center justify-center text-gray-900 text-4xl font-semibold font-['Bricolage_Grotesque'] leading-9">
-                  {pourcentageAppartement}%
+                  {Math.round(animatedPercentage)}%
                 </div>
                 <div className="text-center justify-center text-gray-900/60 text-sm font-normal font-['Satoshi'] leading-4">
                   d&apos;un appartement
