@@ -137,6 +137,7 @@ export default function QuizQuestionPage() {
           <QuestionBubble
             questionNumber={questionId}
             text={question.text}
+            titleText={question.titleText}
             infoText={questionId === 3 ? "Ça change les calculs de capacité d'emprunt " : undefined}
           />
         </div>

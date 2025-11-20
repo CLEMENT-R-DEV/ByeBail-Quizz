@@ -127,7 +127,8 @@ export const questions: Question[] = [
   {
     id: 8,
     type: 'text',
-    text: "OK, on rentre dans le vif du sujet.\n\nPour te montrer tes appartements personnalisés, j'ai besoin de ton email.",
+    titleText: 'OK, on rentre dans le vif du sujet.',
+    text: "Pour te montrer tes appartements personnalisés, j'ai besoin de ton email.",
     placeholder: 'ton.email@example.fr',
     validation: (value: string) => {
       // Validation email basique

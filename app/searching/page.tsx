@@ -79,11 +79,13 @@ export default function SearchingPage() {
       <SimpleHeader />
 
       {/* Main content */}
-      <main className="flex-1 flex flex-col px-4 pt-8 pb-6">
-        <div className="bg-white rounded-2xl p-6 flex flex-col flex-1 mb-6">
-          {/* Icône de recherche et titre */}
-          <div className="flex flex-col items-center mb-8">
-            <div className="relative w-24 h-24 mb-6">
+      <main className="flex-1 flex flex-col mx-4 pt-8 pb-6">
+        {/* Carte principale blanche */}
+        <div className="p-5 bg-white rounded-3xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.04)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 flex flex-col justify-center items-center gap-5">
+          {/* Titre et image */}
+          <div className="self-stretch flex flex-col justify-start items-center gap-2.5">
+            {/* Image recherche */}
+            <div className="w-28 h-20 relative rounded-lg overflow-hidden">
               <Image
                 src="/images/search_1.svg"
                 alt="Recherche"
@@ -91,87 +93,67 @@ export default function SearchingPage() {
                 className="object-contain"
               />
             </div>
-            <h2
-              className="text-center mb-2"
-              style={{
-                fontFamily: 'var(--font-bricolage-grotesque), sans-serif',
-                fontWeight: 600,
-                fontSize: '20px',
-                lineHeight: '100%',
-                letterSpacing: '-0.01em',
-              }}
-            >
-              Recherche en cours...
-            </h2>
-            <p className="text-center text-base text-gray-700">
-              On analyse les meilleures options pour toi
-            </p>
+
+            {/* Titre */}
+            <div className="self-stretch text-center justify-center text-gray-900 text-xl font-semibold font-['Bricolage_Grotesque'] leading-5">Recherche en cours…</div>
+
+            {/* Sous-titre */}
+            <div className="self-stretch text-center justify-center text-gray-900 text-base font-normal font-['Satoshi'] leading-5">On analyse les meilleures options pour toi</div>
           </div>
 
-          {/* Liste des étapes */}
-          <div className="space-y-4 mb-6">
+          {/* Section étapes */}
+          <div className="self-stretch flex flex-col justify-start items-start gap-5">
             {steps.map((step) => (
               <div
                 key={step.id}
-                className="bg-gray-50 rounded-2xl p-4 flex items-center gap-4"
-                style={{
-                  border: '1px solid rgba(0, 0, 0, 0.08)',
-                  boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.06)',
-                }}
+                className="self-stretch p-2.5 bg-white rounded-2xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.10)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/10 flex flex-col justify-center items-center gap-2.5"
               >
-                {/* Icône de l'étape */}
-                <div className="relative w-[60px] h-[60px] flex-shrink-0 bg-purple-50 rounded-lg flex items-center justify-center">
-                  <div className="relative w-[60px] h-[60px]">
-                    <Image
-                      src={step.icon}
-                      alt=""
-                      fill
-                      className="object-contain"
-                    />
+                <div className="self-stretch flex justify-start items-center gap-2.5">
+                  <div className="flex-1 flex justify-start items-center gap-4">
+                    <div className="w-14 h-14 relative bg-indigo-100 rounded-lg overflow-hidden">
+                      <Image
+                        src={step.icon}
+                        alt=""
+                        fill
+                        className="object-contain"
+                      />
+                    </div>
+                    <div className="flex-1 justify-center text-gray-900 text-base font-normal font-['Satoshi'] leading-5">
+                      {step.text}
+                    </div>
                   </div>
+                  {step.completed && (
+                    <div className="w-6 h-6 relative overflow-hidden">
+                      <Image
+                        src="/images/checkmark.svg"
+                        alt="Complété"
+                        width={24}
+                        height={24}
+                        className="object-contain"
+                      />
+                    </div>
+                  )}
                 </div>
-
-                {/* Texte de l'étape */}
-                <p className="flex-1 text-base font-normal text-gray-800">
-                  {step.text}
-                </p>
-
-                {/* Checkmark */}
-                {step.completed && (
-                  <div className="w-6 h-6 flex-shrink-0">
-                    <Image
-                      src="/images/checkmark.svg"
-                      alt="Complété"
-                      width={24}
-                      height={24}
-                      className="object-contain"
-                    />
-                  </div>
-                )}
               </div>
             ))}
           </div>
 
           {/* Barre de progression */}
-          <div className="mb-4">
-            <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
-              <div
-                className="h-full bg-green-500 transition-all duration-300 ease-out"
-                style={{
-                  width: `${(currentStep / steps.length) * 100}%`,
-                }}
-              />
-            </div>
+          <div className="self-stretch p-0.5 bg-zinc-100 rounded-[43px] flex flex-col justify-start items-start gap-2.5">
+            <div
+              className="h-1.5 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-[226px] shadow-[0px_1px_4px_0px_rgba(0,0,0,0.10)] shadow-[inset_0px_-1px_4px_0px_rgba(4,120,87,0.50)] transition-all duration-300 ease-out"
+              style={{
+                width: `${(currentStep / steps.length) * 100}%`,
+              }}
+            />
           </div>
 
           {/* Texte de progression */}
-          <p className="text-center text-sm text-gray-600">
-            Encore quelques secondes...
-          </p>
-
-          {/* Spacer */}
-          <div className="flex-1"></div>
+          <div className="self-stretch text-center justify-center text-gray-900 text-sm font-normal font-['Satoshi'] leading-4">Encore quelques secondes…</div>
         </div>
+
+        {/* Spacer */}
+        <div className="flex-1"></div>
 
         {/* Bouton Continue (visible uniquement quand toutes les étapes sont terminées) */}
         {showContinue && (

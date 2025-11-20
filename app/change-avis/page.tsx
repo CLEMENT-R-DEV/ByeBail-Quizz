@@ -18,123 +18,104 @@ export default function ChangeAvisPage() {
 
       {/* Main content */}
       <main className="flex-1 flex flex-col mx-4 pt-8 pb-6">
-        {/* Titre principal */}
-        <h2
-          className="text-center mb-6"
-          style={{
-            fontFamily: 'var(--font-bricolage-grotesque), sans-serif',
-            fontWeight: 600,
-            fontSize: '20px',
-            lineHeight: '100%',
-            letterSpacing: '-0.01em',
-          }}
-        >
-          &quot;Mais... et si je change d&apos;avis ?&quot;
-        </h2>
+        {/* Carte principale blanche */}
+        <div className="p-5 bg-white rounded-3xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.04)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 flex flex-col justify-center items-center gap-5">
+          {/* Titre et image */}
+          <div className="self-stretch flex flex-col justify-start items-center gap-2.5">
+            <div className="self-stretch text-center justify-center text-gray-900 text-xl font-semibold font-['Bricolage_Grotesque'] leading-5">&quot;Mais... et si je change d&apos;avis ?&quot;</div>
 
-        {/* Image jeu */}
-        <div className="flex justify-center mb-6">
-          <div className="relative w-32 h-32">
-            <Image
-              src="/images/jeu.svg"
-              alt="Jeu vidéo"
-              fill
-              className="object-contain"
-            />
-          </div>
-        </div>
-
-        {/* Texte explicatif */}
-        <p className="text-center text-base mb-4">
-          Dans un jeu, tu sauvegardes ta partie pour<br />
-          pas tout perdre.
-        </p>
-        <p className="text-center text-base mb-6">
-          Dans la vraie vie, c&apos;est pareil.
-        </p>
-
-        {/* Carte rouge - Locataire */}
-        <div className="bg-red-50 border-[2px] border-[#FF9191] rounded-2xl p-4 mb-4">
-          <div className="flex items-start gap-3 mb-3">
-            <div className="relative w-16 h-16 flex-shrink-0">
+            {/* Image jeu */}
+            <div className="w-28 h-28 relative overflow-hidden">
               <Image
-                src="/images/valise.svg"
-                alt="Valise"
+                src="/images/jeu.svg"
+                alt="Jeu vidéo"
                 fill
                 className="object-contain"
               />
             </div>
-            <div className="flex-1">
-              <h3 className="font-bold text-base mb-2">
-                Quand tu es locataire et que<br />
-                tu déménages
-              </h3>
-              <p className="text-sm mb-1">
-                → Tu perds <span className="font-bold text-[#E43030]">tout ce que tu as payé.</span>
-              </p>
-              <p className="text-sm text-gray-600">
-                Game over, tu recommences de zéro.
-              </p>
-            </div>
-          </div>
-        </div>
 
-        {/* Carte verte - Propriétaire */}
-        <div className="bg-green-50 border-[2px] border-[#AAFFC3] rounded-2xl p-4 mb-4">
-          <div className="flex items-start gap-3 mb-3">
-            <div className="relative w-16 h-16 flex-shrink-0">
+            {/* Texte explicatif */}
+            <div className="self-stretch text-center justify-center text-gray-900 text-base font-normal font-['Satoshi'] leading-5">Dans un jeu, tu sauvegardes ta partie pour pas tout perdre.</div>
+            <div className="self-stretch text-center justify-center text-gray-900 text-base font-normal font-['Satoshi'] leading-5">Dans la vraie vie, c&apos;est pareil.</div>
+          </div>
+
+          {/* Section cartes comparatives */}
+          <div className="self-stretch flex flex-col justify-start items-start gap-5">
+            {/* Carte rouge - Locataire */}
+            <div className="self-stretch p-4 bg-white rounded-2xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.04)] outline outline-4 outline-offset-[-4px] outline-[#FF9191] flex flex-col justify-start items-start gap-2.5">
+              <div className="self-stretch flex justify-start items-start gap-2.5">
+                <div className="w-14 h-14 relative rounded-lg overflow-hidden">
+                  <Image
+                    src="/images/valise.svg"
+                    alt="Valise"
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+                <div className="flex-1 rounded-lg shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.10)] flex flex-col justify-center items-center gap-2.5">
+                  <div className="self-stretch justify-center text-gray-900 text-base font-semibold font-['Bricolage_Grotesque'] leading-4">Quand tu es locataire et que tu déménages</div>
+                  <div className="self-stretch justify-center">
+                    <span className="text-gray-900 text-sm font-normal font-['Satoshi'] leading-4">→ Tu perds </span>
+                    <span className="text-[#E43030] text-sm font-bold font-['Satoshi_Variable'] leading-4">tout ce que tu as payé.</span>
+                  </div>
+                  <div className="self-stretch justify-center text-gray-900/60 text-sm font-normal font-['Satoshi'] leading-4">Game over, tu recommences de zéro.</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Carte verte - Propriétaire */}
+            <div className="self-stretch p-4 bg-white rounded-2xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.04)] outline outline-4 outline-offset-[-4px] outline-[#AAFFC3] flex flex-col justify-start items-start gap-2.5">
+              <div className="self-stretch flex justify-start items-start gap-2.5">
+                <div className="w-14 h-14 relative bg-indigo-100 rounded-lg overflow-hidden">
+                  <Image
+                    src="/images/carton.svg"
+                    alt="Carton"
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+                <div className="flex-1 rounded-lg shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.10)] flex flex-col justify-center items-center gap-2.5">
+                  <div className="self-stretch justify-center text-gray-900 text-base font-semibold font-['Bricolage_Grotesque'] leading-4">Quand tu es proprio et que tu revends</div>
+                  <div className="self-stretch justify-center">
+                    <span className="text-gray-900 text-sm font-normal font-['Satoshi'] leading-4">→ Tu récupères </span>
+                    <span className="text-[#16A34A] text-sm font-bold font-['Satoshi_Variable'] leading-4">ce que tu as déjà remboursé.</span>
+                  </div>
+                  <div className="self-stretch justify-center text-gray-900/60 text-sm font-normal font-['Satoshi'] leading-4">Ta progression est sauvegardée.</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Carte violette - Crédit */}
+            <div className="self-stretch relative rounded-2xl overflow-hidden">
               <Image
-                src="/images/carton.svg"
-                alt="Carton"
-                fill
-                className="object-contain"
+                src="/images/credit.svg"
+                alt="Le crédit, c'est la seule partie que tu peux quitter en gardant tes points"
+                width={400}
+                height={200}
+                className="object-contain w-full"
               />
             </div>
-            <div className="flex-1">
-              <h3 className="font-bold text-base mb-2">
-                Quand tu es proprio et que<br />
-                tu revends
-              </h3>
-              <p className="text-sm mb-1">
-                → Tu récupères <span className="font-bold text-[#16A34A]">ce que tu as déjà<br />remboursé.</span>
-              </p>
-              <p className="text-sm text-gray-600">
-                Ta progression est sauvegardée.
-              </p>
-            </div>
-          </div>
-        </div>
 
-        {/* Carte violette - Crédit */}
-        <div className="mb-4">
-          <Image
-            src="/images/credit.svg"
-            alt="Le crédit, c'est la seule partie que tu peux quitter en gardant tes points"
-            width={500}
-            height={150}
-            className="w-full h-auto"
-            style={{ width: '100%', height: 'auto' }}
-          />
-        </div>
-
-        {/* Carte jaune - Bonus */}
-        <div className="bg-yellow-50 border-[2px] border-[#FFDC4F] rounded-2xl p-4 mb-6">
-          <div className="flex items-start gap-3">
-            <div className="relative w-16 h-16 flex-shrink-0">
-              <Image
-                src="/images/piece.svg"
-                alt="Pièce"
-                fill
-                className="object-contain"
-              />
-            </div>
-            <div className="flex-1">
-              <h3 className="font-bold text-base mb-2">Bonus</h3>
-              <p className="text-sm">
-                Et nous, on a même une <span className="font-bold">garantie<br />
-                revente jusqu&apos;à 10 ans</span>. Si le marché baisse<br />
-                (spoiler : c&apos;est rare), on compense.
-              </p>
+            {/* Carte jaune - Bonus */}
+            <div className="self-stretch p-4 bg-yellow-50 rounded-2xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.04)] outline outline-2 outline-offset-[-2px] outline-[#FFDC4F] flex flex-col justify-start items-start gap-2.5">
+              <div className="self-stretch flex justify-start items-start gap-2.5">
+                <div className="w-14 h-14 relative rounded-lg overflow-hidden">
+                  <Image
+                    src="/images/piece.svg"
+                    alt="Pièce"
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+                <div className="flex-1 rounded-lg shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.10)] flex flex-col justify-center items-center gap-2.5">
+                  <div className="self-stretch justify-center text-gray-900 text-base font-semibold font-['Bricolage_Grotesque'] leading-4">Bonus</div>
+                  <div className="self-stretch justify-center">
+                    <span className="text-gray-900 text-sm font-normal font-['Satoshi'] leading-4">Et nous, on a même une </span>
+                    <span className="text-gray-900 text-sm font-bold font-['Satoshi_Variable'] leading-4">garantie revente jusqu&apos;à 10 ans.</span>
+                    <span className="text-gray-900 text-sm font-normal font-['Satoshi'] leading-4"> Si le marché baisse (spoiler : c&apos;est rare), on compense.</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
