@@ -35,6 +35,12 @@ export default function VideoPausePage() {
               height={400}
               className="object-contain w-full"
             />
+            <div className="absolute inset-0 flex items-end justify-center pb-6 px-4">
+              <div className="w-72 h-20 inline-flex flex-col justify-start items-end gap-2.5">
+                <div className="self-stretch text-center justify-center text-white text-lg font-semibold font-['Bricolage_Grotesque'] leading-4">Vidéo de David Brauman</div>
+                <div className="self-stretch text-center justify-center text-white text-base font-normal font-['Satoshi'] leading-5">«À Tours, on a XX logements à partir de XXX€/mois. Oui, c&apos;est possible de devenir proprio.»</div>
+              </div>
+            </div>
           </div>
 
           {/* Boutons */}

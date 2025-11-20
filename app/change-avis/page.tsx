@@ -94,6 +94,11 @@ export default function ChangeAvisPage() {
                 height={200}
                 className="object-contain w-full"
               />
+              <div className="absolute inset-0 flex items-end justify-center pb-4 px-4">
+                <div className="text-center justify-center text-white text-base font-medium font-['Satoshi'] leading-5">
+                  Le crédit, c&apos;est la seule partie que tu peux quitter en gardant tes points.
+                </div>
+              </div>
             </div>
 
             {/* Carte jaune - Bonus */}
