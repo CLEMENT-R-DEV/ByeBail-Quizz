@@ -53,10 +53,10 @@ export default function ChangeAvisPage() {
                   />
                 </div>
                 <div className="flex-1 rounded-lg shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.10)] flex flex-col justify-center items-center gap-2.5">
-                  <div className="self-stretch justify-center text-gray-900 text-base font-semibold font-['Bricolage_Grotesque'] leading-4">Quand tu es locataire et que tu déménages</div>
+                  <div className="self-stretch justify-center text-gray-900 text-base font-semibold font-['Bricolage_Grotesque'] leading-[100%] tracking-[-0.16px]">Quand tu es locataire et que tu déménages</div>
                   <div className="self-stretch justify-center">
-                    <span className="text-gray-900 text-sm font-normal font-['Satoshi'] leading-4">→ Tu perds </span>
-                    <span className="text-[#E43030] text-sm font-bold font-['Satoshi_Variable'] leading-4">tout ce que tu as payé.</span>
+                    <span className="text-gray-900 text-sm font-normal font-['Satoshi'] leading-[120%] tracking-[-0.14px]">→ Tu perds </span>
+                    <span className="text-[#E43030] text-sm font-bold font-['Satoshi_Variable'] leading-[120%] tracking-[-0.14px]">tout ce que tu as payé.</span>
                   </div>
                   <div className="self-stretch justify-center text-gray-900/60 text-sm font-normal font-['Satoshi'] leading-4">Game over, tu recommences de zéro.</div>
                 </div>
@@ -75,10 +75,10 @@ export default function ChangeAvisPage() {
                   />
                 </div>
                 <div className="flex-1 rounded-lg shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.10)] flex flex-col justify-center items-center gap-2.5">
-                  <div className="self-stretch justify-center text-gray-900 text-base font-semibold font-['Bricolage_Grotesque'] leading-4">Quand tu es proprio et que tu revends</div>
+                  <div className="self-stretch justify-center text-gray-900 text-base font-semibold font-['Bricolage_Grotesque'] leading-[100%] tracking-[-0.16px]">Quand tu es proprio et que tu revends</div>
                   <div className="self-stretch justify-center">
-                    <span className="text-gray-900 text-sm font-normal font-['Satoshi'] leading-4">→ Tu récupères </span>
-                    <span className="text-[#16A34A] text-sm font-bold font-['Satoshi_Variable'] leading-4">ce que tu as déjà remboursé.</span>
+                    <span className="text-gray-900 text-sm font-normal font-['Satoshi'] leading-[120%] tracking-[-0.14px]">→ Tu récupères </span>
+                    <span className="text-[#16A34A] text-sm font-bold font-['Satoshi_Variable'] leading-[120%] tracking-[-0.14px]">ce que tu as déjà remboursé.</span>
                   </div>
                   <div className="self-stretch justify-center text-gray-900/60 text-sm font-normal font-['Satoshi'] leading-4">Ta progression est sauvegardée.</div>
                 </div>
