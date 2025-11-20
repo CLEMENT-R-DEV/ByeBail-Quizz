@@ -93,7 +93,7 @@ export default function CongratulationsPage() {
         </div>
 
         {/* Carte Call-to-action */}
-        <div className="bg-orange-50 rounded-2xl p-6 mb-6">
+        <div className="bg-[#FFF3ED] rounded-[18px] p-6 mb-6 shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.04)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/[0.04]">
           <h3
             className="text-center mb-2"
             style={{
