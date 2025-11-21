@@ -15,6 +15,22 @@ export default function TextInput({
   placeholder = '',
   type = 'text'
 }: TextInputProps) {
+  const handleIncrement = () => {
+    if (type === 'number') {
+      const currentValue = parseInt(value) || 0;
+      onChange(String(currentValue + 1));
+    }
+  };
+
+  const handleDecrement = () => {
+    if (type === 'number') {
+      const currentValue = parseInt(value) || 0;
+      if (currentValue > 0) {
+        onChange(String(currentValue - 1));
+      }
+    }
+  };
+
   return (
     <div className="w-full h-14 p-2.5 bg-white rounded-2xl outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 flex justify-center items-center gap-2.5">
       <input
@@ -28,7 +44,10 @@ export default function TextInput({
       {/* Icônes up/down */}
       <div className="h-6 px-1 inline-flex flex-col justify-start items-start gap-1">
         {/* Flèche haut */}
-        <div className="self-stretch flex-1 flex flex-col justify-center items-center gap-2.5 overflow-hidden">
+        <div
+          onClick={handleIncrement}
+          className="self-stretch flex-1 flex flex-col justify-center items-center gap-2.5 overflow-hidden cursor-pointer"
+        >
           <div className="relative w-2 h-[5px]">
             <Image
               src="/images/CaretUp.svg"
@@ -39,7 +58,10 @@ export default function TextInput({
           </div>
         </div>
         {/* Flèche bas */}
-        <div className="self-stretch flex-1 flex flex-col justify-center items-center gap-2.5 overflow-hidden">
+        <div
+          onClick={handleDecrement}
+          className="self-stretch flex-1 flex flex-col justify-center items-center gap-2.5 overflow-hidden cursor-pointer"
+        >
           <div className="relative w-2 h-[5px]">
             <Image
               src="/images/CaretDown.svg"
