@@ -15,7 +15,7 @@ export default function BackgroundElements() {
 
       {/* Formes physiques décoratives - Desktop */}
       <Image
-        className="hidden lg:block absolute bottom-0 left-1/2 transform -translate-x-1/2 opacity-74"
+        className="hidden lg:block absolute bottom-0 left-0 w-screen opacity-74"
         src="/images/home/Shapes_physics.svg"
         alt="Formes décoratives"
         width={1727.731}

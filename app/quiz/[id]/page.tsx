@@ -85,13 +85,53 @@ export default function QuizQuestionPage() {
         const inputType = question.placeholder?.includes('email') || question.placeholder?.includes('@') ? 'text' : 'number';
 
         return (
-          <div>
-            <TextInput
-              value={answer}
-              onChange={setAnswer}
-              placeholder={question.placeholder}
-              type={inputType}
-            />
+          <div className={questionId === 6 ? 'hidden lg:flex lg:flex-col lg:gap-5' : ''}>
+            {/* Input sur mobile uniquement pour question 6 */}
+            {questionId === 6 && (
+              <div className="lg:hidden">
+                <TextInput
+                  value={answer}
+                  onChange={setAnswer}
+                  placeholder={question.placeholder}
+                  type={inputType}
+                />
+              </div>
+            )}
+
+            {/* Input pour question 6 sur desktop */}
+            {questionId === 6 && (
+              <div className="hidden lg:flex lg:justify-end">
+                <TextInput
+                  value={answer}
+                  onChange={setAnswer}
+                  placeholder={question.placeholder}
+                  type={inputType}
+                />
+              </div>
+            )}
+
+            {/* Texte informatif pour la question 6 (desktop uniquement) - après l'input */}
+            {questionId === 6 && (
+              <div className="hidden lg:flex lg:flex-col lg:gap-1 lg:items-end" style={{ fontFamily: 'var(--font-satoshi)' }}>
+                <div className="text-gray-900/60 text-[18px] font-normal leading-[110%] tracking-[-0.18px] text-right">
+                  Revenus nets mensuels en euros
+                </div>
+                <div className="text-gray-900/60 text-[18px] font-normal leading-[110%] tracking-[-0.18px] text-right">
+                  Ces infos restent 100% confidentielles. Promis, on n&apos;est pas des boulets.
+                </div>
+              </div>
+            )}
+
+            {/* Input pour les autres questions */}
+            {questionId !== 6 && (
+              <TextInput
+                value={answer}
+                onChange={setAnswer}
+                placeholder={question.placeholder}
+                type={inputType}
+              />
+            )}
+
             {/* Texte informatif pour la question 8 (email) */}
             {questionId === 8 && (
               <p className="text-center text-sm font-normal leading-[110%] mt-4 text-gray-600">
