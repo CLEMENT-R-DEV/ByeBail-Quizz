@@ -3,17 +3,63 @@ import Image from 'next/image';
 export default function BackgroundElements() {
   return (
     <>
-      {/* Formes physiques décoratives - Shapes_physics.svg */}
+      {/* Formes physiques décoratives - Mobile */}
       <Image
-        className="absolute bottom-0 left-1/2 transform -translate-x-1/2 opacity-74"
+        className="lg:hidden absolute bottom-0 left-1/2 transform -translate-x-1/2 opacity-74"
+        src="/images/home/Shapes_physics_mobile.svg"
+        alt="Formes décoratives"
+        width={1727.731}
+        height={765.67}
+        style={{ backgroundColor: 'rgba(217, 217, 217, 0.2)' }}
+      />
+
+      {/* Formes physiques décoratives - Desktop */}
+      <Image
+        className="hidden lg:block absolute bottom-0 left-1/2 transform -translate-x-1/2 opacity-74"
         src="/images/home/Shapes_physics.svg"
         alt="Formes décoratives"
         width={1727.731}
         height={765.67}
-        style={{ backgroundColor: '#D9D9D933' }}
+        style={{ backgroundColor: 'rgba(217, 217, 217, 0.2)' }}
       />
 
       {/* Illustrations - Mobile */}
+
+      {/* Images décoratives mobiles supplémentaires */}
+      <Image
+        className="lg:hidden absolute left-[55px] top-[440px]"
+        src="/images/home/Rectangle4710.svg"
+        alt="Rectangle décoratif"
+        width={150}
+        height={150}
+        style={{
+          borderRadius: '12px',
+          backgroundColor: 'rgba(217, 217, 217, 0.20)',
+          boxShadow: '0 0 15.4px 0 rgba(189, 212, 246, 0.25)'
+        }}
+      />
+
+      <Image
+        className="lg:hidden absolute right-[0px] top-[400px]"
+        src="/images/home/Polygon14.svg"
+        alt="Polygon 14"
+        width={100.74}
+        height={100.74}
+        style={{
+          filter: 'drop-shadow(0 0 15.4px rgba(189, 212, 246, 0.25))'
+        }}
+      />
+
+      <Image
+        className="lg:hidden absolute left-[245px] top-[520px]"
+        src="/images/home/Polygon15.svg"
+        alt="Polygon 15"
+        width={150.74}
+        height={150.74}
+        style={{
+          filter: 'drop-shadow(0 0 15.4px rgba(189, 212, 246, 0.25))'
+        }}
+      />
 
       {/* Main gauche avec personnage orange */}
       <Image
@@ -36,7 +82,7 @@ export default function BackgroundElements() {
       
       {/* Main droite */}
       <Image
-        className="hidden lg:block absolute right-[0px] top-[90px] origin-top-left"
+        className="hidden lg:block absolute right-[-20px] top-[0px] origin-top-left"
         src="/images/home/byebail1.svg"
         alt="Main droite"
         width={499}
@@ -45,7 +91,7 @@ export default function BackgroundElements() {
 
       {/* Personnage vert qui se balance */}
       <Image
-        className="hidden lg:block absolute right-[170px] top-[365px]"
+        className="hidden lg:block absolute right-[150px] top-[275px]"
         src="/images/home/Green.svg"
         alt="Personnage vert"
         width={202.399}
