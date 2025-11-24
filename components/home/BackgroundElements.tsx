@@ -17,14 +17,14 @@ export default function BackgroundElements() {
 
       {/* Main gauche avec personnage orange */}
       <Image
-        className="lg:hidden absolute right-[0] top-[250px]"
+        className="lg:hidden absolute right-[0] top-[220px] z-10"
         src="/images/home/byebail1.svg"
         alt="Main gauche"
         width={381.924}
         height={401.87}
       />
       <Image
-        className="lg:hidden absolute right-[130px] top-[470px]"
+        className="lg:hidden absolute right-[130px] top-[440px] z-10"
         src="/images/home/Green.svg"
         alt="Personnage orange"
         width={127.478}
