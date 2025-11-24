@@ -131,19 +131,22 @@ export default function QuizQuestionPage() {
     <div className="min-h-screen flex flex-col">
       <QuizHeader currentQuestion={questionId} />
 
-      <main className="flex-1 flex flex-col mx-4 pt-5">
-        {/* Question bubble */}
-        <div className="mb-5">
-          <QuestionBubble
-            questionNumber={questionId}
-            text={question.text}
-            titleText={question.titleText}
-            infoText={questionId === 3 ? "Ça change les calculs de capacité d'emprunt " : undefined}
-          />
-        </div>
+      <main className="flex-1 flex flex-col mx-4 pt-5 lg:items-center lg:pt-[100px]">
+        {/* Conteneur question + input */}
+        <div className="lg:w-[750px] lg:flex lg:flex-col lg:items-end lg:gap-[50px]">
+          {/* Question bubble */}
+          <div className="mb-5 lg:mb-0">
+            <QuestionBubble
+              questionNumber={questionId}
+              text={question.text}
+              titleText={question.titleText}
+              infoText={questionId === 3 ? "Ça change les calculs de capacité d'emprunt " : undefined}
+            />
+          </div>
 
-        {/* Input field */}
-        <div className="mb-8">{renderInput()}</div>
+          {/* Input field */}
+          <div className="mb-8 lg:mb-0">{renderInput()}</div>
+        </div>
 
         {/* Spacer pour pousser le bouton vers le bas */}
         <div className="flex-1"></div>
