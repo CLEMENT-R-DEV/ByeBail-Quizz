@@ -131,7 +131,7 @@ export default function QuizQuestionPage() {
     <div className="min-h-screen flex flex-col">
       <QuizHeader currentQuestion={questionId} />
 
-      <main className="flex-1 flex flex-col mx-4 pt-5 lg:items-center lg:pt-[100px]">
+      <main className="flex-1 flex flex-col mx-4 lg:mx-0 pt-5 lg:items-center lg:pt-[100px]">
         {/* Conteneur question + input */}
         <div className="lg:w-[750px] lg:flex lg:flex-col lg:items-end lg:gap-[50px]">
           {/* Question bubble */}
