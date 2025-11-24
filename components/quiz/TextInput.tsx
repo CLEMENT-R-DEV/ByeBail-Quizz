@@ -7,13 +7,15 @@ interface TextInputProps {
   onChange: (value: string) => void;
   placeholder?: string;
   type?: 'text' | 'number';
+  hideArrows?: boolean;
 }
 
 export default function TextInput({
   value,
   onChange,
   placeholder = '',
-  type = 'text'
+  type = 'text',
+  hideArrows = false
 }: TextInputProps) {
   const handleIncrement = () => {
     if (type === 'number') {
@@ -42,36 +44,38 @@ export default function TextInput({
       />
 
       {/* Icônes up/down */}
-      <div className="h-6 px-1 inline-flex flex-col justify-start items-start gap-1">
-        {/* Flèche haut */}
-        <div
-          onClick={handleIncrement}
-          className="self-stretch flex-1 flex flex-col justify-center items-center gap-2.5 overflow-hidden cursor-pointer"
-        >
-          <div className="relative w-2 h-[5px]">
-            <Image
-              src="/images/CaretUp.svg"
-              alt="Augmenter"
-              fill
-              className="object-contain"
-            />
+      {!hideArrows && (
+        <div className="h-6 px-1 inline-flex flex-col justify-start items-start gap-1">
+          {/* Flèche haut */}
+          <div
+            onClick={handleIncrement}
+            className="self-stretch flex-1 flex flex-col justify-center items-center gap-2.5 overflow-hidden cursor-pointer"
+          >
+            <div className="relative w-2 h-[5px]">
+              <Image
+                src="/images/CaretUp.svg"
+                alt="Augmenter"
+                fill
+                className="object-contain"
+              />
+            </div>
+          </div>
+          {/* Flèche bas */}
+          <div
+            onClick={handleDecrement}
+            className="self-stretch flex-1 flex flex-col justify-center items-center gap-2.5 overflow-hidden cursor-pointer"
+          >
+            <div className="relative w-2 h-[5px]">
+              <Image
+                src="/images/CaretDown.svg"
+                alt="Diminuer"
+                fill
+                className="object-contain"
+              />
+            </div>
           </div>
         </div>
-        {/* Flèche bas */}
-        <div
-          onClick={handleDecrement}
-          className="self-stretch flex-1 flex flex-col justify-center items-center gap-2.5 overflow-hidden cursor-pointer"
-        >
-          <div className="relative w-2 h-[5px]">
-            <Image
-              src="/images/CaretDown.svg"
-              alt="Diminuer"
-              fill
-              className="object-contain"
-            />
-          </div>
-        </div>
-      </div>
+      )}
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import { Question } from './types';
 
-export const TOTAL_QUESTIONS = 10;
+export const TOTAL_QUESTIONS = 12;
 
 export const questions: Question[] = [
   {
@@ -15,44 +15,72 @@ export const questions: Question[] = [
   },
   {
     id: 2,
+    type: 'text',
+    text: 'Nous c\'est Byebail, et toi c\'est comment ?',
+    placeholder: 'Ton prénom',
+    validation: (value: string) => {
+      return value.trim().length > 0;
+    },
+  },
+  {
+    id: 3,
+    type: 'select',
+    text: 'On est content de te faire ta connaissance, et au fait tu nous a connu comment ?',
+    placeholder: 'Select',
+    choices: [
+      { id: 'insta', label: 'Insta', image: '' },
+      { id: 'tiktok', label: 'Tiktok', image: '' },
+      { id: 'facebook', label: 'Facebook', image: '' },
+      { id: 'affichage', label: 'Affichage', image: '' },
+      { id: 'tele', label: 'Télé', image: '' },
+      { id: 'youtube', label: 'Youtube', image: '' },
+      { id: 'bouche_a_oreille', label: 'Bouche à oreille', image: '' },
+      { id: 'autres', label: 'Autres', image: '' },
+    ],
+    validation: (value: string) => {
+      return value.trim().length > 0;
+    },
+  },
+  {
+    id: 4,
     type: 'choice',
     text: "Ne crois pas que je te drague, mais...|t'es en couple ou pas ?",
     choices: [
       {
         id: 'couple',
         label: 'En couple',
-        image: '/images/Group 21.svg',
+        image: '/images/image110.svg',
       },
       {
         id: 'single',
         label: 'Célibataire',
-        image: '/images/Group 17.svg',
+        image: '/images/image123.svg',
       },
     ],
   },
   {
-    id: 3,
+    id: 5,
     type: 'choice',
-    text: "Et tu prévois d'acheter ensemble ou seul(e) ?",
+    text: "Et c'est pour acheter avec ta moitié, ou en solo ?",
     choices: [
       {
         id: 'ensemble',
         label: 'Ensemble',
         subtitle: 'On achète à deux',
-        image: '/images/Frame_1707478958.svg',
+        image: '/images/couple.svg',
       },
       {
         id: 'seul',
         label: 'Seul(e)',
         subtitle: 'Je garde mon indépendance',
-        image: '/images/Frame_1707478954.svg',
+        image: '/images/seul.svg',
       },
     ],
   },
   {
-    id: 4,
+    id: 6,
     type: 'text',
-    text: 'Tu payes combien de loyer par mois ? (ou tu vis encore chez maman 😅)',
+    text: 'On rentre dans le vif du sujet : tu payes combien de loyer ? (ou tu vis encore chez maman 😅)',
     placeholder: 'Montant du loyer',
     validation: (value: string) => {
       const montant = parseFloat(value);
@@ -60,39 +88,43 @@ export const questions: Question[] = [
     },
   },
   {
-    id: 5,
+    id: 7,
     type: 'choice',
     text: 'Tu cherches quel type de logement ?',
-    choiceStyle: 'image', // Afficher seulement les images sans carte
     choices: [
       {
         id: 'studio',
         label: 'Studio',
-        image: '/images/Studio.svg',
-        desktopImage: '/images/Studio-desktop.svg',
+        image: '/images/studio.svg',
+      },
+      {
+        id: 't1',
+        label: 'T1',
+        subtitle: 'Cuisine séparée',
+        image: '/images/t1.svg',
       },
       {
         id: 't2',
         label: 'T2',
-        image: '/images/T2.svg',
-        desktopImage: '/images/T2-desktop.svg',
+        subtitle: '1 chambre + 1 salon',
+        image: '/images/t2.svg',
       },
       {
         id: 't3',
         label: 'T3',
-        image: '/images/T3.svg',
-        desktopImage: '/images/T3-desktop.svg',
+        subtitle: '2 chambres + 1 salon',
+        image: '/images/t3.svg',
       },
       {
-        id: 't4',
-        label: 'T4',
-        image: '/images/T4.svg',
-        desktopImage: '/images/T4-desktop.svg',
+        id: 't4+',
+        label: 'T4+',
+        subtitle: '3 chambres + 1 salon',
+        image: '/images/t4+.svg',
       },
     ],
   },
   {
-    id: 6,
+    id: 8,
     type: 'text',
     text: 'Et niveau revenus, combien tu gagnes par mois ?',
     placeholder: 'Revenus mensuels',
@@ -102,7 +134,7 @@ export const questions: Question[] = [
     },
   },
   {
-    id: 7,
+    id: 9,
     type: 'choice',
     text: 'Cote boulot, tu fais quoi ?',
     choices: [
@@ -129,7 +161,7 @@ export const questions: Question[] = [
     ],
   },
   {
-    id: 8,
+    id: 10,
     type: 'text',
     titleText: 'OK, on rentre dans le vif du sujet.',
     text: "Pour te montrer tes appartements personnalisés, j'ai besoin de ton email.",
@@ -141,7 +173,7 @@ export const questions: Question[] = [
     },
   },
   {
-    id: 9,
+    id: 11,
     type: 'choice',
     text: 'Dernières questions, promis. Tu as déjà des crédits en cours ?',
     choices: [
@@ -158,7 +190,7 @@ export const questions: Question[] = [
     ],
   },
   {
-    id: 10,
+    id: 12,
     type: 'choice',
     text: "Dernière question ! T'as un peu d'apport de côté, ou c'est plutôt \"pâtes au beurre\" en fin de mois ?",
     choices: [

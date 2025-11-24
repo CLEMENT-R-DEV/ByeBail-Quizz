@@ -13,8 +13,8 @@ export default function CalculationPage() {
   const [animatedPercentage, setAnimatedPercentage] = useState<number>(0);
 
   useEffect(() => {
-    // Récupérer le loyer de la question 4
-    const loyerValue = storage.getAnswer(4);
+    // Récupérer le loyer de la question 6
+    const loyerValue = storage.getAnswer(6);
     if (loyerValue) {
       setLoyer(parseFloat(loyerValue));
     }
@@ -49,7 +49,7 @@ export default function CalculationPage() {
   }, [pourcentageAppartement]);
 
   const handleContinue = () => {
-    router.push('/quiz/5');
+    router.push('/quiz/7');
   };
 
   return (

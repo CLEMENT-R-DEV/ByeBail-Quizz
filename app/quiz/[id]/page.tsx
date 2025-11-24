@@ -1,10 +1,11 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useRouter, useParams } from 'next/navigation';
 import QuizHeader from '@/components/quiz/QuizHeader';
 import QuestionBubble from '@/components/quiz/QuestionBubble';
 import TextInput from '@/components/quiz/TextInput';
+import SelectInput from '@/components/quiz/SelectInput';
 import ChoiceCard from '@/components/quiz/ChoiceCard';
 import ImageChoice from '@/components/quiz/ImageChoice';
 import ContinueButton from '@/components/quiz/ContinueButton';
@@ -18,6 +19,8 @@ export default function QuizQuestionPage() {
 
   const [answer, setAnswer] = useState('');
   const [isValid, setIsValid] = useState(false);
+  const [cardWidth, setCardWidth] = useState<number | null>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
 
   const question = questions.find((q) => q.id === questionId);
 
@@ -47,6 +50,29 @@ export default function QuizQuestionPage() {
     }
   }, [answer, question]);
 
+  // Mesurer la largeur de la carte pour la question 7
+  useEffect(() => {
+    if (questionId === 7) {
+      const updateCardWidth = () => {
+        const screenWidth = window.innerWidth;
+        const padding = 16 * 2; // mx-4 = 16px de chaque côté
+        const gap = 8; // gap-2 = 8px entre les cartes
+        const availableWidth = screenWidth - padding;
+        const cardWidth = (availableWidth - gap) / 2;
+        setCardWidth(cardWidth);
+      };
+
+      // Initial measurement
+      const timer = setTimeout(updateCardWidth, 0);
+
+      window.addEventListener('resize', updateCardWidth);
+      return () => {
+        clearTimeout(timer);
+        window.removeEventListener('resize', updateCardWidth);
+      };
+    }
+  }, [questionId]);
+
   if (!question) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -62,14 +88,14 @@ export default function QuizQuestionPage() {
     storage.saveAnswer(questionId, answer);
 
     // Navigation
-    if (questionId === 4) {
-      // Après la question 4, aller à l'écran de calcul
+    if (questionId === 6) {
+      // Après la question 6, aller à l'écran de calcul
       router.push('/calculation');
-    } else if (questionId === 5) {
-      // Après la question 5, aller à l'écran d'inflation
+    } else if (questionId === 7) {
+      // Après la question 7, aller à l'écran d'inflation
       router.push('/inflation');
-    } else if (questionId === 8) {
-      // Après la question 8, aller à l'écran de pause vidéo
+    } else if (questionId === 10) {
+      // Après la question 10, aller à l'écran de pause vidéo
       router.push('/video-pause');
     } else if (questionId < TOTAL_QUESTIONS) {
       router.push(`/quiz/${questionId + 1}`);
@@ -82,12 +108,12 @@ export default function QuizQuestionPage() {
     switch (question.type) {
       case 'text':
         // Déterminer le type d'input basé sur le placeholder ou l'id de la question
-        const inputType = question.placeholder?.includes('email') || question.placeholder?.includes('@') ? 'text' : 'number';
+        const inputType = questionId === 2 || question.placeholder?.includes('email') || question.placeholder?.includes('@') ? 'text' : 'number';
 
         return (
-          <div className={questionId === 6 ? 'hidden lg:flex lg:flex-col lg:gap-5' : ''}>
-            {/* Input sur mobile uniquement pour question 6 */}
-            {questionId === 6 && (
+          <div className={(questionId === 8 || questionId === 10) ? 'hidden lg:flex lg:flex-col lg:gap-5' : ''}>
+            {/* Input sur mobile uniquement pour questions 8 et 10 */}
+            {(questionId === 8 || questionId === 10) && (
               <div className="lg:hidden">
                 <TextInput
                   value={answer}
@@ -98,8 +124,8 @@ export default function QuizQuestionPage() {
               </div>
             )}
 
-            {/* Input pour question 6 sur desktop */}
-            {questionId === 6 && (
+            {/* Input pour questions 8 et 10 sur desktop */}
+            {(questionId === 8 || questionId === 10) && (
               <div className="hidden lg:flex lg:justify-end">
                 <TextInput
                   value={answer}
@@ -110,8 +136,8 @@ export default function QuizQuestionPage() {
               </div>
             )}
 
-            {/* Texte informatif pour la question 6 (desktop uniquement) - après l'input */}
-            {questionId === 6 && (
+            {/* Texte informatif pour la question 8 (desktop uniquement) - après l'input */}
+            {questionId === 8 && (
               <div className="hidden lg:flex lg:flex-col lg:gap-1 lg:items-end" style={{ fontFamily: 'var(--font-satoshi)' }}>
                 <div className="text-gray-900/60 text-[18px] font-normal leading-[110%] tracking-[-0.18px] text-right">
                   Revenus nets mensuels en euros
@@ -122,32 +148,131 @@ export default function QuizQuestionPage() {
               </div>
             )}
 
+            {/* Texte informatif pour la question 10 (desktop uniquement) - après l'input */}
+            {questionId === 10 && (
+              <div className="hidden lg:flex lg:flex-col lg:gap-1 lg:items-end" style={{ fontFamily: 'var(--font-satoshi)' }}>
+                <div className="text-gray-900/60 text-[18px] font-normal leading-[110%] tracking-[-0.18px] text-right">
+                  Aucun spam. Aucune pub.
+                </div>
+                <div className="text-gray-900/60 text-[18px] font-normal leading-[110%] tracking-[-0.18px] text-right">
+                  On n&apos;est pas là pour te saouler, juste pour t&apos;aider.
+                </div>
+              </div>
+            )}
+
+            {/* Texte informatif pour la question 10 sur mobile */}
+            {questionId === 10 && (
+              <p className="lg:hidden text-center text-sm font-normal leading-[110%] mt-4 text-gray-600">
+                Aucun spam. Aucune pub.<br />
+                On n&apos;est pas là pour te saouler, juste pour t&apos;aider.
+              </p>
+            )}
+
             {/* Input pour les autres questions */}
-            {questionId !== 6 && (
+            {questionId !== 8 && questionId !== 10 && (
               <TextInput
                 value={answer}
                 onChange={setAnswer}
                 placeholder={question.placeholder}
                 type={inputType}
+                hideArrows={questionId === 2}
               />
             )}
-
-            {/* Texte informatif pour la question 8 (email) */}
-            {questionId === 8 && (
-              <p className="text-center text-sm font-normal leading-[110%] mt-4 text-gray-600">
-                Aucun spam. Aucune pub.<br />
-                On n&apos;est pas là pour te saouler, juste pour t&apos;aider.
-              </p>
-            )}
           </div>
+        );
+
+      case 'select':
+        return (
+          <SelectInput
+            value={answer}
+            onChange={setAnswer}
+            placeholder={question.placeholder}
+            options={question.choices?.map(choice => ({ id: choice.id, label: choice.label })) || []}
+          />
         );
 
       case 'choice':
         // Choisir le composant selon le choiceStyle
         const ChoiceComponent = question.choiceStyle === 'image' ? ImageChoice : ChoiceCard;
 
+        // Pour la question 7, disposition spéciale avec 5 cartes
+        if (questionId === 7) {
+          return (
+            <div className="w-full lg:w-[750px]">
+              {/* Mobile: grid 2 colonnes, 5ème carte centrée sur 3ème ligne */}
+              <div ref={gridRef} className="lg:hidden grid grid-cols-2 gap-2">
+                {question.choices?.slice(0, 4).map((choice) => (
+                  <ChoiceComponent
+                    key={choice.id}
+                    id={choice.id}
+                    label={choice.label}
+                    subtitle={choice.subtitle}
+                    image={choice.image}
+                    desktopImage={choice.desktopImage}
+                    selected={answer === choice.id}
+                    onClick={() => setAnswer(choice.id)}
+                  />
+                ))}
+                {/* 5ème carte centrée - utilise la largeur mesurée */}
+                {question.choices && question.choices[4] && (
+                  <div className="col-span-2 flex justify-center">
+                    <div className="aspect-square" style={{ width: cardWidth ? `${cardWidth}px` : 'auto' }}>
+                      <ChoiceComponent
+                        key={question.choices[4].id}
+                        id={question.choices[4].id}
+                        label={question.choices[4].label}
+                        subtitle={question.choices[4].subtitle}
+                        image={question.choices[4].image}
+                        desktopImage={question.choices[4].desktopImage}
+                        selected={answer === question.choices[4].id}
+                        onClick={() => setAnswer(question.choices[4].id)}
+                        fullSize={true}
+                      />
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Desktop: 3 cartes sur ligne 1, 2 cartes sur ligne 2 */}
+              <div className="hidden lg:grid lg:grid-cols-6 lg:gap-[12px] lg:auto-rows-[269px]">
+                {/* Ligne 1: 3 premières cartes - chacune occupe 2 colonnes */}
+                {question.choices?.slice(0, 3).map((choice) => (
+                  <div key={choice.id} className="col-span-2">
+                    <ChoiceComponent
+                      id={choice.id}
+                      label={choice.label}
+                      subtitle={choice.subtitle}
+                      image={choice.image}
+                      desktopImage={choice.desktopImage}
+                      selected={answer === choice.id}
+                      onClick={() => setAnswer(choice.id)}
+                      fullSize={true}
+                    />
+                  </div>
+                ))}
+                {/* Ligne 2: 2 dernières cartes - chacune occupe 3 colonnes */}
+                {question.choices?.slice(3, 5).map((choice) => (
+                  <div key={choice.id} className="col-span-3">
+                    <ChoiceComponent
+                      id={choice.id}
+                      label={choice.label}
+                      subtitle={choice.subtitle}
+                      image={choice.image}
+                      desktopImage={choice.desktopImage}
+                      selected={answer === choice.id}
+                      onClick={() => setAnswer(choice.id)}
+                      fullSize={true}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          );
+        }
+
+        // Pour les autres questions
         return (
-          <div className={`w-full lg:w-[750px] ${questionId === 5 ? 'lg:h-[366px]' : 'lg:h-[269px]'} grid grid-cols-2 gap-2 ${questionId === 5 ? 'lg:gap-[12px]' : 'lg:gap-[18px]'}`}>
+          <div className={`w-full lg:w-[750px] lg:h-[269px] grid grid-cols-2 gap-2 lg:gap-[18px]`}>
             {question.choices?.map((choice) => (
               <ChoiceComponent
                 key={choice.id}
@@ -172,7 +297,7 @@ export default function QuizQuestionPage() {
     <div className="min-h-screen flex flex-col">
       <QuizHeader currentQuestion={questionId} />
 
-      <main className="flex-1 flex flex-col mx-4 lg:mx-0 pt-5 lg:items-center lg:pt-[100px]">
+      <main className="flex-1 flex flex-col mx-4 lg:mx-0 pt-5 lg:items-center lg:pt-[100px] min-h-0">
         {/* Conteneur question + input */}
         <div className="lg:w-[750px] lg:flex lg:flex-col lg:items-end lg:gap-[50px]">
           {/* Question bubble */}
@@ -181,7 +306,7 @@ export default function QuizQuestionPage() {
               questionNumber={questionId}
               text={question.text}
               titleText={question.titleText}
-              infoText={questionId === 3 ? "Ça change les calculs de capacité d'emprunt " : undefined}
+              infoText={questionId === 5 ? "Ça change les calculs de capacité d'emprunt " : undefined}
             />
           </div>
 

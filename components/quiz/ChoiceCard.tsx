@@ -9,6 +9,7 @@ interface ChoiceCardProps {
   image: string;
   selected: boolean;
   onClick: () => void;
+  fullSize?: boolean;
 }
 
 export default function ChoiceCard({
@@ -18,6 +19,7 @@ export default function ChoiceCard({
   image,
   selected,
   onClick,
+  fullSize = false,
 }: ChoiceCardProps) {
   return (
     <button
@@ -25,7 +27,8 @@ export default function ChoiceCard({
       className={`
         relative
         transition-all duration-200
-        ${selected ? 'scale-110' : 'scale-100 hover:scale-105'}
+        ${selected ? 'scale-[1.03]' : 'scale-100 hover:scale-[1.03]'}
+        ${fullSize ? 'w-full h-full' : ''}
       `}
     >
       <div
@@ -43,13 +46,22 @@ export default function ChoiceCard({
           }}
         >
           {/* Image */}
-          <div className="relative w-[120px] h-20 lg:w-[200px] lg:h-[150px] flex-shrink-0">
+          <div
+            className="relative w-[92px] h-[92px] lg:w-[140px] lg:h-[140px] flex-shrink-0 flex justify-center items-center overflow-hidden"
+            style={{
+              aspectRatio: '1/1',
+              background: '#FFFFFF',
+            }}
+          >
             <Image
               src={image}
               alt={label}
               fill
               className="object-contain"
-              sizes="(min-width: 1024px) 200px, 120px"
+              sizes="(min-width: 1024px) 140px, 92px"
+              style={{
+                borderRadius: '28px 28px 4px 4px'
+              }}
             />
           </div>
 
@@ -59,7 +71,7 @@ export default function ChoiceCard({
               {label}
             </div>
             {subtitle && (
-              <div className="text-center justify-center text-gray-900/60 lg:text-[rgba(17,24,39,0.60)] text-sm lg:text-[20px] font-medium lg:font-medium font-['Satoshi'] leading-4 lg:leading-[110%]">
+              <div className="text-center justify-center text-[rgba(17,24,39,0.60)] text-sm font-medium font-['Satoshi'] leading-[110%]">
                 {subtitle}
               </div>
             )}
