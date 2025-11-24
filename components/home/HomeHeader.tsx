@@ -1,15 +1,16 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function HomeHeader() {
   return (
-    <div className="w-full h-24 relative z-50">
-      <div className="w-full px-4 py-3 lg:py-[12px] relative top-[24px] rounded-2xl flex justify-between items-center overflow-hidden">
+    <div className="w-full pt-[24px] relative z-50">
+      <div className="w-full py-[13px] relative rounded-2xl flex justify-between items-center overflow-hidden">
         {/* Logo */}
         <Link href="/" className="flex justify-start items-center gap-2">
-          <div className="w-10 h-10 relative bg-blue-900 rounded-lg shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)]">
-            <div className="w-3 h-7 absolute left-[14.28px] top-[6px] justify-center text-white text-xl font-semibold font-['Crimson_Pro'] leading-7">
+          <div className="w-10 h-10 flex justify-center items-center bg-blue-900 rounded-lg shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)]" style={{ padding: '6px 13.95px 6px 14.279px' }}>
+            <div className="text-white text-xl font-semibold font-['Crimson_Pro'] leading-7">
               B
             </div>
           </div>
@@ -83,8 +84,13 @@ export default function HomeHeader() {
           </Link>
 
           {/* Mobile Menu Icon */}
-          <button className="lg:hidden w-6 h-6 relative overflow-hidden">
-            <div className="w-5 h-3.5 absolute left-[2.62px] top-[4.88px] bg-blue-900" />
+          <button className="lg:hidden w-6 h-6 relative flex items-center justify-center">
+            <Image
+              src="/images/home/List.svg"
+              alt="Menu"
+              width={24}
+              height={24}
+            />
           </button>
         </div>
       </div>

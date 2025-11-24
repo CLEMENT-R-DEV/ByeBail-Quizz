@@ -13,26 +13,26 @@ export default function BackgroundElements() {
         style={{ backgroundColor: '#D9D9D933' }}
       />
 
-      {/* Maisons illustrées - Mobile */}
+      {/* Illustrations - Mobile */}
+
       {/* Main gauche avec personnage orange */}
       <Image
-        className="lg:hidden absolute left-[180px] top-[450px]"
-        src="/images/home/image3.svg"
+        className="lg:hidden absolute right-[0] top-[250px]"
+        src="/images/home/byebail1.svg"
         alt="Main gauche"
-        width={200}
-        height={200}
+        width={381.924}
+        height={401.87}
       />
       <Image
-        className="lg:hidden absolute left-[190px] top-[420px]"
-        src="/images/home/Orange1.svg"
+        className="lg:hidden absolute right-[130px] top-[470px]"
+        src="/images/home/Green.svg"
         alt="Personnage orange"
-        width={80}
-        height={80}
+        width={127.478}
+        height={231.79}
       />
 
-      {/* Maison + éléments décoratifs - Mobile */}
 
-      {/* Maisons illustrées - Desktop */}
+      {/* Illustrations - Desktop */}
       
       {/* Main droite */}
       <Image
@@ -69,12 +69,6 @@ export default function BackgroundElements() {
         width={202.399}
         height={371}
       />
-
-      {/* Maison + éléments décoratifs - Desktop */}
-
-
-      {/* Autre maison - Desktop */}
-
     </>
   );
 }

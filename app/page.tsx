@@ -16,7 +16,7 @@ export default function HomePage() {
       {/* Éléments de fond décoratifs */}
       <BackgroundElements />
 
-      <main className="relative lg:w-[1160px] flex flex-col lg:mx-auto lg:gap-10 mb-15">
+      <main className="relative px-4 lg:px-[0px] lg:w-[1160px] flex flex-col lg:mx-auto lg:gap-10 mb-10 lg:mb-15">
         {/* Header */}
         <HomeHeader />
 
