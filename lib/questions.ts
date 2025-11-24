@@ -16,7 +16,7 @@ export const questions: Question[] = [
   {
     id: 2,
     type: 'choice',
-    text: "Ne crois pas que je te drague, mais... t'es en couple ou pas ?",
+    text: "Ne crois pas que je te drague, mais...|t'es en couple ou pas ?",
     choices: [
       {
         id: 'couple',
@@ -52,7 +52,7 @@ export const questions: Question[] = [
   {
     id: 4,
     type: 'text',
-    text: 'Actuellement, quelle somme verses-tu pour ton loyer ?',
+    text: 'Tu payes combien de loyer par mois ? (ou tu vis encore chez maman 😅)',
     placeholder: 'Montant du loyer',
     validation: (value: string) => {
       const montant = parseFloat(value);
@@ -62,28 +62,32 @@ export const questions: Question[] = [
   {
     id: 5,
     type: 'choice',
-    text: 'Combien de pièces veux-tu dans ton appartement ?',
+    text: 'Tu cherches quel type de logement ?',
     choiceStyle: 'image', // Afficher seulement les images sans carte
     choices: [
       {
         id: 'studio',
         label: 'Studio',
         image: '/images/Studio.svg',
+        desktopImage: '/images/Studio-desktop.svg',
       },
       {
         id: 't2',
         label: 'T2',
         image: '/images/T2.svg',
+        desktopImage: '/images/T2-desktop.svg',
       },
       {
         id: 't3',
         label: 'T3',
         image: '/images/T3.svg',
+        desktopImage: '/images/T3-desktop.svg',
       },
       {
         id: 't4',
         label: 'T4',
         image: '/images/T4.svg',
+        desktopImage: '/images/T4-desktop.svg',
       },
     ],
   },

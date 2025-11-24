@@ -56,19 +56,19 @@ export default function CalculationPage() {
     <div className="min-h-screen flex flex-col">
       <SimpleHeader />
 
-      <main className="flex-1 flex flex-col mx-4 pt-5">
+      <main className="flex-1 flex flex-col lg:pt-[100px] mx-4 lg:mx-0 pt-5">
         {/* Contenu principal */}
-        <div className="w-full max-w-md mx-auto p-5 bg-white rounded-3xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.04)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 flex flex-col justify-start items-start gap-5 mb-8">
+        <div className="w-full lg:w-[750px] mx-auto p-5 bg-white rounded-3xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.04)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 flex flex-col justify-start items-start gap-5 mb-8">
 
           {/* Section 1 - Titre et question */}
           <div className="self-stretch flex flex-col justify-start items-center gap-1.5">
-            <div className="self-stretch text-center justify-center text-gray-900 text-3xl font-semibold font-['Bricolage_Grotesque'] leading-8">
+            <div className="self-stretch text-center justify-center text-[#111827] text-3xl lg:text-[28px] font-semibold lg:font-semibold font-['Bricolage_Grotesque'] leading-8 lg:leading-[120%] lg:tracking-[-0.28px]">
               Petite question rapide...
             </div>
             <div className="self-stretch text-center justify-center">
-              <span className="text-gray-900 text-base font-normal font-['Satoshi'] leading-5">Ton loyer de </span>
-              <span className="text-gray-900 text-base font-bold font-['Satoshi'] leading-5">{loyer} €/mois</span>
-              <span className="text-gray-900 text-base font-normal font-['Satoshi'] leading-5">, ça représente combien sur 10 ans ?</span>
+              <span className="text-[#111827] text-base lg:text-[20px] font-normal lg:font-normal font-['Satoshi'] leading-5 lg:leading-[120%] lg:tracking-[-0.2px]">Ton loyer de </span>
+              <span className="text-[#111827] text-base lg:text-[20px] font-bold lg:font-bold font-['Satoshi'] leading-5 lg:leading-[120%] lg:tracking-[-0.2px]">{loyer} €/mois</span>
+              <span className="text-[#111827] text-base lg:text-[20px] font-normal lg:font-normal font-['Satoshi'] leading-5 lg:leading-[120%] lg:tracking-[-0.2px]">, ça représente combien sur 10 ans ?</span>
             </div>
           </div>
 
@@ -120,10 +120,10 @@ export default function CalculationPage() {
 
             {/* Montant total */}
             <div className="self-stretch flex flex-col justify-start items-center">
-              <div className="self-stretch text-center justify-center text-orange-500 text-3xl font-semibold font-['Bricolage_Grotesque'] leading-7">
+              <div className="self-stretch text-center justify-center text-[#FE642A] text-3xl lg:text-[28px] font-semibold lg:font-semibold font-['Bricolage_Grotesque'] leading-7 lg:leading-[100%] lg:tracking-[-0.28px]">
                 {totalSur10Ans.toLocaleString('fr-FR')} €
               </div>
-              <div className="self-stretch text-center justify-center text-gray-900 text-base font-normal font-['Satoshi'] leading-5">
+              <div className="self-stretch text-center justify-center text-[#111827] text-base lg:text-lg font-normal lg:font-normal font-['Satoshi'] leading-5 lg:leading-[120%] lg:tracking-[-0.18px]">
                 C&apos;est ce que tu auras payé en 10 ans
               </div>
             </div>
@@ -132,11 +132,11 @@ export default function CalculationPage() {
           {/* Section 3 - Textes explicatifs */}
           <div className="self-stretch flex flex-col justify-start items-start gap-4">
             <div className="self-stretch text-center justify-center">
-              <span className="text-gray-900 text-base font-normal font-['Satoshi'] leading-5">Avec </span>
-              <span className="text-orange-500 text-base font-bold font-['Satoshi'] leading-5">{totalSur10Ans.toLocaleString('fr-FR')} €</span>
-              <span className="text-gray-900 text-base font-normal font-['Satoshi'] leading-5">, tu aurais déjà payé {pourcentageAppartement}% d&apos;un appartement à Tours.</span>
+              <span className="text-[#111827] text-base lg:text-[20px] font-normal lg:font-normal font-['Satoshi'] leading-5 lg:leading-[120%] lg:tracking-[-0.2px]">Avec </span>
+              <span className="text-[#FE642A] text-base lg:text-[20px] font-bold lg:font-bold font-['Satoshi'] leading-5 lg:leading-[120%] lg:tracking-[-0.2px]">{totalSur10Ans.toLocaleString('fr-FR')} €</span>
+              <span className="text-[#111827] text-base lg:text-[20px] font-normal lg:font-normal font-['Satoshi'] leading-5 lg:leading-[120%] lg:tracking-[-0.2px]">, tu aurais déjà payé {pourcentageAppartement}% d&apos;un appartement à Tours.</span>
             </div>
-            <div className="self-stretch text-center justify-center text-gray-900 text-base font-normal font-['Satoshi'] leading-5">
+            <div className="self-stretch text-center justify-center text-[#111827] text-base lg:text-[20px] font-normal lg:font-normal font-['Satoshi'] leading-5 lg:leading-[120%] lg:tracking-[-0.2px]">
               Sauf que là, cet argent... il est parti. Pour toujours.
             </div>
           </div>

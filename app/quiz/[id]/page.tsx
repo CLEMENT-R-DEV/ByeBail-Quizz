@@ -107,7 +107,7 @@ export default function QuizQuestionPage() {
         const ChoiceComponent = question.choiceStyle === 'image' ? ImageChoice : ChoiceCard;
 
         return (
-          <div className="grid grid-cols-2 gap-2">
+          <div className={`w-full lg:w-[750px] ${questionId === 5 ? 'lg:h-[366px]' : 'lg:h-[269px]'} grid grid-cols-2 gap-2 ${questionId === 5 ? 'lg:gap-[12px]' : 'lg:gap-[18px]'}`}>
             {question.choices?.map((choice) => (
               <ChoiceComponent
                 key={choice.id}
@@ -115,6 +115,7 @@ export default function QuizQuestionPage() {
                 label={choice.label}
                 subtitle={choice.subtitle}
                 image={choice.image}
+                desktopImage={choice.desktopImage}
                 selected={answer === choice.id}
                 onClick={() => setAnswer(choice.id)}
               />
@@ -135,7 +136,7 @@ export default function QuizQuestionPage() {
         {/* Conteneur question + input */}
         <div className="lg:w-[750px] lg:flex lg:flex-col lg:items-end lg:gap-[50px]">
           {/* Question bubble */}
-          <div className="mb-5 lg:mb-0">
+          <div className="w-full mb-5 lg:mb-0">
             <QuestionBubble
               questionNumber={questionId}
               text={question.text}

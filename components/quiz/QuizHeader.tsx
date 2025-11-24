@@ -44,14 +44,14 @@ export default function QuizHeader({ currentQuestion }: QuizHeaderProps) {
           {/* Section centrale avec Question count et titre */}
           <div className="left-[133px] top-0 absolute lg:static lg:mx-auto inline-flex flex-col justify-start items-center gap-1">
             <div className="inline-flex justify-start items-center gap-1">
-              <div className="text-center justify-center text-gray-900/60 text-xs font-medium font-['Satoshi'] leading-4">
+              <div className="text-center justify-center text-gray-900/60 lg:text-[rgba(17,24,39,0.60)] text-xs lg:text-base font-medium lg:font-medium font-['Satoshi'] leading-4 lg:leading-[120%] lg:tracking-[-0.16px]">
                 Question{' '}
               </div>
-              <div className="text-center justify-center text-gray-900/60 text-xs font-medium font-['Satoshi'] leading-4">
+              <div className="text-center justify-center text-gray-900/60 lg:text-[rgba(17,24,39,0.60)] text-xs lg:text-base font-medium lg:font-medium font-['Satoshi'] leading-4 lg:leading-[120%] lg:tracking-[-0.16px]">
                 {currentQuestion}/{TOTAL_QUESTIONS}
               </div>
             </div>
-            <div className="text-center justify-center text-gray-900 text-base font-bold leading-4" style={{ fontFamily: 'var(--font-optima)' }}>
+            <div className="text-center justify-center text-[#111827] text-base lg:text-[28px] font-bold lg:font-[700] leading-4 lg:leading-[100%]" style={{ fontFamily: 'var(--font-bricolage-grotesque)' }}>
               Quiz ByeBail
             </div>
           </div>

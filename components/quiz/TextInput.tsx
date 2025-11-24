@@ -32,13 +32,13 @@ export default function TextInput({
   };
 
   return (
-    <div className="w-full h-14 p-2.5 bg-white rounded-2xl outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 flex justify-center items-center gap-2.5">
+    <div className="w-full lg:w-[388px] h-14 lg:h-[77px] p-2.5 lg:px[18px] bg-white rounded-2xl outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 flex justify-center items-center gap-2.5">
       <input
         type={type}
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
-        className="flex-1 justify-center text-gray-900 text-sm font-normal font-['Satoshi'] leading-4 bg-transparent border-none focus:outline-none placeholder:text-gray-900/40"
+        className="flex-1 justify-center text-gray-900 text-sm lg:text-lg font-normal font-['Satoshi'] leading-4 lg:leading-[110%] bg-transparent border-none focus:outline-none placeholder:text-gray-900/40 lg:placeholder:text-[rgba(17,24,39,0.40)] lg:placeholder:text-lg lg:placeholder:leading-[110%] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none [&[type=number]]:[-moz-appearance:textfield]"
       />
 
       {/* Icônes up/down */}

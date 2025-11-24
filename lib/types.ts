@@ -5,6 +5,7 @@ export interface Choice {
   label: string;
   subtitle?: string; // sous-titre optionnel
   image: string; // path vers l'image
+  desktopImage?: string; // path vers l'image desktop (optionnel)
 }
 
 export interface Question {

@@ -16,9 +16,9 @@ export default function InflationPage() {
     <div className="min-h-screen flex flex-col">
       <SimpleHeader />
 
-      <main className="flex-1 flex flex-col mx-4 pt-5">
+      <main className="flex-1 flex flex-col mx-4 pt-5 ">
         {/* Contenu */}
-        <div className="w-full max-w-md mx-auto p-2.5 bg-white rounded-3xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.04)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 inline-flex flex-col justify-start items-start gap-5 mb-8">
+        <div className="w-full lg:mt-[100px] lg:mb-[69px] lg:w-[746px] mx-auto p-2.5 lg:p-5 bg-white rounded-3xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.04)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 inline-flex flex-col justify-start items-start gap-5 lg:gap-[18px] mb-8">
           {/* Titre */}
           <div className="self-stretch h-20 inline-flex flex-col justify-center items-center gap-1.5">
             <div className="self-stretch text-center justify-center text-gray-900 text-[28px] font-semibold font-['Bricolage_Grotesque'] leading-[100%] tracking-[-0.28px]">
@@ -40,10 +40,10 @@ export default function InflationPage() {
                   />
                 </div>
                 <div className="flex flex-col justify-start items-center gap-0.5">
-                  <div className="text-center justify-center text-gray-900/60 text-sm font-medium font-['Satoshi'] leading-4">2015</div>
-                  <div className="text-center justify-center">
-                    <span className="text-gray-900 text-base font-medium font-['Satoshi'] leading-4">10</span>
-                    <span className="text-gray-900 text-base font-bold font-['Satoshi_Variable'] leading-4">€</span>
+                  <div className="text-center justify-center text-gray-900/60 text-sm lg:text-[20px] font-medium lg:font-medium font-['Satoshi'] leading-4 lg:leading-[110%]">2015</div>
+                  <div className="text-center justify-center" style={{ fontFamily: 'var(--font-satoshi)' }}>
+                    <span className="text-gray-900 text-base lg:text-base font-medium lg:font-medium leading-4 lg:leading-[110%]">10</span>
+                    <span className="text-gray-900 text-base lg:text-base font-bold lg:font-bold leading-4 lg:leading-[110%]">€</span>
                   </div>
                   <div className="text-center justify-center text-gray-900/60 text-sm font-medium font-['Satoshi'] leading-4">Menu complet</div>
                 </div>
@@ -62,10 +62,10 @@ export default function InflationPage() {
                   />
                 </div>
                 <div className="flex flex-col justify-start items-center gap-0.5">
-                  <div className="text-center justify-center text-gray-900/60 text-sm font-medium font-['Satoshi'] leading-4">2025</div>
-                  <div className="text-center justify-center">
-                    <span className="text-orange-700 text-base font-medium font-['Satoshi'] leading-4">10</span>
-                    <span className="text-orange-700 text-base font-bold font-['Satoshi_Variable'] leading-4">€</span>
+                  <div className="text-center justify-center text-gray-900/60 text-sm lg:text-[20px] font-medium lg:font-medium font-['Satoshi'] leading-4 lg:leading-[110%]">2025</div>
+                  <div className="text-center justify-center" style={{ fontFamily: 'var(--font-satoshi)' }}>
+                    <span className="text-orange-700 lg:text-[#C72400] text-base lg:text-base font-medium lg:font-medium leading-4 lg:leading-[110%]">10</span>
+                    <span className="text-orange-700 lg:text-[#C72400] text-base lg:text-base font-bold lg:font-bold leading-4 lg:leading-[110%]">€</span>
                   </div>
                   <div className="text-center justify-center text-gray-900/60 text-sm font-medium font-['Satoshi'] leading-4">Juste le Big Mac</div>
                 </div>

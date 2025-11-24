@@ -29,37 +29,37 @@ export default function ChoiceCard({
       `}
     >
       <div
-        className="flex flex-col justify-center items-center p-[10px] bg-[#FDFEFF] rounded-[18px]"
+        className="h-full flex flex-col justify-center items-center p-[10px] bg-[#FDFEFF] rounded-[18px]"
         style={{
           border: '0.8px solid rgba(0, 0, 0, 0.04)',
           boxShadow: '0px 0px 27.5px rgba(104, 137, 228, 0.1)',
         }}
       >
         <div
-          className="w-full aspect-square bg-[#FDFEFF] rounded-lg flex flex-col items-center justify-center gap-[10px]"
+          className="w-full aspect-square lg:aspect-auto lg:h-full bg-[#FDFEFF] rounded-lg flex flex-col items-center justify-center gap-[10px]"
           style={{
             border: '0.8px solid rgba(0, 0, 0, 0.08)',
             boxShadow: '0px 0px 27.5px rgba(104, 137, 228, 0.1)',
           }}
         >
           {/* Image */}
-          <div className="relative w-[120px] h-20 flex-shrink-0">
+          <div className="relative w-[120px] h-20 lg:w-[200px] lg:h-[150px] flex-shrink-0">
             <Image
               src={image}
               alt={label}
               fill
               className="object-contain"
-              sizes="120px"
+              sizes="(min-width: 1024px) 200px, 120px"
             />
           </div>
 
           {/* Label + Subtitle */}
           <div className="inline-flex flex-col justify-start items-center gap-0.5">
-            <div className="text-center justify-center text-gray-900 text-base font-medium font-['Satoshi'] leading-4">
+            <div className="text-center justify-center text-gray-900 lg:text-[#111827] text-base lg:text-[22px] font-medium lg:font-medium font-['Satoshi'] leading-4 lg:leading-[110%]">
               {label}
             </div>
             {subtitle && (
-              <div className="text-center justify-center text-gray-900/60 text-sm font-medium font-['Satoshi'] leading-4">
+              <div className="text-center justify-center text-gray-900/60 lg:text-[rgba(17,24,39,0.60)] text-sm lg:text-[20px] font-medium lg:font-medium font-['Satoshi'] leading-4 lg:leading-[110%]">
                 {subtitle}
               </div>
             )}

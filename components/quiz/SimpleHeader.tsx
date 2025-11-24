@@ -11,7 +11,7 @@ export default function SimpleHeader() {
   };
 
   return (
-    <header className="w-full max-w-md mx-auto px-4 pt-10 pb-3 bg-white rounded-2xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.04)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 flex flex-col justify-start items-start gap-5">
+    <header className="w-full max-w-md lg:max-w-none mx-auto px-4 pt-10 pb-3 lg:w-full lg:px-[140px] lg:pt-[40px] lg:pb-[12px] bg-white rounded-2xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.04)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 flex flex-col justify-start items-start gap-5">
       <div className="w-full flex flex-col justify-start items-start gap-5">
         <div className="self-stretch h-8 relative inline-flex justify-between items-center">
           <button
@@ -27,7 +27,7 @@ export default function SimpleHeader() {
             />
           </button>
           <div className="absolute left-1/2 -translate-x-1/2 inline-flex flex-col justify-start items-center gap-1">
-            <div className="text-center justify-center text-gray-900 text-base font-bold leading-4" style={{ fontFamily: 'var(--font-optima)' }}>
+            <div className="text-center justify-center text-[#111827] text-base lg:text-[28px] font-bold lg:font-[700] leading-4 lg:leading-[100%]" style={{ fontFamily: 'var(--font-bricolage-grotesque)' }}>
               Quiz ByeBail
             </div>
           </div>
