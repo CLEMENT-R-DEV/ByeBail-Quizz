@@ -84,14 +84,22 @@ export default function SearchingPage() {
         <div className="w-full lg:w-[750px] lg:mt-[100px] mt-[20px] lg:mb-[62px] mx-auto p-5 bg-white rounded-3xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.04)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 flex flex-col justify-center items-center gap-5 mb-8">
           {/* Titre et image */}
           <div className="self-stretch flex flex-col justify-start items-center gap-2.5">
-            {/* Image recherche */}
-            <div className="w-28 h-20 relative rounded-lg overflow-hidden">
-              <Image
-                src="/images/search_1.svg"
-                alt="Recherche"
-                fill
-                className="object-contain"
+            {/* Image recherche avec ellipse */}
+            <div className="w-28 h-20 relative flex items-center justify-center">
+              {/* Ellipse de fond - parfaitement ronde avec position ajustable */}
+              <div
+                className="absolute w-10 h-10 lg:w-10 lg:h-10 top-2 left-7 lg:top-2 lg:left-7 rounded-full"
+                style={{ backgroundColor: '#D9D9D9' }}
               />
+              {/* Image au-dessus */}
+              <div className="w-28 h-20 relative z-10">
+                <Image
+                  src="/images/image146.svg"
+                  alt="Recherche"
+                  fill
+                  className="object-contain"
+                />
+              </div>
             </div>
 
             {/* Titre */}

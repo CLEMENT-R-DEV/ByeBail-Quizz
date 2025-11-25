@@ -18,13 +18,22 @@ export default function CongratulationsPage() {
         <div className="w-full lg:w-[750px] lg:mt-[100px] mt-[20px] mx-auto flex flex-col">
           {/* Carte principale */}
           <div className="rounded-3xl flex flex-col justify-center items-center gap-5 mb-2.5">
-          <div className="w-28 h-20 relative rounded-lg overflow-hidden">
-            <Image
-              src="/images/image146.svg"
-              alt="Félicitations"
-              fill
-              className="object-contain"
+          {/* Image avec ellipse */}
+          <div className="w-28 h-20 relative flex items-center justify-center">
+            {/* Ellipse de fond - parfaitement ronde avec position ajustable */}
+            <div
+              className="absolute w-10 h-10 lg:w-10 lg:h-10 top-2 left-7 lg:top-2 lg:left-7 rounded-full"
+              style={{ backgroundColor: '#D9D9D9' }}
             />
+            {/* Image au-dessus */}
+            <div className="w-28 h-20 relative z-10">
+              <Image
+                src="/images/image146.svg"
+                alt="Félicitations"
+                fill
+                className="object-contain"
+              />
+            </div>
           </div>
           <div className="self-stretch flex flex-col justify-start items-center gap-2.5">
             <div className="self-stretch text-center justify-center text-gray-900 text-xl font-semibold font-['Bricolage_Grotesque'] leading-5">Name, félicitations !</div>
