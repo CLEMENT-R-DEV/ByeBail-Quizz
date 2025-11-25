@@ -38,9 +38,35 @@ export default function QuestionBubble({ questionNumber, text, infoText, titleTe
 
             {/* Bulle de conversation */}
             <div className="flex-1 p-3.5 bg-white rounded-lg shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.10)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 flex flex-col justify-center items-center gap-2.5">
-              {questionNumber === 12 ? (
+              {questionNumber === 11 ? (
+                <>
+                  {/* Question 11 : Mobile une ligne, Desktop deux lignes */}
+                  <div className="lg:hidden self-stretch justify-center text-[#111827] text-[16px] font-normal font-['Satoshi_Variable'] leading-[120%] tracking-[-0.16px]">
+                    {titleText} {text}
+                  </div>
+                  <div className="hidden lg:block self-stretch justify-center text-[#111827] text-[24px] font-bold font-['Satoshi_Variable'] leading-[110%] tracking-[-0.24px]">
+                    {titleText}
+                  </div>
+                  <div className="hidden lg:block self-stretch justify-center text-[#111827] text-[24px] font-normal font-['Satoshi_Variable'] leading-[110%] tracking-[-0.24px]">
+                    {text}
+                  </div>
+                </>
+              ) : questionNumber === 12 ? (
                 <>
                   {/* Question 12 : Mobile une ligne, Desktop deux lignes */}
+                  <div className="lg:hidden self-stretch justify-center text-[#111827] text-[16px] font-normal font-['Satoshi_Variable'] leading-[120%] tracking-[-0.16px]">
+                    {titleText} {text}
+                  </div>
+                  <div className="hidden lg:block self-stretch justify-center text-[#111827] text-[24px] font-bold font-['Satoshi_Variable'] leading-[110%] tracking-[-0.24px]">
+                    {titleText}
+                  </div>
+                  <div className="hidden lg:block self-stretch justify-center text-[#111827] text-[24px] font-normal font-['Satoshi_Variable'] leading-[110%] tracking-[-0.24px]">
+                    {text}
+                  </div>
+                </>
+              ) : questionNumber === 13 ? (
+                <>
+                  {/* Question 13 : Mobile une ligne, Desktop deux lignes */}
                   <div className="lg:hidden self-stretch justify-center text-[#111827] text-[16px] font-normal font-['Satoshi_Variable'] leading-[120%] tracking-[-0.16px]">
                     {titleText} {text}
                   </div>

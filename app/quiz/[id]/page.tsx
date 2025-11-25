@@ -358,6 +358,29 @@ export default function QuizQuestionPage() {
           );
         }
 
+        // Question 13 : 3 cartes avec compactImage
+        if (questionId === 13) {
+          return (
+            <div className={`w-full lg:w-[750px] grid grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-[18px]`}>
+              {question.choices?.map((choice) => (
+                <ChoiceComponent
+                  key={choice.id}
+                  id={choice.id}
+                  label={choice.label}
+                  subtitle={choice.subtitle}
+                  image={choice.image}
+                  desktopImage={choice.desktopImage}
+                  selected={answer === choice.id}
+                  onClick={() => setAnswer(choice.id)}
+                  compactImage={true}
+                  labelClassName={choice.labelClassName}
+                  subtitleClassName={choice.subtitleClassName}
+                />
+              ))}
+            </div>
+          );
+        }
+
         return (
           <div className={`w-full lg:w-[750px] lg:h-[269px] grid grid-cols-2 gap-2 lg:gap-[18px]`}>
             {question.choices?.map((choice) => (

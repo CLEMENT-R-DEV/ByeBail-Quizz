@@ -189,6 +189,7 @@ export const questions: Question[] = [
   {
     id: 11,
     type: 'choice',
+    titleText: 'Dernières questions, promis.',
     text: 'Tu as déjà des crédits en cours ?',
     choices: [
       {
@@ -238,22 +239,26 @@ export const questions: Question[] = [
   {
     id: 13,
     type: 'choice',
-    text: "Dernière question ! T'as un peu d'apport de côté, ou c'est plutôt \"pâtes au beurre\" en fin de mois ?",
+    titleText: 'Dernière question !',
+    text: "T'as un peu d'apport de côté, ou c'est plutôt \"pâtes au beurre\" en fin de mois ?",
     choices: [
       {
         id: 'apport',
         label: "J'ai de l'apport",
-        image: '/images/apport.svg',
+        image: '/images/image143.svg',
+        labelClassName: "text-center text-[#111827] text-base font-medium leading-[110%] font-['Satoshi']",
       },
       {
         id: 'rien',
         label: 'Rien du tout',
-        image: '/images/rien.svg',
+        image: '/images/image144.svg',
+        labelClassName: "text-center text-[#111827] text-base font-medium leading-[110%] font-['Satoshi']",
       },
       {
         id: 'sais_pas',
         label: 'Je sais pas',
-        image: '/images/sais_pas.svg',
+        image: '/images/image145.svg',
+        labelClassName: "text-center text-[#111827] text-base font-medium leading-[110%] font-['Satoshi']",
       },
     ],
   },
