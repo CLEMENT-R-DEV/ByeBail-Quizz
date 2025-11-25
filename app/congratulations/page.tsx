@@ -129,21 +129,25 @@ export default function CongratulationsPage() {
 
           {/* Carte Call-to-action */}
           <div className="bg-[#FFF3ED] rounded-[18px] p-6 mb-6 shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.04)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/[0.04]">
-            <h3
-              className="text-center mb-2"
-              style={{
-                fontFamily: 'var(--font-bricolage-grotesque), sans-serif',
-                fontWeight: 600,
-                fontSize: '20px',
-                lineHeight: '100%',
-                letterSpacing: '-0.01em',
-              }}
-            >
-              Tu kiffes ? On t&apos;en montre plus en visio.
-            </h3>
-            <p className="text-center text-sm text-gray-600 mb-6">
-              Réserve un créneau gratuit de 30 min avec nos experts
-            </p>
+            <div className="w-[262px] mx-auto mb-2">
+              <h3
+                className="text-center"
+                style={{
+                  fontFamily: 'var(--font-bricolage-grotesque), sans-serif',
+                  fontWeight: 600,
+                  fontSize: '20px',
+                  lineHeight: '100%',
+                  letterSpacing: '-0.01em',
+                }}
+              >
+                Tu kiffes ? On t&apos;en montre plus en visio.
+              </h3>
+            </div>
+            <div className="w-[222px] mx-auto mb-6">
+              <p className="text-center text-sm text-gray-600">
+                Réserve un créneau gratuit de 30 min avec nos experts
+              </p>
+            </div>
             <button
               className="w-full bg-[#FE8253] text-white font-semibold py-4 rounded-full hover:bg-[#FE7043] transition-colors flex items-center justify-center gap-2"
               style={{
