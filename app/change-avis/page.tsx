@@ -139,7 +139,7 @@ export default function ChangeAvisPage() {
 
               {/* Contenu au premier plan */}
               <img className="w-20 h-16 relative z-10" src="/images/image135.svg" alt="Crédit" />
-              <div className="self-stretch text-center justify-center text-white text-xl font-medium font-['Satoshi_Variable'] leading-6 relative z-10">Le crédit, c&apos;est la seule partie que tu peux quitter en gardant tes points.</div>
+              <div className="self-stretch text-center justify-center text-white text-base lg:text-[20px] font-medium font-['Satoshi_Variable'] leading-[120%] tracking-[-0.16px] lg:tracking-[-0.2px] relative z-10">Le crédit, c&apos;est la seule partie que tu peux quitter en gardant tes points.</div>
             </div>
 
             {/* Carte jaune - Bonus */}
