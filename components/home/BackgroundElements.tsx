@@ -10,7 +10,6 @@ export default function BackgroundElements() {
         alt="Formes décoratives"
         width={1727.731}
         height={765.67}
-        style={{ backgroundColor: 'rgba(217, 217, 217, 0.2)' }}
       />
 
       {/* Formes physiques décoratives - Desktop */}
@@ -20,7 +19,6 @@ export default function BackgroundElements() {
         alt="Formes décoratives"
         width={1727.731}
         height={765.67}
-        style={{ backgroundColor: 'rgba(217, 217, 217, 0.2)' }}
       />
 
       {/* Illustrations - Mobile */}

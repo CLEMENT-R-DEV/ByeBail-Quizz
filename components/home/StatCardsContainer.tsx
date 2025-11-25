@@ -6,7 +6,7 @@ export default function StatCardsContainer() {
       {/* Mobile: 3 petites cartes flottantes avec rotations */}
       <div className="lg:hidden w-full h-64 relative">
         {/* Carte 1 - Orange - 247 logements */}
-        <div className="z-0 p-1 bg-[#FCFEFF] absolute left-[214px] top-[70px] origin-top-left rotate-[-16.64deg] rounded-[34px] shadow-[-5px_4px_15px_0px_rgba(174,185,193,0.10)]">
+        <div className="z-0 p-1 bg-[#FCFEFF] absolute left-[214px] top-[80px] origin-top-left rotate-[-16.64deg] rounded-[34px] shadow-[-5px_4px_15px_0px_rgba(174,185,193,0.10)]">
           <div className="w-26 p-2.5 relative bg-white rounded-3xl shadow-[-5px_4px_15px_0px_rgba(174,185,193,0.10)] shadow-[-22px_17px_27px_0px_rgba(174,185,193,0.09)] shadow-[-49px_38px_37px_0px_rgba(174,185,193,0.05)] shadow-[-87px_67px_44px_0px_rgba(174,185,193,0.01)] shadow-[-135px_104px_48px_0px_rgba(174,185,193,0.00)] inline-flex justify-center items-start overflow-hidden">
             <div className="w-64 h-40 absolute left-[-72.92px] top-[-19.18px] bg-white/60 rounded-[79px] blur-2xl" />
             <div className="self-stretch inline-flex flex-col justify-start items-center gap-0.5 z-10">
