@@ -20,7 +20,7 @@ export default function CongratulationsPage() {
           <div className="rounded-3xl flex flex-col justify-center items-center gap-5 mb-2.5">
           <div className="w-28 h-20 relative rounded-lg overflow-hidden">
             <Image
-              src="/images/search_2.svg"
+              src="/images/image146.svg"
               alt="Félicitations"
               fill
               className="object-contain"
@@ -45,6 +45,8 @@ export default function CongratulationsPage() {
               onClick={() => {}}
               compactImage={true}
               fullSize={true}
+              labelClassName="text-center text-[#111827] text-[20px] font-semibold font-['Bricolage_Grotesque'] leading-[100%] tracking-[-0.2px]"
+              subtitleClassName="text-center text-[#111827] text-[14px] font-normal font-['Satoshi_Variable'] leading-[110%]"
             />
             <ChoiceCard
               id="situation"
@@ -55,6 +57,8 @@ export default function CongratulationsPage() {
               onClick={() => {}}
               compactImage={true}
               fullSize={true}
+              labelClassName="text-center text-[#111827] text-[20px] font-semibold font-['Bricolage_Grotesque'] leading-[100%] tracking-[-0.2px]"
+              subtitleClassName="text-center text-[#111827] text-[14px] font-normal font-['Satoshi_Variable'] leading-[110%]"
             />
           </div>
 
@@ -70,6 +74,8 @@ export default function CongratulationsPage() {
                 onClick={() => {}}
                 compactImage={true}
                 fullSize={true}
+                labelClassName="text-center text-[#111827] text-[20px] font-semibold font-['Bricolage_Grotesque'] leading-[100%] tracking-[-0.2px]"
+                subtitleClassName="text-center text-[#111827] text-[14px] font-normal font-['Satoshi_Variable'] leading-[110%]"
               />
             </div>
           </div>
@@ -86,6 +92,8 @@ export default function CongratulationsPage() {
                 onClick={() => {}}
                 compactImage={true}
                 fullSize={true}
+                labelClassName="text-center text-[#111827] text-[20px] font-semibold font-['Bricolage_Grotesque'] leading-[100%] tracking-[-0.2px]"
+                subtitleClassName="text-center text-[#111827] text-[14px] font-normal font-['Satoshi_Variable'] leading-[110%]"
               />
             </div>
             <div className="flex-1">
@@ -98,6 +106,8 @@ export default function CongratulationsPage() {
                 onClick={() => {}}
                 compactImage={true}
                 fullSize={true}
+                labelClassName="text-center text-[#111827] text-[20px] font-semibold font-['Bricolage_Grotesque'] leading-[100%] tracking-[-0.2px]"
+                subtitleClassName="text-center text-[#111827] text-[14px] font-normal font-['Satoshi_Variable'] leading-[110%]"
               />
             </div>
             <div className="flex-1">
@@ -110,6 +120,8 @@ export default function CongratulationsPage() {
                 onClick={() => {}}
                 compactImage={true}
                 fullSize={true}
+                labelClassName="text-center text-[#111827] text-[20px] font-semibold font-['Bricolage_Grotesque'] leading-[100%] tracking-[-0.2px]"
+                subtitleClassName="text-center text-[#111827] text-[14px] font-normal font-['Satoshi_Variable'] leading-[110%]"
               />
             </div>
           </div>
