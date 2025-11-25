@@ -22,7 +22,10 @@ export default function ChangeAvisPage() {
         <div className="w-full lg:w-[750px] lg:mt-[100px] mt-[20px] lg:mb-[29px] mx-auto p-5 bg-white rounded-3xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.04)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 flex flex-col justify-center items-center gap-5">
           {/* Titre et image */}
           <div className="self-stretch flex flex-col justify-start items-center gap-2.5">
-            <div className="self-stretch text-center justify-center text-gray-900 lg:text-[#111827] text-xl lg:text-[24px] font-semibold lg:font-semibold font-['Bricolage_Grotesque'] leading-5 lg:leading-[100%] lg:tracking-[-0.24px]">&quot;Mais... et si je change d&apos;avis ?&quot;</div>
+            <div className="self-stretch text-center justify-center text-gray-900 lg:text-[#111827] text-xl lg:text-[24px] font-semibold lg:font-semibold font-['Bricolage_Grotesque'] leading-5 lg:leading-[100%] lg:tracking-[-0.24px]">
+              <span className="lg:hidden">&quot;Mais... et si je change d&apos;avis et que je souhaite bouger ?&quot;</span>
+              <span className="hidden lg:inline">&quot;Mais... et si je change d&apos;avis ?&quot;</span>
+            </div>
 
             {/* Image jeu */}
             <div className="w-28 h-28 relative overflow-hidden">
