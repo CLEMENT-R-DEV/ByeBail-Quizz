@@ -19,7 +19,7 @@ export default function VideoPausePage() {
       {/* Main content */}
       <main className="flex-1 flex flex-col lg:pt-[100px] lg:pb-[206px] mx-4 lg:mx-0 pt-5">
         {/* Carte principale */}
-        <div className="w-full lg:w-[750px] mx-auto p-5 bg-white rounded-3xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.04)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 flex flex-col justify-start items-start gap-6 mb-8">
+        <div className="w-full lg:w-[750px] mx-auto px-2.5 py-5 bg-white rounded-3xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.04)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 flex flex-col justify-start items-start gap-6 mb-8">
           {/* Titre et sous-titre */}
           <div className="self-stretch flex flex-col justify-start items-center gap-2.5">
             <div className="self-stretch text-center justify-center text-gray-900 lg:text-[#111827] text-xl lg:text-[24px] font-semibold lg:font-semibold font-['Bricolage_Grotesque'] leading-5 lg:leading-[100%] lg:tracking-[-0.24px]">Petite pause.</div>
@@ -27,9 +27,9 @@ export default function VideoPausePage() {
           </div>
 
           {/* Carte vidéo violette */}
-          <div className="self-stretch relative rounded-[20px] overflow-hidden h-[326px] bg-[#875AEF]">
-            {/* SVG Background Elements */}
-            <div className="absolute top-[40px] right-[20px] w-[60px] h-[60px] lg:top-[120px] lg:right-[150px] lg:w-[100px] lg:h-[100px] z-[1]">
+          <div className="self-stretch h-[326px] px-[19px] py-5 lg:p-5 relative bg-[#875AEF] rounded-[20px] overflow-hidden flex flex-col justify-center items-center gap-2.5">
+            {/* SVG Background Elements - Polygones en absolute */}
+            <div className="absolute top-[100px] right-[-50px] w-[130px] h-[130px] lg:top-[120px] lg:right-[150px] lg:w-[100px] lg:h-[100px] z-[1]">
               <Image
                 src="/images/Polygon4vdesktop.svg"
                 alt=""
@@ -37,7 +37,7 @@ export default function VideoPausePage() {
                 className="object-contain"
               />
             </div>
-            <div className="absolute top-[80px] right-[30px] w-[50px] h-[50px] lg:top-[-10px] lg:right-[190px] lg:w-[130px] lg:h-[130px] z-[1]">
+            <div className="absolute top-[-10px] right-[30px] w-[130px] h-[130px] lg:top-[-10px] lg:right-[190px] lg:w-[130px] lg:h-[130px] z-[1]">
               <Image
                 src="/images/Polygon5vdesktop.svg"
                 alt=""
@@ -45,7 +45,7 @@ export default function VideoPausePage() {
                 className="object-contain"
               />
             </div>
-            <div className="absolute top-[120px] left-[40px] w-[45px] h-[45px] lg:top-[120px] lg:left-[160px] lg:w-[130px] lg:h-[130px] z-[1]">
+            <div className="absolute top-[100px] left-[-50px] w-[167px] h-[167px] lg:top-[120px] lg:left-[160px] lg:w-[130px] lg:h-[130px] z-[1]">
               <Image
                 src="/images/Polygon7vdesktop.svg"
                 alt=""
@@ -53,7 +53,7 @@ export default function VideoPausePage() {
                 className="object-contain"
               />
             </div>
-            <div className="absolute bottom-[40px] right-[40px] w-[55px] h-[55px] lg:bottom-[0px] lg:right-[190px] lg:w-[120px] lg:h-[120px] z-[1]">
+            <div className="absolute bottom-[-20px] right-[20px] w-[139px] h-[139px] lg:bottom-[0px] lg:right-[190px] lg:w-[120px] lg:h-[120px] z-[1]">
               <Image
                 src="/images/Polygon8vdesktop.svg"
                 alt=""
@@ -61,7 +61,7 @@ export default function VideoPausePage() {
                 className="object-contain"
               />
             </div>
-            <div className="absolute top-[80px] right-[50px] w-[40px] h-[40px] lg:top-[-10px] lg:left-[180px] lg:w-[130px] lg:h-[130px] z-[1]">
+            <div className="absolute top-[-10px] left-[0px] w-[130px] h-[130px] lg:top-[-10px] lg:left-[180px] lg:w-[130px] lg:h-[130px] z-[1]">
               <Image
                 src="/images/Polygon9vdesktop.svg"
                 alt=""
@@ -69,7 +69,7 @@ export default function VideoPausePage() {
                 className="object-contain"
               />
             </div>
-            <div className="absolute bottom-[20px] right-[20px] w-[60px] h-[60px] lg:bottom-[100px] lg:right-[270px] lg:w-[130px] lg:h-[130px] z-[1]">
+            <div className="absolute bottom-[110px] right-[90px] w-[130px] h-[130px] lg:bottom-[100px] lg:right-[270px] lg:w-[130px] lg:h-[130px] z-[1]">
               <Image
                 src="/images/Polygon3vdesktop.svg"
                 alt=""
@@ -77,8 +77,9 @@ export default function VideoPausePage() {
                 className="object-contain"
               />
             </div>
-            {/* Illustration - above other polygons */}
-            <div className="absolute top-[20px] left-[20px] w-[100px] h-[100px] lg:top-[50px] lg:left-[280px] lg:w-[150px] lg:h-[150px] z-[2]">
+
+            {/* Contenu dans le flux - Illustration */}
+            <div className="w-32 h-32 lg:w-[131px] lg:h-[124px] relative z-10 flex justify-center items-center flex-shrink-0 lg:px-[10px] lg:py-[6px]">
               <Image
                 src="/images/Illustration.svg"
                 alt=""
@@ -87,8 +88,8 @@ export default function VideoPausePage() {
               />
             </div>
 
-            {/* Text Overlay */}
-            <div className="absolute inset-0 flex flex-col items-center justify-end pb-10 px-4 z-10 gap-2.5">
+            {/* Contenu dans le flux - Texte */}
+            <div className="self-stretch flex flex-col justify-start items-center gap-2.5 z-10">
               <div className="text-center justify-center text-white text-lg lg:text-[24px] font-semibold lg:font-semibold font-['Bricolage_Grotesque'] leading-4 lg:leading-[100%] lg:tracking-[-0.24px]">Vidéo de David Brauman</div>
               <div className="w-full text-center justify-center text-white text-base lg:text-[20px] font-normal lg:font-normal font-['Satoshi'] leading-5 lg:leading-[120%] lg:tracking-[-0.2px]">«À Tours, on a XX logements à partir de XXX€/mois. Oui, c&apos;est possible de devenir proprio.»</div>
             </div>
