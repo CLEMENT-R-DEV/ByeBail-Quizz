@@ -19,31 +19,31 @@ export default function SearchingPage() {
     {
       id: 1,
       text: 'Analyse de 1 247 logements à Tours...',
-      icon: '/images/maison.svg',
+      icon: '/images/image148.svg',
       completed: false,
     },
     {
       id: 2,
       text: 'Comparaison avec ton loyer actuel de 900€...',
-      icon: '/images/calculatrice.svg',
+      icon: '/images/image149.svg',
       completed: false,
     },
     {
       id: 3,
       text: 'Vérification des financements bancaires disponibles...',
-      icon: '/images/search.svg',
+      icon: '/images/image150.svg',
       completed: false,
     },
     {
       id: 4,
       text: 'Calcul des avantages fiscaux du neuf...',
-      icon: '/images/calcule.svg',
+      icon: '/images/image151.svg',
       completed: false,
     },
     {
       id: 5,
       text: 'Sélection des 3 meilleures opportunités pour toi...',
-      icon: '/images/carnet.svg',
+      icon: '/images/image152.svg',
       completed: false,
     },
   ]);
