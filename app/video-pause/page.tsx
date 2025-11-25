@@ -37,7 +37,7 @@ export default function VideoPausePage() {
                 className="object-contain"
               />
             </div>
-            <div className="absolute top-[80px] right-[30px] w-[50px] h-[50px] lg:top-[0px] lg:right-[190px] lg:w-[130px] lg:h-[130px] z-[1]">
+            <div className="absolute top-[80px] right-[30px] w-[50px] h-[50px] lg:top-[-10px] lg:right-[190px] lg:w-[130px] lg:h-[130px] z-[1]">
               <Image
                 src="/images/Polygon5vdesktop.svg"
                 alt=""
@@ -61,7 +61,7 @@ export default function VideoPausePage() {
                 className="object-contain"
               />
             </div>
-            <div className="absolute top-[80px] right-[50px] w-[40px] h-[40px] lg:top-[0px] lg:left-[180px] lg:w-[130px] lg:h-[130px] z-[1]">
+            <div className="absolute top-[80px] right-[50px] w-[40px] h-[40px] lg:top-[-10px] lg:left-[180px] lg:w-[130px] lg:h-[130px] z-[1]">
               <Image
                 src="/images/Polygon9vdesktop.svg"
                 alt=""
@@ -88,7 +88,7 @@ export default function VideoPausePage() {
             </div>
 
             {/* Text Overlay */}
-            <div className="absolute inset-0 flex flex-col items-center justify-end pb-6 px-4 z-10 gap-2.5">
+            <div className="absolute inset-0 flex flex-col items-center justify-end pb-10 px-4 z-10 gap-2.5">
               <div className="text-center justify-center text-white text-lg lg:text-[24px] font-semibold lg:font-semibold font-['Bricolage_Grotesque'] leading-4 lg:leading-[100%] lg:tracking-[-0.24px]">Vidéo de David Brauman</div>
               <div className="w-full text-center justify-center text-white text-base lg:text-[20px] font-normal lg:font-normal font-['Satoshi'] leading-5 lg:leading-[120%] lg:tracking-[-0.2px]">«À Tours, on a XX logements à partir de XXX€/mois. Oui, c&apos;est possible de devenir proprio.»</div>
             </div>
