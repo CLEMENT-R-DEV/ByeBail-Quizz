@@ -1,6 +1,6 @@
 import { Question } from './types';
 
-export const TOTAL_QUESTIONS = 12;
+export const TOTAL_QUESTIONS = 13;
 
 export const questions: Question[] = [
   {
@@ -205,6 +205,38 @@ export const questions: Question[] = [
   },
   {
     id: 12,
+    type: 'choice',
+    titleText: 'OK, et c\'est quoi exactement ?',
+    text: 'Auto, conso, étudiant, immo ?',
+    choices: [
+      {
+        id: 'auto',
+        label: 'Auto',
+        image: '/images/image1250.svg',
+        labelClassName: "text-center text-[#111827] text-base font-medium leading-[110%] font-['Satoshi']",
+      },
+      {
+        id: 'conso',
+        label: 'Conso',
+        image: '/images/image1260.svg',
+        labelClassName: "text-center text-[#111827] text-base font-medium leading-[110%] font-['Satoshi']",
+      },
+      {
+        id: 'etudiant',
+        label: 'Etudiant',
+        image: '/images/image1270.svg',
+        labelClassName: "text-center text-[#111827] text-base font-medium leading-[110%] font-['Satoshi']",
+      },
+      {
+        id: 'immo',
+        label: 'Immo',
+        image: '/images/image1280.svg',
+        labelClassName: "text-center text-[#111827] text-base font-medium leading-[110%] font-['Satoshi']",
+      },
+    ],
+  },
+  {
+    id: 13,
     type: 'choice',
     text: "Dernière question ! T'as un peu d'apport de côté, ou c'est plutôt \"pâtes au beurre\" en fin de mois ?",
     choices: [

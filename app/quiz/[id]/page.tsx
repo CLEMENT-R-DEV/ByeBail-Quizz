@@ -98,8 +98,15 @@ export default function QuizQuestionPage() {
       // Après la question 10, aller à l'écran de pause vidéo
       router.push('/video-pause');
     } else if (questionId === 11) {
-      // Après la question 11, aller à la question 9
-      router.push('/quiz/9');
+      // Après la question 11, navigation conditionnelle selon la réponse
+      if (answer === 'oui') {
+        router.push('/quiz/12');
+      } else {
+        router.push('/quiz/13');
+      }
+    } else if (questionId === 12) {
+      // Après la question 12, aller à la question 13
+      router.push('/quiz/13');
     } else if (questionId < TOTAL_QUESTIONS) {
       router.push(`/quiz/${questionId + 1}`);
     } else {
@@ -230,7 +237,7 @@ export default function QuizQuestionPage() {
                         image={question.choices[4].image}
                         desktopImage={question.choices[4].desktopImage}
                         selected={answer === question.choices[4].id}
-                        onClick={() => setAnswer(question.choices[4].id)}
+                        onClick={() => setAnswer(question.choices?.[4]?.id || '')}
                         fullSize={true}
                         labelClassName={question.choices[4].labelClassName}
                         subtitleClassName={question.choices[4].subtitleClassName}
@@ -320,6 +327,29 @@ export default function QuizQuestionPage() {
                   selected={answer === choice.id}
                   onClick={() => setAnswer(choice.id)}
                   largeCompactImage={true}
+                  labelClassName={choice.labelClassName}
+                  subtitleClassName={choice.subtitleClassName}
+                />
+              ))}
+            </div>
+          );
+        }
+
+        // Question 12 : 4 cartes avec compactImage
+        if (questionId === 12) {
+          return (
+            <div className={`w-full lg:w-[750px] grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-[18px]`}>
+              {question.choices?.map((choice) => (
+                <ChoiceComponent
+                  key={choice.id}
+                  id={choice.id}
+                  label={choice.label}
+                  subtitle={choice.subtitle}
+                  image={choice.image}
+                  desktopImage={choice.desktopImage}
+                  selected={answer === choice.id}
+                  onClick={() => setAnswer(choice.id)}
+                  compactImage={true}
                   labelClassName={choice.labelClassName}
                   subtitleClassName={choice.subtitleClassName}
                 />
