@@ -16,7 +16,7 @@ export default function QuestionBubble({ questionNumber, text, infoText, titleTe
       <div className="self-stretch flex justify-end items-start gap-3">
         <div className="flex-1 rounded-2xl flex flex-col justify-start items-end gap-2">
           {/* Badge Question X/9 */}
-          <div className="flex flex-col justify-start items-center gap-1">
+          <div className="hidden flex flex-col justify-start items-center gap-1">
             <div className="text-center justify-center text-gray-900/60 text-sm font-medium font-['Satoshi'] leading-4">
               {questionNumber}/{TOTAL_QUESTIONS}
             </div>
