@@ -56,9 +56,9 @@ export default function CalculationPage() {
     <div className="min-h-screen flex flex-col">
       <SimpleHeader />
 
-      <main className="flex-1 flex flex-col lg:pt-[100px] mx-4 lg:mx-0 pt-5">
+      <main className="flex-1 flex flex-col mx-4 lg:mx-0">
         {/* Contenu principal */}
-        <div className="w-full lg:w-[750px] mx-auto p-5 bg-white rounded-3xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.04)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 flex flex-col justify-start items-start gap-5 mb-8">
+        <div className="w-full lg:w-[750px] lg:mt-[100px] mt-[20px] mx-auto p-5 bg-white rounded-3xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.04)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 flex flex-col justify-start items-start gap-5 mb-8">
 
           {/* Section 1 - Titre et question */}
           <div className="self-stretch flex flex-col justify-start items-center gap-1.5">
