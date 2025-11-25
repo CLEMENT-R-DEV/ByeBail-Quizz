@@ -162,7 +162,7 @@ export default function QuizQuestionPage() {
 
             {/* Texte informatif pour la question 10 sur mobile */}
             {questionId === 10 && (
-              <p className="lg:hidden text-center text-sm font-normal leading-[110%] mt-4 text-gray-600">
+              <p className="lg:hidden text-center text-[14px] font-normal leading-[110%] mt-4 text-[#111827]" style={{ fontFamily: 'var(--font-satoshi)' }}>
                 Aucun spam. Aucune pub.<br />
                 On n&apos;est pas là pour te saouler, juste pour t&apos;aider.
               </p>
@@ -211,6 +211,8 @@ export default function QuizQuestionPage() {
                     desktopImage={choice.desktopImage}
                     selected={answer === choice.id}
                     onClick={() => setAnswer(choice.id)}
+                    labelClassName={choice.labelClassName}
+                    subtitleClassName={choice.subtitleClassName}
                   />
                 ))}
                 {/* 5ème carte centrée - utilise la largeur mesurée */}
@@ -227,6 +229,8 @@ export default function QuizQuestionPage() {
                         selected={answer === question.choices[4].id}
                         onClick={() => setAnswer(question.choices[4].id)}
                         fullSize={true}
+                        labelClassName={question.choices[4].labelClassName}
+                        subtitleClassName={question.choices[4].subtitleClassName}
                       />
                     </div>
                   </div>
@@ -247,6 +251,8 @@ export default function QuizQuestionPage() {
                       selected={answer === choice.id}
                       onClick={() => setAnswer(choice.id)}
                       fullSize={true}
+                      labelClassName={choice.labelClassName}
+                      subtitleClassName={choice.subtitleClassName}
                     />
                   </div>
                 ))}
@@ -262,6 +268,8 @@ export default function QuizQuestionPage() {
                       selected={answer === choice.id}
                       onClick={() => setAnswer(choice.id)}
                       fullSize={true}
+                      labelClassName={choice.labelClassName}
+                      subtitleClassName={choice.subtitleClassName}
                     />
                   </div>
                 ))}
@@ -271,6 +279,29 @@ export default function QuizQuestionPage() {
         }
 
         // Pour les autres questions
+        // Question 9 : 4 cartes sur une seule ligne en desktop
+        if (questionId === 9) {
+          return (
+            <div className={`w-full lg:w-[750px] grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-[18px]`}>
+              {question.choices?.map((choice) => (
+                <ChoiceComponent
+                  key={choice.id}
+                  id={choice.id}
+                  label={choice.label}
+                  subtitle={choice.subtitle}
+                  image={choice.image}
+                  desktopImage={choice.desktopImage}
+                  selected={answer === choice.id}
+                  onClick={() => setAnswer(choice.id)}
+                  compactImage={true}
+                  labelClassName={choice.labelClassName}
+                  subtitleClassName={choice.subtitleClassName}
+                />
+              ))}
+            </div>
+          );
+        }
+
         return (
           <div className={`w-full lg:w-[750px] lg:h-[269px] grid grid-cols-2 gap-2 lg:gap-[18px]`}>
             {question.choices?.map((choice) => (

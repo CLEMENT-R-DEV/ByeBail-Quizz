@@ -6,6 +6,8 @@ export interface Choice {
   subtitle?: string; // sous-titre optionnel
   image: string; // path vers l'image
   desktopImage?: string; // path vers l'image desktop (optionnel)
+  labelClassName?: string; // classes CSS personnalisées pour le label
+  subtitleClassName?: string; // classes CSS personnalisées pour le sous-titre
 }
 
 export interface Question {
