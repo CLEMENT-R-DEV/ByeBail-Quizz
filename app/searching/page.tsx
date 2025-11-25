@@ -49,7 +49,7 @@ export default function SearchingPage() {
   ]);
 
   const [currentStep, setCurrentStep] = useState(0);
-  const [showContinue, setShowContinue] = useState(false);
+  const [isAnimationComplete, setIsAnimationComplete] = useState(false);
 
   useEffect(() => {
     // Animer les étapes une par une
@@ -65,8 +65,8 @@ export default function SearchingPage() {
 
       return () => clearTimeout(timer);
     } else {
-      // Toutes les étapes sont terminées, montrer le bouton Continue
-      setShowContinue(true);
+      // Toutes les étapes sont terminées, activer le bouton Continue
+      setIsAnimationComplete(true);
     }
   }, [currentStep, steps.length]);
 
@@ -148,17 +148,17 @@ export default function SearchingPage() {
             />
           </div>
 
-          {/* Texte de progression */}
-          <div className="self-stretch text-center justify-center text-gray-900 text-sm font-normal font-['Satoshi'] leading-4">Encore quelques secondes…</div>
+          {/* Texte de progression (disparaît quand l'animation est terminée) */}
+          {!isAnimationComplete && (
+            <div className="self-stretch text-center justify-center text-gray-900 text-sm font-normal font-['Satoshi'] leading-4">Encore quelques secondes…</div>
+          )}
         </div>
 
         {/* Spacer */}
         <div className="flex-1"></div>
 
-        {/* Bouton Continue (visible uniquement quand toutes les étapes sont terminées) */}
-        {showContinue && (
-          <ContinueButton onClick={handleContinue} disabled={false} />
-        )}
+        {/* Bouton Continue (toujours visible mais désactivé pendant l'animation) */}
+        <ContinueButton onClick={handleContinue} disabled={!isAnimationComplete} />
       </main>
     </div>
   );
