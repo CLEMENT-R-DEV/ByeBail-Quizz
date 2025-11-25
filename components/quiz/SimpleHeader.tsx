@@ -11,7 +11,7 @@ export default function SimpleHeader() {
   };
 
   return (
-    <header className="w-full max-w-md lg:max-w-none mx-auto px-4 pt-10 pb-3 lg:w-full lg:px-[140px] lg:pt-[40px] lg:pb-[12px] bg-white rounded-2xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.04)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 flex flex-col justify-start items-start gap-5">
+    <header className="w-full lg:max-w-none mx-auto px-4 pt-10 pb-3 lg:w-full lg:px-[140px] lg:pt-[40px] lg:pb-[12px] bg-white rounded-2xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.04)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 flex flex-col justify-start items-start gap-5">
       <div className="w-full flex flex-col justify-start items-start gap-5">
         <div className="self-stretch h-8 relative inline-flex justify-between items-center">
           <button
