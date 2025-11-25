@@ -41,10 +41,10 @@ export default function CongratulationsPage() {
           </div>
         </div>
 
-        {/* Cartes - 3 cartes sur une ligne en desktop, grille 2x2 sur mobile */}
+        {/* Cartes - 3 cartes sur une ligne en desktop, une colonne sur mobile */}
         <div className="mb-8 flex flex-col gap-2">
-          {/* Mobile: Première ligne - 2 cartes */}
-          <div className="lg:hidden self-stretch grid grid-cols-2 gap-2">
+          {/* Mobile: 3 cartes en colonne */}
+          <div className="lg:hidden self-stretch flex flex-col gap-2">
             <ChoiceCard
               id="plan"
               label="Le Plan"
@@ -69,24 +69,18 @@ export default function CongratulationsPage() {
               labelClassName="text-center text-[#111827] text-[20px] font-semibold font-['Bricolage_Grotesque'] leading-[100%] tracking-[-0.2px]"
               subtitleClassName="text-center text-[#111827] text-[14px] font-normal font-['Satoshi_Variable'] leading-[110%]"
             />
-          </div>
-
-          {/* Mobile: Deuxième ligne - 1 carte à gauche */}
-          <div className="lg:hidden self-stretch flex justify-start items-start gap-2">
-            <div className="w-[calc(50%-4px)]">
-              <ChoiceCard
-                id="prix"
-                label="Le Prix"
-                subtitle="Combien ça coûte vraiment"
-                image="/images/icon156.svg"
-                selected={false}
-                onClick={() => {}}
-                compactImage={true}
-                fullSize={true}
-                labelClassName="text-center text-[#111827] text-[20px] font-semibold font-['Bricolage_Grotesque'] leading-[100%] tracking-[-0.2px]"
-                subtitleClassName="text-center text-[#111827] text-[14px] font-normal font-['Satoshi_Variable'] leading-[110%]"
-              />
-            </div>
+            <ChoiceCard
+              id="prix"
+              label="Le Prix"
+              subtitle="Combien ça coûte vraiment"
+              image="/images/icon156.svg"
+              selected={false}
+              onClick={() => {}}
+              compactImage={true}
+              fullSize={true}
+              labelClassName="text-center text-[#111827] text-[20px] font-semibold font-['Bricolage_Grotesque'] leading-[100%] tracking-[-0.2px]"
+              subtitleClassName="text-center text-[#111827] text-[14px] font-normal font-['Satoshi_Variable'] leading-[110%]"
+            />
           </div>
 
           {/* Desktop: 3 cartes sur une seule ligne */}
