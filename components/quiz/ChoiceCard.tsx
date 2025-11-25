@@ -11,6 +11,7 @@ interface ChoiceCardProps {
   onClick: () => void;
   fullSize?: boolean;
   compactImage?: boolean;
+  largeCompactImage?: boolean;
   labelClassName?: string;
   subtitleClassName?: string;
 }
@@ -24,6 +25,7 @@ export default function ChoiceCard({
   onClick,
   fullSize = false,
   compactImage = false,
+  largeCompactImage = false,
   labelClassName,
   subtitleClassName,
 }: ChoiceCardProps) {
@@ -46,7 +48,7 @@ export default function ChoiceCard({
       >
         <div
           className={`w-full bg-[#FDFEFF] rounded-lg flex flex-col items-center justify-center gap-[10px] ${
-            compactImage ? 'aspect-square' : 'aspect-square lg:aspect-auto lg:h-full'
+            compactImage || largeCompactImage ? 'aspect-square' : 'aspect-square lg:aspect-auto lg:h-full'
           }`}
           style={{
             border: '0.8px solid rgba(0, 0, 0, 0.08)',
@@ -56,14 +58,16 @@ export default function ChoiceCard({
           {/* Image */}
           <div
             className={`relative flex-shrink-0 flex justify-center items-center overflow-hidden ${
-              compactImage
+              largeCompactImage
+                ? 'w-[120px] h-[80px] lg:w-[172px] lg:h-[115px]'
+                : compactImage
                 ? 'w-[120px] h-[80px]'
                 : 'w-[92px] h-[92px] lg:w-[140px] lg:h-[140px]'
             }`}
             style={{
               background: '#FFFFFF',
-              ...(compactImage && { padding: '6.5px 26.5px' }),
-              ...(!compactImage && { aspectRatio: '1/1' }),
+              ...((compactImage || largeCompactImage) && { padding: '6.5px 26.5px' }),
+              ...(!compactImage && !largeCompactImage && { aspectRatio: '1/1' }),
             }}
           >
             <Image
@@ -71,7 +75,7 @@ export default function ChoiceCard({
               alt={label}
               fill
               className="object-contain"
-              sizes={compactImage ? "120px" : "(min-width: 1024px) 140px, 92px"}
+              sizes={largeCompactImage ? "(min-width: 1024px) 172px, 120px" : compactImage ? "120px" : "(min-width: 1024px) 140px, 92px"}
               style={{
                 borderRadius: '28px 28px 4px 4px'
               }}

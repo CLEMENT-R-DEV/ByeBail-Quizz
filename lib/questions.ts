@@ -189,17 +189,17 @@ export const questions: Question[] = [
   {
     id: 11,
     type: 'choice',
-    text: 'Dernières questions, promis. Tu as déjà des crédits en cours ?',
+    text: 'Tu as déjà des crédits en cours ?',
     choices: [
       {
         id: 'non',
         label: 'Non',
-        image: '/images/non.svg',
+        image: '/images/icon.svg',
       },
       {
         id: 'oui',
         label: 'Oui',
-        image: '/images/oui.svg',
+        image: '/images/image138.svg',
       },
     ],
   },

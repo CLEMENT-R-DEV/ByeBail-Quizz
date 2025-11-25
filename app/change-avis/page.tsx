@@ -9,7 +9,7 @@ export default function ChangeAvisPage() {
   const router = useRouter();
 
   const handleContinue = () => {
-    router.push('/quiz/9');
+    router.push('/quiz/11');
   };
 
   return (
