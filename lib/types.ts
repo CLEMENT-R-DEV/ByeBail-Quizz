@@ -13,6 +13,7 @@ export interface Question {
   type: QuestionType;
   text: string;
   titleText?: string; // titre optionnel pour la question (style différent)
+  infoText?: string; // texte d'information en vert sous la question
   placeholder?: string; // pour input text
   choices?: Choice[]; // pour choix multiples
   choiceStyle?: 'card' | 'image'; // style des choix: card (avec bordure) ou image (seulement l'image)

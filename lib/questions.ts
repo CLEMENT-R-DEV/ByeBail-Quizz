@@ -127,7 +127,8 @@ export const questions: Question[] = [
     id: 8,
     type: 'text',
     text: 'Et niveau revenus, combien tu gagnes par mois ?',
-    placeholder: 'Revenus mensuels',
+    infoText: '(Si t\'es en couple, compte vos deux revenus)',
+    placeholder: 'Ex: 850',
     validation: (value: string) => {
       const montant = parseFloat(value);
       return !isNaN(montant) && montant >= 0;
@@ -136,27 +137,27 @@ export const questions: Question[] = [
   {
     id: 9,
     type: 'choice',
-    text: 'Cote boulot, tu fais quoi ?',
+    text: 'Côté boulot, tu fais quoi ?',
     choices: [
       {
         id: 'cdi',
         label: 'CDI',
-        image: '/images/CDI.svg',
+        image: '/images/image125.svg',
       },
       {
         id: 'cdd',
         label: 'CDD',
-        image: '/images/CDD.svg',
+        image: '/images/image126.svg',
       },
       {
         id: 'independant',
         label: 'Indépendant',
-        image: '/images/Independant.svg',
+        image: '/images/image127.svg',
       },
       {
         id: 'autre',
         label: 'Autre',
-        image: '/images/Autre.svg',
+        image: '/images/image128.svg',
       },
     ],
   },

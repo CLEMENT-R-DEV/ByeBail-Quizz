@@ -55,7 +55,7 @@ export default function QuestionBubble({ questionNumber, text, infoText, titleTe
                 )}
               </div>
               {infoText && (
-                <div className="self-stretch justify-center text-emerald-500 lg:text-[#12C66F] text-sm lg:text-lg font-normal font-['Satoshi'] leading-4 lg:leading-[120%] lg:tracking-[-0.18px]">
+                <div className="self-stretch justify-center text-[#12C66F] text-sm lg:text-lg font-normal font-['Satoshi'] leading-[120%] tracking-[-0.14px] lg:tracking-[-0.18px]">
                   {infoText}
                 </div>
               )}

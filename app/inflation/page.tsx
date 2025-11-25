@@ -9,7 +9,7 @@ export default function InflationPage() {
   const router = useRouter();
 
   const handleContinue = () => {
-    router.push('/quiz/6');
+    router.push('/quiz/8');
   };
 
   return (
@@ -31,9 +31,9 @@ export default function InflationPage() {
             {/* Menu complet 2015 */}
             <div className="w-[calc(50%-4px)] p-2.5 bg-white rounded-2xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.10)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 inline-flex flex-col justify-center items-center gap-2.5">
               <div className="self-stretch p-3 bg-white rounded-lg shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.10)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/10 flex flex-col justify-center items-center gap-2.5">
-                <div className="relative w-24 h-24">
+                <div className="relative w-[92px] h-[80.189px]">
                   <Image
-                    src="/images/Meal.svg"
+                    src="/images/menu.svg"
                     alt="Menu complet"
                     fill
                     className="object-contain"
@@ -53,9 +53,9 @@ export default function InflationPage() {
             {/* Big Mac 2025 */}
             <div className="w-[calc(50%-4px)] p-2.5 bg-white rounded-2xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.10)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 inline-flex flex-col justify-center items-center gap-2.5">
               <div className="self-stretch p-3 bg-white rounded-lg shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.10)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/10 flex flex-col justify-center items-center gap-2.5">
-                <div className="relative w-24 h-24">
+                <div className="relative w-[92px] h-[80.189px]">
                   <Image
-                    src="/images/Burger.svg"
+                    src="/images/burger.svg"
                     alt="Burger"
                     fill
                     className="object-contain"
@@ -93,12 +93,16 @@ export default function InflationPage() {
             {/* Locataire */}
             <div className="w-[calc(50%-4px)] p-1 bg-red-300 rounded-2xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.10)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 inline-flex flex-col justify-center items-center gap-2.5">
               <div className="self-stretch p-3 bg-red-50 rounded-2xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.10)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/10 flex flex-col justify-center items-center gap-2.5">
-              <div className="w-24 h-24 relative mb-2">
-                <Image
-                  src="/images/Locataire.svg"
+              <div className="w-24 h-24 relative bg-rose-50 rounded-tl-3xl rounded-tr-3xl rounded-bl rounded-br mb-2 flex items-center justify-center">
+                <img
+                  src="/images/clef3.png"
                   alt="Locataire"
-                  fill
-                  className="object-contain"
+                  className="origin-center"
+                  style={{
+                    width: '96px',
+                    height: 'auto',
+                    transform: 'rotate(-5.421deg) scale(1.3)'
+                  }}
                 />
               </div>
               <div className="text-center justify-center text-gray-900 text-base lg:text-[24px] font-bold lg:font-bold leading-4 lg:leading-[110%]" style={{ fontFamily: 'var(--font-satoshi)' }}>Locataire</div>
@@ -133,12 +137,16 @@ export default function InflationPage() {
             {/* Propriétaire */}
             <div className="w-[calc(50%-4px)] p-1 bg-emerald-200 rounded-2xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.10)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 inline-flex flex-col justify-center items-center gap-2.5">
               <div className="self-stretch p-3 bg-teal-50 rounded-2xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.10)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/10 flex flex-col justify-center items-center gap-2.5">
-              <div className="w-24 h-24 relative mb-2">
-                <Image
-                  src="/images/Proprietaire.svg"
+              <div className="w-24 h-24 relative bg-green-100 rounded-tl-3xl rounded-tr-3xl rounded-bl rounded-br mb-2 overflow-visible flex items-center justify-center">
+                <img
+                  src="/images/clef4.png"
                   alt="Propriétaire"
-                  fill
-                  className="object-contain"
+                  className="origin-center"
+                  style={{
+                    width: '96px',
+                    height: 'auto',
+                    transform: 'scale(1.5)'
+                  }}
                 />
               </div>
               <div className="text-center justify-center text-gray-900 text-base lg:text-[24px] font-bold lg:font-bold leading-4 lg:leading-[110%]" style={{ fontFamily: 'var(--font-satoshi)' }}>Propriétaire</div>
@@ -171,47 +179,43 @@ export default function InflationPage() {
             </div>
           </div>
 
-          {/* Banner 25 ans - Desktop uniquement */}
-          <div className="hidden lg:flex self-stretch p-3 bg-[#4ADE80] rounded-2xl flex-col items-center gap-[10px] relative overflow-hidden">
+          {/* Banner bouclier euro - Mobile et Desktop */}
+          <div className="flex self-stretch p-3 lg:p-3 bg-[#4ADE80] rounded-2xl flex-col items-center gap-[10px] relative overflow-hidden">
             {/* Images de fond polygones */}
             <Image
               src="/images/Polygon3.svg"
               alt=""
               width={100}
               height={100}
-              className="absolute"
-              style={{ top: '10px', left: '295px' }}
+              className="absolute top-[20px] left-[90px] lg:top-[10px] lg:left-[295px] w-[130px] h-[130px] lg:w-[100px] lg:h-[100px]"
             />
             <Image
               src="/images/Polygon4.svg"
               alt=""
               width={100}
               height={100}
-              className="absolute"
-              style={{ bottom: '0px', right: '160px' }}
+              className="absolute bottom-[0px] right-[-60px] lg:bottom-[0px] lg:right-[160px] w-[130px] h-[130px] lg:w-[100px] lg:h-[100px]"
             />
             <Image
               src="/images/Polygon5.svg"
               alt=""
               width={90}
               height={90}
-              className="absolute"
-              style={{ top: '0px', left: '400px' }}
+              className="absolute top-[0px] left-[220px] lg:top-[0px] lg:left-[400px] w-[100px] h-[100px] lg:w-[90px] lg:h-[90px]"
             />
             <Image
               src="/images/Polygon7.svg"
               alt=""
-              width={120}
-              height={120}
-              className="absolute"
-              style={{ bottom: '0px', left: '170px' }}
+              width={130}
+              height={130}
+              className="absolute bottom-[0px] left-[0px] lg:bottom-[0px] lg:left-[170px] w-[150px] h-[150px] lg:w-[130px] lg:h-[130px]"
             />
 
-            {/* Image 25-ans.svg */}
+            {/* Image bouclier_euro.svg */}
             <div className="flex-shrink-0 relative z-10">
               <Image
-                src="/images/25-ans.svg"
-                alt="25 ans"
+                src="/images/bouclier_euro.svg"
+                alt="Bouclier Euro"
                 width={94.64}
                 height={77.88}
                 className="object-contain"
@@ -220,10 +224,10 @@ export default function InflationPage() {
 
             {/* Texte */}
             <div className="flex flex-col gap-1 relative z-10" style={{ fontFamily: 'var(--font-satoshi)' }}>
-              <div className="text-white text-center text-[20px] font-medium leading-[120%] tracking-[-0.2px]">
+              <div className="text-white text-center text-[16px] lg:text-[20px] font-medium leading-[120%] tracking-[-0.16px] lg:tracking-[-0.2px]">
                 Le crédit, c&apos;est le seul prix qui reste fixe pendant 25 ans.
               </div>
-              <div className="text-white text-center text-[20px] font-bold leading-[120%] tracking-[-0.2px]">
+              <div className="text-white text-center text-[16px] lg:text-[20px] font-bold leading-[120%] tracking-[-0.16px] lg:tracking-[-0.2px]">
                 Pendant que ton loyer augmente, ton crédit ne bouge pas.
               </div>
             </div>

@@ -111,7 +111,7 @@ export default function QuizQuestionPage() {
         const inputType = questionId === 2 || question.placeholder?.includes('email') || question.placeholder?.includes('@') ? 'text' : 'number';
 
         return (
-          <div className={(questionId === 8 || questionId === 10) ? 'hidden lg:flex lg:flex-col lg:gap-5' : ''}>
+          <div className={(questionId === 8 || questionId === 10) ? 'lg:flex lg:flex-col lg:gap-5' : ''}>
             {/* Input sur mobile uniquement pour questions 8 et 10 */}
             {(questionId === 8 || questionId === 10) && (
               <div className="lg:hidden">
@@ -306,7 +306,7 @@ export default function QuizQuestionPage() {
               questionNumber={questionId}
               text={question.text}
               titleText={question.titleText}
-              infoText={questionId === 5 ? "Ça change les calculs de capacité d'emprunt " : undefined}
+              infoText={questionId === 5 ? "Ça change les calculs de capacité d'emprunt " : question.infoText}
             />
           </div>
 
