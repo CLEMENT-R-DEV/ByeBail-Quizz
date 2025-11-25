@@ -152,7 +152,7 @@ export default function CongratulationsPage() {
               </p>
             </div>
             <button
-              className="w-full bg-[#FE8253] text-white font-semibold py-4 rounded-full hover:bg-[#FE7043] transition-colors flex items-center justify-center gap-2"
+              className="w-full bg-[#FE8253] text-white font-semibold py-4 rounded-full hover:bg-[#FE7043] transition-colors flex items-center justify-center gap-2 cursor-pointer"
               style={{
                 fontFamily: 'var(--font-crimson-pro), serif',
                 fontSize: '18px',

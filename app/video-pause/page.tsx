@@ -100,7 +100,7 @@ export default function VideoPausePage() {
             {/* Bouton principal orange */}
             <button
               onClick={handleContinue}
-              className="w-full h-14 rounded-[105px] bg-[#FE8253] hover:bg-[#e67349] active:scale-98 text-white font-semibold transition-all duration-200 flex items-center justify-center"
+              className="w-full h-14 rounded-[105px] bg-[#FE8253] hover:bg-[#e67349] active:scale-98 text-white font-semibold transition-all duration-200 flex items-center justify-center cursor-pointer"
               style={{
                 fontFamily: 'var(--font-crimson-pro), serif',
                 fontSize: '18px',
@@ -115,7 +115,7 @@ export default function VideoPausePage() {
             {/* Bouton Skip blanc */}
             <button
               onClick={handleContinue}
-              className="w-full h-14 rounded-[105px] bg-white hover:bg-gray-50 active:scale-98 text-gray-900 font-semibold transition-all duration-200 flex items-center justify-center border-2 border-gray-200"
+              className="w-full h-14 rounded-[105px] bg-white hover:bg-gray-50 active:scale-98 text-gray-900 font-semibold transition-all duration-200 flex items-center justify-center border-2 border-gray-200 cursor-pointer"
               style={{
                 fontFamily: 'var(--font-crimson-pro), serif',
                 fontSize: '18px',

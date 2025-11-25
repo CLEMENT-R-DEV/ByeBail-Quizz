@@ -16,7 +16,7 @@ export default function SimpleHeader() {
         <div className="self-stretch h-8 relative inline-flex justify-between items-center">
           <button
             onClick={handleBack}
-            className="w-6 h-6 relative"
+            className="w-6 h-6 relative cursor-pointer"
             aria-label="Retour"
           >
             <Image

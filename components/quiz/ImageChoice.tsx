@@ -25,6 +25,7 @@ export default function ImageChoice({
       className={`
         w-full h-full
         relative
+        cursor-pointer
         transition-all duration-200
         ${selected ? 'scale-[1.03]' : 'scale-100 hover:scale-[1.03]'}
       `}

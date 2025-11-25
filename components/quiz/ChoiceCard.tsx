@@ -36,6 +36,7 @@ export default function ChoiceCard({
       onClick={onClick}
       className={`
         relative
+        cursor-pointer
         transition-all duration-200
         ${selected ? 'scale-[1.03]' : 'scale-100 hover:scale-[1.03]'}
         ${fullSize ? 'w-full h-full' : ''}

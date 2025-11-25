@@ -18,7 +18,7 @@ export default function ContinueButton({ onClick, disabled = false }: ContinueBu
             ${
               disabled
                 ? 'bg-orange-300 cursor-not-allowed opacity-50'
-                : 'bg-[#FE8253] hover:bg-[#e67349] active:scale-98'
+                : 'bg-[#FE8253] hover:bg-[#e67349] active:scale-98 cursor-pointer'
             }
           `}
           style={{

@@ -29,7 +29,7 @@ export default function QuizHeader({ currentQuestion }: QuizHeaderProps) {
           {/* Bouton retour */}
           <button
             onClick={handleBack}
-            className="w-6 h-6 relative overflow-hidden lg:absolute lg:left-0"
+            className="w-6 h-6 relative overflow-hidden lg:absolute lg:left-0 cursor-pointer"
             aria-label="Retour"
           >
             <Image

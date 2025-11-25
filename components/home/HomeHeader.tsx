@@ -84,7 +84,7 @@ export default function HomeHeader() {
           </Link>
 
           {/* Mobile Menu Icon */}
-          <button className="lg:hidden w-6 h-6 relative flex items-center justify-center">
+          <button className="lg:hidden w-6 h-6 relative flex items-center justify-center cursor-pointer">
             <Image
               src="/images/home/List.svg"
               alt="Menu"
