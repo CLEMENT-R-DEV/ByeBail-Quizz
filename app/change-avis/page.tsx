@@ -43,10 +43,10 @@ export default function ChangeAvisPage() {
           <div className="self-stretch flex flex-col justify-start items-start gap-5">
             {/* Carte rouge - Locataire */}
             <div className="self-stretch p-4 rounded-2xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.04)] outline outline-4 outline-offset-[-4px] outline-[#FF9191] flex flex-col justify-start items-start gap-2.5">
-              <div className="self-stretch flex justify-start items-start gap-2.5">
-                <div className="w-14 h-14 relative rounded-lg overflow-hidden">
+              <div className="self-stretch flex justify-start items-start lg:items-center gap-2.5">
+                <div className="w-[60px] h-[60px] lg:w-[84px] lg:h-[84px] relative rounded-lg overflow-hidden flex items-center justify-center">
                   <Image
-                    src="/images/valise.svg"
+                    src="/images/Simplification1.svg"
                     alt="Valise"
                     fill
                     className="object-contain"
@@ -65,10 +65,10 @@ export default function ChangeAvisPage() {
 
             {/* Carte verte - Propriétaire */}
             <div className="self-stretch p-4 rounded-2xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.04)] outline outline-4 outline-offset-[-4px] outline-[#AAFFC3] flex flex-col justify-start items-start gap-2.5">
-              <div className="self-stretch flex justify-start items-start gap-2.5">
-                <div className="w-14 h-14 relative bg-indigo-100 rounded-lg overflow-hidden">
+              <div className="self-stretch flex justify-start items-start lg:items-center gap-2.5">
+                <div className="w-[60px] h-[60px] lg:w-[84px] lg:h-[84px] relative bg-indigo-100 rounded-lg overflow-hidden flex items-center justify-center">
                   <Image
-                    src="/images/carton.svg"
+                    src="/images/image131.svg"
                     alt="Carton"
                     fill
                     className="object-contain"
@@ -141,10 +141,10 @@ export default function ChangeAvisPage() {
 
             {/* Carte jaune - Bonus */}
             <div className="self-stretch p-4 bg-yellow-50 rounded-2xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.04)] outline outline-2 outline-offset-[-2px] outline-[#FFDC4F] flex flex-col justify-start items-start gap-2.5">
-              <div className="self-stretch flex justify-start items-start gap-2.5">
-                <div className="w-14 h-14 relative rounded-lg overflow-hidden">
+              <div className="self-stretch flex justify-start items-start lg:items-center gap-2.5">
+                <div className="w-[60px] h-[60px] lg:w-[84px] lg:h-[84px] relative rounded-lg overflow-hidden flex items-center justify-center">
                   <Image
-                    src="/images/piece.svg"
+                    src="/images/image136.svg"
                     alt="Pièce"
                     fill
                     className="object-contain"
