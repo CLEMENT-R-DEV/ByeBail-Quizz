@@ -12,6 +12,7 @@ interface ChoiceCardProps {
   fullSize?: boolean;
   compactImage?: boolean;
   largeCompactImage?: boolean;
+  fitContent?: boolean;
   labelClassName?: string;
   subtitleClassName?: string;
 }
@@ -26,6 +27,7 @@ export default function ChoiceCard({
   fullSize = false,
   compactImage = false,
   largeCompactImage = false,
+  fitContent = false,
   labelClassName,
   subtitleClassName,
 }: ChoiceCardProps) {
@@ -48,7 +50,7 @@ export default function ChoiceCard({
       >
         <div
           className={`w-full bg-[#FDFEFF] rounded-lg flex flex-col items-center justify-center gap-[10px] ${
-            compactImage || largeCompactImage ? 'aspect-square' : 'aspect-square lg:aspect-auto lg:h-full'
+            fitContent ? 'py-[10px]' : (compactImage || largeCompactImage) ? 'aspect-square' : 'aspect-square lg:aspect-auto lg:h-full'
           }`}
           style={{
             border: '0.8px solid rgba(0, 0, 0, 0.08)',

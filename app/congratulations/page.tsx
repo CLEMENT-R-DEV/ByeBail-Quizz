@@ -53,7 +53,7 @@ export default function CongratulationsPage() {
               selected={false}
               onClick={() => {}}
               compactImage={true}
-              fullSize={true}
+              fitContent={true}
               labelClassName="text-center text-[#111827] text-[20px] font-semibold font-['Bricolage_Grotesque'] leading-[100%] tracking-[-0.2px]"
               subtitleClassName="text-center text-[#111827] text-[14px] font-normal font-['Satoshi_Variable'] leading-[110%]"
             />
@@ -65,7 +65,7 @@ export default function CongratulationsPage() {
               selected={false}
               onClick={() => {}}
               compactImage={true}
-              fullSize={true}
+              fitContent={true}
               labelClassName="text-center text-[#111827] text-[20px] font-semibold font-['Bricolage_Grotesque'] leading-[100%] tracking-[-0.2px]"
               subtitleClassName="text-center text-[#111827] text-[14px] font-normal font-['Satoshi_Variable'] leading-[110%]"
             />
@@ -77,7 +77,7 @@ export default function CongratulationsPage() {
               selected={false}
               onClick={() => {}}
               compactImage={true}
-              fullSize={true}
+              fitContent={true}
               labelClassName="text-center text-[#111827] text-[20px] font-semibold font-['Bricolage_Grotesque'] leading-[100%] tracking-[-0.2px]"
               subtitleClassName="text-center text-[#111827] text-[14px] font-normal font-['Satoshi_Variable'] leading-[110%]"
             />
