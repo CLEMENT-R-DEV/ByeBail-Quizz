@@ -17,29 +17,80 @@ export default function VideoPausePage() {
       <SimpleHeader />
 
       {/* Main content */}
-      <main className="flex-1 flex flex-col mx-4 pt-5 pb-6">
+      <main className="flex-1 flex flex-col lg:pt-[100px] lg:pb-[206px] mx-4 lg:mx-0 pt-5">
         {/* Carte principale */}
-        <div className="px-2.5 py-5 bg-white rounded-2xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.04)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 flex flex-col justify-start items-start gap-6">
+        <div className="w-full lg:w-[750px] mx-auto p-5 bg-white rounded-3xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.04)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 flex flex-col justify-start items-start gap-6 mb-8">
           {/* Titre et sous-titre */}
           <div className="self-stretch flex flex-col justify-start items-center gap-2.5">
-            <div className="self-stretch text-center justify-center text-gray-900 text-xl font-semibold font-['Bricolage_Grotesque'] leading-5">Petite pause.</div>
-            <div className="text-center justify-center text-gray-900 text-base font-normal font-['Satoshi'] leading-5">David, le fondateur, veut te dire un truc important.</div>
+            <div className="self-stretch text-center justify-center text-gray-900 lg:text-[#111827] text-xl lg:text-[24px] font-semibold lg:font-semibold font-['Bricolage_Grotesque'] leading-5 lg:leading-[100%] lg:tracking-[-0.24px]">Petite pause.</div>
+            <div className="text-center justify-center text-gray-900 lg:text-[#111827] text-base lg:text-[20px] font-normal lg:font-normal font-['Satoshi'] leading-5 lg:leading-[120%] lg:tracking-[-0.2px]">David, le fondateur, veut te dire un truc important.</div>
           </div>
 
           {/* Carte vidéo violette */}
-          <div className="self-stretch relative rounded-[20px] overflow-hidden">
-            <Image
-              src="/images/Video.svg"
-              alt="Vidéo de David Brauman"
-              width={400}
-              height={400}
-              className="object-contain w-full"
-            />
-            <div className="absolute inset-0 flex items-end justify-center pb-6 px-4">
-              <div className="w-72 h-20 inline-flex flex-col justify-start items-end gap-2.5">
-                <div className="self-stretch text-center justify-center text-white text-lg font-semibold font-['Bricolage_Grotesque'] leading-4">Vidéo de David Brauman</div>
-                <div className="self-stretch text-center justify-center text-white text-base font-normal font-['Satoshi'] leading-5">«À Tours, on a XX logements à partir de XXX€/mois. Oui, c&apos;est possible de devenir proprio.»</div>
-              </div>
+          <div className="self-stretch relative rounded-[20px] overflow-hidden h-[326px] bg-[#875AEF]">
+            {/* SVG Background Elements */}
+            <div className="absolute top-[40px] right-[20px] w-[60px] h-[60px] lg:top-[120px] lg:right-[150px] lg:w-[100px] lg:h-[100px] z-[1]">
+              <Image
+                src="/images/Polygon4vdesktop.svg"
+                alt=""
+                fill
+                className="object-contain"
+              />
+            </div>
+            <div className="absolute top-[80px] right-[30px] w-[50px] h-[50px] lg:top-[0px] lg:right-[190px] lg:w-[130px] lg:h-[130px] z-[1]">
+              <Image
+                src="/images/Polygon5vdesktop.svg"
+                alt=""
+                fill
+                className="object-contain"
+              />
+            </div>
+            <div className="absolute top-[120px] left-[40px] w-[45px] h-[45px] lg:top-[120px] lg:left-[160px] lg:w-[130px] lg:h-[130px] z-[1]">
+              <Image
+                src="/images/Polygon7vdesktop.svg"
+                alt=""
+                fill
+                className="object-contain"
+              />
+            </div>
+            <div className="absolute bottom-[40px] right-[40px] w-[55px] h-[55px] lg:bottom-[0px] lg:right-[190px] lg:w-[120px] lg:h-[120px] z-[1]">
+              <Image
+                src="/images/Polygon8vdesktop.svg"
+                alt=""
+                fill
+                className="object-contain"
+              />
+            </div>
+            <div className="absolute top-[80px] right-[50px] w-[40px] h-[40px] lg:top-[0px] lg:left-[180px] lg:w-[130px] lg:h-[130px] z-[1]">
+              <Image
+                src="/images/Polygon9vdesktop.svg"
+                alt=""
+                fill
+                className="object-contain"
+              />
+            </div>
+            <div className="absolute bottom-[20px] right-[20px] w-[60px] h-[60px] lg:bottom-[100px] lg:right-[270px] lg:w-[130px] lg:h-[130px] z-[1]">
+              <Image
+                src="/images/Polygon3vdesktop.svg"
+                alt=""
+                fill
+                className="object-contain"
+              />
+            </div>
+            {/* Illustration - above other polygons */}
+            <div className="absolute top-[20px] left-[20px] w-[100px] h-[100px] lg:top-[50px] lg:left-[280px] lg:w-[150px] lg:h-[150px] z-[2]">
+              <Image
+                src="/images/Illustration.svg"
+                alt=""
+                fill
+                className="object-contain"
+              />
+            </div>
+
+            {/* Text Overlay */}
+            <div className="absolute inset-0 flex flex-col items-center justify-end pb-6 px-4 z-10 gap-2.5">
+              <div className="text-center justify-center text-white text-lg lg:text-[24px] font-semibold lg:font-semibold font-['Bricolage_Grotesque'] leading-4 lg:leading-[100%] lg:tracking-[-0.24px]">Vidéo de David Brauman</div>
+              <div className="w-full text-center justify-center text-white text-base lg:text-[20px] font-normal lg:font-normal font-['Satoshi'] leading-5 lg:leading-[120%] lg:tracking-[-0.2px]">«À Tours, on a XX logements à partir de XXX€/mois. Oui, c&apos;est possible de devenir proprio.»</div>
             </div>
           </div>
 
@@ -77,10 +128,12 @@ export default function VideoPausePage() {
         </div>
 
         {/* Spacer pour pousser le bouton Continue vers le bas */}
-        <div className="flex-1"></div>
+        <div className="flex-1 lg:hidden"></div>
 
         {/* Bouton Continue */}
-        <ContinueButton onClick={handleContinue} disabled={false} />
+        <div className="lg:hidden">
+          <ContinueButton onClick={handleContinue} disabled={false} />
+        </div>
       </main>
     </div>
   );
