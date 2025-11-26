@@ -64,18 +64,11 @@ export default function CalculationPage() {
 
       <main className="flex-1 flex flex-col mx-4 lg:mx-0">
         {/* Contenu principal */}
-<<<<<<< Updated upstream
-        <div className="w-full lg:w-[750px] lg:mt-[100px] mt-[20px] mx-auto p-5 bg-white rounded-3xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.04)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 flex flex-col justify-start items-start gap-5 mb-8">
-
-          {/* Section 1 - Titre et question */}
-          <div className="self-stretch flex flex-col justify-start items-center gap-1.5">
-            <div className="self-stretch text-center justify-center text-[#111827] text-3xl lg:text-[28px] font-semibold lg:font-semibold font-['Bricolage_Grotesque'] leading-8 lg:leading-[120%] lg:tracking-[-0.28px]">
-=======
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, type: 'spring' as const, stiffness: 300, damping: 25 }}
-          className="w-full max-w-md mx-auto p-5 bg-white rounded-3xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.04)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 flex flex-col justify-start items-start gap-5 mb-8"
+          className="w-full lg:w-[750px] lg:mt-[100px] mt-[20px] mx-auto p-5 bg-white rounded-3xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.04)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 flex flex-col justify-start items-start gap-5 mb-8"
         >
 
           {/* Section 1 - Titre et question */}
@@ -85,8 +78,7 @@ export default function CalculationPage() {
             transition={{ delay: 0.3 }}
             className="self-stretch flex flex-col justify-start items-center gap-1.5"
           >
-            <div className="self-stretch text-center justify-center text-gray-900 text-3xl font-semibold font-['Bricolage_Grotesque'] leading-8">
->>>>>>> Stashed changes
+            <div className="self-stretch text-center justify-center text-[#111827] text-3xl lg:text-[28px] font-semibold lg:font-semibold font-['Bricolage_Grotesque'] leading-8 lg:leading-[120%] lg:tracking-[-0.28px]">
               Petite question rapide...
             </div>
             <div className="self-stretch text-center justify-center">
@@ -153,18 +145,13 @@ export default function CalculationPage() {
             </motion.div>
 
             {/* Montant total */}
-<<<<<<< Updated upstream
-            <div className="self-stretch flex flex-col justify-start items-center">
-              <div className="self-stretch text-center justify-center text-[#FE642A] text-3xl lg:text-[28px] font-semibold lg:font-semibold font-['Bricolage_Grotesque'] leading-7 lg:leading-[100%] lg:tracking-[-0.28px]">
-=======
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.7 }}
               className="self-stretch flex flex-col justify-start items-center"
             >
-              <div className="self-stretch text-center justify-center text-orange-500 text-3xl font-semibold font-['Bricolage_Grotesque'] leading-7">
->>>>>>> Stashed changes
+              <div className="self-stretch text-center justify-center text-[#FE642A] text-3xl lg:text-[28px] font-semibold lg:font-semibold font-['Bricolage_Grotesque'] leading-7 lg:leading-[100%] lg:tracking-[-0.28px]">
                 {totalSur10Ans.toLocaleString('fr-FR')} €
               </div>
               <div className="self-stretch text-center justify-center text-[#111827] text-base lg:text-lg font-normal lg:font-normal font-['Satoshi'] leading-5 lg:leading-[120%] lg:tracking-[-0.18px]">

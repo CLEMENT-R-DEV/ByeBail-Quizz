@@ -26,19 +26,6 @@ export default function ImageChoice({
   return (
     <motion.button
       onClick={onClick}
-<<<<<<< Updated upstream
-      className={`
-        w-full h-full
-        relative
-        cursor-pointer
-        transition-all duration-200
-        ${selected ? 'scale-[1.03]' : 'scale-100 hover:scale-[1.03]'}
-      `}
-    >
-      {/* Image avec bordure blanche de 8px */}
-      <div className="relative w-full aspect-square lg:aspect-auto lg:h-full border-8 border-white rounded-2xl overflow-hidden">
-        {/* Image mobile */}
-=======
       initial={{ opacity: 0, y: 30, scale: 0.9 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{
@@ -49,7 +36,7 @@ export default function ImageChoice({
       }}
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.98 }}
-      className="relative"
+      className="w-full h-full relative cursor-pointer"
     >
       {/* Image avec bordure blanche de 8px */}
       <motion.div
@@ -64,14 +51,14 @@ export default function ImageChoice({
           stiffness: 300,
           damping: 25,
         }}
-        className="relative w-full aspect-square rounded-2xl overflow-hidden"
+        className="relative w-full aspect-square lg:aspect-auto lg:h-full rounded-2xl overflow-hidden"
         style={{
           border: selected
             ? '8px solid rgba(155, 123, 248, 0.3)'
             : '8px solid white',
         }}
       >
->>>>>>> Stashed changes
+        {/* Image mobile */}
         <Image
           src={image}
           alt={label}
@@ -79,7 +66,6 @@ export default function ImageChoice({
           className={`object-fill ${desktopImage ? 'lg:hidden' : ''}`}
           sizes="(max-width: 768px) 50vw, 25vw"
         />
-<<<<<<< Updated upstream
         {/* Image desktop */}
         {desktopImage && (
           <Image
@@ -90,10 +76,7 @@ export default function ImageChoice({
             sizes="25vw"
           />
         )}
-      </div>
-=======
       </motion.div>
->>>>>>> Stashed changes
 
       {/* Indicateur de sélection */}
       <AnimatePresence>

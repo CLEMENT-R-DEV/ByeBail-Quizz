@@ -1,4 +1,4 @@
-import HomeHeader from '@/components/home/HomeHeader';
+// import HomeHeader from '@/components/home/HomeHeader';
 import HeroSection from '@/components/home/HeroSection';
 import StatCardsContainer from '@/components/home/StatCardsContainer';
 import GuaranteesSection from '@/components/home/GuaranteesSection';
@@ -32,8 +32,14 @@ export default function HomePage() {
       <BackgroundElements />
 
       <main className="relative px-4 lg:px-[0px] lg:w-[1160px] min-h-screen lg:min-h-0 flex flex-col lg:mx-auto lg:gap-10 lg:mb-15">
-        {/* Header */}
-        <HomeHeader />
+        {/* Header simplifié - Logo centré */}
+        <div className="w-full pt-[24px] pb-[13px] flex justify-center items-center">
+          <img
+            src="/ByeBailTypo.svg"
+            alt="ByeBail"
+            className="h-8 w-auto"
+          />
+        </div>
 
         {/* Contenu principal */}
         <div className="mb-10 w-full flex-1 lg:flex-initial inline-flex flex-col justify-between lg:justify-start items-center gap-5 lg:gap-10">

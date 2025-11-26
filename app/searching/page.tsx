@@ -88,12 +88,21 @@ export default function SearchingPage() {
       {/* Main content */}
       <main className="flex-1 flex flex-col mx-4 lg:mx-0">
         {/* Carte principale blanche */}
-<<<<<<< Updated upstream
-        <div className="w-full lg:w-[750px] lg:mt-[100px] mt-[20px] lg:mb-[62px] mx-auto p-5 bg-white rounded-3xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.04)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 flex flex-col justify-center items-center gap-5 mb-8">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, type: 'spring', stiffness: 300, damping: 25 }}
+          className="w-full lg:w-[750px] lg:mt-[100px] mt-[20px] lg:mb-[62px] mx-auto p-5 bg-white rounded-3xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.04)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 flex flex-col justify-center items-center gap-5 mb-8"
+        >
           {/* Titre et image */}
           <div className="self-stretch flex flex-col justify-start items-center gap-2.5">
             {/* Image recherche avec ellipse */}
-            <div className="w-28 h-20 relative flex items-center justify-center">
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ delay: 0.3, type: 'spring', stiffness: 400, damping: 20 }}
+              className="w-28 h-20 relative flex items-center justify-center"
+            >
               {/* Ellipse de fond - parfaitement ronde avec position ajustable */}
               <div
                 className="absolute w-10 h-10 lg:w-10 lg:h-10 top-2 left-7 lg:top-2 lg:left-7 rounded-full"
@@ -108,31 +117,7 @@ export default function SearchingPage() {
                   className="object-contain"
                 />
               </div>
-            </div>
-=======
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, type: 'spring', stiffness: 300, damping: 25 }}
-          className="p-5 bg-white rounded-3xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.04)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 flex flex-col justify-center items-center gap-5"
-        >
-          {/* Titre et image */}
-          <div className="self-stretch flex flex-col justify-start items-center gap-2.5">
-            {/* Image recherche */}
-            <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ delay: 0.3, type: 'spring', stiffness: 400, damping: 20 }}
-              className="w-28 h-20 relative rounded-lg overflow-hidden"
-            >
-              <Image
-                src="/images/search_1.svg"
-                alt="Recherche"
-                fill
-                className="object-contain"
-              />
             </motion.div>
->>>>>>> Stashed changes
 
             {/* Titre */}
             <motion.div
@@ -225,46 +210,22 @@ export default function SearchingPage() {
             />
           </div>
 
-<<<<<<< Updated upstream
           {/* Texte de progression (disparaît quand l'animation est terminée) */}
-          {!isAnimationComplete && (
-            <div className="self-stretch text-center justify-center text-gray-900 text-sm font-normal font-['Satoshi'] leading-4">Encore quelques secondes…</div>
-          )}
-        </div>
-=======
-          {/* Texte de progression */}
           <motion.div
             animate={{
-              opacity: showContinue ? 0 : 1,
+              opacity: isAnimationComplete ? 0 : 1,
             }}
             className="self-stretch text-center justify-center text-gray-900 text-sm font-normal font-['Satoshi'] leading-4"
           >
             Encore quelques secondes…
           </motion.div>
         </motion.div>
->>>>>>> Stashed changes
 
         {/* Spacer */}
         <div className="flex-1"></div>
 
-<<<<<<< Updated upstream
         {/* Bouton Continue (toujours visible mais désactivé pendant l'animation) */}
         <ContinueButton onClick={handleContinue} disabled={!isAnimationComplete} />
-=======
-        {/* Bouton Continue (visible uniquement quand toutes les étapes sont terminées) */}
-        <AnimatePresence>
-          {showContinue && (
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 30 }}
-              transition={{ type: 'spring', stiffness: 300, damping: 25 }}
-            >
-              <ContinueButton onClick={handleContinue} disabled={false} />
-            </motion.div>
-          )}
-        </AnimatePresence>
->>>>>>> Stashed changes
       </main>
     </motion.div>
   );

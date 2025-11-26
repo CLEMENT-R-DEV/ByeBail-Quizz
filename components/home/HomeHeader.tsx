@@ -6,22 +6,16 @@ import Image from 'next/image';
 export default function HomeHeader() {
   return (
     <div className="w-full pt-[24px] relative z-50">
-      <div className="w-full py-[13px] relative rounded-2xl flex justify-between items-center overflow-hidden">
+      <div className="w-full py-[13px] relative rounded-2xl flex justify-between items-center overflow-visible">
         {/* Logo */}
-        <Link href="/" className="flex justify-start items-center gap-2">
-          <div className="w-10 h-10 flex justify-center items-center bg-blue-900 rounded-lg shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)]" style={{ padding: '6px 13.95px 6px 14.279px' }}>
-            <div className="text-white text-xl font-semibold font-['Crimson_Pro'] leading-7">
-              B
-            </div>
-          </div>
-          <div className="w-[81px] inline-flex flex-col justify-start items-start">
-            <div className="self-stretch h-[18px] justify-center text-blue-900 lg:text-[#6A6A6A] text-lg font-semibold font-['Bricolage_Grotesque'] leading-[18px]">
-              ByeBail
-            </div>
-            <div className="justify-center text-[#1E3A8A] text-xs font-normal font-['Optima'] leading-4 tracking-[-0.36px]">
-              by Brauman & K
-            </div>
-          </div>
+        <Link href="/" className="flex justify-start items-center">
+          <Image
+            src="/ByeBailTypo.svg"
+            alt="ByeBail"
+            width={120}
+            height={33}
+            className="h-8 w-auto"
+          />
         </Link>
 
         {/* Navigation Desktop */}
@@ -73,14 +67,15 @@ export default function HomeHeader() {
           {/* Desktop CTA */}
           <Link
             href="/quiz/1"
-            className="hidden lg:flex px-4 py-2.5 rounded-3xl shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] justify-center items-center gap-2.5"
+            className="hidden lg:flex h-10 px-5 rounded-[105px] bg-[#FE8253] hover:bg-[#e67349] text-white font-semibold text-sm items-center justify-center cursor-pointer"
             style={{
-              background: 'linear-gradient(180deg, #F5923D 0%, #F7603A 324.04%), #6A6A6A'
+              fontFamily: 'var(--font-crimson-pro), serif',
+              fontSize: '14px',
+              lineHeight: '1',
+              boxShadow: '0 0 8.8px 0 #DEE3E7 inset, 0 -21px 20.8px 0 rgba(236, 72, 9, 0.37) inset, 0 0 80.5px 0 rgba(236, 72, 9, 0.28)',
             }}
           >
-            <div className="text-center justify-center text-white text-sm font-normal font-['Optima'] leading-5">
-              Je dis Bye à mon Bail
-            </div>
+            Je dis Bye à mon Bail
           </Link>
 
           {/* Mobile Menu Icon */}

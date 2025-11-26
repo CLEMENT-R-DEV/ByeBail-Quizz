@@ -150,40 +150,49 @@ export default function QuizQuestionPage() {
 
             {/* Texte informatif pour la question 8 (desktop uniquement) - après l'input */}
             {questionId === 8 && (
-<<<<<<< Updated upstream
-              <div className="hidden lg:flex lg:flex-col lg:gap-1 lg:items-end" style={{ fontFamily: 'var(--font-satoshi)' }}>
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+                className="hidden lg:flex lg:flex-col lg:gap-1 lg:items-end"
+                style={{ fontFamily: 'var(--font-satoshi)' }}
+              >
                 <div className="text-gray-900/60 text-[18px] font-normal leading-[110%] tracking-[-0.18px] text-right">
                   Revenus nets mensuels en euros
                 </div>
                 <div className="text-gray-900/60 text-[18px] font-normal leading-[110%] tracking-[-0.18px] text-right">
                   Ces infos restent 100% confidentielles. Promis, on n&apos;est pas des boulets.
                 </div>
-              </div>
+              </motion.div>
             )}
 
             {/* Texte informatif pour la question 10 (desktop uniquement) - après l'input */}
             {questionId === 10 && (
-              <div className="hidden lg:flex lg:flex-col lg:gap-1 lg:items-end" style={{ fontFamily: 'var(--font-satoshi)' }}>
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+                className="hidden lg:flex lg:flex-col lg:gap-1 lg:items-end"
+                style={{ fontFamily: 'var(--font-satoshi)' }}
+              >
                 <div className="text-gray-900/60 text-[18px] font-normal leading-[110%] tracking-[-0.18px] text-right">
                   Aucun spam. Aucune pub.
                 </div>
                 <div className="text-gray-900/60 text-[18px] font-normal leading-[110%] tracking-[-0.18px] text-right">
                   On n&apos;est pas là pour te saouler, juste pour t&apos;aider.
                 </div>
-              </div>
+              </motion.div>
             )}
 
             {/* Texte informatif pour la question 10 sur mobile */}
             {questionId === 10 && (
-              <p className="lg:hidden text-center text-[14px] font-normal leading-[110%] mt-4 text-[#111827]" style={{ fontFamily: 'var(--font-satoshi)' }}>
-=======
               <motion.p
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
-                className="text-center text-sm font-normal leading-[110%] mt-4 text-gray-600"
+                className="lg:hidden text-center text-[14px] font-normal leading-[110%] mt-4 text-[#111827]"
+                style={{ fontFamily: 'var(--font-satoshi)' }}
               >
->>>>>>> Stashed changes
                 Aucun spam. Aucune pub.<br />
                 On n&apos;est pas là pour te saouler, juste pour t&apos;aider.
               </motion.p>
@@ -222,7 +231,7 @@ export default function QuizQuestionPage() {
             <div className="w-full lg:w-[750px]">
               {/* Mobile: grid 2 colonnes, 5ème carte centrée sur 3ème ligne */}
               <div ref={gridRef} className="lg:hidden grid grid-cols-2 gap-2">
-                {question.choices?.slice(0, 4).map((choice) => (
+                {question.choices?.slice(0, 4).map((choice, index) => (
                   <ChoiceComponent
                     key={choice.id}
                     id={choice.id}
@@ -234,6 +243,7 @@ export default function QuizQuestionPage() {
                     onClick={() => setAnswer(choice.id)}
                     labelClassName={choice.labelClassName}
                     subtitleClassName={choice.subtitleClassName}
+                    index={index}
                   />
                 ))}
                 {/* 5ème carte centrée - utilise la largeur mesurée */}
@@ -252,6 +262,7 @@ export default function QuizQuestionPage() {
                         fullSize={true}
                         labelClassName={question.choices[4].labelClassName}
                         subtitleClassName={question.choices[4].subtitleClassName}
+                        index={4}
                       />
                     </div>
                   </div>
@@ -261,7 +272,7 @@ export default function QuizQuestionPage() {
               {/* Desktop: 3 cartes sur ligne 1, 2 cartes sur ligne 2 */}
               <div className="hidden lg:grid lg:grid-cols-6 lg:gap-[12px] lg:auto-rows-[269px]">
                 {/* Ligne 1: 3 premières cartes - chacune occupe 2 colonnes */}
-                {question.choices?.slice(0, 3).map((choice) => (
+                {question.choices?.slice(0, 3).map((choice, index) => (
                   <div key={choice.id} className="col-span-2">
                     <ChoiceComponent
                       id={choice.id}
@@ -274,11 +285,12 @@ export default function QuizQuestionPage() {
                       fullSize={true}
                       labelClassName={choice.labelClassName}
                       subtitleClassName={choice.subtitleClassName}
+                      index={index}
                     />
                   </div>
                 ))}
                 {/* Ligne 2: 2 dernières cartes - chacune occupe 3 colonnes */}
-                {question.choices?.slice(3, 5).map((choice) => (
+                {question.choices?.slice(3, 5).map((choice, index) => (
                   <div key={choice.id} className="col-span-3">
                     <ChoiceComponent
                       id={choice.id}
@@ -291,6 +303,7 @@ export default function QuizQuestionPage() {
                       fullSize={true}
                       labelClassName={choice.labelClassName}
                       subtitleClassName={choice.subtitleClassName}
+                      index={index + 3}
                     />
                   </div>
                 ))}
@@ -304,7 +317,7 @@ export default function QuizQuestionPage() {
         if (questionId === 9) {
           return (
             <div className={`w-full lg:w-[750px] grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-[18px]`}>
-              {question.choices?.map((choice) => (
+              {question.choices?.map((choice, index) => (
                 <ChoiceComponent
                   key={choice.id}
                   id={choice.id}
@@ -317,6 +330,7 @@ export default function QuizQuestionPage() {
                   compactImage={true}
                   labelClassName={choice.labelClassName}
                   subtitleClassName={choice.subtitleClassName}
+                  index={index}
                 />
               ))}
             </div>
@@ -327,7 +341,7 @@ export default function QuizQuestionPage() {
         if (questionId === 11) {
           return (
             <div className={`w-full lg:w-[750px] grid grid-cols-2 gap-2 lg:gap-[18px]`}>
-              {question.choices?.map((choice) => (
+              {question.choices?.map((choice, index) => (
                 <ChoiceComponent
                   key={choice.id}
                   id={choice.id}
@@ -340,6 +354,7 @@ export default function QuizQuestionPage() {
                   largeCompactImage={true}
                   labelClassName={choice.labelClassName}
                   subtitleClassName={choice.subtitleClassName}
+                  index={index}
                 />
               ))}
             </div>
@@ -350,7 +365,7 @@ export default function QuizQuestionPage() {
         if (questionId === 12) {
           return (
             <div className={`w-full lg:w-[750px] grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-[18px]`}>
-              {question.choices?.map((choice) => (
+              {question.choices?.map((choice, index) => (
                 <ChoiceComponent
                   key={choice.id}
                   id={choice.id}
@@ -363,6 +378,7 @@ export default function QuizQuestionPage() {
                   compactImage={true}
                   labelClassName={choice.labelClassName}
                   subtitleClassName={choice.subtitleClassName}
+                  index={index}
                 />
               ))}
             </div>
@@ -373,7 +389,7 @@ export default function QuizQuestionPage() {
         if (questionId === 13) {
           return (
             <div className={`w-full lg:w-[750px] grid grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-[18px]`}>
-              {question.choices?.map((choice) => (
+              {question.choices?.map((choice, index) => (
                 <ChoiceComponent
                   key={choice.id}
                   id={choice.id}
@@ -386,6 +402,7 @@ export default function QuizQuestionPage() {
                   compactImage={true}
                   labelClassName={choice.labelClassName}
                   subtitleClassName={choice.subtitleClassName}
+                  index={index}
                 />
               ))}
             </div>
@@ -393,17 +410,12 @@ export default function QuizQuestionPage() {
         }
 
         return (
-<<<<<<< Updated upstream
-          <div className={`w-full lg:w-[750px] lg:h-[269px] grid grid-cols-2 gap-2 lg:gap-[18px]`}>
-            {question.choices?.map((choice) => (
-=======
           <motion.div
-            className="grid grid-cols-2 gap-2"
+            className="w-full lg:w-[750px] lg:h-[269px] grid grid-cols-2 gap-2 lg:gap-[18px]"
             initial="initial"
             animate="animate"
           >
             {question.choices?.map((choice, index) => (
->>>>>>> Stashed changes
               <ChoiceComponent
                 key={choice.id}
                 id={choice.id}
@@ -436,36 +448,22 @@ export default function QuizQuestionPage() {
       >
         <QuizHeader currentQuestion={questionId} />
 
-<<<<<<< Updated upstream
-      <main className="flex-1 flex flex-col mx-4 lg:mx-0 pt-5 lg:items-center lg:pt-[100px] min-h-0">
-        {/* Conteneur question + input */}
-        <div className="lg:w-[750px] lg:flex lg:flex-col lg:items-end lg:gap-[50px]">
-          {/* Question bubble */}
-          <div className="w-full mb-5 lg:mb-0">
-=======
-        <main className="flex-1 flex flex-col mx-4 pt-5">
-          {/* Question bubble */}
-          <div className="mb-5">
->>>>>>> Stashed changes
-            <QuestionBubble
-              questionNumber={questionId}
-              text={question.text}
-              titleText={question.titleText}
-<<<<<<< Updated upstream
-              infoText={questionId === 5 ? "Ça change les calculs de capacité d'emprunt " : question.infoText}
-=======
-              infoText={questionId === 3 ? "Ça change les calculs de capacité d'emprunt " : undefined}
->>>>>>> Stashed changes
-            />
-          </div>
+        <main className="flex-1 flex flex-col mx-4 lg:mx-0 pt-5 lg:items-center lg:pt-[100px] min-h-0">
+          {/* Conteneur question + input */}
+          <div className="lg:w-[750px] lg:flex lg:flex-col lg:items-end lg:gap-[50px]">
+            {/* Question bubble */}
+            <div className="w-full mb-5 lg:mb-0">
+              <QuestionBubble
+                questionNumber={questionId}
+                text={question.text}
+                titleText={question.titleText}
+                infoText={questionId === 5 ? "Ça change les calculs de capacité d'emprunt " : question.infoText}
+              />
+            </div>
 
-          {/* Input field */}
-<<<<<<< Updated upstream
-          <div className="mb-8 lg:mb-0">{renderInput()}</div>
-        </div>
-=======
-          <div className="mb-8">{renderInput()}</div>
->>>>>>> Stashed changes
+            {/* Input field */}
+            <div className="mb-8 lg:mb-0">{renderInput()}</div>
+          </div>
 
           {/* Spacer pour pousser le bouton vers le bas */}
           <div className="flex-1"></div>

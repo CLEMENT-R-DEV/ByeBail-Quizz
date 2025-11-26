@@ -9,18 +9,16 @@ interface ChoiceCardProps {
   label: string;
   subtitle?: string;
   image: string;
+  desktopImage?: string;
   selected: boolean;
   onClick: () => void;
-<<<<<<< Updated upstream
   fullSize?: boolean;
   compactImage?: boolean;
   largeCompactImage?: boolean;
   fitContent?: boolean;
   labelClassName?: string;
   subtitleClassName?: string;
-=======
   index?: number;
->>>>>>> Stashed changes
 }
 
 export default function ChoiceCard({
@@ -28,34 +26,20 @@ export default function ChoiceCard({
   label,
   subtitle,
   image,
+  desktopImage,
   selected,
   onClick,
-<<<<<<< Updated upstream
   fullSize = false,
   compactImage = false,
   largeCompactImage = false,
   fitContent = false,
   labelClassName,
   subtitleClassName,
-=======
   index = 0,
->>>>>>> Stashed changes
 }: ChoiceCardProps) {
   return (
     <motion.button
       onClick={onClick}
-<<<<<<< Updated upstream
-      className={`
-        relative
-        cursor-pointer
-        transition-all duration-200
-        ${selected ? 'scale-[1.03]' : 'scale-100 hover:scale-[1.03]'}
-        ${fullSize ? 'w-full h-full' : ''}
-      `}
-    >
-      <div
-        className="h-full flex flex-col justify-center items-center p-[10px] bg-[#FDFEFF] rounded-[18px]"
-=======
       initial={{ opacity: 0, y: 30, scale: 0.9 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{
@@ -66,11 +50,15 @@ export default function ChoiceCard({
       }}
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.98 }}
-      className="relative"
+      className={`
+        relative
+        cursor-pointer
+        ${fullSize ? 'w-full h-full' : ''}
+      `}
     >
       <motion.div
         animate={{
-          scale: selected ? 1.08 : 1,
+          scale: selected ? 1.03 : 1,
           boxShadow: selected
             ? '0px 0px 30px rgba(155, 123, 248, 0.25)'
             : '0px 0px 27.5px rgba(104, 137, 228, 0.1)',
@@ -80,8 +68,7 @@ export default function ChoiceCard({
           stiffness: 300,
           damping: 25,
         }}
-        className="flex flex-col justify-center items-center p-[10px] bg-[#FDFEFF] rounded-[18px]"
->>>>>>> Stashed changes
+        className="h-full flex flex-col justify-center items-center p-[10px] bg-[#FDFEFF] rounded-[18px]"
         style={{
           border: selected
             ? '2px solid rgba(155, 123, 248, 0.5)'

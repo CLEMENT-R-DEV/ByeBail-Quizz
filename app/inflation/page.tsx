@@ -39,16 +39,12 @@ export default function InflationPage() {
 
       <main className="flex-1 flex flex-col mx-4 ">
         {/* Contenu */}
-<<<<<<< Updated upstream
-        <div className="w-full lg:mt-[100px] lg:mb-[69px] lg:mt-[100px] mt-[20px] lg:w-[746px] mx-auto p-2.5 lg:p-5 bg-white rounded-3xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.04)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 inline-flex flex-col justify-start items-start gap-5 lg:gap-[18px] mb-8">
-=======
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, type: 'spring' as const, stiffness: 300, damping: 25 }}
-          className="w-full max-w-md mx-auto p-2.5 bg-white rounded-3xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.04)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 inline-flex flex-col justify-start items-start gap-5 mb-8"
+          className="w-full lg:mt-[100px] lg:mb-[69px] mt-[20px] lg:w-[746px] mx-auto p-2.5 lg:p-5 bg-white rounded-3xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.04)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 inline-flex flex-col justify-start items-start gap-5 lg:gap-[18px] mb-8"
         >
->>>>>>> Stashed changes
           {/* Titre */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
@@ -72,16 +68,12 @@ export default function InflationPage() {
               className="w-[calc(50%-4px)] p-2.5 bg-white rounded-2xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.10)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 inline-flex flex-col justify-center items-center gap-2.5"
             >
               <div className="self-stretch p-3 bg-white rounded-lg shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.10)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/10 flex flex-col justify-center items-center gap-2.5">
-<<<<<<< Updated upstream
-                <div className="relative w-[92px] h-[80.189px]">
-=======
                 <motion.div
                   initial={{ scale: 0.8, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ delay: 0.5, type: 'spring' as const, stiffness: 400, damping: 20 }}
-                  className="relative w-24 h-24"
+                  className="relative w-[92px] h-[80.189px]"
                 >
->>>>>>> Stashed changes
                   <Image
                     src="/images/menu.svg"
                     alt="Menu complet"
@@ -109,16 +101,12 @@ export default function InflationPage() {
               className="w-[calc(50%-4px)] p-2.5 bg-white rounded-2xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.10)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 inline-flex flex-col justify-center items-center gap-2.5"
             >
               <div className="self-stretch p-3 bg-white rounded-lg shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.10)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/10 flex flex-col justify-center items-center gap-2.5">
-<<<<<<< Updated upstream
-                <div className="relative w-[92px] h-[80.189px]">
-=======
                 <motion.div
                   initial={{ scale: 0.8, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ delay: 0.6, type: 'spring' as const, stiffness: 400, damping: 20 }}
-                  className="relative w-24 h-24"
+                  className="relative w-[92px] h-[80.189px]"
                 >
->>>>>>> Stashed changes
                   <Image
                     src="/images/burger.svg"
                     alt="Burger"
@@ -139,36 +127,25 @@ export default function InflationPage() {
           </div>
 
           {/* Texte explicatif */}
-<<<<<<< Updated upstream
-          <div className="self-stretch text-center justify-center text-gray-900 text-base lg:text-[20px] font-normal lg:font-normal leading-5 lg:leading-[120%] lg:tracking-[-0.2px]" style={{ fontFamily: 'var(--font-satoshi)' }}>
-=======
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6 }}
-            className="self-stretch text-center justify-center text-gray-900 text-base font-normal font-['Satoshi'] leading-5"
+            className="self-stretch text-center justify-center text-gray-900 text-base lg:text-[20px] font-normal lg:font-normal leading-5 lg:leading-[120%] lg:tracking-[-0.2px]"
+            style={{ fontFamily: 'var(--font-satoshi)' }}
           >
->>>>>>> Stashed changes
             Même billet. Moins de burger.
           </motion.div>
 
-<<<<<<< Updated upstream
-          <div className="self-stretch text-center justify-center" style={{ fontFamily: 'var(--font-satoshi)' }}>
-            <span className="text-gray-900 text-base lg:text-[20px] font-normal lg:font-normal leading-5 lg:leading-[120%] lg:tracking-[-0.2px]">C&apos;est ça, </span>
-            <span className="text-gray-900 text-base lg:text-[20px] font-bold lg:font-bold leading-5 lg:leading-[120%] lg:tracking-[-0.2px]">l&apos;inflation.</span>
-          </div>
-
-          {/* Question */}
-          <div className="self-stretch text-center justify-center text-gray-900 text-base lg:text-[20px] font-normal lg:font-normal leading-5 lg:leading-[120%] lg:tracking-[-0.2px]" style={{ fontFamily: 'var(--font-satoshi)' }}>
-=======
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.65 }}
             className="self-stretch text-center justify-center"
+            style={{ fontFamily: 'var(--font-satoshi)' }}
           >
-            <span className="text-gray-900 text-base font-normal font-['Satoshi'] leading-5">C&apos;est ça, </span>
-            <span className="text-gray-900 text-base font-bold font-['Satoshi'] leading-5">l&apos;inflation.</span>
+            <span className="text-gray-900 text-base lg:text-[20px] font-normal lg:font-normal leading-5 lg:leading-[120%] lg:tracking-[-0.2px]">C&apos;est ça, </span>
+            <span className="text-gray-900 text-base lg:text-[20px] font-bold lg:font-bold leading-5 lg:leading-[120%] lg:tracking-[-0.2px]">l&apos;inflation.</span>
           </motion.div>
 
           {/* Question */}
@@ -176,9 +153,9 @@ export default function InflationPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.7 }}
-            className="self-stretch text-center justify-center text-gray-900 text-base font-normal font-['Satoshi'] leading-5"
+            className="self-stretch text-center justify-center text-gray-900 text-base lg:text-[20px] font-normal lg:font-normal leading-5 lg:leading-[120%] lg:tracking-[-0.2px]"
+            style={{ fontFamily: 'var(--font-satoshi)' }}
           >
->>>>>>> Stashed changes
             Mais devine quoi ?
           </motion.div>
 
@@ -294,10 +271,14 @@ export default function InflationPage() {
               </div>
             </motion.div>
           </div>
-<<<<<<< Updated upstream
 
           {/* Banner bouclier euro - Mobile et Desktop */}
-          <div className="flex self-stretch p-3 lg:p-3 bg-[#4ADE80] rounded-2xl flex-col items-center gap-[10px] relative overflow-hidden">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.9, type: 'spring' as const, stiffness: 300, damping: 25 }}
+            className="flex self-stretch p-3 lg:p-3 bg-[#4ADE80] rounded-2xl flex-col items-center gap-[10px] relative overflow-hidden"
+          >
             {/* Images de fond polygones */}
             <Image
               src="/images/Polygon3.svg"
@@ -348,11 +329,8 @@ export default function InflationPage() {
                 Pendant que ton loyer augmente, ton crédit ne bouge pas.
               </div>
             </div>
-          </div>
-        </div>
-=======
+          </motion.div>
         </motion.div>
->>>>>>> Stashed changes
 
         {/* Spacer */}
         <div className="flex-1"></div>

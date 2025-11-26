@@ -3,7 +3,7 @@ import Image from 'next/image';
 export default function GuaranteesSection() {
   const guarantees = [
     { label: "15 ans d'expérience" },
-    { label: '50 000 annonces analysées' },
+    { label: 'Plus de 2000 clients devenus propriétaires' },
     { label: 'Sans engagement' },
     { label: '50 experts à tes côtés' },
     { label: 'Partenaires bancaires certifiés' },
