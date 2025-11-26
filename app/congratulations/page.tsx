@@ -2,19 +2,46 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import SimpleHeader from '@/components/quiz/SimpleHeader';
 import ChoiceCard from '@/components/quiz/ChoiceCard';
 import { storage } from '@/lib/storage';
+import { fetchProperties, filterByType, formatPrice, formatDeliveryDate, Property } from '@/lib/properties';
 
 export default function CongratulationsPage() {
   const [firstName, setFirstName] = useState('');
+  const [property, setProperty] = useState<Property | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [imageError, setImageError] = useState(false);
 
   useEffect(() => {
     const name = storage.getAnswer(2);
     if (name) {
       setFirstName(name);
     }
+
+    // Récupérer et filtrer les biens
+    const loadProperty = async () => {
+      try {
+        const propertyType = storage.getAnswer(7); // Type de logement choisi
+        const allProperties = await fetchProperties();
+
+        if (propertyType) {
+          const filtered = filterByType(allProperties, propertyType);
+          if (filtered.length > 0) {
+            setProperty(filtered[0]); // Premier bien correspondant
+            setImageError(false); // Reset l'erreur d'image pour le nouveau bien
+          }
+        }
+      } catch (error) {
+        console.error('Erreur lors du chargement des biens:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadProperty();
   }, []);
 
   return (
@@ -78,6 +105,92 @@ export default function CongratulationsPage() {
               </motion.div>
             </div>
           </motion.div>
+
+          {/* Skeleton pendant le chargement */}
+          {loading && (
+            <div className="w-full bg-white rounded-[18px] mb-5 overflow-hidden shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.04)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 animate-pulse">
+              {/* Image skeleton */}
+              <div className="w-full h-[200px] lg:h-[280px] bg-gray-200" />
+              {/* Contenu skeleton */}
+              <div className="p-4 flex flex-col gap-3">
+                <div className="h-5 bg-gray-200 rounded w-3/4" />
+                <div className="h-4 bg-gray-200 rounded w-1/2" />
+                <div className="flex justify-between items-center mt-2">
+                  <div className="h-6 bg-gray-200 rounded w-24" />
+                  <div className="h-4 bg-gray-200 rounded w-28" />
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Carte du bien immobilier */}
+          {!loading && property && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, type: 'spring', stiffness: 300, damping: 25 }}
+              className="w-full bg-white rounded-[18px] mb-5 overflow-hidden shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.04)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5"
+            >
+              {/* Image du bien */}
+              <div className="relative w-full h-[200px] lg:h-[280px]">
+                <Image
+                  src={imageError || !property.mainImage ? '/images/a_vendre.png' : property.mainImage}
+                  alt={property.programmeName}
+                  fill
+                  className="object-cover"
+                  onError={() => setImageError(true)}
+                />
+              </div>
+              {/* Infos du bien */}
+              <div className="p-4 flex flex-col gap-2">
+                <h3 className="text-lg font-semibold text-gray-900 font-['Bricolage_Grotesque']">
+                  {property.programmeName}
+                </h3>
+                <p className="text-sm text-gray-600 font-['Satoshi']">
+                  {property.type} • {property.surface} m² • {property.city}
+                </p>
+                <div className="flex justify-between items-center mt-2">
+                  <span className="text-xl font-bold text-[#FE8253] font-['Bricolage_Grotesque']">
+                    {formatPrice(property.price)}
+                  </span>
+                  <span className="text-sm text-gray-500 font-['Satoshi']">
+                    Livraison {formatDeliveryDate(property.deliveryDate)}
+                  </span>
+                </div>
+              </div>
+            </motion.div>
+          )}
+
+          {/* Bouton Voir tous les résultats */}
+          {!loading && property && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.7 }}
+              className="flex justify-center mb-5"
+            >
+              <Link
+                href="/results"
+                className="text-[#FE8253] font-medium font-['Satoshi'] hover:underline cursor-pointer"
+              >
+                Voir tous les résultats →
+              </Link>
+            </motion.div>
+          )}
+
+          {/* Message si aucun bien trouvé */}
+          {!loading && !property && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.6 }}
+              className="w-full bg-gray-50 rounded-[18px] p-6 mb-5 text-center"
+            >
+              <p className="text-gray-600 font-['Satoshi']">
+                Aucun bien ne correspond actuellement à ta recherche.
+              </p>
+            </motion.div>
+          )}
 
           {/* Cartes - exactement comme la page 13 : sans wrapper motion.div */}
           <div className="w-full lg:w-[750px] mb-8 grid grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-[18px]">
