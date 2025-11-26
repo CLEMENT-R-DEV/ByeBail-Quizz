@@ -134,7 +134,7 @@ export default function CongratulationsPage() {
               {/* Image du bien */}
               <div className="relative w-full h-[200px] lg:h-[280px]">
                 <Image
-                  src={imageError || !property.mainImage ? '/images/a_vendre.png' : property.mainImage}
+                  src={imageError || !property.mainImage ? '/images/pasdimage.webp' : property.mainImage}
                   alt={property.programmeName}
                   fill
                   className="object-cover"

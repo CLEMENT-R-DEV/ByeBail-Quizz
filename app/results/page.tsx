@@ -24,7 +24,7 @@ function PropertyCard({ property, index }: { property: Property; index: number }
       {/* Image du bien */}
       <div className="relative w-full h-[180px] lg:h-[200px]">
         <Image
-          src={imageError || !property.mainImage ? '/images/a_vendre.png' : property.mainImage}
+          src={imageError || !property.mainImage ? '/images/pasdimage.webp' : property.mainImage}
           alt={property.programmeName}
           fill
           className="object-cover"
