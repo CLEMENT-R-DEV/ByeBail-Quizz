@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import SimpleHeader from '@/components/quiz/SimpleHeader';
 import ContinueButton from '@/components/quiz/ContinueButton';
 import { progressBarVariants, stepCheckVariants } from '@/lib/animations';
+import { storage } from '@/lib/storage';
 
 interface Step {
   id: number;
@@ -15,8 +16,16 @@ interface Step {
   completed: boolean;
 }
 
+// Formater le loyer avec séparateur de milliers
+const formatLoyer = (value: string) => {
+  const num = parseInt(value, 10);
+  if (isNaN(num) || num === 0) return '0€';
+  return new Intl.NumberFormat('fr-FR').format(num) + '€';
+};
+
 export default function SearchingPage() {
   const router = useRouter();
+  const [loyer, setLoyer] = useState<string>('');
   const [steps, setSteps] = useState<Step[]>([
     {
       id: 1,
@@ -26,7 +35,7 @@ export default function SearchingPage() {
     },
     {
       id: 2,
-      text: 'Comparaison avec ton loyer actuel de 900€...',
+      text: 'Comparaison avec ton loyer actuel...',
       icon: '/images/image149.svg',
       completed: false,
     },
@@ -52,6 +61,22 @@ export default function SearchingPage() {
 
   const [currentStep, setCurrentStep] = useState(0);
   const [isAnimationComplete, setIsAnimationComplete] = useState(false);
+
+  // Récupérer le loyer sauvegardé (question 6) et mettre à jour le texte du step 2
+  useEffect(() => {
+    const savedLoyer = storage.getAnswer(6);
+    if (savedLoyer) {
+      setLoyer(savedLoyer);
+      // Mettre à jour le texte du step 2 avec le loyer
+      setSteps((prevSteps) =>
+        prevSteps.map((step) =>
+          step.id === 2
+            ? { ...step, text: `Comparaison avec ton loyer actuel de ${formatLoyer(savedLoyer)}...` }
+            : step
+        )
+      );
+    }
+  }, []);
 
   useEffect(() => {
     // Animer les étapes une par une
