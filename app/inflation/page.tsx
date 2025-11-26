@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 import SimpleHeader from '@/components/quiz/SimpleHeader';
 import ContinueButton from '@/components/quiz/ContinueButton';
 
@@ -12,33 +13,82 @@ export default function InflationPage() {
     router.push('/quiz/8');
   };
 
+  const cardVariants = {
+    initial: { opacity: 0, y: 20, scale: 0.95 },
+    animate: (index: number) => ({
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        delay: 0.3 + index * 0.1,
+        type: 'spring' as const,
+        stiffness: 300,
+        damping: 25,
+      },
+    }),
+  };
+
   return (
-    <div className="min-h-screen flex flex-col">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.4 }}
+      className="min-h-screen flex flex-col"
+    >
       <SimpleHeader />
 
       <main className="flex-1 flex flex-col mx-4 ">
         {/* Contenu */}
+<<<<<<< Updated upstream
         <div className="w-full lg:mt-[100px] lg:mb-[69px] lg:mt-[100px] mt-[20px] lg:w-[746px] mx-auto p-2.5 lg:p-5 bg-white rounded-3xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.04)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 inline-flex flex-col justify-start items-start gap-5 lg:gap-[18px] mb-8">
+=======
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, type: 'spring' as const, stiffness: 300, damping: 25 }}
+          className="w-full max-w-md mx-auto p-2.5 bg-white rounded-3xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.04)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 inline-flex flex-col justify-start items-start gap-5 mb-8"
+        >
+>>>>>>> Stashed changes
           {/* Titre */}
-          <div className="self-stretch h-20 inline-flex flex-col justify-center items-center gap-1.5">
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="self-stretch h-20 inline-flex flex-col justify-center items-center gap-1.5"
+          >
             <div className="self-stretch text-center justify-center text-gray-900 text-[28px] font-semibold font-['Bricolage_Grotesque'] leading-[100%] tracking-[-0.28px]">
               Pendant qu&apos;on prépare tes résultats, petit rappel économique...
             </div>
-          </div>
+          </motion.div>
 
           {/* Comparaison Big Mac */}
           <div className="self-stretch inline-flex justify-start items-start gap-2">
             {/* Menu complet 2015 */}
-            <div className="w-[calc(50%-4px)] p-2.5 bg-white rounded-2xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.10)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 inline-flex flex-col justify-center items-center gap-2.5">
+            <motion.div
+              variants={cardVariants}
+              initial="initial"
+              animate="animate"
+              custom={0}
+              className="w-[calc(50%-4px)] p-2.5 bg-white rounded-2xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.10)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 inline-flex flex-col justify-center items-center gap-2.5"
+            >
               <div className="self-stretch p-3 bg-white rounded-lg shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.10)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/10 flex flex-col justify-center items-center gap-2.5">
+<<<<<<< Updated upstream
                 <div className="relative w-[92px] h-[80.189px]">
+=======
+                <motion.div
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ delay: 0.5, type: 'spring' as const, stiffness: 400, damping: 20 }}
+                  className="relative w-24 h-24"
+                >
+>>>>>>> Stashed changes
                   <Image
                     src="/images/menu.svg"
                     alt="Menu complet"
                     fill
                     className="object-contain"
                   />
-                </div>
+                </motion.div>
                 <div className="flex flex-col justify-start items-center gap-0.5">
                   <div className="text-center justify-center text-gray-900/60 text-sm lg:text-[20px] font-medium lg:font-medium font-['Satoshi'] leading-4 lg:leading-[110%]">2015</div>
                   <div className="text-center justify-center" style={{ fontFamily: 'var(--font-satoshi)' }}>
@@ -48,19 +98,34 @@ export default function InflationPage() {
                   <div className="text-center justify-center text-gray-900/60 text-sm font-medium font-['Satoshi'] leading-4">Menu complet</div>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Big Mac 2025 */}
-            <div className="w-[calc(50%-4px)] p-2.5 bg-white rounded-2xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.10)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 inline-flex flex-col justify-center items-center gap-2.5">
+            <motion.div
+              variants={cardVariants}
+              initial="initial"
+              animate="animate"
+              custom={1}
+              className="w-[calc(50%-4px)] p-2.5 bg-white rounded-2xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.10)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 inline-flex flex-col justify-center items-center gap-2.5"
+            >
               <div className="self-stretch p-3 bg-white rounded-lg shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.10)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/10 flex flex-col justify-center items-center gap-2.5">
+<<<<<<< Updated upstream
                 <div className="relative w-[92px] h-[80.189px]">
+=======
+                <motion.div
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ delay: 0.6, type: 'spring' as const, stiffness: 400, damping: 20 }}
+                  className="relative w-24 h-24"
+                >
+>>>>>>> Stashed changes
                   <Image
                     src="/images/burger.svg"
                     alt="Burger"
                     fill
                     className="object-contain"
                   />
-                </div>
+                </motion.div>
                 <div className="flex flex-col justify-start items-center gap-0.5">
                   <div className="text-center justify-center text-gray-900/60 text-sm lg:text-[20px] font-medium lg:font-medium font-['Satoshi'] leading-4 lg:leading-[110%]">2025</div>
                   <div className="text-center justify-center" style={{ fontFamily: 'var(--font-satoshi)' }}>
@@ -70,14 +135,24 @@ export default function InflationPage() {
                   <div className="text-center justify-center text-gray-900/60 text-sm font-medium font-['Satoshi'] leading-4">Juste le Big Mac</div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
 
           {/* Texte explicatif */}
+<<<<<<< Updated upstream
           <div className="self-stretch text-center justify-center text-gray-900 text-base lg:text-[20px] font-normal lg:font-normal leading-5 lg:leading-[120%] lg:tracking-[-0.2px]" style={{ fontFamily: 'var(--font-satoshi)' }}>
+=======
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.6 }}
+            className="self-stretch text-center justify-center text-gray-900 text-base font-normal font-['Satoshi'] leading-5"
+          >
+>>>>>>> Stashed changes
             Même billet. Moins de burger.
-          </div>
+          </motion.div>
 
+<<<<<<< Updated upstream
           <div className="self-stretch text-center justify-center" style={{ fontFamily: 'var(--font-satoshi)' }}>
             <span className="text-gray-900 text-base lg:text-[20px] font-normal lg:font-normal leading-5 lg:leading-[120%] lg:tracking-[-0.2px]">C&apos;est ça, </span>
             <span className="text-gray-900 text-base lg:text-[20px] font-bold lg:font-bold leading-5 lg:leading-[120%] lg:tracking-[-0.2px]">l&apos;inflation.</span>
@@ -85,13 +160,39 @@ export default function InflationPage() {
 
           {/* Question */}
           <div className="self-stretch text-center justify-center text-gray-900 text-base lg:text-[20px] font-normal lg:font-normal leading-5 lg:leading-[120%] lg:tracking-[-0.2px]" style={{ fontFamily: 'var(--font-satoshi)' }}>
+=======
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.65 }}
+            className="self-stretch text-center justify-center"
+          >
+            <span className="text-gray-900 text-base font-normal font-['Satoshi'] leading-5">C&apos;est ça, </span>
+            <span className="text-gray-900 text-base font-bold font-['Satoshi'] leading-5">l&apos;inflation.</span>
+          </motion.div>
+
+          {/* Question */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.7 }}
+            className="self-stretch text-center justify-center text-gray-900 text-base font-normal font-['Satoshi'] leading-5"
+          >
+>>>>>>> Stashed changes
             Mais devine quoi ?
-          </div>
+          </motion.div>
 
           {/* Cartes Locataire vs Propriétaire */}
           <div className="self-stretch inline-flex justify-start items-start gap-2">
             {/* Locataire */}
-            <div className="w-[calc(50%-4px)] p-1 bg-red-300 rounded-2xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.10)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 inline-flex flex-col justify-center items-center gap-2.5">
+            <motion.div
+              variants={cardVariants}
+              initial="initial"
+              animate="animate"
+              custom={5}
+              whileHover={{ scale: 1.02 }}
+              className="w-[calc(50%-4px)] p-1 bg-red-300 rounded-2xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.10)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 inline-flex flex-col justify-center items-center gap-2.5"
+            >
               <div className="self-stretch p-3 bg-red-50 rounded-2xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.10)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/10 flex flex-col justify-center items-center gap-2.5">
               <div className="w-24 h-24 relative bg-rose-50 rounded-tl-3xl rounded-tr-3xl rounded-bl rounded-br mb-2 flex items-center justify-center">
                 <img
@@ -115,14 +216,18 @@ export default function InflationPage() {
                     <span className="text-gray-900 text-xs lg:text-[16px] font-medium lg:font-medium leading-3 lg:leading-[110%]">/mois</span>
                   </div>
                 </div>
-                <div className="w-6 h-6 relative flex items-center justify-center">
+                <motion.div
+                  animate={{ y: [0, 3, 0] }}
+                  transition={{ repeat: Infinity, duration: 1.5, repeatDelay: 1 }}
+                  className="w-6 h-6 relative flex items-center justify-center"
+                >
                   <Image
                     src="/images/CaretDownOrange.svg"
                     alt="Augmentation"
                     width={24}
                     height={24}
                   />
-                </div>
+                </motion.div>
                 <div className="w-full p-2 bg-white rounded-lg outline outline-2 outline-offset-[-2px] outline-[#FE8253] flex flex-col justify-start items-start gap-0.5">
                   <div className="w-full text-left text-gray-900/60 text-xs lg:text-[16px] font-medium lg:font-medium leading-3 lg:leading-[110%]" style={{ fontFamily: 'var(--font-satoshi)' }}>2025</div>
                   <div className="w-full text-left" style={{ fontFamily: 'var(--font-satoshi)' }}>
@@ -132,10 +237,17 @@ export default function InflationPage() {
                 </div>
               </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Propriétaire */}
-            <div className="w-[calc(50%-4px)] p-1 bg-emerald-200 rounded-2xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.10)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 inline-flex flex-col justify-center items-center gap-2.5">
+            <motion.div
+              variants={cardVariants}
+              initial="initial"
+              animate="animate"
+              custom={6}
+              whileHover={{ scale: 1.02 }}
+              className="w-[calc(50%-4px)] p-1 bg-emerald-200 rounded-2xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.10)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 inline-flex flex-col justify-center items-center gap-2.5"
+            >
               <div className="self-stretch p-3 bg-teal-50 rounded-2xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.10)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/10 flex flex-col justify-center items-center gap-2.5">
               <div className="w-24 h-24 relative bg-green-100 rounded-tl-3xl rounded-tr-3xl rounded-bl rounded-br mb-2 overflow-visible flex items-center justify-center">
                 <img
@@ -159,14 +271,18 @@ export default function InflationPage() {
                     <span className="text-gray-900 text-xs lg:text-[16px] font-medium lg:font-medium leading-3 lg:leading-[110%]">/mois</span>
                   </div>
                 </div>
-                <div className="w-6 h-6 relative flex items-center justify-center">
+                <motion.div
+                  animate={{ y: [0, 3, 0] }}
+                  transition={{ repeat: Infinity, duration: 1.5, repeatDelay: 1 }}
+                  className="w-6 h-6 relative flex items-center justify-center"
+                >
                   <Image
                     src="/images/CaretDownGreen.svg"
                     alt="Stable"
                     width={24}
                     height={24}
                   />
-                </div>
+                </motion.div>
                 <div className="w-full p-2 bg-white rounded-lg outline outline-2 outline-offset-[-2px] outline-emerald-500 flex flex-col justify-start items-start gap-0.5">
                   <div className="w-full text-left text-gray-900/60 text-xs lg:text-[16px] font-medium lg:font-medium leading-3 lg:leading-[110%]" style={{ fontFamily: 'var(--font-satoshi)' }}>2015</div>
                   <div className="w-full text-left" style={{ fontFamily: 'var(--font-satoshi)' }}>
@@ -176,8 +292,9 @@ export default function InflationPage() {
                 </div>
               </div>
               </div>
-            </div>
+            </motion.div>
           </div>
+<<<<<<< Updated upstream
 
           {/* Banner bouclier euro - Mobile et Desktop */}
           <div className="flex self-stretch p-3 lg:p-3 bg-[#4ADE80] rounded-2xl flex-col items-center gap-[10px] relative overflow-hidden">
@@ -233,6 +350,9 @@ export default function InflationPage() {
             </div>
           </div>
         </div>
+=======
+        </motion.div>
+>>>>>>> Stashed changes
 
         {/* Spacer */}
         <div className="flex-1"></div>
@@ -240,6 +360,6 @@ export default function InflationPage() {
         {/* Bouton Continue */}
         <ContinueButton onClick={handleContinue} disabled={false} />
       </main>
-    </div>
+    </motion.div>
   );
 }

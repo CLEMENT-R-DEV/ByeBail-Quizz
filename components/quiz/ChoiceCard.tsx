@@ -1,6 +1,8 @@
 'use client';
 
 import Image from 'next/image';
+import { motion, AnimatePresence } from 'framer-motion';
+import { checkmarkVariants } from '@/lib/animations';
 
 interface ChoiceCardProps {
   id: string;
@@ -9,12 +11,16 @@ interface ChoiceCardProps {
   image: string;
   selected: boolean;
   onClick: () => void;
+<<<<<<< Updated upstream
   fullSize?: boolean;
   compactImage?: boolean;
   largeCompactImage?: boolean;
   fitContent?: boolean;
   labelClassName?: string;
   subtitleClassName?: string;
+=======
+  index?: number;
+>>>>>>> Stashed changes
 }
 
 export default function ChoiceCard({
@@ -24,16 +30,21 @@ export default function ChoiceCard({
   image,
   selected,
   onClick,
+<<<<<<< Updated upstream
   fullSize = false,
   compactImage = false,
   largeCompactImage = false,
   fitContent = false,
   labelClassName,
   subtitleClassName,
+=======
+  index = 0,
+>>>>>>> Stashed changes
 }: ChoiceCardProps) {
   return (
-    <button
+    <motion.button
       onClick={onClick}
+<<<<<<< Updated upstream
       className={`
         relative
         cursor-pointer
@@ -44,9 +55,37 @@ export default function ChoiceCard({
     >
       <div
         className="h-full flex flex-col justify-center items-center p-[10px] bg-[#FDFEFF] rounded-[18px]"
+=======
+      initial={{ opacity: 0, y: 30, scale: 0.9 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{
+        type: 'spring',
+        stiffness: 400,
+        damping: 25,
+        delay: index * 0.08 + 0.2,
+      }}
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.98 }}
+      className="relative"
+    >
+      <motion.div
+        animate={{
+          scale: selected ? 1.08 : 1,
+          boxShadow: selected
+            ? '0px 0px 30px rgba(155, 123, 248, 0.25)'
+            : '0px 0px 27.5px rgba(104, 137, 228, 0.1)',
+        }}
+        transition={{
+          type: 'spring',
+          stiffness: 300,
+          damping: 25,
+        }}
+        className="flex flex-col justify-center items-center p-[10px] bg-[#FDFEFF] rounded-[18px]"
+>>>>>>> Stashed changes
         style={{
-          border: '0.8px solid rgba(0, 0, 0, 0.04)',
-          boxShadow: '0px 0px 27.5px rgba(104, 137, 228, 0.1)',
+          border: selected
+            ? '2px solid rgba(155, 123, 248, 0.5)'
+            : '0.8px solid rgba(0, 0, 0, 0.04)',
         }}
       >
         <div
@@ -97,16 +136,37 @@ export default function ChoiceCard({
             )}
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Indicateur de sélection */}
-      {selected && (
-        <div className="absolute -top-2 -right-2 w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center">
-          <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-          </svg>
-        </div>
-      )}
-    </button>
+      <AnimatePresence>
+        {selected && (
+          <motion.div
+            variants={checkmarkVariants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            className="absolute -top-2 -right-2 w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center"
+          >
+            <motion.svg
+              initial={{ pathLength: 0 }}
+              animate={{ pathLength: 1 }}
+              transition={{ duration: 0.3, delay: 0.1 }}
+              className="w-4 h-4 text-white"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <motion.path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={3}
+                d="M5 13l4 4L19 7"
+              />
+            </motion.svg>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.button>
   );
 }

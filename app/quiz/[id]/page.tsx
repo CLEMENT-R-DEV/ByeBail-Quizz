@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { useRouter, useParams } from 'next/navigation';
+import { motion, AnimatePresence } from 'framer-motion';
 import QuizHeader from '@/components/quiz/QuizHeader';
 import QuestionBubble from '@/components/quiz/QuestionBubble';
 import TextInput from '@/components/quiz/TextInput';
@@ -11,6 +12,7 @@ import ImageChoice from '@/components/quiz/ImageChoice';
 import ContinueButton from '@/components/quiz/ContinueButton';
 import { questions, TOTAL_QUESTIONS } from '@/lib/questions';
 import { storage } from '@/lib/storage';
+import { pageVariants } from '@/lib/animations';
 
 export default function QuizQuestionPage() {
   const router = useRouter();
@@ -148,6 +150,7 @@ export default function QuizQuestionPage() {
 
             {/* Texte informatif pour la question 8 (desktop uniquement) - après l'input */}
             {questionId === 8 && (
+<<<<<<< Updated upstream
               <div className="hidden lg:flex lg:flex-col lg:gap-1 lg:items-end" style={{ fontFamily: 'var(--font-satoshi)' }}>
                 <div className="text-gray-900/60 text-[18px] font-normal leading-[110%] tracking-[-0.18px] text-right">
                   Revenus nets mensuels en euros
@@ -173,9 +176,17 @@ export default function QuizQuestionPage() {
             {/* Texte informatif pour la question 10 sur mobile */}
             {questionId === 10 && (
               <p className="lg:hidden text-center text-[14px] font-normal leading-[110%] mt-4 text-[#111827]" style={{ fontFamily: 'var(--font-satoshi)' }}>
+=======
+              <motion.p
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+                className="text-center text-sm font-normal leading-[110%] mt-4 text-gray-600"
+              >
+>>>>>>> Stashed changes
                 Aucun spam. Aucune pub.<br />
                 On n&apos;est pas là pour te saouler, juste pour t&apos;aider.
-              </p>
+              </motion.p>
             )}
 
             {/* Input pour les autres questions */}
@@ -382,8 +393,17 @@ export default function QuizQuestionPage() {
         }
 
         return (
+<<<<<<< Updated upstream
           <div className={`w-full lg:w-[750px] lg:h-[269px] grid grid-cols-2 gap-2 lg:gap-[18px]`}>
             {question.choices?.map((choice) => (
+=======
+          <motion.div
+            className="grid grid-cols-2 gap-2"
+            initial="initial"
+            animate="animate"
+          >
+            {question.choices?.map((choice, index) => (
+>>>>>>> Stashed changes
               <ChoiceComponent
                 key={choice.id}
                 id={choice.id}
@@ -393,9 +413,10 @@ export default function QuizQuestionPage() {
                 desktopImage={choice.desktopImage}
                 selected={answer === choice.id}
                 onClick={() => setAnswer(choice.id)}
+                index={index}
               />
             ))}
-          </div>
+          </motion.div>
         );
 
       default:
@@ -404,32 +425,55 @@ export default function QuizQuestionPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <QuizHeader currentQuestion={questionId} />
+    <AnimatePresence mode="wait">
+      <motion.div
+        key={questionId}
+        variants={pageVariants}
+        initial="initial"
+        animate="animate"
+        exit="exit"
+        className="min-h-screen flex flex-col"
+      >
+        <QuizHeader currentQuestion={questionId} />
 
+<<<<<<< Updated upstream
       <main className="flex-1 flex flex-col mx-4 lg:mx-0 pt-5 lg:items-center lg:pt-[100px] min-h-0">
         {/* Conteneur question + input */}
         <div className="lg:w-[750px] lg:flex lg:flex-col lg:items-end lg:gap-[50px]">
           {/* Question bubble */}
           <div className="w-full mb-5 lg:mb-0">
+=======
+        <main className="flex-1 flex flex-col mx-4 pt-5">
+          {/* Question bubble */}
+          <div className="mb-5">
+>>>>>>> Stashed changes
             <QuestionBubble
               questionNumber={questionId}
               text={question.text}
               titleText={question.titleText}
+<<<<<<< Updated upstream
               infoText={questionId === 5 ? "Ça change les calculs de capacité d'emprunt " : question.infoText}
+=======
+              infoText={questionId === 3 ? "Ça change les calculs de capacité d'emprunt " : undefined}
+>>>>>>> Stashed changes
             />
           </div>
 
           {/* Input field */}
+<<<<<<< Updated upstream
           <div className="mb-8 lg:mb-0">{renderInput()}</div>
         </div>
+=======
+          <div className="mb-8">{renderInput()}</div>
+>>>>>>> Stashed changes
 
-        {/* Spacer pour pousser le bouton vers le bas */}
-        <div className="flex-1"></div>
+          {/* Spacer pour pousser le bouton vers le bas */}
+          <div className="flex-1"></div>
 
-        {/* Continue button */}
-        <ContinueButton onClick={handleContinue} disabled={!isValid} />
-      </main>
-    </div>
+          {/* Continue button */}
+          <ContinueButton onClick={handleContinue} disabled={!isValid} />
+        </main>
+      </motion.div>
+    </AnimatePresence>
   );
 }

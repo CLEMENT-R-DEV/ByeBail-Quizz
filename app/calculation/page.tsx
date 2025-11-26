@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 import SimpleHeader from '@/components/quiz/SimpleHeader';
 import ContinueButton from '@/components/quiz/ContinueButton';
 import { storage } from '@/lib/storage';
@@ -53,16 +54,39 @@ export default function CalculationPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.4 }}
+      className="min-h-screen flex flex-col"
+    >
       <SimpleHeader />
 
       <main className="flex-1 flex flex-col mx-4 lg:mx-0">
         {/* Contenu principal */}
+<<<<<<< Updated upstream
         <div className="w-full lg:w-[750px] lg:mt-[100px] mt-[20px] mx-auto p-5 bg-white rounded-3xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.04)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 flex flex-col justify-start items-start gap-5 mb-8">
 
           {/* Section 1 - Titre et question */}
           <div className="self-stretch flex flex-col justify-start items-center gap-1.5">
             <div className="self-stretch text-center justify-center text-[#111827] text-3xl lg:text-[28px] font-semibold lg:font-semibold font-['Bricolage_Grotesque'] leading-8 lg:leading-[120%] lg:tracking-[-0.28px]">
+=======
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, type: 'spring' as const, stiffness: 300, damping: 25 }}
+          className="w-full max-w-md mx-auto p-5 bg-white rounded-3xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.04)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 flex flex-col justify-start items-start gap-5 mb-8"
+        >
+
+          {/* Section 1 - Titre et question */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="self-stretch flex flex-col justify-start items-center gap-1.5"
+          >
+            <div className="self-stretch text-center justify-center text-gray-900 text-3xl font-semibold font-['Bricolage_Grotesque'] leading-8">
+>>>>>>> Stashed changes
               Petite question rapide...
             </div>
             <div className="self-stretch text-center justify-center">
@@ -70,13 +94,23 @@ export default function CalculationPage() {
               <span className="text-[#111827] text-base lg:text-[20px] font-bold lg:font-bold font-['Satoshi'] leading-5 lg:leading-[120%] lg:tracking-[-0.2px]">{loyer} €/mois</span>
               <span className="text-[#111827] text-base lg:text-[20px] font-normal lg:font-normal font-['Satoshi'] leading-5 lg:leading-[120%] lg:tracking-[-0.2px]">, ça représente combien sur 10 ans ?</span>
             </div>
-          </div>
+          </motion.div>
 
           {/* Section 2 - Carte avec cercle et résultats */}
-          <div className="self-stretch p-5 bg-white rounded-2xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.10)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 flex flex-col justify-start items-center gap-9">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.4, type: 'spring' as const, stiffness: 300, damping: 25 }}
+            className="self-stretch p-5 bg-white rounded-2xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.10)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 flex flex-col justify-start items-center gap-9"
+          >
 
             {/* Cercle de progression */}
-            <div className="relative w-44 h-44">
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ delay: 0.5, type: 'spring' as const, stiffness: 400, damping: 20 }}
+              className="relative w-44 h-44"
+            >
               <svg className="w-full h-full transform -rotate-205">
                 <circle
                   cx="88"
@@ -116,21 +150,36 @@ export default function CalculationPage() {
                   d&apos;un appartement
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Montant total */}
+<<<<<<< Updated upstream
             <div className="self-stretch flex flex-col justify-start items-center">
               <div className="self-stretch text-center justify-center text-[#FE642A] text-3xl lg:text-[28px] font-semibold lg:font-semibold font-['Bricolage_Grotesque'] leading-7 lg:leading-[100%] lg:tracking-[-0.28px]">
+=======
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7 }}
+              className="self-stretch flex flex-col justify-start items-center"
+            >
+              <div className="self-stretch text-center justify-center text-orange-500 text-3xl font-semibold font-['Bricolage_Grotesque'] leading-7">
+>>>>>>> Stashed changes
                 {totalSur10Ans.toLocaleString('fr-FR')} €
               </div>
               <div className="self-stretch text-center justify-center text-[#111827] text-base lg:text-lg font-normal lg:font-normal font-['Satoshi'] leading-5 lg:leading-[120%] lg:tracking-[-0.18px]">
                 C&apos;est ce que tu auras payé en 10 ans
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           {/* Section 3 - Textes explicatifs */}
-          <div className="self-stretch flex flex-col justify-start items-start gap-4">
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8 }}
+            className="self-stretch flex flex-col justify-start items-start gap-4"
+          >
             <div className="self-stretch text-center justify-center">
               <span className="text-[#111827] text-base lg:text-[20px] font-normal lg:font-normal font-['Satoshi'] leading-5 lg:leading-[120%] lg:tracking-[-0.2px]">Avec </span>
               <span className="text-[#FE642A] text-base lg:text-[20px] font-bold lg:font-bold font-['Satoshi'] leading-5 lg:leading-[120%] lg:tracking-[-0.2px]">{totalSur10Ans.toLocaleString('fr-FR')} €</span>
@@ -139,9 +188,9 @@ export default function CalculationPage() {
             <div className="self-stretch text-center justify-center text-[#111827] text-base lg:text-[20px] font-normal lg:font-normal font-['Satoshi'] leading-5 lg:leading-[120%] lg:tracking-[-0.2px]">
               Sauf que là, cet argent... il est parti. Pour toujours.
             </div>
-          </div>
+          </motion.div>
 
-        </div>
+        </motion.div>
 
         {/* Spacer */}
         <div className="flex-1"></div>
@@ -149,6 +198,6 @@ export default function CalculationPage() {
         {/* Bouton Continue */}
         <ContinueButton onClick={handleContinue} disabled={false} />
       </main>
-    </div>
+    </motion.div>
   );
 }
