@@ -20,15 +20,17 @@ export const storage = {
   },
 
   // Sauvegarder une réponse spécifique
-  saveAnswer: (questionId: number, answer: string): void => {
+  saveAnswer: (questionId: number | string, answer: string): void => {
     const state = storage.getState() || { currentQuestion: 1, answers: {} };
     state.answers[questionId] = answer;
-    state.currentQuestion = questionId;
+    if (typeof questionId === 'number') {
+      state.currentQuestion = questionId;
+    }
     storage.saveState(state);
   },
 
   // Récupérer une réponse spécifique
-  getAnswer: (questionId: number): string | undefined => {
+  getAnswer: (questionId: number | string): string | undefined => {
     const state = storage.getState();
     return state?.answers[questionId];
   },

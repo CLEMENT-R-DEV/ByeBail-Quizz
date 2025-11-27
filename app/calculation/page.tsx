@@ -14,15 +14,15 @@ export default function CalculationPage() {
   const [animatedPercentage, setAnimatedPercentage] = useState<number>(0);
 
   useEffect(() => {
-    // Récupérer le loyer de la question 6
-    const loyerValue = storage.getAnswer(6);
+    // Récupérer le loyer de la question 7
+    const loyerValue = storage.getAnswer(7);
     if (loyerValue) {
       setLoyer(parseFloat(loyerValue));
     }
   }, []);
 
   const totalSur10Ans = loyer * 12 * 10;
-  const pourcentageAppartement = 48; // Statique pour le moment
+  const pourcentageAppartement = 48; // ~48% d'un appartement sur 10 ans
 
   // Animation du pourcentage de 0 à 48
   useEffect(() => {
@@ -50,7 +50,7 @@ export default function CalculationPage() {
   }, [pourcentageAppartement]);
 
   const handleContinue = () => {
-    router.push('/quiz/7');
+    router.push('/quiz/8');
   };
 
   return (

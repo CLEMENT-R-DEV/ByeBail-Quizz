@@ -1,7 +1,6 @@
 // import HomeHeader from '@/components/home/HomeHeader';
 import HeroSection from '@/components/home/HeroSection';
 import StatCardsContainer from '@/components/home/StatCardsContainer';
-import GuaranteesSection from '@/components/home/GuaranteesSection';
 import BackgroundElements from '@/components/home/BackgroundElements';
 import CTAButton from '@/components/home/CTAButton';
 
@@ -48,9 +47,6 @@ export default function HomePage() {
 
           {/* Cartes statistiques */}
           <StatCardsContainer />
-
-          {/* Section Garanties (desktop uniquement) */}
-          <GuaranteesSection />
 
           {/* Bouton CTA */}
           <CTAButton />

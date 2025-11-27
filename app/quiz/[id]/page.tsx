@@ -20,6 +20,7 @@ export default function QuizQuestionPage() {
   const questionId = parseInt(params.id as string, 10);
 
   const [answer, setAnswer] = useState('');
+  const [customCity, setCustomCity] = useState('');
   const [isValid, setIsValid] = useState(false);
   const [cardWidth, setCardWidth] = useState<number | null>(null);
   const gridRef = useRef<HTMLDivElement>(null);
@@ -31,6 +32,13 @@ export default function QuizQuestionPage() {
     const savedAnswer = storage.getAnswer(questionId);
     if (savedAnswer) {
       setAnswer(savedAnswer);
+    }
+    // Charger la ville personnalisée pour la question 4
+    if (questionId === 4) {
+      const savedCustomCity = storage.getAnswer('customCity');
+      if (savedCustomCity) {
+        setCustomCity(savedCustomCity);
+      }
     }
   }, [questionId]);
 
@@ -47,14 +55,17 @@ export default function QuizQuestionPage() {
       } else {
         setIsValid(answer.trim().length > 0);
       }
+    } else if (questionId === 4 && answer === 'autre') {
+      // Pour la question 4, si "autre" est sélectionné, vérifier que la ville est renseignée
+      setIsValid(customCity.trim().length > 0);
     } else {
       setIsValid(answer.trim().length > 0);
     }
-  }, [answer, question]);
+  }, [answer, customCity, question, questionId]);
 
-  // Mesurer la largeur de la carte pour la question 7
+  // Mesurer la largeur de la carte pour la question 8 (type logement)
   useEffect(() => {
-    if (questionId === 7) {
+    if (questionId === 8) {
       const updateCardWidth = () => {
         const screenWidth = window.innerWidth;
         const padding = 16 * 2; // mx-4 = 16px de chaque côté
@@ -89,26 +100,31 @@ export default function QuizQuestionPage() {
     // Sauvegarder la réponse
     storage.saveAnswer(questionId, answer);
 
+    // Sauvegarder la ville personnalisée si question 4 avec "autre"
+    if (questionId === 4 && answer === 'autre') {
+      storage.saveAnswer('customCity', customCity);
+    }
+
     // Navigation
-    if (questionId === 6) {
-      // Après la question 6, aller à l'écran de calcul
+    if (questionId === 7) {
+      // Après la question 7 (loyer), aller à l'écran de calcul
       router.push('/calculation');
-    } else if (questionId === 7) {
-      // Après la question 7, aller à l'écran d'inflation
+    } else if (questionId === 8) {
+      // Après la question 8 (type logement), aller à l'écran d'inflation
       router.push('/inflation');
-    } else if (questionId === 10) {
-      // Après la question 10, aller à l'écran de pause vidéo
-      router.push('/video-pause');
     } else if (questionId === 11) {
-      // Après la question 11, navigation conditionnelle selon la réponse
-      if (answer === 'oui') {
-        router.push('/quiz/12');
-      } else {
-        router.push('/quiz/13');
-      }
+      // Après la question 11 (email), aller à l'écran de pause vidéo
+      router.push('/video-pause');
     } else if (questionId === 12) {
-      // Après la question 12, aller à la question 13
-      router.push('/quiz/13');
+      // Après la question 12 (crédits), navigation conditionnelle selon la réponse
+      if (answer === 'oui') {
+        router.push('/quiz/13');
+      } else {
+        router.push('/quiz/14');
+      }
+    } else if (questionId === 13) {
+      // Après la question 13 (type crédit), aller à la question 14
+      router.push('/quiz/14');
     } else if (questionId < TOTAL_QUESTIONS) {
       router.push(`/quiz/${questionId + 1}`);
     } else {
@@ -123,9 +139,9 @@ export default function QuizQuestionPage() {
         const inputType = questionId === 2 || question.placeholder?.includes('email') || question.placeholder?.includes('@') ? 'text' : 'number';
 
         return (
-          <div className={(questionId === 8 || questionId === 10) ? 'lg:flex lg:flex-col lg:gap-5' : ''}>
-            {/* Input sur mobile uniquement pour questions 8 et 10 */}
-            {(questionId === 8 || questionId === 10) && (
+          <div className={(questionId === 9 || questionId === 11) ? 'lg:flex lg:flex-col lg:gap-5' : ''}>
+            {/* Input sur mobile uniquement pour questions 9 (revenus) et 11 (email) */}
+            {(questionId === 9 || questionId === 11) && (
               <div className="lg:hidden">
                 <TextInput
                   value={answer}
@@ -136,8 +152,8 @@ export default function QuizQuestionPage() {
               </div>
             )}
 
-            {/* Input pour questions 8 et 10 sur desktop */}
-            {(questionId === 8 || questionId === 10) && (
+            {/* Input pour questions 9 et 11 sur desktop */}
+            {(questionId === 9 || questionId === 11) && (
               <div className="hidden lg:flex lg:justify-end">
                 <TextInput
                   value={answer}
@@ -148,8 +164,8 @@ export default function QuizQuestionPage() {
               </div>
             )}
 
-            {/* Texte informatif pour la question 8 (desktop uniquement) - après l'input */}
-            {questionId === 8 && (
+            {/* Texte informatif pour la question 9 (revenus, desktop uniquement) - après l'input */}
+            {questionId === 9 && (
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -166,8 +182,8 @@ export default function QuizQuestionPage() {
               </motion.div>
             )}
 
-            {/* Texte informatif pour la question 10 (desktop uniquement) - après l'input */}
-            {questionId === 10 && (
+            {/* Texte informatif pour la question 11 (email, desktop uniquement) - après l'input */}
+            {questionId === 11 && (
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -184,8 +200,8 @@ export default function QuizQuestionPage() {
               </motion.div>
             )}
 
-            {/* Texte informatif pour la question 10 sur mobile */}
-            {questionId === 10 && (
+            {/* Texte informatif pour la question 11 (email) sur mobile */}
+            {questionId === 11 && (
               <motion.p
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -199,7 +215,7 @@ export default function QuizQuestionPage() {
             )}
 
             {/* Input pour les autres questions */}
-            {questionId !== 8 && questionId !== 10 && (
+            {questionId !== 9 && questionId !== 11 && (
               <TextInput
                 value={answer}
                 onChange={setAnswer}
@@ -225,10 +241,56 @@ export default function QuizQuestionPage() {
         // Choisir le composant selon le choiceStyle
         const ChoiceComponent = question.choiceStyle === 'image' ? ImageChoice : ChoiceCard;
 
-        // Pour la question 7, disposition spéciale avec 5 cartes
-        if (questionId === 7) {
+        // Question 4 (localisation) : 3 cartes + champ texte si "autre"
+        if (questionId === 4) {
           return (
-            <div className="w-full lg:w-[750px]">
+            <div className="w-full lg:w-[750px] flex flex-col gap-4">
+              <div className="grid grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-[18px]">
+                {question.choices?.map((choice, index) => (
+                  <ChoiceComponent
+                    key={choice.id}
+                    id={choice.id}
+                    label={choice.label}
+                    subtitle={choice.subtitle}
+                    image={choice.image}
+                    desktopImage={choice.desktopImage}
+                    selected={answer === choice.id}
+                    onClick={() => {
+                      setAnswer(choice.id);
+                      if (choice.id !== 'autre') {
+                        setCustomCity('');
+                      }
+                    }}
+                    compactImage={true}
+                    labelClassName={choice.labelClassName}
+                    subtitleClassName={choice.subtitleClassName}
+                    index={index}
+                  />
+                ))}
+              </div>
+              {/* Champ texte si "Autre ville" est sélectionné */}
+              {answer === 'autre' && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <TextInput
+                    value={customCity}
+                    onChange={setCustomCity}
+                    placeholder="Quelle ville ?"
+                    type="text"
+                  />
+                </motion.div>
+              )}
+            </div>
+          );
+        }
+
+        // Pour la question 8 (type logement), disposition spéciale avec 5 cartes
+        if (questionId === 8) {
+          return (
+            <div className="w-full lg:w-[750px] lg:mb-10">
               {/* Mobile: grid 2 colonnes, 5ème carte centrée sur 3ème ligne */}
               <div ref={gridRef} className="lg:hidden grid grid-cols-2 gap-2">
                 {question.choices?.slice(0, 4).map((choice, index) => (
@@ -313,8 +375,8 @@ export default function QuizQuestionPage() {
         }
 
         // Pour les autres questions
-        // Question 9 : 4 cartes sur une seule ligne en desktop
-        if (questionId === 9) {
+        // Question 10 (boulot) : 4 cartes sur une seule ligne en desktop
+        if (questionId === 10) {
           return (
             <div className={`w-full lg:w-[750px] grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-[18px]`}>
               {question.choices?.map((choice, index) => (
@@ -337,8 +399,8 @@ export default function QuizQuestionPage() {
           );
         }
 
-        // Question 11 : 2 cartes avec largeCompactImage
-        if (questionId === 11) {
+        // Question 12 (crédits) : 2 cartes avec largeCompactImage
+        if (questionId === 12) {
           return (
             <div className={`w-full lg:w-[750px] grid grid-cols-2 gap-2 lg:gap-[18px]`}>
               {question.choices?.map((choice, index) => (
@@ -361,8 +423,8 @@ export default function QuizQuestionPage() {
           );
         }
 
-        // Question 12 : 4 cartes avec compactImage
-        if (questionId === 12) {
+        // Question 13 (type crédit) : 4 cartes avec compactImage
+        if (questionId === 13) {
           return (
             <div className={`w-full lg:w-[750px] grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-[18px]`}>
               {question.choices?.map((choice, index) => (
@@ -385,8 +447,8 @@ export default function QuizQuestionPage() {
           );
         }
 
-        // Question 13 : 3 cartes avec compactImage
-        if (questionId === 13) {
+        // Question 14 (apport) : 3 cartes avec compactImage
+        if (questionId === 14) {
           return (
             <div className={`w-full lg:w-[750px] grid grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-[18px]`}>
               {question.choices?.map((choice, index) => (

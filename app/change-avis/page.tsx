@@ -10,7 +10,7 @@ export default function ChangeAvisPage() {
   const router = useRouter();
 
   const handleContinue = () => {
-    router.push('/quiz/11');
+    router.push('/quiz/12');
   };
 
   const cardVariants = {

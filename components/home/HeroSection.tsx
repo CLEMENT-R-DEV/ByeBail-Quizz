@@ -9,7 +9,7 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* Titre principal - forme entonnoir sur 2 lignes */}
+      {/* Titre principal */}
       <h1
         className="text-center text-[26px] lg:text-6xl font-semibold font-['Bricolage_Grotesque'] leading-[1.15] tracking-[-1px] lg:tracking-[-2px]"
         style={{
@@ -19,13 +19,13 @@ export default function HeroSection() {
           WebkitTextFillColor: 'transparent'
         }}
       >
-        <span className="whitespace-nowrap">Et si pour le prix de ton loyer,</span><br />
-        <span className="whitespace-nowrap">tu devenais propriétaire ?</span>
+        <span className="whitespace-nowrap">Deviens propriétaire</span><br />
+        <span className="whitespace-nowrap">pour le prix de ton loyer.</span>
       </h1>
 
-      {/* Sous-titre - continue l'entonnoir */}
-      <div className="text-center text-zinc-500 text-[15px] lg:text-xl font-medium font-['Satoshi'] leading-5 lg:leading-6 whitespace-nowrap">
-        Tu dis "plus tard" depuis combien de loyers ?
+      {/* Sous-titre */}
+      <div className="text-center text-zinc-500 text-[15px] lg:text-xl font-medium font-['Satoshi'] leading-5 lg:leading-6">
+        Tout ce qui t&apos;en empêchait ? N&apos;existe plus.
       </div>
     </div>
   );

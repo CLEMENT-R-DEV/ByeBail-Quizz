@@ -41,7 +41,7 @@ export default function CTAButton() {
               boxShadow: '0 0 8.8px 0 #DEE3E7 inset, 0 -21px 20.8px 0 rgba(236, 72, 9, 0.37) inset, 0 0 80.5px 0 rgba(236, 72, 9, 0.28)',
             }}
           >
-            Je dis Bye à mon Bail
+            Voir mes options
           </Link>
         </motion.div>
         <p className="text-zinc-400 text-xs font-normal font-['Satoshi']">

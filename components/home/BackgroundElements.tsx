@@ -59,59 +59,34 @@ export default function BackgroundElements() {
         }}
       />
 
-      {/* Main gauche avec personnage orange */}
+      {/* Image ByeBail - Mobile */}
       <Image
         className="lg:hidden absolute right-[0] top-[220px] z-10"
-        src="/images/home/byebail1.svg"
-        alt="Main gauche"
-        width={381.924}
-        height={401.87}
-      />
-      <Image
-        className="lg:hidden absolute right-[130px] top-[440px] z-10"
-        src="/images/home/Green.svg"
-        alt="Personnage orange"
-        width={127.478}
-        height={231.79}
+        src="/images/home/byebail 1.png"
+        alt="ByeBail illustration"
+        width={300}
+        height={350}
       />
 
 
       {/* Illustrations - Desktop */}
-      
-      {/* Main droite */}
+
+      {/* Image ByeBail droite */}
       <Image
-        className="hidden lg:block absolute right-[-20px] top-[0px] origin-top-left"
-        src="/images/home/byebail1.svg"
-        alt="Main droite"
-        width={499}
-        height={325}
+        className="hidden lg:block absolute right-[0px] top-[0px] origin-top-right"
+        src="/images/home/byebail 1.png"
+        alt="ByeBail illustration"
+        width={600}
+        height={500}
       />
 
-      {/* Personnage vert qui se balance */}
-      <Image
-        className="hidden lg:block absolute right-[150px] top-[275px]"
-        src="/images/home/Green.svg"
-        alt="Personnage vert"
-        width={202.399}
-        height={371}
-      />
-
-      {/* main gauche */}
+      {/* Main gauche */}
       <Image
         className="hidden lg:block absolute left-[0px] top-[175px]"
         src="/images/home/image3.svg"
         alt="Main gauche"
         width={428.034}
         height={480.402}
-      />
-
-      {/* Personnage orange */}
-      <Image
-        className="hidden lg:block absolute left-[200px] top-[190px]"
-        src="/images/home/Orange1.svg"
-        alt="Personnage orange"
-        width={202.399}
-        height={371}
       />
     </>
   );

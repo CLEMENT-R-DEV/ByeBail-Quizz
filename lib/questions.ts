@@ -1,6 +1,6 @@
 import { Question } from './types';
 
-export const TOTAL_QUESTIONS = 13;
+export const TOTAL_QUESTIONS = 14;
 
 export const questions: Question[] = [
   {
@@ -26,7 +26,7 @@ export const questions: Question[] = [
     id: 3,
     type: 'select',
     text: 'On est content de te faire ta connaissance, et au fait tu nous a connu comment ?',
-    placeholder: 'Select',
+    placeholder: 'Sélectionnez un média',
     choices: [
       { id: 'insta', label: 'Insta', image: '' },
       { id: 'tiktok', label: 'Tiktok', image: '' },
@@ -44,6 +44,31 @@ export const questions: Question[] = [
   {
     id: 4,
     type: 'choice',
+    text: 'Où cherches-tu ton futur chez-toi ?',
+    choices: [
+      {
+        id: 'tours',
+        label: 'Tours',
+        image: '/images/tours.svg',
+        labelClassName: "text-center text-[#111827] text-base font-medium leading-[110%] font-['Satoshi']",
+      },
+      {
+        id: 'bourg-en-bresse',
+        label: 'Bourg-en-Bresse',
+        image: '/images/bourg.svg',
+        labelClassName: "text-center text-[#111827] text-base font-medium leading-[110%] font-['Satoshi']",
+      },
+      {
+        id: 'autre',
+        label: 'Autre ville',
+        image: '/images/autre-ville.svg',
+        labelClassName: "text-center text-[#111827] text-base font-medium leading-[110%] font-['Satoshi']",
+      },
+    ],
+  },
+  {
+    id: 5,
+    type: 'choice',
     text: "Ne crois pas que je te drague, mais...|t'es en couple ou pas ?",
     choices: [
       {
@@ -59,7 +84,7 @@ export const questions: Question[] = [
     ],
   },
   {
-    id: 5,
+    id: 6,
     type: 'choice',
     text: "Et c'est pour acheter avec ta moitié, ou en solo ?",
     choices: [
@@ -78,7 +103,7 @@ export const questions: Question[] = [
     ],
   },
   {
-    id: 6,
+    id: 7,
     type: 'text',
     text: 'On rentre dans le vif du sujet : tu payes combien de loyer ? (ou tu vis encore chez maman 😅)',
     placeholder: 'Montant du loyer',
@@ -88,7 +113,7 @@ export const questions: Question[] = [
     },
   },
   {
-    id: 7,
+    id: 8,
     type: 'choice',
     text: 'Tu cherches quel type de logement ?',
     choices: [
@@ -133,7 +158,7 @@ export const questions: Question[] = [
     ],
   },
   {
-    id: 8,
+    id: 9,
     type: 'text',
     text: 'Et niveau revenus, combien tu gagnes par mois ?',
     infoText: '(Si t\'es en couple, compte vos deux revenus)',
@@ -144,7 +169,7 @@ export const questions: Question[] = [
     },
   },
   {
-    id: 9,
+    id: 10,
     type: 'choice',
     text: 'Côté boulot, tu fais quoi ?',
     choices: [
@@ -175,7 +200,7 @@ export const questions: Question[] = [
     ],
   },
   {
-    id: 10,
+    id: 11,
     type: 'text',
     titleText: 'OK, on rentre dans le vif du sujet.',
     text: "Pour te montrer tes appartements personnalisés, j'ai besoin de ton email.",
@@ -187,7 +212,7 @@ export const questions: Question[] = [
     },
   },
   {
-    id: 11,
+    id: 12,
     type: 'choice',
     titleText: 'Dernières questions, promis.',
     text: 'Tu as déjà des crédits en cours ?',
@@ -205,7 +230,7 @@ export const questions: Question[] = [
     ],
   },
   {
-    id: 12,
+    id: 13,
     type: 'choice',
     titleText: 'OK, et c\'est quoi exactement ?',
     text: 'Auto, conso, étudiant, immo ?',
@@ -237,7 +262,7 @@ export const questions: Question[] = [
     ],
   },
   {
-    id: 13,
+    id: 14,
     type: 'choice',
     titleText: 'Dernière question !',
     text: "T'as un peu d'apport de côté, ou c'est plutôt \"pâtes au beurre\" en fin de mois ?",

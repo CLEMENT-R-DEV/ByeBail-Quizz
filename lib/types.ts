@@ -29,5 +29,5 @@ export interface QuizAnswer {
 
 export interface QuizState {
   currentQuestion: number;
-  answers: Record<number, string>;
+  answers: Record<number | string, string>;
 }

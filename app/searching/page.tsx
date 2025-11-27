@@ -62,9 +62,9 @@ export default function SearchingPage() {
   const [currentStep, setCurrentStep] = useState(0);
   const [isAnimationComplete, setIsAnimationComplete] = useState(false);
 
-  // Récupérer le loyer sauvegardé (question 6) et mettre à jour le texte du step 2
+  // Récupérer le loyer sauvegardé (question 7) et mettre à jour le texte du step 2
   useEffect(() => {
-    const savedLoyer = storage.getAnswer(6);
+    const savedLoyer = storage.getAnswer(7);
     if (savedLoyer) {
       setLoyer(savedLoyer);
       // Mettre à jour le texte du step 2 avec le loyer

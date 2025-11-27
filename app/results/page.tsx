@@ -61,7 +61,7 @@ export default function ResultsPage() {
   useEffect(() => {
     const loadProperties = async () => {
       try {
-        const type = storage.getAnswer(7); // Type de logement choisi
+        const type = storage.getAnswer(8); // Type de logement choisi (question 8)
         if (type) {
           setPropertyType(type);
         }

@@ -4,8 +4,10 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import confetti from 'canvas-confetti';
 import SimpleHeader from '@/components/quiz/SimpleHeader';
 import ChoiceCard from '@/components/quiz/ChoiceCard';
+import ReassuranceSection from '@/components/shared/ReassuranceSection';
 import { storage } from '@/lib/storage';
 import { fetchProperties, filterByType, formatPrice, formatDeliveryDate, Property } from '@/lib/properties';
 
@@ -24,7 +26,7 @@ export default function CongratulationsPage() {
     // Récupérer et filtrer les biens
     const loadProperty = async () => {
       try {
-        const propertyType = storage.getAnswer(7); // Type de logement choisi
+        const propertyType = storage.getAnswer(8); // Type de logement choisi (question 8)
         const allProperties = await fetchProperties();
 
         if (propertyType) {
@@ -42,6 +44,35 @@ export default function CongratulationsPage() {
     };
 
     loadProperty();
+  }, []);
+
+  // Animation confetti au chargement
+  useEffect(() => {
+    const duration = 3000;
+    const end = Date.now() + duration;
+
+    const frame = () => {
+      confetti({
+        particleCount: 3,
+        angle: 60,
+        spread: 55,
+        origin: { x: 0, y: 0.6 },
+        colors: ['#FE8253', '#10B981', '#6366F1', '#F59E0B']
+      });
+      confetti({
+        particleCount: 3,
+        angle: 120,
+        spread: 55,
+        origin: { x: 1, y: 0.6 },
+        colors: ['#FE8253', '#10B981', '#6366F1', '#F59E0B']
+      });
+
+      if (Date.now() < end) {
+        requestAnimationFrame(frame);
+      }
+    };
+
+    frame();
   }, []);
 
   return (
@@ -274,7 +305,7 @@ export default function CongratulationsPage() {
               transition={{ delay: 1, type: 'spring', stiffness: 400, damping: 25 }}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="w-full lg:w-[358px] h-14 rounded-[105px] bg-[#FE8253] hover:bg-[#e67349] text-white font-semibold text-lg flex items-center justify-center cursor-pointer"
+              className="w-full lg:w-[358px] mx-auto h-14 rounded-[105px] bg-[#FE8253] hover:bg-[#e67349] text-white font-semibold text-lg flex items-center justify-center cursor-pointer"
               style={{
                 fontFamily: 'var(--font-crimson-pro), serif',
                 fontSize: '18px',
@@ -285,6 +316,16 @@ export default function CongratulationsPage() {
             >
               Je réserve mon créneau gratuit
             </motion.button>
+          </motion.div>
+
+          {/* Section réassurance */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.1 }}
+            className="mb-8"
+          >
+            <ReassuranceSection />
           </motion.div>
         </div>
       </main>

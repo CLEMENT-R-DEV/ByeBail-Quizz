@@ -4,7 +4,6 @@ import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { TOTAL_QUESTIONS } from '@/lib/questions';
-import { progressBarVariants } from '@/lib/animations';
 
 interface QuizHeaderProps {
   currentQuestion: number;
@@ -76,10 +75,8 @@ export default function QuizHeader({ currentQuestion }: QuizHeaderProps) {
         <div className="self-stretch p-0.5 bg-zinc-100 rounded-[43px] flex flex-col justify-start items-start gap-2.5">
           <motion.div
             className="h-1.5 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-[226px] shadow-[0px_1px_4px_0px_rgba(0,0,0,0.10)] shadow-[inset_0px_-1px_4px_0px_rgba(4,120,87,0.50)]"
-            variants={progressBarVariants}
-            initial="initial"
-            animate="animate"
-            custom={progressPercentage}
+            animate={{ width: `${progressPercentage}%` }}
+            transition={{ type: 'spring', stiffness: 100, damping: 20 }}
           />
         </div>
       </div>

@@ -10,7 +10,7 @@ export default function InflationPage() {
   const router = useRouter();
 
   const handleContinue = () => {
-    router.push('/quiz/8');
+    router.push('/quiz/9');
   };
 
   const cardVariants = {
