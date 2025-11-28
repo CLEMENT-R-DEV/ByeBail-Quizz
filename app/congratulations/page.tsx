@@ -11,7 +11,7 @@ import QuizBackgroundShapes from '@/components/quiz/QuizBackgroundShapes';
 import ChoiceCard from '@/components/quiz/ChoiceCard';
 import ReassuranceSection from '@/components/shared/ReassuranceSection';
 import { storage } from '@/lib/storage';
-import { fetchProperties, filterByType, formatPrice, formatDeliveryDate, Property } from '@/lib/properties';
+import { fetchProperties, findBestProperty, formatPrice, formatDeliveryDate, Property } from '@/lib/properties';
 
 export default function CongratulationsPage() {
   const [firstName, setFirstName] = useState('');
@@ -25,21 +25,34 @@ export default function CongratulationsPage() {
       setFirstName(name);
     }
 
-    // Récupérer et filtrer les biens
+    // Récupérer et filtrer les biens avec le système intelligent
     const loadProperty = async () => {
       try {
+        const city = storage.getAnswer(4); // Ville choisie (question 4)
         const propertyType = storage.getAnswer(8); // Type de logement choisi (question 8)
-        const allProperties = await fetchProperties();
 
-        if (propertyType) {
-          const filtered = filterByType(allProperties, propertyType);
-          if (filtered.length > 0) {
-            setProperty(filtered[0]); // Premier bien correspondant
-            setImageError(false); // Reset l'erreur d'image pour le nouveau bien
-          }
+        console.log('📋 Quiz answers:', { city, propertyType });
+
+        const allProperties = await fetchProperties();
+        console.log('🏠 Properties loaded:', allProperties.length);
+
+        if (allProperties.length === 0) {
+          console.error('❌ Aucun bien retourné par l\'API');
+          return;
+        }
+
+        // Utiliser le système de matching intelligent
+        const bestMatch = findBestProperty(allProperties, city, propertyType);
+
+        if (bestMatch) {
+          console.log('✅ Bien trouvé:', bestMatch.programmeName);
+          setProperty(bestMatch);
+          setImageError(false); // Reset l'erreur d'image pour le nouveau bien
+        } else {
+          console.error('❌ Aucun match trouvé malgré les biens disponibles');
         }
       } catch (error) {
-        console.error('Erreur lors du chargement des biens:', error);
+        console.error('❌ Erreur lors du chargement des biens:', error);
       } finally {
         setLoading(false);
       }
@@ -137,7 +150,7 @@ export default function CongratulationsPage() {
                 transition={{ delay: 0.5 }}
                 className="self-stretch text-center justify-center text-gray-900 text-base font-normal font-['Satoshi'] leading-5"
               >
-                On t&apos;a trouvé la perle rare à Tours
+                On t&apos;a trouvé la perle rare{property ? ` à ${property.city}` : ''}
               </motion.div>
             </div>
           </motion.div>
