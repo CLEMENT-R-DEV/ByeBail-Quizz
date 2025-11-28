@@ -10,7 +10,6 @@ import SimpleHeader from '@/components/quiz/SimpleHeader';
 import QuizBackgroundShapes from '@/components/quiz/QuizBackgroundShapes';
 import ChoiceCard from '@/components/quiz/ChoiceCard';
 import ReassuranceSection from '@/components/shared/ReassuranceSection';
-import StatCardsContainer from '@/components/home/StatCardsContainer';
 import { storage } from '@/lib/storage';
 import { fetchProperties, filterByType, formatPrice, formatDeliveryDate, Property } from '@/lib/properties';
 
@@ -336,16 +335,6 @@ export default function CongratulationsPage() {
             className="mb-8"
           >
             <ReassuranceSection />
-          </motion.div>
-
-          {/* Stats cards - déplacées de la homepage */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.2 }}
-            className="mb-8"
-          >
-            <StatCardsContainer />
           </motion.div>
 
           {/* Spacer pour le bouton fixe mobile */}

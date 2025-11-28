@@ -2,10 +2,10 @@ import Image from 'next/image';
 
 export default function ReassuranceSection() {
   const guarantees = [
-    { label: "15 ans d'expérience" },
-    { label: 'Plus de 2000 clients devenus propriétaires' },
-    { label: 'Sans engagement' },
-    { label: '50 experts à tes côtés' },
+    { label: 'Apport = équivalent à quelques mois de loyer' },
+    { label: 'Propriétaire dès 580€/mois' },
+    { label: 'Simulation gratuite en 3 min' },
+    { label: 'Accompagnement de A à Z' },
     { label: 'Partenaires bancaires certifiés' },
   ];
 

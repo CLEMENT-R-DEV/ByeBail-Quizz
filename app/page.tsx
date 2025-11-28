@@ -1,6 +1,6 @@
 // import HomeHeader from '@/components/home/HomeHeader';
 import HeroSection from '@/components/home/HeroSection';
-// import StatCardsContainer from '@/components/home/StatCardsContainer'; // Déplacé vers /congratulations
+import StatCardsContainer from '@/components/home/StatCardsContainer';
 import BackgroundElements from '@/components/home/BackgroundElements';
 import CTAButton from '@/components/home/CTAButton';
 
@@ -45,8 +45,8 @@ export default function HomePage() {
           {/* Section Hero */}
           <HeroSection />
 
-          {/* Cartes statistiques - Déplacées vers /congratulations */}
-          {/* <StatCardsContainer /> */}
+          {/* Cartes statistiques */}
+          <StatCardsContainer />
 
           {/* Bouton CTA */}
           <CTAButton />

@@ -16,11 +16,11 @@ export default function StatCard({ value, label, color }: StatCardProps) {
       <div className="w-48 h-48 relative bg-white rounded-3xl shadow-[-5px_4px_15px_0px_rgba(174,185,193,0.10)] shadow-[-22px_17px_27px_0px_rgba(174,185,193,0.09)] shadow-[-49px_38px_37px_0px_rgba(174,185,193,0.05)] shadow-[-87px_67px_44px_0px_rgba(174,185,193,0.01)] shadow-[-135px_104px_48px_0px_rgba(174,185,193,0.00)] inline-flex justify-center items-center overflow-hidden">
 
         {/* Content */}
-        <div className="inline-flex flex-col justify-start items-center gap-1 z-10">
-          <div className={`justify-center ${colorClasses[color]} text-6xl font-semibold font-['Bricolage_Grotesque'] leading-[61px]`}>
+        <div className="inline-flex flex-col justify-start items-center gap-1 z-10 px-3">
+          <div className={`justify-center ${colorClasses[color]} text-2xl font-semibold font-['Bricolage_Grotesque'] leading-7`}>
             {value}
           </div>
-          <div className="w-32 text-center justify-center text-gray-600 text-base font-normal font-['Satoshi'] leading-5">
+          <div className="w-40 text-center justify-center text-gray-600 text-sm font-normal font-['Satoshi'] leading-4">
             {label}
           </div>
         </div>
