@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import SimpleHeader from '@/components/quiz/SimpleHeader';
 import ContinueButton from '@/components/quiz/ContinueButton';
+import QuizBackgroundShapes from '@/components/quiz/QuizBackgroundShapes';
 import { progressBarVariants, stepCheckVariants } from '@/lib/animations';
 import { storage } from '@/lib/storage';
 
@@ -78,6 +79,45 @@ export default function SearchingPage() {
     }
   }, []);
 
+  // Envoyer les données au webhook Make.com
+  useEffect(() => {
+    const sendWebhook = async () => {
+      const state = storage.getState();
+      if (!state?.answers) return;
+
+      const payload = {
+        age: state.answers[1],
+        firstName: state.answers[2],
+        source: state.answers[3],
+        city: state.answers[4],
+        customCity: state.answers['customCity'] || null,
+        relationshipStatus: state.answers[5],
+        buyingWith: state.answers[6],
+        rent: state.answers[7],
+        propertyType: state.answers[8],
+        income: state.answers[9],
+        jobType: state.answers[10],
+        email: state.answers[11],
+        hasCredits: state.answers[12],
+        creditType: state.answers[13],
+        hasDownPayment: state.answers[14],
+        submittedAt: new Date().toISOString(),
+      };
+
+      try {
+        await fetch('https://hook.eu1.make.com/diapyojedklrphcvwq9favvlafogvb5n', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+      } catch (error) {
+        console.error('Erreur webhook:', error);
+      }
+    };
+
+    sendWebhook();
+  }, []);
+
   useEffect(() => {
     // Animer les étapes une par une
     if (currentStep < steps.length) {
@@ -106,12 +146,15 @@ export default function SearchingPage() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.4 }}
-      className="min-h-screen flex flex-col"
+      className="min-h-screen flex flex-col relative overflow-hidden"
     >
+      {/* Background shapes */}
+      <QuizBackgroundShapes />
+
       <SimpleHeader />
 
       {/* Main content */}
-      <main className="flex-1 flex flex-col mx-4 lg:mx-0">
+      <main className="flex-1 flex flex-col mx-4 lg:mx-0 relative z-10">
         {/* Carte principale blanche */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -248,6 +291,9 @@ export default function SearchingPage() {
 
         {/* Spacer */}
         <div className="flex-1"></div>
+
+        {/* Spacer pour le bouton fixe mobile */}
+        <div className="h-20 lg:hidden" />
 
         {/* Bouton Continue (toujours visible mais désactivé pendant l'animation) */}
         <ContinueButton onClick={handleContinue} disabled={!isAnimationComplete} />

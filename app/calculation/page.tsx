@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import SimpleHeader from '@/components/quiz/SimpleHeader';
 import ContinueButton from '@/components/quiz/ContinueButton';
+import QuizBackgroundShapes from '@/components/quiz/QuizBackgroundShapes';
 import { storage } from '@/lib/storage';
 
 export default function CalculationPage() {
@@ -58,11 +59,14 @@ export default function CalculationPage() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.4 }}
-      className="min-h-screen flex flex-col"
+      className="min-h-screen flex flex-col relative overflow-hidden"
     >
+      {/* Background shapes */}
+      <QuizBackgroundShapes />
+
       <SimpleHeader />
 
-      <main className="flex-1 flex flex-col mx-4 lg:mx-0">
+      <main className="flex-1 flex flex-col mx-4 lg:mx-0 relative z-10">
         {/* Contenu principal */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -133,8 +137,22 @@ export default function CalculationPage() {
                   className="pointer-events-none object-contain"
                 />
               </div>
-              {/* Texte au centre du cercle */}
-              <div className="absolute inset-0 flex flex-col justify-center items-center gap-1">
+              {/* Vidéo en fond avec masque rond */}
+              <div
+                className="absolute inset-0 flex items-center justify-center"
+                style={{ padding: '16px' }}
+              >
+                <video
+                  className="w-full h-full object-cover"
+                  style={{ clipPath: 'circle(50%)' }}
+                  src="/images/house.mp4"
+                  autoPlay
+                  muted
+                  playsInline
+                />
+              </div>
+              {/* Texte au-dessus de la vidéo */}
+              <div className="absolute inset-0 flex flex-col justify-center items-center z-10">
                 <div className="text-center justify-center text-gray-900 text-4xl font-semibold font-['Bricolage_Grotesque'] leading-9">
                   {Math.round(animatedPercentage)}%
                 </div>
@@ -181,6 +199,9 @@ export default function CalculationPage() {
 
         {/* Spacer */}
         <div className="flex-1"></div>
+
+        {/* Spacer pour le bouton fixe mobile */}
+        <div className="h-20 lg:hidden" />
 
         {/* Bouton Continue */}
         <ContinueButton onClick={handleContinue} disabled={false} />

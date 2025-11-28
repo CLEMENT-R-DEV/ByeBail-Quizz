@@ -3,11 +3,14 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import Script from 'next/script';
 import { motion } from 'framer-motion';
 import confetti from 'canvas-confetti';
 import SimpleHeader from '@/components/quiz/SimpleHeader';
+import QuizBackgroundShapes from '@/components/quiz/QuizBackgroundShapes';
 import ChoiceCard from '@/components/quiz/ChoiceCard';
 import ReassuranceSection from '@/components/shared/ReassuranceSection';
+import StatCardsContainer from '@/components/home/StatCardsContainer';
 import { storage } from '@/lib/storage';
 import { fetchProperties, filterByType, formatPrice, formatDeliveryDate, Property } from '@/lib/properties';
 
@@ -80,12 +83,15 @@ export default function CongratulationsPage() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.4 }}
-      className="min-h-screen flex flex-col"
+      className="min-h-screen flex flex-col relative overflow-hidden"
     >
+      {/* Background shapes */}
+      <QuizBackgroundShapes />
+
       <SimpleHeader />
 
       {/* Main content */}
-      <main className="flex-1 flex flex-col mx-4 lg:mx-0">
+      <main className="flex-1 flex flex-col mx-4 lg:mx-0 relative z-10">
         {/* Conteneur 750px sur desktop */}
         <div className="w-full lg:w-[750px] lg:mt-[100px] mt-[20px] mx-auto flex flex-col">
           {/* Carte principale */}
@@ -299,13 +305,17 @@ export default function CongratulationsPage() {
                 Réserve un créneau gratuit de 30 min avec nos experts
               </p>
             </motion.div>
+            {/* Bouton desktop uniquement */}
             <motion.button
+              data-cal-link="corentinqueuche/test"
+              data-cal-namespace="test"
+              data-cal-config='{"layout":"month_view"}'
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 1, type: 'spring', stiffness: 400, damping: 25 }}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="w-full lg:w-[358px] mx-auto h-14 rounded-[105px] bg-[#FE8253] hover:bg-[#e67349] text-white font-semibold text-lg flex items-center justify-center cursor-pointer"
+              className="hidden lg:flex w-[358px] mx-auto h-14 rounded-[105px] bg-[#FE8253] hover:bg-[#e67349] text-white font-semibold text-lg items-center justify-center cursor-pointer"
               style={{
                 fontFamily: 'var(--font-crimson-pro), serif',
                 fontSize: '18px',
@@ -327,8 +337,58 @@ export default function CongratulationsPage() {
           >
             <ReassuranceSection />
           </motion.div>
+
+          {/* Stats cards - déplacées de la homepage */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.2 }}
+            className="mb-8"
+          >
+            <StatCardsContainer />
+          </motion.div>
+
+          {/* Spacer pour le bouton fixe mobile */}
+          <div className="h-20 lg:hidden" />
         </div>
       </main>
+
+      {/* Bouton fixe mobile uniquement */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1, type: 'spring', stiffness: 400, damping: 25 }}
+        className="lg:hidden fixed bottom-5 left-4 right-4 z-50"
+      >
+        <button
+          data-cal-link="corentinqueuche/test"
+          data-cal-namespace="test"
+          data-cal-config='{"layout":"month_view"}'
+          className="w-full h-14 rounded-[105px] bg-[#FE8253] hover:bg-[#e67349] text-white font-semibold text-lg flex items-center justify-center cursor-pointer"
+          style={{
+            fontFamily: 'var(--font-crimson-pro), serif',
+            fontSize: '18px',
+            lineHeight: '1',
+            padding: '0 18px',
+            boxShadow: '0 0 8.8px 0 #DEE3E7 inset, 0 -21px 20.8px 0 rgba(236, 72, 9, 0.37) inset, 0 0 80.5px 0 rgba(236, 72, 9, 0.28)',
+          }}
+        >
+          Je réserve mon créneau gratuit
+        </button>
+      </motion.div>
+
+      {/* Cal.com embed script */}
+      <Script
+        id="cal-embed"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+            Cal("init", "test", {origin:"https://app.cal.com"});
+            Cal.ns.test("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#042c7d"},"dark":{"cal-brand":"#467ff7"}},"hideEventTypeDetails":false,"layout":"month_view"});
+          `,
+        }}
+      />
     </motion.div>
   );
 }

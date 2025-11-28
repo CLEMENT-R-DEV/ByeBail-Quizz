@@ -21,51 +21,14 @@ export default function BackgroundElements() {
         height={765.67}
       />
 
-      {/* Illustrations - Mobile */}
-
-      {/* Images décoratives mobiles supplémentaires */}
-      <Image
-        className="lg:hidden absolute left-[55px] top-[440px]"
-        src="/images/home/Rectangle4710.svg"
-        alt="Rectangle décoratif"
-        width={150}
-        height={150}
-        style={{
-          borderRadius: '12px',
-          backgroundColor: 'rgba(217, 217, 217, 0.20)',
-          boxShadow: '0 0 15.4px 0 rgba(189, 212, 246, 0.25)'
-        }}
-      />
-
-      <Image
-        className="lg:hidden absolute right-[0px] top-[400px]"
-        src="/images/home/Polygon14.svg"
-        alt="Polygon 14"
-        width={100.74}
-        height={100.74}
-        style={{
-          filter: 'drop-shadow(0 0 15.4px rgba(189, 212, 246, 0.25))'
-        }}
-      />
-
-      <Image
-        className="lg:hidden absolute left-[245px] top-[520px]"
-        src="/images/home/Polygon15.svg"
-        alt="Polygon 15"
-        width={150.74}
-        height={150.74}
-        style={{
-          filter: 'drop-shadow(0 0 15.4px rgba(189, 212, 246, 0.25))'
-        }}
-      />
 
       {/* Image ByeBail - Mobile */}
       <Image
-        className="lg:hidden absolute right-[0] top-[220px] z-10"
+        className="lg:hidden absolute right-0 top-[30px] opacity-90"
         src="/images/home/byebail 1.png"
         alt="ByeBail illustration"
-        width={300}
-        height={350}
+        width={250}
+        height={290}
       />
 
 

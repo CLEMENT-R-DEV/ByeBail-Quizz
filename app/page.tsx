@@ -1,6 +1,6 @@
 // import HomeHeader from '@/components/home/HomeHeader';
 import HeroSection from '@/components/home/HeroSection';
-import StatCardsContainer from '@/components/home/StatCardsContainer';
+// import StatCardsContainer from '@/components/home/StatCardsContainer'; // Déplacé vers /congratulations
 import BackgroundElements from '@/components/home/BackgroundElements';
 import CTAButton from '@/components/home/CTAButton';
 
@@ -41,15 +41,18 @@ export default function HomePage() {
         </div>
 
         {/* Contenu principal */}
-        <div className="mb-10 w-full flex-1 lg:flex-initial inline-flex flex-col justify-between lg:justify-start items-center gap-5 lg:gap-10">
+        <div className="mb-10 w-full flex-1 lg:flex-initial inline-flex flex-col justify-center lg:justify-start items-center gap-5 lg:gap-10">
           {/* Section Hero */}
           <HeroSection />
 
-          {/* Cartes statistiques */}
-          <StatCardsContainer />
+          {/* Cartes statistiques - Déplacées vers /congratulations */}
+          {/* <StatCardsContainer /> */}
 
           {/* Bouton CTA */}
           <CTAButton />
+
+          {/* Spacer pour le texte + bouton fixe mobile */}
+          <div className="h-32 lg:hidden" />
         </div>
       </main>
     </div>

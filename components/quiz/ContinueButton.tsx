@@ -10,7 +10,7 @@ interface ContinueButtonProps {
 export default function ContinueButton({ onClick, disabled = false }: ContinueButtonProps) {
   return (
     <div
-      className="pb-[60px] pt-[32px] lg:w-full lg:h-[172px] lg:px-[140px] lg:py-[40px] lg:border lg:border-black/10 lg:bg-white lg:shadow-[0_-10px_27.5px_0_rgba(104,137,228,0.04)] lg:flex lg:flex-col lg:items-center lg:gap-[10px]"
+      className="fixed bottom-5 left-4 right-4 z-50 lg:static lg:left-auto lg:right-auto lg:bottom-auto lg:z-auto lg:pb-[60px] lg:pt-[32px] lg:w-full lg:h-[172px] lg:px-[140px] lg:py-[40px] lg:border lg:border-black/10 lg:bg-white lg:shadow-[0_-10px_27.5px_0_rgba(104,137,228,0.04)] lg:flex lg:flex-col lg:items-center lg:gap-[10px]"
     >
       <div className="lg:w-[750px] lg:flex lg:flex-col lg:items-end lg:gap-[10px]">
         <motion.button

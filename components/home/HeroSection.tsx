@@ -11,7 +11,7 @@ export default function HeroSection() {
 
       {/* Titre principal */}
       <h1
-        className="text-center text-[26px] lg:text-6xl font-semibold font-['Bricolage_Grotesque'] leading-[1.15] tracking-[-1px] lg:tracking-[-2px]"
+        className="text-center text-[32px] lg:text-6xl font-semibold font-['Bricolage_Grotesque'] leading-[1.15] tracking-[-1px] lg:tracking-[-2px]"
         style={{
           background: 'linear-gradient(85deg, #1E3A8A 2.19%, #324E9E 179.74%)',
           backgroundClip: 'text',

@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import SimpleHeader from '@/components/quiz/SimpleHeader';
 import ContinueButton from '@/components/quiz/ContinueButton';
+import QuizBackgroundShapes from '@/components/quiz/QuizBackgroundShapes';
 
 export default function InflationPage() {
   const router = useRouter();
@@ -33,11 +34,14 @@ export default function InflationPage() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.4 }}
-      className="min-h-screen flex flex-col"
+      className="min-h-screen flex flex-col relative overflow-hidden"
     >
+      {/* Background shapes */}
+      <QuizBackgroundShapes />
+
       <SimpleHeader />
 
-      <main className="flex-1 flex flex-col mx-4 ">
+      <main className="flex-1 flex flex-col mx-4 relative z-10">
         {/* Contenu */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -334,6 +338,9 @@ export default function InflationPage() {
 
         {/* Spacer */}
         <div className="flex-1"></div>
+
+        {/* Spacer pour le bouton fixe mobile */}
+        <div className="h-20 lg:hidden" />
 
         {/* Bouton Continue */}
         <ContinueButton onClick={handleContinue} disabled={false} />

@@ -10,6 +10,7 @@ import SelectInput from '@/components/quiz/SelectInput';
 import ChoiceCard from '@/components/quiz/ChoiceCard';
 import ImageChoice from '@/components/quiz/ImageChoice';
 import ContinueButton from '@/components/quiz/ContinueButton';
+import QuizBackgroundShapes from '@/components/quiz/QuizBackgroundShapes';
 import { questions, TOTAL_QUESTIONS } from '@/lib/questions';
 import { storage } from '@/lib/storage';
 import { pageVariants } from '@/lib/animations';
@@ -106,7 +107,10 @@ export default function QuizQuestionPage() {
     }
 
     // Navigation
-    if (questionId === 7) {
+    if (questionId === 3) {
+      // Après la question 3 (source), aller à l'écran apport
+      router.push('/apport');
+    } else if (questionId === 7) {
       // Après la question 7 (loyer), aller à l'écran de calcul
       router.push('/calculation');
     } else if (questionId === 8) {
@@ -506,11 +510,14 @@ export default function QuizQuestionPage() {
         initial="initial"
         animate="animate"
         exit="exit"
-        className="min-h-screen flex flex-col"
+        className="min-h-screen flex flex-col relative overflow-hidden"
       >
+        {/* Background shapes */}
+        <QuizBackgroundShapes />
+
         <QuizHeader currentQuestion={questionId} />
 
-        <main className="flex-1 flex flex-col mx-4 lg:mx-0 pt-5 lg:items-center lg:pt-[100px] min-h-0">
+        <main className="flex-1 flex flex-col mx-4 lg:mx-0 pt-5 lg:items-center lg:pt-[100px] min-h-0 relative z-10">
           {/* Conteneur question + input */}
           <div className="lg:w-[750px] lg:flex lg:flex-col lg:items-end lg:gap-[50px]">
             {/* Question bubble */}
@@ -529,6 +536,9 @@ export default function QuizQuestionPage() {
 
           {/* Spacer pour pousser le bouton vers le bas */}
           <div className="flex-1"></div>
+
+          {/* Spacer pour le bouton fixe mobile */}
+          <div className="h-20 lg:hidden" />
 
           {/* Continue button */}
           <ContinueButton onClick={handleContinue} disabled={!isValid} />

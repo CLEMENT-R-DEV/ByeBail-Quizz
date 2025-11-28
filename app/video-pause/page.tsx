@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import SimpleHeader from '@/components/quiz/SimpleHeader';
 import ContinueButton from '@/components/quiz/ContinueButton';
+import QuizBackgroundShapes from '@/components/quiz/QuizBackgroundShapes';
 
 export default function VideoPausePage() {
   const router = useRouter();
@@ -18,12 +19,15 @@ export default function VideoPausePage() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.4 }}
-      className="min-h-screen flex flex-col"
+      className="min-h-screen flex flex-col relative overflow-hidden"
     >
+      {/* Background shapes */}
+      <QuizBackgroundShapes />
+
       <SimpleHeader />
 
       {/* Main content */}
-      <main className="flex-1 flex flex-col lg:pt-[100px] lg:pb-[206px] mx-4 lg:mx-0 pt-5">
+      <main className="flex-1 flex flex-col lg:pt-[100px] lg:pb-[206px] mx-4 lg:mx-0 pt-5 relative z-10">
         {/* Carte principale */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -172,6 +176,9 @@ export default function VideoPausePage() {
 
         {/* Spacer pour pousser le bouton Continue vers le bas */}
         <div className="flex-1 lg:hidden"></div>
+
+        {/* Spacer pour le bouton fixe mobile */}
+        <div className="h-20 lg:hidden" />
 
         {/* Bouton Continue */}
         <div className="lg:hidden">
