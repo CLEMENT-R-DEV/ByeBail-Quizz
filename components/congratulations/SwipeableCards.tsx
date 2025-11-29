@@ -1,12 +1,8 @@
 'use client';
 
-import { useState, useCallback } from 'react';
-import { motion, useMotionValue, useTransform, AnimatePresence, PanInfo } from 'framer-motion';
+import { useState, useRef } from 'react';
 import Image from 'next/image';
 import { Property, formatPrice, formatDeliveryDate } from '@/lib/properties';
-
-const SWIPE_THRESHOLD = 50;
-const VELOCITY_THRESHOLD = 500;
 
 interface SwipeableCardsProps {
   properties: Property[];
@@ -18,9 +14,9 @@ function PropertyCard({ property, imageError, onImageError }: {
   onImageError: () => void;
 }) {
   return (
-    <div className="w-full h-full bg-white rounded-[18px] overflow-hidden shadow-[0px_4px_20px_0px_rgba(0,0,0,0.1)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5">
+    <div className="w-full bg-white rounded-[18px] overflow-hidden shadow-[0px_4px_20px_0px_rgba(0,0,0,0.08)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5">
       {/* Image du bien */}
-      <div className="relative w-full h-[180px] lg:h-[260px]">
+      <div className="relative w-full h-[200px] lg:h-[280px]">
         <Image
           src={imageError || !property.mainImage ? '/images/pasdimage.webp' : property.mainImage}
           alt={property.programmeName}
@@ -53,19 +49,11 @@ function PropertyCard({ property, imageError, onImageError }: {
 export default function SwipeableCards({ properties }: SwipeableCardsProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [imageErrors, setImageErrors] = useState<Record<string, boolean>>({});
-  const [exitDirection, setExitDirection] = useState<number>(0);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
-  // Motion values pour le drag
-  const x = useMotionValue(0);
-
-  // Transformations basées sur la position x
-  const rotate = useTransform(x, [-300, 0, 300], [-25, 0, 25]);
-  const cardOpacity = useTransform(x, [-300, -150, 0, 150, 300], [0.5, 0.8, 1, 0.8, 0.5]);
-
-  // Si moins de 1 bien, ne rien afficher
   if (properties.length === 0) return null;
 
-  // Si un seul bien, afficher sans swipe
+  // Si un seul bien, pas besoin de carousel
   if (properties.length === 1) {
     return (
       <div className="w-full mb-5">
@@ -78,115 +66,60 @@ export default function SwipeableCards({ properties }: SwipeableCardsProps) {
     );
   }
 
-  const handleDragEnd = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
-    const swipeThresholdMet = Math.abs(info.offset.x) > SWIPE_THRESHOLD;
-    const velocityThresholdMet = Math.abs(info.velocity.x) > VELOCITY_THRESHOLD;
-
-    if (swipeThresholdMet || velocityThresholdMet) {
-      const direction = info.offset.x > 0 ? 1 : -1;
-      setExitDirection(direction);
-
-      // Changer de carte après l'animation
-      setTimeout(() => {
-        if (direction > 0) {
-          setCurrentIndex((prev) => (prev - 1 + properties.length) % properties.length);
-        } else {
-          setCurrentIndex((prev) => (prev + 1) % properties.length);
-        }
-        x.set(0);
-        setExitDirection(0);
-      }, 200);
+  const handleScroll = () => {
+    if (!scrollRef.current) return;
+    const scrollLeft = scrollRef.current.scrollLeft;
+    const cardWidth = scrollRef.current.offsetWidth;
+    const newIndex = Math.round(scrollLeft / cardWidth);
+    if (newIndex !== currentIndex && newIndex >= 0 && newIndex < properties.length) {
+      setCurrentIndex(newIndex);
     }
   };
 
-  // Obtenir les cartes visibles (jusqu'à 3)
-  const getVisibleCards = () => {
-    const cards = [];
-    const numCards = Math.min(3, properties.length);
-
-    for (let i = 0; i < numCards; i++) {
-      cards.push({
-        property: properties[(currentIndex + i) % properties.length],
-        stackIndex: i
-      });
-    }
-    return cards;
+  const scrollToIndex = (index: number) => {
+    if (!scrollRef.current) return;
+    const cardWidth = scrollRef.current.offsetWidth;
+    scrollRef.current.scrollTo({ left: index * cardWidth, behavior: 'smooth' });
   };
-
-  const visibleCards = getVisibleCards();
 
   return (
     <div className="w-full mb-5">
-      {/* Container des cartes stackées */}
-      <div className="relative w-full h-[320px] lg:h-[400px]" style={{ perspective: '1000px' }}>
-        <AnimatePresence mode="popLayout">
-          {/* Rendre les cartes de l'arrière vers l'avant */}
-          {[...visibleCards].reverse().map(({ property, stackIndex }) => {
-            const isTopCard = stackIndex === 0;
-
-            // Styles pour chaque position dans la stack
-            const stackStyles = {
-              0: { scale: 1, y: 0, rotate: 0, zIndex: 30 },
-              1: { scale: 0.95, y: 20, rotate: -3, zIndex: 20 },
-              2: { scale: 0.90, y: 40, rotate: 3, zIndex: 10 },
-            };
-
-            const style = stackStyles[stackIndex as keyof typeof stackStyles] || stackStyles[2];
-
-            return (
-              <motion.div
-                key={`${property.id}-${currentIndex}`}
-                className="absolute inset-0 touch-none"
-                initial={{ scale: 0.9, opacity: 0, y: 50 }}
-                animate={{
-                  scale: style.scale,
-                  y: style.y,
-                  rotate: isTopCard ? 0 : style.rotate,
-                  zIndex: style.zIndex,
-                  opacity: 1,
-                }}
-                exit={{
-                  x: exitDirection * 400,
-                  opacity: 0,
-                  rotate: exitDirection * 30,
-                  transition: { duration: 0.25, ease: 'easeOut' }
-                }}
-                transition={{
-                  type: 'spring',
-                  stiffness: 400,
-                  damping: 30,
-                  mass: 0.8,
-                }}
-                style={{
-                  x: isTopCard ? x : 0,
-                  rotate: isTopCard ? rotate : style.rotate,
-                  opacity: isTopCard ? cardOpacity : 1 - (stackIndex * 0.15),
-                  transformOrigin: 'center bottom',
-                  cursor: isTopCard ? 'grab' : 'default',
-                }}
-                drag={isTopCard ? 'x' : false}
-                dragConstraints={{ left: 0, right: 0 }}
-                dragElastic={0.9}
-                onDragEnd={isTopCard ? handleDragEnd : undefined}
-                whileDrag={{ cursor: 'grabbing', scale: 1.02 }}
-              >
-                <PropertyCard
-                  property={property}
-                  imageError={imageErrors[property.id] || false}
-                  onImageError={() => setImageErrors(prev => ({ ...prev, [property.id]: true }))}
-                />
-              </motion.div>
-            );
-          })}
-        </AnimatePresence>
+      {/* Carousel container avec scroll-snap natif */}
+      <div
+        ref={scrollRef}
+        onScroll={handleScroll}
+        className="flex overflow-x-auto snap-x snap-mandatory"
+        style={{
+          scrollbarWidth: 'none',
+          msOverflowStyle: 'none',
+          WebkitOverflowScrolling: 'touch',
+        }}
+      >
+        <style jsx>{`
+          div::-webkit-scrollbar {
+            display: none;
+          }
+        `}</style>
+        {properties.map((property) => (
+          <div
+            key={property.id}
+            className="flex-shrink-0 w-full snap-center px-1"
+          >
+            <PropertyCard
+              property={property}
+              imageError={imageErrors[property.id] || false}
+              onImageError={() => setImageErrors(prev => ({ ...prev, [property.id]: true }))}
+            />
+          </div>
+        ))}
       </div>
 
-      {/* Indicateurs de pagination */}
-      <div className="flex justify-center gap-2 mt-6">
+      {/* Indicateurs dots */}
+      <div className="flex justify-center gap-2 mt-4">
         {properties.map((_, idx) => (
           <button
             key={idx}
-            onClick={() => setCurrentIndex(idx)}
+            onClick={() => scrollToIndex(idx)}
             className={`h-2 rounded-full transition-all duration-300 ${
               idx === currentIndex
                 ? 'bg-[#FE8253] w-6'
@@ -197,8 +130,8 @@ export default function SwipeableCards({ properties }: SwipeableCardsProps) {
         ))}
       </div>
 
-      {/* Instruction de swipe */}
-      <p className="text-center text-sm text-gray-400 mt-3 font-['Satoshi']">
+      {/* Instruction */}
+      <p className="text-center text-sm text-gray-400 mt-2 font-['Satoshi']">
         ← Swipe pour découvrir →
       </p>
     </div>
