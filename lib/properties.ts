@@ -61,13 +61,29 @@ export function filterByCity(properties: Property[], quizCity: string): Property
 export interface MatchResult {
   property: Property;
   score: number;
-  matchType: 'exact' | 'type_only' | 'city_only' | 'fallback';
+  matchType: 'exact' | 'type_budget' | 'city_budget' | 'type_city' | 'budget_only' | 'type_only' | 'city_only' | 'fallback';
+}
+
+// Vérifie si un bien est dans le budget (±30% du loyer actuel)
+function isInBudget(property: Property, rent: number): boolean {
+  if (!rent || rent <= 0) return true; // Si pas de loyer renseigné, on ne filtre pas
+
+  // Utiliser monthlyPayment si disponible, sinon estimer depuis le prix
+  const monthlyPayment = property.monthlyPayment && property.monthlyPayment !== ''
+    ? parseFloat(property.monthlyPayment)
+    : property.price / 240; // Estimation sur ~20 ans
+
+  const minBudget = rent * 0.7;  // -30%
+  const maxBudget = rent * 1.3;  // +30%
+
+  return monthlyPayment >= minBudget && monthlyPayment <= maxBudget;
 }
 
 export function findBestMatches(
   properties: Property[],
   quizCity: string | undefined,
-  quizType: string | undefined
+  quizType: string | undefined,
+  quizRent: string | undefined
 ): MatchResult[] {
   const typeMap: Record<string, string[]> = {
     'studio': ['Studio'],
@@ -79,27 +95,42 @@ export function findBestMatches(
 
   const typeKey = quizType?.toLowerCase() || '';
   const cityKey = quizCity?.toLowerCase() || '';
+  const rent = quizRent ? parseFloat(quizRent) : 0;
   const allowedTypes = typeKey ? (typeMap[typeKey] || []) : [];
   const allowedCities = cityKey ? (cityMap[cityKey] || []) : [];
   const isAutreVille = !quizCity || quizCity.toLowerCase() === 'autre';
 
   const results: MatchResult[] = properties.map(property => {
-    const typeMatch = allowedTypes.includes(property.type);
+    const typeMatch = allowedTypes.length > 0 && allowedTypes.includes(property.type);
     const cityMatch = isAutreVille || allowedCities.some(city =>
       property.city.toLowerCase().includes(city.toLowerCase())
     );
+    const budgetMatch = isInBudget(property, rent);
 
     let score = 0;
     let matchType: MatchResult['matchType'] = 'fallback';
 
-    if (typeMatch && cityMatch) {
+    // Scoring avec 3 critères : ville, type, budget
+    if (typeMatch && cityMatch && budgetMatch) {
       score = 100;
       matchType = 'exact';
-    } else if (typeMatch) {
+    } else if (typeMatch && budgetMatch) {
+      score = 80;
+      matchType = 'type_budget';
+    } else if (cityMatch && budgetMatch) {
       score = 70;
+      matchType = 'city_budget';
+    } else if (typeMatch && cityMatch) {
+      score = 60;
+      matchType = 'type_city';
+    } else if (budgetMatch) {
+      score = 50;
+      matchType = 'budget_only';
+    } else if (typeMatch) {
+      score = 40;
       matchType = 'type_only';
     } else if (cityMatch) {
-      score = 50;
+      score = 30;
       matchType = 'city_only';
     } else {
       score = 10;
@@ -120,16 +151,18 @@ export function findBestMatches(
 export function findBestProperty(
   properties: Property[],
   quizCity: string | undefined,
-  quizType: string | undefined
+  quizType: string | undefined,
+  quizRent?: string | undefined
 ): Property | null {
-  console.log('🔍 findBestProperty:', { quizCity, quizType, propertiesCount: properties.length });
+  console.log('🔍 findBestProperty:', { quizCity, quizType, quizRent, propertiesCount: properties.length });
 
-  const matches = findBestMatches(properties, quizCity, quizType);
+  const matches = findBestMatches(properties, quizCity, quizType, quizRent);
 
   console.log('📊 Top matches:', matches.slice(0, 3).map(m => ({
     name: m.property.programmeName,
     city: m.property.city,
     type: m.property.type,
+    price: m.property.price,
     score: m.score,
     matchType: m.matchType
   })));
@@ -148,9 +181,10 @@ export function findBestProperty(
 export function getSortedProperties(
   properties: Property[],
   quizCity: string | undefined,
-  quizType: string | undefined
+  quizType: string | undefined,
+  quizRent?: string | undefined
 ): Property[] {
-  const matches = findBestMatches(properties, quizCity, quizType);
+  const matches = findBestMatches(properties, quizCity, quizType, quizRent);
   return matches.map(m => m.property);
 }
 

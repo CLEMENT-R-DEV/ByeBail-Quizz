@@ -11,13 +11,13 @@ import QuizBackgroundShapes from '@/components/quiz/QuizBackgroundShapes';
 import ChoiceCard from '@/components/quiz/ChoiceCard';
 import ReassuranceSection from '@/components/shared/ReassuranceSection';
 import { storage } from '@/lib/storage';
-import { fetchProperties, findBestProperty, formatPrice, formatDeliveryDate, Property } from '@/lib/properties';
+import { fetchProperties, getSortedProperties, Property } from '@/lib/properties';
+import SwipeableCards from '@/components/congratulations/SwipeableCards';
 
 export default function CongratulationsPage() {
   const [firstName, setFirstName] = useState('');
-  const [property, setProperty] = useState<Property | null>(null);
+  const [properties, setProperties] = useState<Property[]>([]);
   const [loading, setLoading] = useState(true);
-  const [imageError, setImageError] = useState(false);
 
   useEffect(() => {
     const name = storage.getAnswer(2);
@@ -26,12 +26,13 @@ export default function CongratulationsPage() {
     }
 
     // Récupérer et filtrer les biens avec le système intelligent
-    const loadProperty = async () => {
+    const loadProperties = async () => {
       try {
         const city = storage.getAnswer(4); // Ville choisie (question 4)
         const propertyType = storage.getAnswer(8); // Type de logement choisi (question 8)
+        const rent = storage.getAnswer(7); // Loyer actuel (question 7)
 
-        console.log('📋 Quiz answers:', { city, propertyType });
+        console.log('📋 Quiz answers:', { city, propertyType, rent });
 
         const allProperties = await fetchProperties();
         console.log('🏠 Properties loaded:', allProperties.length);
@@ -41,16 +42,12 @@ export default function CongratulationsPage() {
           return;
         }
 
-        // Utiliser le système de matching intelligent
-        const bestMatch = findBestProperty(allProperties, city, propertyType);
+        // Utiliser le système de matching intelligent avec loyer
+        const sortedProperties = getSortedProperties(allProperties, city, propertyType, rent);
+        const top3 = sortedProperties.slice(0, 3);
 
-        if (bestMatch) {
-          console.log('✅ Bien trouvé:', bestMatch.programmeName);
-          setProperty(bestMatch);
-          setImageError(false); // Reset l'erreur d'image pour le nouveau bien
-        } else {
-          console.error('❌ Aucun match trouvé malgré les biens disponibles');
-        }
+        console.log('✅ Top 3 biens:', top3.map(p => p.programmeName));
+        setProperties(top3);
       } catch (error) {
         console.error('❌ Erreur lors du chargement des biens:', error);
       } finally {
@@ -58,7 +55,7 @@ export default function CongratulationsPage() {
       }
     };
 
-    loadProperty();
+    loadProperties();
   }, []);
 
   // Animation confetti au chargement
@@ -150,7 +147,7 @@ export default function CongratulationsPage() {
                 transition={{ delay: 0.5 }}
                 className="self-stretch text-center justify-center text-gray-900 text-base font-normal font-['Satoshi'] leading-5"
               >
-                On t&apos;a trouvé la perle rare{property ? ` à ${property.city}` : ''}
+                On t&apos;a trouvé la perle rare{properties.length > 0 ? ` à ${properties[0].city}` : ''}
               </motion.div>
             </div>
           </motion.div>
@@ -172,46 +169,19 @@ export default function CongratulationsPage() {
             </div>
           )}
 
-          {/* Carte du bien immobilier */}
-          {!loading && property && (
+          {/* Cartes swipeable des biens immobiliers */}
+          {!loading && properties.length > 0 && (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, type: 'spring', stiffness: 300, damping: 25 }}
-              className="w-full bg-white rounded-[18px] mb-5 overflow-hidden shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.04)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5"
             >
-              {/* Image du bien */}
-              <div className="relative w-full h-[200px] lg:h-[280px]">
-                <Image
-                  src={imageError || !property.mainImage ? '/images/pasdimage.webp' : property.mainImage}
-                  alt={property.programmeName}
-                  fill
-                  className="object-cover"
-                  onError={() => setImageError(true)}
-                />
-              </div>
-              {/* Infos du bien */}
-              <div className="p-4 flex flex-col gap-2">
-                <h3 className="text-lg font-semibold text-gray-900 font-['Bricolage_Grotesque']">
-                  {property.programmeName}
-                </h3>
-                <p className="text-sm text-gray-600 font-['Satoshi']">
-                  {property.type} • {property.surface} m² • {property.city}
-                </p>
-                <div className="flex justify-between items-center mt-2">
-                  <span className="text-xl font-bold text-[#FE8253] font-['Bricolage_Grotesque']">
-                    {formatPrice(property.price)}
-                  </span>
-                  <span className="text-sm text-gray-500 font-['Satoshi']">
-                    Livraison {formatDeliveryDate(property.deliveryDate)}
-                  </span>
-                </div>
-              </div>
+              <SwipeableCards properties={properties} />
             </motion.div>
           )}
 
           {/* Bouton Voir tous les résultats */}
-          {!loading && property && (
+          {!loading && properties.length > 0 && (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -228,7 +198,7 @@ export default function CongratulationsPage() {
           )}
 
           {/* Message si aucun bien trouvé */}
-          {!loading && !property && (
+          {!loading && properties.length === 0 && (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
