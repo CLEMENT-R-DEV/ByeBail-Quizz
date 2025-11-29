@@ -49,19 +49,19 @@ export const questions: Question[] = [
       {
         id: 'tours',
         label: 'Tours',
-        image: '/images/tours.svg',
+        image: '/images/Tours.png',
         labelClassName: "text-center text-[#111827] text-base font-medium leading-[110%] font-['Satoshi']",
       },
       {
         id: 'bourg-en-bresse',
         label: 'Bourg-en-Bresse',
-        image: '/images/bourg.svg',
+        image: '/images/bourg-en-bresse.png',
         labelClassName: "text-center text-[#111827] text-base font-medium leading-[110%] font-['Satoshi']",
       },
       {
         id: 'autre',
         label: 'Autre ville',
-        image: '/images/autre-ville.svg',
+        image: '/images/interrogation.png',
         labelClassName: "text-center text-[#111827] text-base font-medium leading-[110%] font-['Satoshi']",
       },
     ],

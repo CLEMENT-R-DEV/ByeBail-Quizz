@@ -265,7 +265,7 @@ export default function QuizQuestionPage() {
                         setCustomCity('');
                       }
                     }}
-                    compactImage={true}
+                    fillImage={true}
                     labelClassName={choice.labelClassName}
                     subtitleClassName={choice.subtitleClassName}
                     index={index}

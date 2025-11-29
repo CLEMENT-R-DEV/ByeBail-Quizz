@@ -16,6 +16,7 @@ interface ChoiceCardProps {
   compactImage?: boolean;
   largeCompactImage?: boolean;
   fitContent?: boolean;
+  fillImage?: boolean; // Image fills container with mask effect (rounded corners)
   labelClassName?: string;
   subtitleClassName?: string;
   index?: number;
@@ -33,6 +34,7 @@ export default function ChoiceCard({
   compactImage = false,
   largeCompactImage = false,
   fitContent = false,
+  fillImage = false,
   labelClassName,
   subtitleClassName,
   index = 0,
@@ -76,8 +78,10 @@ export default function ChoiceCard({
         }}
       >
         <div
-          className={`w-full bg-[#FDFEFF] rounded-lg flex flex-col items-center justify-center gap-[10px] ${
-            fitContent ? 'py-[10px]' : (compactImage || largeCompactImage) ? 'aspect-square' : 'aspect-square lg:aspect-auto lg:h-full'
+          className={`w-full bg-[#FDFEFF] rounded-lg flex flex-col items-center justify-center ${
+            fillImage ? 'gap-2 overflow-hidden py-[10px]' : 'gap-[10px]'
+          } ${
+            fillImage ? '' : fitContent ? 'py-[10px]' : (compactImage || largeCompactImage) ? 'aspect-square' : 'aspect-square lg:aspect-auto lg:h-full'
           }`}
           style={{
             border: '0.8px solid rgba(0, 0, 0, 0.08)',
@@ -85,34 +89,48 @@ export default function ChoiceCard({
           }}
         >
           {/* Image */}
-          <div
-            className={`relative flex-shrink-0 flex justify-center items-center overflow-hidden ${
-              largeCompactImage
-                ? 'w-[120px] h-[80px] lg:w-[172px] lg:h-[115px]'
-                : compactImage
-                ? 'w-[120px] h-[80px]'
-                : 'w-[92px] h-[92px] lg:w-[140px] lg:h-[140px]'
-            }`}
-            style={{
-              background: '#FFFFFF',
-              ...((compactImage || largeCompactImage) && { padding: '6.5px 26.5px' }),
-              ...(!compactImage && !largeCompactImage && { aspectRatio: '1/1' }),
-            }}
-          >
-            <Image
-              src={image}
-              alt={label}
-              fill
-              className="object-contain"
-              sizes={largeCompactImage ? "(min-width: 1024px) 172px, 120px" : compactImage ? "120px" : "(min-width: 1024px) 140px, 92px"}
+          {fillImage ? (
+            // Mode fillImage: l'image remplit le conteneur avec coins arrondis
+            <div className="relative w-full h-[100px] lg:h-[140px] overflow-hidden rounded-lg">
+              <Image
+                src={image}
+                alt={label}
+                fill
+                className="object-cover"
+                sizes="(min-width: 1024px) 250px, 50vw"
+              />
+            </div>
+          ) : (
+            // Mode normal: image dans un conteneur fixe
+            <div
+              className={`relative flex-shrink-0 flex justify-center items-center overflow-hidden ${
+                largeCompactImage
+                  ? 'w-[120px] h-[80px] lg:w-[172px] lg:h-[115px]'
+                  : compactImage
+                  ? 'w-[120px] h-[80px]'
+                  : 'w-[92px] h-[92px] lg:w-[140px] lg:h-[140px]'
+              }`}
               style={{
-                borderRadius: '28px 28px 4px 4px'
+                background: '#FFFFFF',
+                ...((compactImage || largeCompactImage) && { padding: '6.5px 26.5px' }),
+                ...(!compactImage && !largeCompactImage && { aspectRatio: '1/1' }),
               }}
-            />
-          </div>
+            >
+              <Image
+                src={image}
+                alt={label}
+                fill
+                className="object-contain"
+                sizes={largeCompactImage ? "(min-width: 1024px) 172px, 120px" : compactImage ? "120px" : "(min-width: 1024px) 140px, 92px"}
+                style={{
+                  borderRadius: '28px 28px 4px 4px'
+                }}
+              />
+            </div>
+          )}
 
           {/* Label + Subtitle */}
-          <div className="inline-flex flex-col justify-start items-center gap-0.5">
+          <div className={`inline-flex flex-col justify-start items-center gap-0.5 ${fillImage ? 'pb-2' : ''}`}>
             <div className={labelClassName || "text-center justify-center text-gray-900 lg:text-[#111827] text-base lg:text-[22px] font-medium lg:font-medium font-['Satoshi'] leading-4 lg:leading-[110%]"}>
               {label}
             </div>
