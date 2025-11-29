@@ -2,13 +2,11 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 import Script from 'next/script';
 import { motion } from 'framer-motion';
 import confetti from 'canvas-confetti';
 import SimpleHeader from '@/components/quiz/SimpleHeader';
 import QuizBackgroundShapes from '@/components/quiz/QuizBackgroundShapes';
-import ChoiceCard from '@/components/quiz/ChoiceCard';
 import ReassuranceSection from '@/components/shared/ReassuranceSection';
 import { storage } from '@/lib/storage';
 import { fetchProperties, getSortedProperties, Property } from '@/lib/properties';
@@ -180,23 +178,6 @@ export default function CongratulationsPage() {
             </motion.div>
           )}
 
-          {/* Bouton Voir tous les résultats */}
-          {!loading && properties.length > 0 && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.7 }}
-              className="flex justify-center mb-5"
-            >
-              <Link
-                href="/results"
-                className="text-[#FE8253] font-medium font-['Satoshi'] hover:underline cursor-pointer"
-              >
-                Voir tous les résultats →
-              </Link>
-            </motion.div>
-          )}
-
           {/* Message si aucun bien trouvé */}
           {!loading && properties.length === 0 && (
             <motion.div
@@ -210,46 +191,6 @@ export default function CongratulationsPage() {
               </p>
             </motion.div>
           )}
-
-          {/* Cartes - exactement comme la page 13 : sans wrapper motion.div */}
-          <div className="w-full lg:w-[750px] mb-8 grid grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-[18px]">
-            <ChoiceCard
-              id="plan"
-              label="Le Plan"
-              subtitle="Découvre l'agencement de ton futur chez-toi"
-              image="/images/icon158.svg"
-              selected={false}
-              onClick={() => {}}
-              compactImage={true}
-              labelClassName="text-center text-[#111827] text-base font-medium leading-[110%] font-['Satoshi']"
-              subtitleClassName="text-center text-[#111827] text-[12px] font-normal font-['Satoshi'] leading-[110%]"
-              index={0}
-            />
-            <ChoiceCard
-              id="situation"
-              label="La Situation"
-              subtitle="Vois où tu pourrais vivre demain"
-              image="/images/icon157.svg"
-              selected={false}
-              onClick={() => {}}
-              compactImage={true}
-              labelClassName="text-center text-[#111827] text-base font-medium leading-[110%] font-['Satoshi']"
-              subtitleClassName="text-center text-[#111827] text-[12px] font-normal font-['Satoshi'] leading-[110%]"
-              index={1}
-            />
-            <ChoiceCard
-              id="prix"
-              label="Le Prix"
-              subtitle="Combien ça coûte vraiment"
-              image="/images/icon156.svg"
-              selected={false}
-              onClick={() => {}}
-              compactImage={true}
-              labelClassName="text-center text-[#111827] text-base font-medium leading-[110%] font-['Satoshi']"
-              subtitleClassName="text-center text-[#111827] text-[12px] font-normal font-['Satoshi'] leading-[110%]"
-              index={2}
-            />
-          </div>
 
           {/* Carte Call-to-action */}
           <motion.div
