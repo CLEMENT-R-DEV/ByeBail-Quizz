@@ -40,7 +40,14 @@ export default function QuizQuestionPage() {
       return;
     }
 
-    if (question.type === 'text') {
+    if (question.type === 'composite') {
+      // Questions composites : valider via la fonction validation
+      if (question.validation) {
+        setIsValid(question.validation(answer));
+      } else {
+        setIsValid(false);
+      }
+    } else if (question.type === 'text') {
       // Si la question a des subQuestions, vérifier que toutes sont remplies
       if (question.subQuestions && question.subQuestions.length > 0) {
         try {
@@ -84,34 +91,37 @@ export default function QuizQuestionPage() {
     storage.saveAnswer(questionId, answer);
 
     // Navigation
-    if (questionId === 3) {
-      // Après la question 3, aller à l'écran "loyer perdu"
+    if (questionId === 2) {
+      // Après la question 2 (composite: âge + source), aller à la question 3 (ville + loyer)
+      router.push('/quiz/3');
+    } else if (questionId === 3) {
+      // Après la question 3 (ville + loyer), aller à la page loyer-perdu
       router.push('/loyer-perdu');
     } else if (questionId === 4) {
       // Après la question 4, aller à l'écran "apport"
       router.push('/apport');
     } else if (questionId === 5) {
-      // Après la question 5, aller à l'écran "emma"
+      // Après la question 5 (type de logement), aller à la question 6
+      router.push('/quiz/6');
+    } else if (questionId === 6) {
+      // Après la question 6 (seul ou à deux), aller à l'écran "emma"
       router.push('/emma');
     } else if (questionId === 7) {
-      // Après la question 7 (loyer), aller à l'écran de calcul
-      router.push('/calculation');
-    } else if (questionId === 8) {
-      // Après la question 8 (type logement), aller à l'écran d'inflation
+      // Après la question 7 (revenu + statut), aller à l'écran inflation
       router.push('/inflation');
-    } else if (questionId === 9) {
-      // Après la question 9 (email), aller à l'écran de pause vidéo
+    } else if (questionId === 8) {
+      // Après la question 8 (email), aller à l'écran de pause vidéo
       router.push('/video-pause');
-    } else if (questionId === 10) {
-      // Après la question 10 (crédits), navigation conditionnelle selon la réponse
+    } else if (questionId === 9) {
+      // Après la question 9 (crédits), navigation conditionnelle selon la réponse
       if (answer === 'oui') {
-        router.push('/quiz/11');
+        router.push('/quiz/10');
       } else {
-        router.push('/quiz/12');
+        router.push('/quiz/11');
       }
-    } else if (questionId === 11) {
-      // Après la question 11 (type crédit), aller à la question 12
-      router.push('/quiz/12');
+    } else if (questionId === 10) {
+      // Après la question 10 (type crédit), aller à la question 11
+      router.push('/quiz/11');
     } else if (questionId < TOTAL_QUESTIONS) {
       router.push(`/quiz/${questionId + 1}`);
     } else {
@@ -121,6 +131,132 @@ export default function QuizQuestionPage() {
 
   const renderInput = () => {
     switch (question.type) {
+      case 'composite':
+        // Questions composites (plusieurs questions sur même écran)
+        if (question.compositeQuestions && question.compositeQuestions.length > 0) {
+          let answerObj: Record<string, string> = {};
+          try {
+            answerObj = answer ? JSON.parse(answer) : {};
+          } catch {
+            answerObj = {};
+          }
+
+          return (
+            <div className="flex flex-col gap-6">
+              {question.compositeQuestions.map((subQ, index) => {
+                // Parser le texte avec séparateur | pour la dernière partie en gras
+                const textParts = subQ.text.split('|');
+
+                return (
+                  <div key={subQ.key} className="flex flex-col gap-4">
+                    {/* Titre de la sous-question */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4, delay: index * 0.1 }}
+                      className="flex flex-col gap-1"
+                      style={{ fontFamily: 'var(--font-inter-tight)' }}
+                    >
+                      {subQ.titleText && (
+                        <span
+                          style={{
+                            color: '#4A4543',
+                            fontSize: '22px',
+                            fontWeight: 400,
+                            lineHeight: '110%',
+                            letterSpacing: '-0.66px',
+                          }}
+                        >
+                          {subQ.titleText}
+                        </span>
+                      )}
+                      {textParts[1] && (
+                        <span
+                          style={{
+                            color: '#2D2A26',
+                            fontSize: '28px',
+                            fontWeight: 600,
+                            lineHeight: '110%',
+                            letterSpacing: '-0.84px',
+                          }}
+                        >
+                          {textParts[1]}
+                        </span>
+                      )}
+                      {textParts[0] && (
+                        <span
+                          className="whitespace-pre-line"
+                          style={{
+                            color: '#4A4543',
+                            fontSize: '22px',
+                            fontWeight: 400,
+                            lineHeight: '110%',
+                            letterSpacing: '-0.66px',
+                          }}
+                        >
+                          {textParts[0]}
+                        </span>
+                      )}
+                    </motion.div>
+
+                    {/* Input selon le type */}
+                    {subQ.inputType === 'text' && (
+                      <TextInput
+                        value={answerObj[subQ.key] || ''}
+                        onChange={(val) => {
+                          const newAnswer = { ...answerObj, [subQ.key]: val };
+                          setAnswer(JSON.stringify(newAnswer));
+                        }}
+                        placeholder={subQ.placeholder || ''}
+                        type="text"
+                      />
+                    )}
+                    {subQ.inputType === 'select' && subQ.choices && (
+                      <SelectInput
+                        value={answerObj[subQ.key] || ''}
+                        onChange={(val) => {
+                          const newAnswer = { ...answerObj, [subQ.key]: val };
+                          setAnswer(JSON.stringify(newAnswer));
+                        }}
+                        placeholder={subQ.placeholder || 'Sélectionner'}
+                        options={subQ.choices.map(c => ({ id: c.id, label: c.label }))}
+                      />
+                    )}
+
+                    {/* Badge orange */}
+                    {subQ.infoBadge && (
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.3 }}
+                        className="inline-flex justify-center items-center self-center"
+                        style={{
+                          padding: '8px 16px',
+                          borderRadius: '50px',
+                          border: '1px solid #AC6F53',
+                          background: 'linear-gradient(173deg, #F6B292 -0.82%, #D0805B 52.13%)',
+                        }}
+                      >
+                        <span style={{
+                          color: '#FFE6DA',
+                          fontFamily: 'var(--font-inter-tight)',
+                          fontSize: '14px',
+                          fontWeight: 500,
+                          lineHeight: '100%',
+                          letterSpacing: '-0.28px',
+                        }}>
+                          {subQ.infoBadge}
+                        </span>
+                      </motion.div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          );
+        }
+        return null;
+
       case 'text':
         // Si la question a plusieurs inputs (multi-inputs)
         if (question.inputs && question.inputs.length > 0) {
@@ -131,20 +267,99 @@ export default function QuizQuestionPage() {
             answerObj = {};
           }
 
+          // Parser le texte avec séparateur | pour la dernière partie en gras
+          const textParts = question.text.split('|');
+
           return (
-            <div className="flex flex-col gap-4">
-              {question.inputs.map((input) => (
-                <TextInput
-                  key={input.key}
-                  value={answerObj[input.key] || ''}
-                  onChange={(val) => {
-                    const newAnswer = { ...answerObj, [input.key]: val };
-                    setAnswer(JSON.stringify(newAnswer));
+            <div className="flex flex-col gap-6">
+              {/* Titre stylisé pour question 1 */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4 }}
+                className="flex flex-col gap-1"
+                style={{ fontFamily: 'var(--font-inter-tight)' }}
+              >
+                {question.titleText && (
+                  <span
+                    style={{
+                      color: '#4A4543',
+                      fontSize: '22px',
+                      fontWeight: 400,
+                      lineHeight: '110%',
+                      letterSpacing: '-0.66px',
+                    }}
+                  >
+                    {question.titleText}
+                  </span>
+                )}
+                {textParts[0] && (
+                  <span
+                    style={{
+                      color: '#4A4543',
+                      fontSize: '22px',
+                      fontWeight: 400,
+                      lineHeight: '110%',
+                      letterSpacing: '-0.66px',
+                    }}
+                  >
+                    {textParts[0]}
+                  </span>
+                )}
+                {textParts[1] && (
+                  <span
+                    style={{
+                      color: '#2D2A26',
+                      fontSize: '28px',
+                      fontWeight: 600,
+                      lineHeight: '110%',
+                      letterSpacing: '-0.84px',
+                    }}
+                  >
+                    {textParts[1]}
+                  </span>
+                )}
+              </motion.div>
+
+              {/* Inputs */}
+              <div className="flex flex-col gap-4">
+                {question.inputs.map((input) => (
+                  <TextInput
+                    key={input.key}
+                    value={answerObj[input.key] || ''}
+                    onChange={(val) => {
+                      const newAnswer = { ...answerObj, [input.key]: val };
+                      setAnswer(JSON.stringify(newAnswer));
+                    }}
+                    placeholder={input.placeholder}
+                    type={input.type || 'text'}
+                  />
+                ))}
+              </div>
+
+              {/* Info text */}
+              {question.infoText && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 }}
+                  style={{
+                    fontFamily: 'var(--font-inter-tight)',
+                    color: '#7A7572',
+                    fontSize: '14px',
+                    fontWeight: 400,
+                    lineHeight: '140%',
+                    letterSpacing: '-0.42px',
                   }}
-                  placeholder={input.placeholder}
-                  type={input.type || 'text'}
-                />
-              ))}
+                >
+                  {question.infoText.split('\n').map((line, i) => (
+                    <span key={i}>
+                      {line}
+                      {i < question.infoText!.split('\n').length - 1 && <br />}
+                    </span>
+                  ))}
+                </motion.div>
+              )}
             </div>
           );
         }
@@ -331,9 +546,9 @@ export default function QuizQuestionPage() {
         const inputType = questionId === 2 || question.placeholder?.includes('email') || question.placeholder?.includes('@') ? 'text' : 'number';
 
         return (
-          <div className={questionId === 9 ? 'lg:flex lg:flex-col lg:gap-5' : ''}>
-            {/* Input sur mobile uniquement pour question 9 (email) */}
-            {questionId === 9 && (
+          <div className={questionId === 8 ? 'lg:flex lg:flex-col lg:gap-5' : ''}>
+            {/* Input sur mobile uniquement pour question 8 (email) */}
+            {questionId === 8 && (
               <div className="lg:hidden">
                 <TextInput
                   value={answer}
@@ -344,8 +559,8 @@ export default function QuizQuestionPage() {
               </div>
             )}
 
-            {/* Input pour question 9 sur desktop */}
-            {questionId === 9 && (
+            {/* Input pour question 8 sur desktop */}
+            {questionId === 8 && (
               <div className="hidden lg:flex lg:justify-end">
                 <TextInput
                   value={answer}
@@ -356,8 +571,8 @@ export default function QuizQuestionPage() {
               </div>
             )}
 
-            {/* Texte informatif pour la question 9 (email) (desktop uniquement) - après l'input */}
-            {questionId === 9 && (
+            {/* Texte informatif pour la question 8 (email) (desktop uniquement) - après l'input */}
+            {questionId === 8 && (
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -374,8 +589,8 @@ export default function QuizQuestionPage() {
               </motion.div>
             )}
 
-            {/* Texte informatif pour la question 9 sur mobile */}
-            {questionId === 9 && (
+            {/* Texte informatif pour la question 8 sur mobile */}
+            {questionId === 8 && (
               <motion.p
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -389,7 +604,7 @@ export default function QuizQuestionPage() {
             )}
 
             {/* Input pour les autres questions */}
-            {questionId !== 9 && (
+            {questionId !== 8 && (
               <TextInput
                 value={answer}
                 onChange={setAnswer}
@@ -414,8 +629,72 @@ export default function QuizQuestionPage() {
         // Choisir le composant selon le choiceStyle
         const ChoiceComponent = question.choiceStyle === 'image' ? ImageChoice : ChoiceCard;
 
-        // Pour la question 5, disposition 1x2 (2 cartes sans images sur une ligne)
+        // Pour la question 5 (type de logement), disposition 2x2 avec image de fond
         if (questionId === 5) {
+          return (
+            <div className="w-full grid grid-cols-2 gap-2">
+              {question.choices?.map((choice, index) => {
+                const isSelected = answer === choice.id;
+                return (
+                  <motion.div
+                    key={choice.id}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3, delay: index * 0.05 }}
+                    onClick={() => setAnswer(choice.id)}
+                    className="cursor-pointer flex items-center justify-center"
+                    style={{
+                      height: '78px',
+                      borderRadius: '16px',
+                      background: isSelected ? '#C9B89D' : 'rgba(254, 242, 242, 0.5)',
+                      boxShadow: '0px 0px 17.1px 0px rgba(210, 182, 143, 0.24)',
+                      outline: isSelected ? 'none' : '1px solid rgba(255, 255, 255, 0.25)',
+                      outlineOffset: '-1px',
+                    }}
+                  >
+                    <motion.div
+                      className="flex items-center justify-center"
+                      transition={{ duration: 0.2, ease: 'easeInOut' }}
+                    >
+                      <motion.span
+                        style={{
+                          fontFamily: 'var(--font-inter-tight)',
+                          fontSize: '18px',
+                          fontWeight: 500,
+                          lineHeight: '20px',
+                          color: isSelected ? '#FFFFFF' : '#737373',
+                        }}
+                      >
+                        {choice.label}
+                      </motion.span>
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0.5, width: 0, marginLeft: 0 }}
+                        animate={{
+                          opacity: isSelected ? 1 : 0,
+                          scale: isSelected ? 1 : 0.5,
+                          width: isSelected ? 24 : 0,
+                          marginLeft: isSelected ? 10 : 0,
+                        }}
+                        transition={{ duration: 0.2, ease: 'easeInOut' }}
+                        style={{ overflow: 'hidden' }}
+                      >
+                        <Image
+                          src="/images/SVG_valide.svg"
+                          alt=""
+                          width={24}
+                          height={24}
+                        />
+                      </motion.div>
+                    </motion.div>
+                  </motion.div>
+                );
+              })}
+            </div>
+          );
+        }
+
+        // Pour la question 6 (seul ou à deux), disposition 1x2 (2 cartes sur une ligne)
+        if (questionId === 6) {
           return (
             <div
               className="w-full grid grid-cols-2 gap-[8px]"
@@ -443,8 +722,8 @@ export default function QuizQuestionPage() {
         }
 
         // Pour les autres questions
-        // Question 11 : 4 cartes sur une seule ligne en desktop (type de crédit)
-        if (questionId === 11) {
+        // Question 10 : 4 cartes sur une seule ligne en desktop (type de crédit)
+        if (questionId === 10) {
           return (
             <div className={`w-full lg:w-[750px] grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-[18px]`}>
               {question.choices?.map((choice, index) => (
@@ -467,8 +746,8 @@ export default function QuizQuestionPage() {
           );
         }
 
-        // Question 10 : 2 cartes avec largeCompactImage (crédits oui/non)
-        if (questionId === 10) {
+        // Question 9 : 2 cartes avec largeCompactImage (crédits oui/non)
+        if (questionId === 9) {
           return (
             <div className={`w-full lg:w-[750px] grid grid-cols-2 gap-2 lg:gap-[18px]`}>
               {question.choices?.map((choice, index) => (
@@ -491,8 +770,8 @@ export default function QuizQuestionPage() {
           );
         }
 
-        // Question 12 : 3 cartes avec compactImage (apport)
-        if (questionId === 12) {
+        // Question 11 : 3 cartes avec compactImage (apport)
+        if (questionId === 11) {
           return (
             <div className={`w-full lg:w-[750px] grid grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-[18px]`}>
               {question.choices?.map((choice, index) => (
@@ -571,7 +850,26 @@ export default function QuizQuestionPage() {
 
         {/* Image de fond par-dessus le logo (si définie) */}
         {question.backgroundImage && questionId === 5 ? (
-          /* Question 5 : rings.svg positionné en haut à droite, visible sous les cartes */
+          /* Question 5 (type logement) : appart.svg positionné en bas, pleine largeur */
+          <div
+            className="absolute pointer-events-none z-0 w-full overflow-hidden"
+            style={{
+              height: '431px',
+              left: '0',
+              top: '225px',
+              background: 'transparent',
+            }}
+          >
+            <Image
+              src={question.backgroundImage}
+              alt=""
+              fill
+              className="object-cover object-top"
+              style={{ background: 'transparent' }}
+            />
+          </div>
+        ) : question.backgroundImage && questionId === 6 ? (
+          /* Question 6 (seul/à deux) : rings.svg positionné en haut à droite */
           <div
             className="absolute pointer-events-none z-10"
             style={{
@@ -606,28 +904,21 @@ export default function QuizQuestionPage() {
 
           {/* Contenu central - flex-1 pour prendre l'espace disponible */}
           <div className="flex-1 flex flex-col justify-start items-start gap-4">
-            {/* Question bubble - masqué pour les questions avec subQuestions (chaque sous-question a son propre titre) */}
-            {!(question.subQuestions && question.subQuestions.length > 0) && (
+            {/* Question bubble - masqué pour les questions avec subQuestions, inputs ou compositeQuestions (elles ont leur propre titre) */}
+            {!(question.subQuestions && question.subQuestions.length > 0) &&
+             !(question.inputs && question.inputs.length > 0) &&
+             !(question.compositeQuestions && question.compositeQuestions.length > 0) && (
               <QuestionBubble
                 questionNumber={questionId}
                 text={question.text}
                 titleText={question.titleText}
-                infoText={question.inputs && question.inputs.length > 0 ? undefined : question.infoText}
+                infoText={question.infoText}
               />
             )}
 
             {/* Input field */}
             <div className="w-full">{renderInput()}</div>
 
-            {/* InfoText après les inputs pour les questions multi-inputs */}
-            {question.inputs && question.inputs.length > 0 && question.infoText && (
-              <div
-                className="self-stretch text-neutral-500 text-sm font-normal leading-5 whitespace-pre-line"
-                style={{ fontFamily: 'var(--font-inter)' }}
-              >
-                {question.infoText}
-              </div>
-            )}
           </div>
 
           {/* Continue button - caché pour les questions choice tant qu'aucune sélection */}

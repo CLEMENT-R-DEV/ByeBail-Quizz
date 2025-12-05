@@ -48,29 +48,39 @@ export default function SelectInput({
     <div ref={containerRef} className="relative w-full lg:w-[388px]">
       <div
         onClick={handleToggle}
-        className="w-full h-14 lg:h-[77px] p-2.5 lg:px-[18px] bg-white rounded-2xl outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 flex justify-center items-center gap-2.5 cursor-pointer"
+        className="w-full h-[72px] p-4 rounded-[18px] border border-white/10 flex justify-center items-center gap-2.5 cursor-pointer backdrop-blur-md"
+        style={{ background: 'rgba(250, 245, 241, 0.85)' }}
       >
         <div
-          className="flex-1 justify-center text-sm lg:text-lg font-normal font-['Satoshi'] leading-4 lg:leading-[110%]"
+          className="flex-1 justify-center font-medium"
           style={{
-            color: value ? '#111827' : 'rgba(17, 24, 39, 0.40)'
+            fontFamily: 'var(--font-inter-tight)',
+            fontSize: '18px',
+            fontWeight: 500,
+            lineHeight: '110%',
+            color: value ? '#1C1917' : '#7A7572'
           }}
         >
           {selectedOption ? selectedOption.label : placeholder}
         </div>
 
-        {/* Icône chevron vers le bas */}
-        <div className="h-full px-1 flex items-center">
-          <div
-            className="relative w-2 h-[5px] transition-transform"
-            style={{
-              transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)'
-            }}
-          >
+        {/* Icônes up/down */}
+        <div className="flex flex-col items-center justify-center gap-1">
+          <div className="p-1">
             <Image
-              src="/images/CaretDown.svg"
-              alt="Ouvrir"
-              fill
+              src="/images/VectorUp.svg"
+              alt=""
+              width={8}
+              height={5}
+              className="object-contain"
+            />
+          </div>
+          <div className="p-1">
+            <Image
+              src="/images/VectorDown.svg"
+              alt=""
+              width={8}
+              height={5}
               className="object-contain"
             />
           </div>

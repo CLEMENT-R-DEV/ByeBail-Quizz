@@ -1,65 +1,137 @@
 import { Question } from './types';
 
-export const TOTAL_QUESTIONS = 12;
+export const TOTAL_QUESTIONS = 11;
 
 export const questions: Question[] = [
   {
     id: 1,
     type: 'text',
-    text: "On t'a déjà dit que tu faisais plus jeune que ton âge ? D'ailleurs, t'as quel âge ?",
-    placeholder: 'Ton age',
+    titleText: "Bonjour, nous c'est ByeBail.",
+    text: "On t'aide à devenir propriétaire pour le même prix que ton loyer.|Et toi c'est comment ?",
+    inputs: [
+      { key: 'nom', placeholder: 'Nom...', type: 'text' },
+      { key: 'prenom', placeholder: 'Prénom...', type: 'text' },
+      { key: 'email', placeholder: 'Email...', type: 'email' },
+    ],
+    infoText: "Promis on ne te spam pas, on ne rend pas t'es infos.\nC'est juste pour t'envoyer tes propositions ?",
     validation: (value: string) => {
-      const age = parseInt(value, 10);
-      return !isNaN(age) && age > 0 && age < 150;
+      try {
+        const obj = JSON.parse(value);
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return obj.nom?.trim().length > 0 &&
+               obj.prenom?.trim().length > 0 &&
+               emailRegex.test(obj.email || '');
+      } catch {
+        return false;
+      }
     },
   },
   {
     id: 2,
-    type: 'text',
-    text: 'Nous c\'est Byebail, et toi c\'est comment ?',
-    placeholder: 'Ton prénom',
+    type: 'composite',
+    text: '',
+    compositeQuestions: [
+      {
+        key: 'age',
+        titleText: "On t'a déjà dit que",
+        text: "tu faisais plus jeune que ton âge ?|D'ailleurs, t'as quel âge ?",
+        inputType: 'text',
+        placeholder: "J'ai ... ans",
+      },
+      {
+        key: 'source',
+        titleText: "On est content de faire ta connaissance !",
+        text: "|Et au fait, tu nous as connu comment ?",
+        inputType: 'select',
+        placeholder: 'TikTok',
+        choices: [
+          { id: 'insta', label: 'Insta' },
+          { id: 'tiktok', label: 'Tiktok' },
+          { id: 'facebook', label: 'Facebook' },
+          { id: 'affichage', label: 'Affichage' },
+          { id: 'tele', label: 'Télé' },
+          { id: 'youtube', label: 'Youtube' },
+          { id: 'bouche_a_oreille', label: 'Bouche à oreille' },
+          { id: 'autres', label: 'Autres' },
+        ],
+      },
+    ],
     validation: (value: string) => {
-      return value.trim().length > 0;
+      try {
+        const obj = JSON.parse(value);
+        const age = parseInt(obj.age, 10);
+        return !isNaN(age) && age > 0 && age < 150 && obj.source?.trim().length > 0;
+      } catch {
+        return false;
+      }
     },
   },
   {
     id: 3,
-    type: 'select',
-    text: 'On est content de te faire ta connaissance, et au fait tu nous a connu comment ?',
-    placeholder: 'Select',
-    choices: [
-      { id: 'insta', label: 'Insta', image: '' },
-      { id: 'tiktok', label: 'Tiktok', image: '' },
-      { id: 'facebook', label: 'Facebook', image: '' },
-      { id: 'affichage', label: 'Affichage', image: '' },
-      { id: 'tele', label: 'Télé', image: '' },
-      { id: 'youtube', label: 'Youtube', image: '' },
-      { id: 'bouche_a_oreille', label: 'Bouche à oreille', image: '' },
-      { id: 'autres', label: 'Autres', image: '' },
+    type: 'composite',
+    text: '',
+    compositeQuestions: [
+      {
+        key: 'ville',
+        text: "|Tu vis où ?",
+        inputType: 'text',
+        placeholder: "J'habite à...",
+      },
+      {
+        key: 'loyer',
+        text: "ou combien tu pourrais\nmettre par mois ?|Et tu payes combien de loyer ?",
+        inputType: 'text',
+        placeholder: "...€ par mois",
+        infoBadge: "Bonne nouvelle on a XXX biens autour de XXX ville !",
+      },
     ],
     validation: (value: string) => {
-      return value.trim().length > 0;
+      try {
+        const obj = JSON.parse(value);
+        const loyer = parseFloat(obj.loyer);
+        return obj.ville?.trim().length > 0 && !isNaN(loyer) && loyer >= 0;
+      } catch {
+        return false;
+      }
     },
   },
   {
     id: 4,
+    type: 'text',
+    titleText: "Quel budget peux-tu mettre\npour l'apport ?",
+    text: "Cela nous permet de te proposer plus\nde possibilités.",
+    placeholder: '...€ par mois',
+    validation: (value: string) => {
+      const montant = parseFloat(value);
+      return !isNaN(montant) && montant >= 0;
+    },
+  },
+  {
+    id: 5,
     type: 'choice',
-    text: "Ne crois pas que je te drague, mais...|t'es en couple ou pas ?",
+    text: 'Tu cherches quel type de logement ?',
+    backgroundImage: '/images/appart.svg',
     choices: [
       {
-        id: 'couple',
-        label: 'En couple',
-        image: '/images/image110.svg',
+        id: 'studio',
+        label: 'Studio',
       },
       {
-        id: 'single',
-        label: 'Célibataire',
-        image: '/images/image123.svg',
+        id: 't2',
+        label: 'T2',
+      },
+      {
+        id: 't3',
+        label: 'T3',
+      },
+      {
+        id: 't4',
+        label: 'T4',
       },
     ],
   },
   {
-    id: 5,
+    id: 6,
     type: 'choice',
     text: "Tu achète seul ou à deux ?",
     backgroundImage: '/images/rings.svg',
@@ -75,7 +147,7 @@ export const questions: Question[] = [
     ],
   },
   {
-    id: 6,
+    id: 7,
     type: 'text',
     text: 'Quel est le revenu net mensuel de ton foyer ?',
     placeholder: '...€',
@@ -94,17 +166,7 @@ export const questions: Question[] = [
         ],
       },
     ],
-    infoText: "Ces infos restent 100% confidentielles. Promis, on est pas des boulets.",
-    validation: (value: string) => {
-      const montant = parseFloat(value);
-      return !isNaN(montant) && montant >= 0;
-    },
-  },
-  {
-    id: 7,
-    type: 'text',
-    text: 'On rentre dans le vif du sujet : tu payes combien de loyer ? (ou tu vis encore chez maman 😅)',
-    placeholder: 'Montant du loyer',
+    infoText: "Ces infos restent 100% confidentielles.\nPromis, on est pas des boulets.",
     validation: (value: string) => {
       const montant = parseFloat(value);
       return !isNaN(montant) && montant >= 0;
@@ -112,51 +174,6 @@ export const questions: Question[] = [
   },
   {
     id: 8,
-    type: 'choice',
-    text: 'Tu cherches quel type de logement ?',
-    choices: [
-      {
-        id: 'studio',
-        label: 'Studio',
-        image: '/images/studio.svg',
-        labelClassName: "text-center text-[#111827] text-base font-medium leading-[110%] font-['Satoshi']",
-      },
-      {
-        id: 't1',
-        label: 'T1',
-        subtitle: 'Cuisine séparée',
-        image: '/images/t1.svg',
-        labelClassName: "text-center text-[#111827] text-base font-medium leading-[110%] font-['Satoshi']",
-        subtitleClassName: "text-center text-[rgba(17,24,39,0.60)] text-sm font-medium leading-[110%] font-['Satoshi']",
-      },
-      {
-        id: 't2',
-        label: 'T2',
-        subtitle: '1 chambre + 1 salon',
-        image: '/images/t2.svg',
-        labelClassName: "text-center text-[#111827] text-base font-medium leading-[110%] font-['Satoshi']",
-        subtitleClassName: "text-center text-[rgba(17,24,39,0.60)] text-sm font-medium leading-[110%] font-['Satoshi']",
-      },
-      {
-        id: 't3',
-        label: 'T3',
-        subtitle: '2 chambres + 1 salon',
-        image: '/images/t3.svg',
-        labelClassName: "text-center text-[#111827] text-base font-medium leading-[110%] font-['Satoshi']",
-        subtitleClassName: "text-center text-[rgba(17,24,39,0.60)] text-sm font-medium leading-[110%] font-['Satoshi']",
-      },
-      {
-        id: 't4+',
-        label: 'T4+',
-        subtitle: '3 chambres + 1 salon',
-        image: '/images/t4+.svg',
-        labelClassName: "text-center text-[#111827] text-base font-medium leading-[110%] font-['Satoshi']",
-        subtitleClassName: "text-center text-[rgba(17,24,39,0.60)] text-sm font-medium leading-[110%] font-['Satoshi']",
-      },
-    ],
-  },
-  {
-    id: 9,
     type: 'text',
     titleText: 'OK, on rentre dans le vif du sujet.',
     text: "Pour te montrer tes appartements personnalisés, j'ai besoin de ton email.",
@@ -168,7 +185,7 @@ export const questions: Question[] = [
     },
   },
   {
-    id: 10,
+    id: 9,
     type: 'choice',
     titleText: 'Dernières questions, promis.',
     text: 'Tu as déjà des crédits en cours ?',
@@ -186,7 +203,7 @@ export const questions: Question[] = [
     ],
   },
   {
-    id: 11,
+    id: 10,
     type: 'choice',
     titleText: 'OK, et c\'est quoi exactement ?',
     text: 'Auto, conso, étudiant, immo ?',
@@ -218,7 +235,7 @@ export const questions: Question[] = [
     ],
   },
   {
-    id: 12,
+    id: 11,
     type: 'choice',
     titleText: 'Dernière question !',
     text: "T'as un peu d'apport de côté, ou c'est plutôt \"pâtes au beurre\" en fin de mois ?",

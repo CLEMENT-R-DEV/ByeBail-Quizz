@@ -13,7 +13,7 @@ export default function EmmaPage() {
   };
 
   const handleContinue = () => {
-    router.push('/quiz/6');
+    router.push('/quiz/7');
   };
 
   return (

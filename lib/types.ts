@@ -1,4 +1,4 @@
-export type QuestionType = 'text' | 'choice' | 'select';
+export type QuestionType = 'text' | 'choice' | 'select' | 'composite';
 
 export interface InputField {
   key: string;
@@ -13,6 +13,16 @@ export interface SubQuestion {
   inputType: 'text' | 'select' | 'pills';
   placeholder?: string;
   textInputType?: 'text' | 'email' | 'number';
+  choices?: { id: string; label: string }[];
+  infoBadge?: string; // Badge orange affiché après l'input
+}
+
+export interface CompositeQuestion {
+  key: string;
+  titleText?: string;
+  text: string;
+  inputType: 'text' | 'select';
+  placeholder?: string;
   choices?: { id: string; label: string }[];
   infoBadge?: string; // Badge orange affiché après l'input
 }
@@ -36,6 +46,7 @@ export interface Question {
   placeholder?: string; // pour input text
   inputs?: InputField[]; // pour questions avec plusieurs champs
   subQuestions?: SubQuestion[]; // pour questions avec plusieurs sous-questions
+  compositeQuestions?: CompositeQuestion[]; // pour questions composites (plusieurs questions sur même écran)
   choices?: Choice[]; // pour choix multiples
   choiceStyle?: 'card' | 'image'; // style des choix: card (avec bordure) ou image (seulement l'image)
   backgroundImage?: string; // image de fond pour la question (par-dessus le logo)
