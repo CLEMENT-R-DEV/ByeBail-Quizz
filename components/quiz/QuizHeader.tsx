@@ -10,6 +10,21 @@ interface QuizHeaderProps {
   showProgress?: boolean;
 }
 
+const getProgressMessage = (questionId: number, percentage: number): string => {
+  const messages: Record<number, string> = {
+    1: `Premier pas ! ${percentage}% de ton futur appart`,
+    2: `${percentage}% déjà, ça avance bien`,
+    3: `${percentage}% ! On parle de ton quartier`,
+    4: `Presque la moitié, ${percentage}% du chemin`,
+    5: `${percentage}% ! T'es au-delà de la moitié`,
+    6: `Les deux tiers ! ${percentage}% de ton projet`,
+    7: `${percentage}% ! La fin approche`,
+    8: `Plus qu'une ! ${percentage}% de ton futur appart`,
+    9: `Fini ! ${percentage}% vers ton nouveau chez-toi`,
+  };
+  return messages[questionId] || `${percentage}% de ton futur appart`;
+};
+
 export default function QuizHeader({ currentQuestion, showProgress = true }: QuizHeaderProps) {
   const router = useRouter();
 
@@ -73,7 +88,7 @@ export default function QuizHeader({ currentQuestion, showProgress = true }: Qui
               letterSpacing: '-0.12px',
             }}
           >
-            Bravo, t&apos;es à {progressPercentage}% de ton futur appartement
+            {getProgressMessage(currentQuestion, progressPercentage)}
           </div>
 
           {/* Segments de progression */}

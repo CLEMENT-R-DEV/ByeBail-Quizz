@@ -12,7 +12,7 @@ export interface Property {
   mainImage: string;
 }
 
-const API_URL = 'https://images.braumanandk.com/lot-byebail.json';
+const API_URL = '/api/properties';
 
 export async function fetchProperties(): Promise<Property[]> {
   const response = await fetch(API_URL);

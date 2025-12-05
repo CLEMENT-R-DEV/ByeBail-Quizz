@@ -35,15 +35,15 @@ export const questions: Question[] = [
         key: 'age',
         titleText: "On t'a déjà dit que",
         text: "tu faisais plus jeune que ton âge ?|D'ailleurs, t'as quel âge ?",
-        inputType: 'text',
-        placeholder: "J'ai ... ans",
+        inputType: 'money',
+        placeholder: "25",
+        suffix: 'ans',
       },
       {
         key: 'source',
         titleText: "On est content de faire ta connaissance !",
         text: "|Et au fait, tu nous as connu comment ?",
-        inputType: 'select',
-        placeholder: 'TikTok',
+        inputType: 'pills',
         choices: [
           { id: 'insta', label: 'Insta' },
           { id: 'tiktok', label: 'Tiktok' },
@@ -80,9 +80,9 @@ export const questions: Question[] = [
       {
         key: 'loyer',
         text: "ou combien tu pourrais\nmettre par mois ?|Et tu payes combien de loyer ?",
-        inputType: 'text',
-        placeholder: "...€ par mois",
-        infoBadge: "Bonne nouvelle on a XXX biens autour de XXX ville !",
+        inputType: 'money',
+        placeholder: "1200",
+        suffix: '€/mois',
       },
     ],
     validation: (value: string) => {
@@ -100,7 +100,9 @@ export const questions: Question[] = [
     type: 'text',
     titleText: "Quel budget peux-tu mettre\npour l'apport ?",
     text: "Cela nous permet de te proposer plus\nde possibilités.",
-    placeholder: '...€ par mois',
+    inputType: 'money',
+    suffix: '€/mois',
+    placeholder: '',
     validation: (value: string) => {
       const montant = parseFloat(value);
       return !isNaN(montant) && montant >= 0;

@@ -21,8 +21,9 @@ export interface CompositeQuestion {
   key: string;
   titleText?: string;
   text: string;
-  inputType: 'text' | 'select' | 'city-search';
+  inputType: 'text' | 'select' | 'city-search' | 'money' | 'pills';
   placeholder?: string;
+  suffix?: string; // Pour les inputs money (€, €/mois)
   choices?: { id: string; label: string }[];
   infoBadge?: string; // Badge orange affiché après l'input
 }
@@ -44,6 +45,8 @@ export interface Question {
   titleText?: string; // titre optionnel pour la question (style différent)
   infoText?: string; // texte d'information en vert sous la question
   placeholder?: string; // pour input text
+  inputType?: 'text' | 'money'; // type d'input pour questions text
+  suffix?: string; // suffix pour MoneyInput (€, €/mois)
   inputs?: InputField[]; // pour questions avec plusieurs champs
   subQuestions?: SubQuestion[]; // pour questions avec plusieurs sous-questions
   compositeQuestions?: CompositeQuestion[]; // pour questions composites (plusieurs questions sur même écran)

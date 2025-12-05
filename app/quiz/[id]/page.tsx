@@ -9,11 +9,13 @@ import QuestionBubble from '@/components/quiz/QuestionBubble';
 import TextInput from '@/components/quiz/TextInput';
 import SelectInput from '@/components/quiz/SelectInput';
 import CitySearchInput from '@/components/quiz/CitySearchInput';
+import MoneyInput from '@/components/quiz/MoneyInput';
 import ChoiceCard from '@/components/quiz/ChoiceCard';
 import ImageChoice from '@/components/quiz/ImageChoice';
 import ContinueButton from '@/components/quiz/ContinueButton';
 import { questions, TOTAL_QUESTIONS } from '@/lib/questions';
 import { storage } from '@/lib/storage';
+import { fetchProperties } from '@/lib/properties';
 
 export default function QuizQuestionPage() {
   const router = useRouter();
@@ -22,8 +24,24 @@ export default function QuizQuestionPage() {
 
   const [answer, setAnswer] = useState('');
   const [isValid, setIsValid] = useState(false);
+  const [propertyCounts, setPropertyCounts] = useState<Record<string, number>>({});
 
   const question = questions.find((q) => q.id === questionId);
+
+  // Fetch property counts for question 3 (city)
+  useEffect(() => {
+    if (questionId === 3) {
+      fetchProperties().then(properties => {
+        const counts: Record<string, number> = {};
+        properties.forEach(p => {
+          counts[p.city] = (counts[p.city] || 0) + 1;
+        });
+        setPropertyCounts(counts);
+      }).catch(err => {
+        console.error('Error fetching properties:', err);
+      });
+    }
+  }, [questionId]);
 
   // Charger la réponse sauvegardée si elle existe
   useEffect(() => {
@@ -233,14 +251,123 @@ export default function QuizQuestionPage() {
                       />
                     )}
                     {subQ.inputType === 'city-search' && (
-                      <CitySearchInput
+                      <>
+                        <CitySearchInput
+                          value={answerObj[subQ.key] || ''}
+                          onChange={(val) => {
+                            const newAnswer = { ...answerObj, [subQ.key]: val };
+                            setAnswer(JSON.stringify(newAnswer));
+                          }}
+                          placeholder={subQ.placeholder || 'Rechercher une ville...'}
+                        />
+                        {/* Badge dynamique selon la ville */}
+                        {(() => {
+                          const selectedCity = answerObj[subQ.key];
+                          const AVAILABLE_CITIES = ['Tours', 'Bourg-en-Bresse'];
+                          const isAvailableCity = AVAILABLE_CITIES.includes(selectedCity);
+
+                          if (!selectedCity) return null;
+
+                          return isAvailableCity && propertyCounts[selectedCity] ? (
+                            // UNIQUEMENT Tours ou Bourg-en-Bresse
+                            <motion.div
+                              initial={{ opacity: 0, scale: 0.9 }}
+                              animate={{ opacity: 1, scale: 1 }}
+                              transition={{ delay: 0.3 }}
+                              className="inline-flex justify-center items-center self-center"
+                              style={{
+                                padding: '8px 16px',
+                                borderRadius: '50px',
+                                border: '1px solid #AC6F53',
+                                background: 'linear-gradient(173deg, #F6B292 -0.82%, #D0805B 52.13%)',
+                              }}
+                            >
+                              <span style={{
+                                color: '#FFE6DA',
+                                fontFamily: 'var(--font-inter-tight)',
+                                fontSize: '14px',
+                                fontWeight: 500,
+                                lineHeight: '100%',
+                                letterSpacing: '-0.28px',
+                              }}>
+                                Bonne nouvelle on a {propertyCounts[selectedCity]} biens autour de {selectedCity} !
+                              </span>
+                            </motion.div>
+                          ) : (
+                            // Toutes les autres villes
+                            <motion.div
+                              initial={{ opacity: 0, scale: 0.9 }}
+                              animate={{ opacity: 1, scale: 1 }}
+                              transition={{ delay: 0.3 }}
+                              className="inline-flex justify-center items-center self-center"
+                              style={{
+                                padding: '8px 16px',
+                                borderRadius: '50px',
+                                border: '1px solid #6B7280',
+                                background: 'linear-gradient(173deg, #9CA3AF -0.82%, #6B7280 52.13%)',
+                              }}
+                            >
+                              <span style={{
+                                color: '#F3F4F6',
+                                fontFamily: 'var(--font-inter-tight)',
+                                fontSize: '14px',
+                                fontWeight: 500,
+                                lineHeight: '100%',
+                                letterSpacing: '-0.28px',
+                              }}>
+                                On n'est pas encore à {selectedCity}, mais ça arrive très bientôt !
+                              </span>
+                            </motion.div>
+                          );
+                        })()}
+                      </>
+                    )}
+                    {subQ.inputType === 'money' && (
+                      <MoneyInput
                         value={answerObj[subQ.key] || ''}
                         onChange={(val) => {
                           const newAnswer = { ...answerObj, [subQ.key]: val };
                           setAnswer(JSON.stringify(newAnswer));
                         }}
-                        placeholder={subQ.placeholder || 'Rechercher une ville...'}
+                        placeholder={subQ.placeholder || ''}
+                        suffix={subQ.suffix || '€'}
                       />
+                    )}
+                    {subQ.inputType === 'pills' && subQ.choices && (
+                      <div className="flex flex-wrap gap-2">
+                        {subQ.choices.map((choice, choiceIndex) => {
+                          const isSelected = answerObj[subQ.key] === choice.id;
+                          return (
+                            <motion.div
+                              key={choice.id}
+                              initial={{ opacity: 0, y: 10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ duration: 0.3, delay: choiceIndex * 0.03 }}
+                              onClick={() => {
+                                const newAnswer = { ...answerObj, [subQ.key]: choice.id };
+                                setAnswer(JSON.stringify(newAnswer));
+                              }}
+                              className="cursor-pointer px-4 py-3 rounded-full transition-all"
+                              style={{
+                                background: isSelected ? '#C9B89D' : 'rgba(250, 245, 241, 0.85)',
+                                border: isSelected ? 'none' : '1px solid rgba(255, 255, 255, 0.10)',
+                              }}
+                            >
+                              <span
+                                style={{
+                                  fontFamily: 'var(--font-inter-tight)',
+                                  fontSize: '16px',
+                                  fontWeight: 500,
+                                  lineHeight: '110%',
+                                  color: isSelected ? '#FFFFFF' : '#737373',
+                                }}
+                              >
+                                {choice.label}
+                              </span>
+                            </motion.div>
+                          );
+                        })}
+                      </div>
                     )}
 
                     {/* Badge orange */}
@@ -741,12 +868,21 @@ export default function QuizQuestionPage() {
 
             {/* Input pour les autres questions */}
             {questionId !== 8 && (
-              <TextInput
-                value={answer}
-                onChange={setAnswer}
-                placeholder={question.placeholder}
-                type={inputType}
-              />
+              question.inputType === 'money' ? (
+                <MoneyInput
+                  value={answer}
+                  onChange={setAnswer}
+                  placeholder={question.placeholder || ''}
+                  suffix={question.suffix || '€'}
+                />
+              ) : (
+                <TextInput
+                  value={answer}
+                  onChange={setAnswer}
+                  placeholder={question.placeholder}
+                  type={inputType}
+                />
+              )
             )}
           </div>
         );
