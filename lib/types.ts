@@ -1,10 +1,27 @@
 export type QuestionType = 'text' | 'choice' | 'select';
 
+export interface InputField {
+  key: string;
+  placeholder: string;
+  type?: 'text' | 'email' | 'number';
+}
+
+export interface SubQuestion {
+  key: string;
+  titleText?: string;
+  text: string;
+  inputType: 'text' | 'select';
+  placeholder?: string;
+  textInputType?: 'text' | 'email' | 'number';
+  choices?: { id: string; label: string }[];
+  infoBadge?: string; // Badge orange affiché après l'input
+}
+
 export interface Choice {
   id: string;
   label: string;
   subtitle?: string; // sous-titre optionnel
-  image: string; // path vers l'image
+  image?: string; // path vers l'image (optionnel)
   desktopImage?: string; // path vers l'image desktop (optionnel)
   labelClassName?: string; // classes CSS personnalisées pour le label
   subtitleClassName?: string; // classes CSS personnalisées pour le sous-titre
@@ -17,8 +34,11 @@ export interface Question {
   titleText?: string; // titre optionnel pour la question (style différent)
   infoText?: string; // texte d'information en vert sous la question
   placeholder?: string; // pour input text
+  inputs?: InputField[]; // pour questions avec plusieurs champs
+  subQuestions?: SubQuestion[]; // pour questions avec plusieurs sous-questions
   choices?: Choice[]; // pour choix multiples
   choiceStyle?: 'card' | 'image'; // style des choix: card (avec bordure) ou image (seulement l'image)
+  backgroundImage?: string; // image de fond pour la question (par-dessus le logo)
   validation?: (value: string) => boolean;
 }
 

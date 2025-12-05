@@ -7,7 +7,7 @@ import { checkmarkVariants } from '@/lib/animations';
 interface ImageChoiceProps {
   id: string;
   label: string;
-  image: string;
+  image?: string;
   desktopImage?: string;
   selected: boolean;
   onClick: () => void;
@@ -59,13 +59,15 @@ export default function ImageChoice({
         }}
       >
         {/* Image mobile */}
-        <Image
-          src={image}
-          alt={label}
-          fill
-          className={`object-fill ${desktopImage ? 'lg:hidden' : ''}`}
-          sizes="(max-width: 768px) 50vw, 25vw"
-        />
+        {image && (
+          <Image
+            src={image}
+            alt={label}
+            fill
+            className={`object-fill ${desktopImage ? 'lg:hidden' : ''}`}
+            sizes="(max-width: 768px) 50vw, 25vw"
+          />
+        )}
         {/* Image desktop */}
         {desktopImage && (
           <Image

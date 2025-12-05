@@ -8,7 +8,7 @@ interface ChoiceCardProps {
   id: string;
   label: string;
   subtitle?: string;
-  image: string;
+  image?: string;
   desktopImage?: string;
   selected: boolean;
   onClick: () => void;
@@ -37,6 +37,89 @@ export default function ChoiceCard({
   subtitleClassName,
   index = 0,
 }: ChoiceCardProps) {
+  // Style simplifié pour les cartes sans image
+  if (!image) {
+    return (
+      <motion.button
+        onClick={onClick}
+        initial={{ opacity: 0, y: 30, scale: 0.9 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{
+          type: 'spring',
+          stiffness: 400,
+          damping: 25,
+          delay: index * 0.08 + 0.2,
+        }}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.98 }}
+        className="relative cursor-pointer w-full h-full"
+      >
+        <motion.div
+          animate={{
+            scale: selected ? 1.03 : 1,
+          }}
+          transition={{
+            type: 'spring',
+            stiffness: 300,
+            damping: 25,
+          }}
+          className="w-full h-full p-4 rounded-[18px] flex justify-center items-center gap-[10px]"
+          style={{
+            background: selected
+              ? 'linear-gradient(180deg, rgba(210, 182, 143, 0.75) 0%, rgba(170, 131, 95, 0.75) 100%), rgba(250, 245, 241, 0.50)'
+              : 'rgba(250, 245, 241, 0.50)',
+            border: '1px solid rgba(255, 255, 255, 0.27)',
+            boxShadow: '0px 0px 17.1px rgba(210, 182, 143, 0.24)',
+          }}
+        >
+          <motion.div
+            layout
+            className="text-center font-['Inter_Tight']"
+            animate={{
+              color: selected ? '#FFFFFF' : '#7A7572',
+            }}
+            transition={{
+              layout: { type: 'spring', stiffness: 300, damping: 25 },
+              color: { duration: 0.2 },
+            }}
+            style={{
+              fontSize: '18px',
+              fontWeight: 500,
+              lineHeight: '110%',
+            }}
+          >
+            {label}
+          </motion.div>
+
+          {/* Icône de validation */}
+          <AnimatePresence mode="popLayout">
+            {selected && (
+              <motion.div
+                layout
+                initial={{ opacity: 0, scale: 0.5, width: 0 }}
+                animate={{ opacity: 1, scale: 1, width: 'auto' }}
+                exit={{ opacity: 0, scale: 0.5, width: 0 }}
+                transition={{
+                  type: 'spring',
+                  stiffness: 300,
+                  damping: 25,
+                }}
+              >
+                <Image
+                  src="/images/SVG_valide.svg"
+                  alt="Validé"
+                  width={24}
+                  height={24}
+                />
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </motion.div>
+      </motion.button>
+    );
+  }
+
+  // Style avec image (existant)
   return (
     <motion.button
       onClick={onClick}

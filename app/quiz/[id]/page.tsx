@@ -1,7 +1,8 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter, useParams } from 'next/navigation';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import QuizHeader from '@/components/quiz/QuizHeader';
 import QuestionBubble from '@/components/quiz/QuestionBubble';
@@ -21,8 +22,6 @@ export default function QuizQuestionPage() {
 
   const [answer, setAnswer] = useState('');
   const [isValid, setIsValid] = useState(false);
-  const [cardWidth, setCardWidth] = useState<number | null>(null);
-  const gridRef = useRef<HTMLDivElement>(null);
 
   const question = questions.find((q) => q.id === questionId);
 
@@ -52,29 +51,6 @@ export default function QuizQuestionPage() {
     }
   }, [answer, question]);
 
-  // Mesurer la largeur de la carte pour la question 7
-  useEffect(() => {
-    if (questionId === 7) {
-      const updateCardWidth = () => {
-        const screenWidth = window.innerWidth;
-        const padding = 16 * 2; // mx-4 = 16px de chaque côté
-        const gap = 8; // gap-2 = 8px entre les cartes
-        const availableWidth = screenWidth - padding;
-        const cardWidth = (availableWidth - gap) / 2;
-        setCardWidth(cardWidth);
-      };
-
-      // Initial measurement
-      const timer = setTimeout(updateCardWidth, 0);
-
-      window.addEventListener('resize', updateCardWidth);
-      return () => {
-        clearTimeout(timer);
-        window.removeEventListener('resize', updateCardWidth);
-      };
-    }
-  }, [questionId]);
-
   if (!question) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -90,7 +66,16 @@ export default function QuizQuestionPage() {
     storage.saveAnswer(questionId, answer);
 
     // Navigation
-    if (questionId === 6) {
+    if (questionId === 3) {
+      // Après la question 3, aller à l'écran "loyer perdu"
+      router.push('/loyer-perdu');
+    } else if (questionId === 4) {
+      // Après la question 4, aller à l'écran "apport"
+      router.push('/apport');
+    } else if (questionId === 5) {
+      // Après la question 5, aller à l'écran "emma"
+      router.push('/emma');
+    } else if (questionId === 6) {
       // Après la question 6, aller à l'écran de calcul
       router.push('/calculation');
     } else if (questionId === 7) {
@@ -119,6 +104,146 @@ export default function QuizQuestionPage() {
   const renderInput = () => {
     switch (question.type) {
       case 'text':
+        // Si la question a plusieurs inputs (multi-inputs)
+        if (question.inputs && question.inputs.length > 0) {
+          let answerObj: Record<string, string> = {};
+          try {
+            answerObj = answer ? JSON.parse(answer) : {};
+          } catch {
+            answerObj = {};
+          }
+
+          return (
+            <div className="flex flex-col gap-4">
+              {question.inputs.map((input) => (
+                <TextInput
+                  key={input.key}
+                  value={answerObj[input.key] || ''}
+                  onChange={(val) => {
+                    const newAnswer = { ...answerObj, [input.key]: val };
+                    setAnswer(JSON.stringify(newAnswer));
+                  }}
+                  placeholder={input.placeholder}
+                  type={input.type || 'text'}
+                />
+              ))}
+            </div>
+          );
+        }
+
+        // Si la question a des sous-questions (subQuestions)
+        if (question.subQuestions && question.subQuestions.length > 0) {
+          let answerObj: Record<string, string> = {};
+          try {
+            answerObj = answer ? JSON.parse(answer) : {};
+          } catch {
+            answerObj = {};
+          }
+
+          return (
+            <div className="flex flex-col gap-8">
+              {question.subQuestions.map((subQ, index) => (
+                <motion.div
+                  key={subQ.key}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: index * 0.1 }}
+                  className="flex flex-col gap-4"
+                >
+                  {/* Titre et texte de la sous-question */}
+                  <div className="self-stretch" style={{ fontFamily: 'var(--font-inter-tight)' }}>
+                    {subQ.titleText && (
+                      <span
+                        className="block whitespace-pre-line"
+                        style={{
+                          color: '#2D2A26',
+                          fontSize: '28px',
+                          fontWeight: 600,
+                          lineHeight: '110%',
+                          letterSpacing: '-0.84px',
+                        }}
+                      >
+                        {subQ.titleText}
+                      </span>
+                    )}
+                    <span
+                      style={subQ.titleText ? {
+                        color: '#4A4543',
+                        fontSize: '24px',
+                        fontWeight: 400,
+                        lineHeight: '110%',
+                        letterSpacing: '-0.72px',
+                      } : {
+                        color: '#2D2A26',
+                        fontSize: '28px',
+                        fontWeight: 600,
+                        lineHeight: '110%',
+                        letterSpacing: '-0.84px',
+                      }}
+                    >
+                      {subQ.text}
+                    </span>
+                  </div>
+
+                  {/* Input approprié selon le type */}
+                  {subQ.inputType === 'text' && (
+                    <TextInput
+                      value={answerObj[subQ.key] || ''}
+                      onChange={(val) => {
+                        const newAnswer = { ...answerObj, [subQ.key]: val };
+                        setAnswer(JSON.stringify(newAnswer));
+                      }}
+                      placeholder={subQ.placeholder}
+                      type={subQ.textInputType || 'text'}
+                    />
+                  )}
+                  {subQ.inputType === 'select' && subQ.choices && (
+                    <SelectInput
+                      value={answerObj[subQ.key] || ''}
+                      onChange={(val) => {
+                        const newAnswer = { ...answerObj, [subQ.key]: val };
+                        setAnswer(JSON.stringify(newAnswer));
+                      }}
+                      placeholder={subQ.placeholder}
+                      options={subQ.choices}
+                    />
+                  )}
+
+                  {/* Badge info orange */}
+                  {subQ.infoBadge && (
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: 0.3 }}
+                      className="inline-flex justify-center items-center self-start"
+                      style={{
+                        padding: '8px 16px',
+                        borderRadius: '50px',
+                        border: '1px solid #AC6F53',
+                        background: 'linear-gradient(173deg, #F6B292 -0.82%, #D0805B 52.13%)',
+                        transform: 'rotate(0.248deg)',
+                      }}
+                    >
+                      <span
+                        style={{
+                          fontFamily: 'var(--font-inter-tight)',
+                          color: '#FFE6DA',
+                          fontSize: '12px',
+                          fontWeight: 500,
+                          lineHeight: '100%',
+                          letterSpacing: '-0.24px',
+                        }}
+                      >
+                        {subQ.infoBadge}
+                      </span>
+                    </motion.div>
+                  )}
+                </motion.div>
+              ))}
+            </div>
+          );
+        }
+
         // Déterminer le type d'input basé sur le placeholder ou l'id de la question
         const inputType = questionId === 2 || question.placeholder?.includes('email') || question.placeholder?.includes('@') ? 'text' : 'number';
 
@@ -205,7 +330,6 @@ export default function QuizQuestionPage() {
                 onChange={setAnswer}
                 placeholder={question.placeholder}
                 type={inputType}
-                hideArrows={questionId === 2}
               />
             )}
           </div>
@@ -225,89 +349,30 @@ export default function QuizQuestionPage() {
         // Choisir le composant selon le choiceStyle
         const ChoiceComponent = question.choiceStyle === 'image' ? ImageChoice : ChoiceCard;
 
-        // Pour la question 7, disposition spéciale avec 5 cartes
-        if (questionId === 7) {
+        // Pour la question 5, disposition 1x2 (2 cartes sans images sur une ligne)
+        if (questionId === 5) {
           return (
-            <div className="w-full lg:w-[750px]">
-              {/* Mobile: grid 2 colonnes, 5ème carte centrée sur 3ème ligne */}
-              <div ref={gridRef} className="lg:hidden grid grid-cols-2 gap-2">
-                {question.choices?.slice(0, 4).map((choice, index) => (
-                  <ChoiceComponent
-                    key={choice.id}
-                    id={choice.id}
-                    label={choice.label}
-                    subtitle={choice.subtitle}
-                    image={choice.image}
-                    desktopImage={choice.desktopImage}
-                    selected={answer === choice.id}
-                    onClick={() => setAnswer(choice.id)}
-                    labelClassName={choice.labelClassName}
-                    subtitleClassName={choice.subtitleClassName}
-                    index={index}
-                  />
-                ))}
-                {/* 5ème carte centrée - utilise la largeur mesurée */}
-                {question.choices && question.choices[4] && (
-                  <div className="col-span-2 flex justify-center">
-                    <div className="aspect-square" style={{ width: cardWidth ? `${cardWidth}px` : 'auto' }}>
-                      <ChoiceComponent
-                        key={question.choices[4].id}
-                        id={question.choices[4].id}
-                        label={question.choices[4].label}
-                        subtitle={question.choices[4].subtitle}
-                        image={question.choices[4].image}
-                        desktopImage={question.choices[4].desktopImage}
-                        selected={answer === question.choices[4].id}
-                        onClick={() => setAnswer(question.choices?.[4]?.id || '')}
-                        fullSize={true}
-                        labelClassName={question.choices[4].labelClassName}
-                        subtitleClassName={question.choices[4].subtitleClassName}
-                        index={4}
-                      />
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              {/* Desktop: 3 cartes sur ligne 1, 2 cartes sur ligne 2 */}
-              <div className="hidden lg:grid lg:grid-cols-6 lg:gap-[12px] lg:auto-rows-[269px]">
-                {/* Ligne 1: 3 premières cartes - chacune occupe 2 colonnes */}
-                {question.choices?.slice(0, 3).map((choice, index) => (
-                  <div key={choice.id} className="col-span-2">
-                    <ChoiceComponent
-                      id={choice.id}
-                      label={choice.label}
-                      subtitle={choice.subtitle}
-                      image={choice.image}
-                      desktopImage={choice.desktopImage}
-                      selected={answer === choice.id}
-                      onClick={() => setAnswer(choice.id)}
-                      fullSize={true}
-                      labelClassName={choice.labelClassName}
-                      subtitleClassName={choice.subtitleClassName}
-                      index={index}
-                    />
-                  </div>
-                ))}
-                {/* Ligne 2: 2 dernières cartes - chacune occupe 3 colonnes */}
-                {question.choices?.slice(3, 5).map((choice, index) => (
-                  <div key={choice.id} className="col-span-3">
-                    <ChoiceComponent
-                      id={choice.id}
-                      label={choice.label}
-                      subtitle={choice.subtitle}
-                      image={choice.image}
-                      desktopImage={choice.desktopImage}
-                      selected={answer === choice.id}
-                      onClick={() => setAnswer(choice.id)}
-                      fullSize={true}
-                      labelClassName={choice.labelClassName}
-                      subtitleClassName={choice.subtitleClassName}
-                      index={index + 3}
-                    />
-                  </div>
-                ))}
-              </div>
+            <div
+              className="w-full grid grid-cols-2 gap-[8px]"
+              style={{
+                gridTemplateRows: '78px',
+              }}
+            >
+              {question.choices?.map((choice, index) => (
+                <ChoiceComponent
+                  key={choice.id}
+                  id={choice.id}
+                  label={choice.label}
+                  subtitle={choice.subtitle}
+                  image={choice.image}
+                  desktopImage={choice.desktopImage}
+                  selected={answer === choice.id}
+                  onClick={() => setAnswer(choice.id)}
+                  labelClassName={choice.labelClassName}
+                  subtitleClassName={choice.subtitleClassName}
+                  index={index}
+                />
+              ))}
             </div>
           );
         }
@@ -444,33 +509,91 @@ export default function QuizQuestionPage() {
         initial="initial"
         animate="animate"
         exit="exit"
-        className="min-h-screen flex flex-col"
+        className="min-h-screen relative overflow-hidden"
+        style={{ backgroundColor: '#F5EBE1' }}
       >
-        <QuizHeader currentQuestion={questionId} />
+        {/* Éléments décoratifs */}
+        <div
+          className="w-72 h-96 absolute left-[49px] top-[225px]"
+        />
+        <div className="w-96 h-80 absolute left-[-127px] top-[301px] bg-white/25 rounded-full blur-3xl" />
 
-        <main className="flex-1 flex flex-col mx-4 lg:mx-0 pt-5 lg:items-center lg:pt-[100px] min-h-0">
-          {/* Conteneur question + input */}
-          <div className="lg:w-[750px] lg:flex lg:flex-col lg:items-end lg:gap-[50px]">
-            {/* Question bubble */}
-            <div className="w-full mb-5 lg:mb-0">
+        {/* Logo en fond */}
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[400px] pointer-events-none">
+          <Image
+            src="/images/new_logo.svg"
+            alt=""
+            fill
+            className="object-contain"
+          />
+        </div>
+
+        {/* Image de fond par-dessus le logo (si définie) */}
+        {question.backgroundImage && questionId === 5 ? (
+          /* Question 5 : rings.svg positionné en haut à droite, visible sous les cartes */
+          <div
+            className="absolute pointer-events-none z-10"
+            style={{
+              width: '168px',
+              height: '145px',
+              right: '20px',
+              top: '225px',
+            }}
+          >
+            <Image
+              src={question.backgroundImage}
+              alt=""
+              fill
+              className="object-cover"
+            />
+          </div>
+        ) : question.backgroundImage ? (
+          /* Autres questions : image centrée pleine largeur */
+          <div className="absolute left-1/2 top-[35%] -translate-x-1/2 w-screen h-[75%] pointer-events-none">
+            <Image
+              src={question.backgroundImage}
+              alt=""
+              fill
+              className="object-contain object-top"
+            />
+          </div>
+        ) : null}
+
+        {/* Contenu principal */}
+        <div className="relative px-4 py-10 min-h-screen flex flex-col gap-10">
+          <QuizHeader currentQuestion={questionId} />
+
+          {/* Contenu central - flex-1 pour prendre l'espace disponible */}
+          <div className="flex-1 flex flex-col justify-start items-start gap-4">
+            {/* Question bubble - masqué pour les questions avec subQuestions (chaque sous-question a son propre titre) */}
+            {!(question.subQuestions && question.subQuestions.length > 0) && (
               <QuestionBubble
                 questionNumber={questionId}
                 text={question.text}
                 titleText={question.titleText}
-                infoText={questionId === 5 ? "Ça change les calculs de capacité d'emprunt " : question.infoText}
+                infoText={question.inputs && question.inputs.length > 0 ? undefined : question.infoText}
               />
-            </div>
+            )}
 
             {/* Input field */}
-            <div className="mb-8 lg:mb-0">{renderInput()}</div>
+            <div className="w-full">{renderInput()}</div>
+
+            {/* InfoText après les inputs pour les questions multi-inputs */}
+            {question.inputs && question.inputs.length > 0 && question.infoText && (
+              <div
+                className="self-stretch text-neutral-500 text-sm font-normal leading-5 whitespace-pre-line"
+                style={{ fontFamily: 'var(--font-inter)' }}
+              >
+                {question.infoText}
+              </div>
+            )}
           </div>
 
-          {/* Spacer pour pousser le bouton vers le bas */}
-          <div className="flex-1"></div>
-
-          {/* Continue button */}
-          <ContinueButton onClick={handleContinue} disabled={!isValid} />
-        </main>
+          {/* Continue button - caché pour les questions choice tant qu'aucune sélection */}
+          {(question.type !== 'choice' || isValid) && (
+            <ContinueButton onClick={handleContinue} disabled={!isValid} />
+          )}
+        </div>
       </motion.div>
     </AnimatePresence>
   );

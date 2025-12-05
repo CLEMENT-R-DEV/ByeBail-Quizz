@@ -61,19 +61,16 @@ export const questions: Question[] = [
   {
     id: 5,
     type: 'choice',
-    text: "Et c'est pour acheter avec ta moitié, ou en solo ?",
+    text: "Tu achète seul ou à deux ?",
+    backgroundImage: '/images/rings.svg',
     choices: [
       {
-        id: 'ensemble',
-        label: 'Ensemble',
-        subtitle: 'On achète à deux',
-        image: '/images/couple.svg',
+        id: 'seul',
+        label: 'Seul',
       },
       {
-        id: 'seul',
-        label: 'Seul(e)',
-        subtitle: 'Je garde mon indépendance',
-        image: '/images/seul.svg',
+        id: 'a_deux',
+        label: 'À deux',
       },
     ],
   },

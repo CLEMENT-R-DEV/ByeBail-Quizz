@@ -42,6 +42,18 @@ const bricolageGrotesque = Bricolage_Grotesque({
   variable: "--font-bricolage-grotesque",
 });
 
+const inter = localFont({
+  src: "../public/fonts/InterVariable.ttf",
+  variable: "--font-inter",
+  weight: "100 900",
+});
+
+const interTight = localFont({
+  src: "../public/fonts/InterTight-VariableFont_wght.ttf",
+  variable: "--font-inter-tight",
+  weight: "100 900",
+});
+
 export const metadata: Metadata = {
   title: "Quiz ByeBail",
   description: "Questionnaire ByeBail",
@@ -60,7 +72,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${satoshi.variable} ${optima.variable} ${crimsonPro.variable} ${bricolageGrotesque.variable} antialiased`}
+        className={`${satoshi.variable} ${optima.variable} ${crimsonPro.variable} ${bricolageGrotesque.variable} ${inter.variable} ${interTight.variable} antialiased`}
       >
         {children}
       </body>

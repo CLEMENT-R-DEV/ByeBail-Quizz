@@ -1,59 +1,121 @@
-// import HomeHeader from '@/components/home/HomeHeader';
-import HeroSection from '@/components/home/HeroSection';
-import StatCardsContainer from '@/components/home/StatCardsContainer';
-import GuaranteesSection from '@/components/home/GuaranteesSection';
-import BackgroundElements from '@/components/home/BackgroundElements';
-import CTAButton from '@/components/home/CTAButton';
+'use client';
+
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import ContinueButton from '@/components/quiz/ContinueButton';
 
 export default function HomePage() {
+  const router = useRouter();
+
   return (
-    <div
-      className="w-full lg:mx-auto min-h-screen relative overflow-hidden bg-white"
-    >
-
-
-      {/* Gradient overlay pour mobile*/}
-      <div
-        className="lg:hidden absolute inset-0 pointer-events-none"
-        style={{
-          background: 'linear-gradient(181deg, rgba(255, 255, 255, 0.00) 1.2%, rgba(165, 180, 253, 0.34) 100%), linear-gradient(68deg, rgba(149, 167, 187, 0.15) -152.78%, rgba(255, 255, 255, 0.15) 98.17%)'
-        }}
+    <div className="w-full min-h-screen relative overflow-hidden">
+      {/* Image de fond */}
+      <Image
+        src="/images/bg-home.png"
+        alt="Background"
+        fill
+        className="object-cover"
+        priority
       />
 
-      {/* Gradient overlay pour desktop */}
-      <div
-        className="hidden lg:block absolute inset-0 pointer-events-none"
-        style={{
-          background: 'linear-gradient(181deg, rgba(255, 255, 255, 0.00) 1.2%, rgba(165, 180, 253, 0.34) 156.28%), linear-gradient(68deg, rgba(149, 167, 187, 0.15) -152.78%, rgba(255, 255, 255, 0.15) 98.17%)'
-        }}
-      />
+      {/* Overlay gradient noir */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/0 to-black/80" />
 
-      {/* Éléments de fond décoratifs */}
-      <BackgroundElements />
-
-      <main className="relative px-4 lg:px-[0px] lg:w-[1160px] min-h-screen lg:min-h-0 flex flex-col lg:mx-auto lg:gap-10 lg:mb-15">
-        {/* Header simplifié - Logo centré */}
-        <div className="w-full pt-[24px] pb-[13px] flex justify-center items-center">
-          <img
-            src="/ByeBailTypo.svg"
+      {/* Contenu principal */}
+      <main className="relative min-h-screen px-5 pt-10 pb-10 flex flex-col items-start">
+        {/* Logo ByeBail */}
+        <div className="w-full">
+          <Image
+            src="/images/byebail-icon.svg"
             alt="ByeBail"
-            className="h-8 w-auto"
+            width={40}
+            height={40}
+            className="brightness-0 invert"
           />
         </div>
 
-        {/* Contenu principal */}
-        <div className="mb-10 w-full flex-1 lg:flex-initial inline-flex flex-col justify-between lg:justify-start items-center gap-5 lg:gap-10">
-          {/* Section Hero */}
-          <HeroSection />
+        {/* Section texte et cartes - avec gap-10 (40px) du logo et flex-grow pour pousser le bouton en bas */}
+        <div className="w-full flex flex-col gap-1.5 mt-10 flex-grow">
+          {/* Titre et sous-titre */}
+          <div className="px-2.5 py-[30px] flex flex-col gap-4 backdrop-blur-sm bg-white/5 rounded-2xl">
+            <h1
+              className="text-white text-5xl lg:text-6xl font-semibold leading-[1.1]"
+              style={{ fontFamily: 'var(--font-inter)' }}
+            >
+              Devient propriétaire<br/>pour le prix de ton loyer
+            </h1>
+            <p
+              className="text-neutral-100 text-xl lg:text-2xl font-medium leading-8"
+              style={{ fontFamily: 'var(--font-inter)' }}
+            >
+              Tout ce qui t&apos;en empêchait ?<br/>N&apos;existe plus.
+            </p>
+          </div>
 
-          {/* Cartes statistiques */}
-          <StatCardsContainer />
+          {/* 3 cartes info */}
+          <div className="w-full flex gap-1.5">
+            {/* Carte Apport */}
+            <div className="flex-1 p-3 rounded-2xl backdrop-blur-sm bg-white/5">
+              <div className="flex flex-col gap-2">
+                <span
+                  className="text-white text-base font-normal leading-4"
+                  style={{ fontFamily: 'var(--font-inter)' }}
+                >
+                  Apport
+                </span>
+                <span
+                  className="text-white text-sm font-light leading-4"
+                  style={{ fontFamily: 'var(--font-inter)' }}
+                >
+                  L&apos;équivalent de 3 mois de loyer.
+                </span>
+              </div>
+            </div>
 
-          {/* Section Garanties (desktop uniquement) */}
-          <GuaranteesSection />
+            {/* Carte Mensualités */}
+            <div className="flex-1 p-3 rounded-2xl backdrop-blur-sm bg-white/5">
+              <div className="flex flex-col gap-2">
+                <span
+                  className="text-white text-base font-normal leading-4"
+                  style={{ fontFamily: 'var(--font-inter)' }}
+                >
+                  Mensualités
+                </span>
+                <span
+                  className="text-white text-sm font-light leading-4"
+                  style={{ fontFamily: 'var(--font-inter)' }}
+                >
+                  Identiques à ton loyer
+                </span>
+              </div>
+            </div>
 
-          {/* Bouton CTA */}
-          <CTAButton />
+            {/* Carte Résultat */}
+            <div className="flex-1 p-3 rounded-2xl backdrop-blur-sm bg-white/5">
+              <div className="flex flex-col gap-2">
+                <span
+                  className="text-white text-base font-normal leading-4"
+                  style={{ fontFamily: 'var(--font-inter)' }}
+                >
+                  Résultat
+                </span>
+                <span
+                  className="text-white text-sm font-light leading-4"
+                  style={{ fontFamily: 'var(--font-inter)' }}
+                >
+                  Tu deviens propriétaire
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Bouton CTA */}
+        <div className="w-full">
+          <ContinueButton
+            onClick={() => router.push('/quiz/1')}
+            label="Je découvre mon éligibilité"
+          />
         </div>
       </main>
     </div>
