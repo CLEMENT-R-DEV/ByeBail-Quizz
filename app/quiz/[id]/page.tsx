@@ -110,18 +110,8 @@ export default function QuizQuestionPage() {
       // Après la question 7 (revenu + statut), aller à l'écran inflation
       router.push('/inflation');
     } else if (questionId === 8) {
-      // Après la question 8 (email), aller à l'écran de pause vidéo
-      router.push('/video-pause');
-    } else if (questionId === 9) {
-      // Après la question 9 (crédits), navigation conditionnelle selon la réponse
-      if (answer === 'oui') {
-        router.push('/quiz/10');
-      } else {
-        router.push('/quiz/11');
-      }
-    } else if (questionId === 10) {
-      // Après la question 10 (type crédit), aller à la question 11
-      router.push('/quiz/11');
+      // Après la question 8 (fin du mois), aller à la question 9
+      router.push('/quiz/9');
     } else if (questionId < TOTAL_QUESTIONS) {
       router.push(`/quiz/${questionId + 1}`);
     } else {
@@ -255,6 +245,122 @@ export default function QuizQuestionPage() {
             </div>
           );
         }
+
+        // Question 9 : crédits en cours (pills 2x2 + input montant)
+        if (questionId === 9 && question.subQuestions && question.subQuestions.length > 0) {
+          let answerObj: Record<string, string | string[]> = {};
+          try {
+            answerObj = answer ? JSON.parse(answer) : {};
+          } catch {
+            answerObj = {};
+          }
+
+          // Convertir le credit_type en array si c'est une string
+          const selectedCredits: string[] = Array.isArray(answerObj.credit_type)
+            ? answerObj.credit_type
+            : (answerObj.credit_type ? [answerObj.credit_type as string] : []);
+
+          return (
+            <div className="flex flex-col gap-6">
+              {/* Titre principal */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4 }}
+                style={{ fontFamily: 'var(--font-inter-tight)' }}
+              >
+                <span
+                  style={{
+                    color: '#2D2A26',
+                    fontSize: '28px',
+                    fontWeight: 600,
+                    lineHeight: '110%',
+                    letterSpacing: '-0.84px',
+                  }}
+                >
+                  {question.titleText}
+                </span>
+              </motion.div>
+
+              {/* Pills en grille 2x2 */}
+              <div className="grid grid-cols-2 gap-2">
+                {question.subQuestions[0]?.choices?.map((choice, choiceIndex) => {
+                  const isSelected = selectedCredits.includes(choice.id);
+                  return (
+                    <motion.div
+                      key={choice.id}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.3, delay: choiceIndex * 0.05 }}
+                      onClick={() => {
+                        let newSelected: string[];
+                        if (isSelected) {
+                          newSelected = selectedCredits.filter(id => id !== choice.id);
+                        } else {
+                          newSelected = [...selectedCredits, choice.id];
+                        }
+                        const newAnswer = { ...answerObj, credit_type: newSelected };
+                        setAnswer(JSON.stringify(newAnswer));
+                      }}
+                      className="cursor-pointer flex items-center justify-center"
+                      style={{
+                        height: '72px',
+                        borderRadius: '16px',
+                        background: isSelected ? '#C9B89D' : 'rgba(254, 242, 242, 0.5)',
+                        outline: isSelected ? 'none' : '1px solid rgba(255, 255, 255, 0.10)',
+                        outlineOffset: '-1px',
+                      }}
+                    >
+                      <span
+                        style={{
+                          fontFamily: 'var(--font-inter-tight)',
+                          fontSize: '18px',
+                          fontWeight: 500,
+                          lineHeight: '20px',
+                          color: isSelected ? '#FFFFFF' : '#737373',
+                        }}
+                      >
+                        {choice.label}
+                      </span>
+                    </motion.div>
+                  );
+                })}
+              </div>
+
+              {/* Titre "Combien par mois ?" */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.2 }}
+                style={{ fontFamily: 'var(--font-inter-tight)' }}
+              >
+                <span
+                  style={{
+                    color: '#2D2A26',
+                    fontSize: '28px',
+                    fontWeight: 600,
+                    lineHeight: '110%',
+                    letterSpacing: '-0.84px',
+                  }}
+                >
+                  {question.subQuestions[1]?.titleText}
+                </span>
+              </motion.div>
+
+              {/* Input montant */}
+              <TextInput
+                value={(answerObj.montant_credit as string) || ''}
+                onChange={(val) => {
+                  const newAnswer = { ...answerObj, montant_credit: val };
+                  setAnswer(JSON.stringify(newAnswer));
+                }}
+                placeholder={question.subQuestions[1]?.placeholder}
+                type="number"
+              />
+            </div>
+          );
+        }
+
         return null;
 
       case 'text':
@@ -654,6 +760,69 @@ export default function QuizQuestionPage() {
                   >
                     <motion.div
                       className="flex items-center justify-center"
+                      transition={{ duration: 0.2, ease: 'easeInOut' }}
+                    >
+                      <motion.span
+                        style={{
+                          fontFamily: 'var(--font-inter-tight)',
+                          fontSize: '18px',
+                          fontWeight: 500,
+                          lineHeight: '20px',
+                          color: isSelected ? '#FFFFFF' : '#737373',
+                        }}
+                      >
+                        {choice.label}
+                      </motion.span>
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0.5, width: 0, marginLeft: 0 }}
+                        animate={{
+                          opacity: isSelected ? 1 : 0,
+                          scale: isSelected ? 1 : 0.5,
+                          width: isSelected ? 24 : 0,
+                          marginLeft: isSelected ? 10 : 0,
+                        }}
+                        transition={{ duration: 0.2, ease: 'easeInOut' }}
+                        style={{ overflow: 'hidden' }}
+                      >
+                        <Image
+                          src="/images/SVG_valide.svg"
+                          alt=""
+                          width={24}
+                          height={24}
+                        />
+                      </motion.div>
+                    </motion.div>
+                  </motion.div>
+                );
+              })}
+            </div>
+          );
+        }
+
+        // Pour la question 8 (fin du mois), cartes pleine largeur avec 16px d'écart
+        if (questionId === 8) {
+          return (
+            <div className="w-full flex flex-col gap-4">
+              {question.choices?.map((choice, index) => {
+                const isSelected = answer === choice.id;
+                return (
+                  <motion.div
+                    key={choice.id}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3, delay: index * 0.05 }}
+                    onClick={() => setAnswer(choice.id)}
+                    className="cursor-pointer p-4 flex items-center justify-between"
+                    style={{
+                      height: '72px',
+                      borderRadius: '16px',
+                      background: isSelected ? '#C9B89D' : 'rgba(254, 242, 242, 0.5)',
+                      outline: isSelected ? 'none' : '1px solid rgba(255, 255, 255, 0.10)',
+                      outlineOffset: '-1px',
+                    }}
+                  >
+                    <motion.div
+                      className="flex items-center"
                       transition={{ duration: 0.2, ease: 'easeInOut' }}
                     >
                       <motion.span

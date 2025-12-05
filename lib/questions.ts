@@ -174,31 +174,48 @@ export const questions: Question[] = [
   },
   {
     id: 8,
-    type: 'text',
-    titleText: 'OK, on rentre dans le vif du sujet.',
-    text: "Pour te montrer tes appartements personnalisés, j'ai besoin de ton email.",
-    placeholder: 'ton.email@example.fr',
-    validation: (value: string) => {
-      // Validation email basique
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      return emailRegex.test(value);
-    },
+    type: 'choice',
+    titleText: 'À la fin du mois il te reste plutôt :',
+    text: '',
+    choices: [
+      {
+        id: 'un_peu',
+        label: 'Un peu d\'argent',
+      },
+      {
+        id: 'zero',
+        label: 'Zéro',
+      },
+      {
+        id: 'decouvert',
+        label: 'Tu es souvent à découvert',
+      },
+    ],
   },
   {
     id: 9,
-    type: 'choice',
-    titleText: 'Dernières questions, promis.',
-    text: 'Tu as déjà des crédits en cours ?',
-    choices: [
+    type: 'composite',
+    titleText: 'Tu as déjà des crédits en cours ?',
+    text: '',
+    subQuestions: [
       {
-        id: 'non',
-        label: 'Non',
-        image: '/images/icon.svg',
+        key: 'credit_type',
+        text: '',
+        inputType: 'pills',
+        choices: [
+          { id: 'immo', label: 'Immo' },
+          { id: 'auto', label: 'Auto' },
+          { id: 'etudiant', label: 'Étudiant' },
+          { id: 'pension', label: 'Pension alimentaire' },
+        ],
       },
       {
-        id: 'oui',
-        label: 'Oui',
-        image: '/images/image138.svg',
+        key: 'montant_credit',
+        titleText: 'Combien par mois ?',
+        text: '',
+        inputType: 'text',
+        textInputType: 'number',
+        placeholder: '...€ par mois',
       },
     ],
   },
