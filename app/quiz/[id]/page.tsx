@@ -41,7 +41,25 @@ export default function QuizQuestionPage() {
     }
 
     if (question.type === 'text') {
-      if (question.validation) {
+      // Si la question a des subQuestions, vérifier que toutes sont remplies
+      if (question.subQuestions && question.subQuestions.length > 0) {
+        try {
+          const answerObj = answer ? JSON.parse(answer) : {};
+          // Vérifier le champ principal (revenu)
+          const mainValue = answerObj.main || '';
+          const mainValid = question.validation ? question.validation(mainValue) : mainValue.trim().length > 0;
+
+          // Vérifier toutes les subQuestions
+          const subQuestionsValid = question.subQuestions.every(subQ => {
+            const subValue = answerObj[subQ.key] || '';
+            return subValue.trim().length > 0;
+          });
+
+          setIsValid(mainValid && subQuestionsValid);
+        } catch {
+          setIsValid(false);
+        }
+      } else if (question.validation) {
         setIsValid(question.validation(answer));
       } else {
         setIsValid(answer.trim().length > 0);
@@ -75,25 +93,25 @@ export default function QuizQuestionPage() {
     } else if (questionId === 5) {
       // Après la question 5, aller à l'écran "emma"
       router.push('/emma');
-    } else if (questionId === 6) {
-      // Après la question 6, aller à l'écran de calcul
-      router.push('/calculation');
     } else if (questionId === 7) {
-      // Après la question 7, aller à l'écran d'inflation
+      // Après la question 7 (loyer), aller à l'écran de calcul
+      router.push('/calculation');
+    } else if (questionId === 8) {
+      // Après la question 8 (type logement), aller à l'écran d'inflation
       router.push('/inflation');
-    } else if (questionId === 10) {
-      // Après la question 10, aller à l'écran de pause vidéo
+    } else if (questionId === 9) {
+      // Après la question 9 (email), aller à l'écran de pause vidéo
       router.push('/video-pause');
-    } else if (questionId === 11) {
-      // Après la question 11, navigation conditionnelle selon la réponse
+    } else if (questionId === 10) {
+      // Après la question 10 (crédits), navigation conditionnelle selon la réponse
       if (answer === 'oui') {
-        router.push('/quiz/12');
+        router.push('/quiz/11');
       } else {
-        router.push('/quiz/13');
+        router.push('/quiz/12');
       }
-    } else if (questionId === 12) {
-      // Après la question 12, aller à la question 13
-      router.push('/quiz/13');
+    } else if (questionId === 11) {
+      // Après la question 11 (type crédit), aller à la question 12
+      router.push('/quiz/12');
     } else if (questionId < TOTAL_QUESTIONS) {
       router.push(`/quiz/${questionId + 1}`);
     } else {
@@ -141,7 +159,40 @@ export default function QuizQuestionPage() {
           }
 
           return (
-            <div className="flex flex-col gap-8">
+            <div className="flex flex-col gap-6">
+              {/* Titre de la question principale */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4 }}
+                className="flex flex-col gap-1"
+                style={{ fontFamily: 'var(--font-inter-tight)' }}
+              >
+                <span
+                  style={{
+                    color: '#2D2A26',
+                    fontSize: '28px',
+                    fontWeight: 600,
+                    lineHeight: '110%',
+                    letterSpacing: '-0.84px',
+                  }}
+                >
+                  {question.text}
+                </span>
+              </motion.div>
+
+              {/* Input principal (revenu) */}
+              <TextInput
+                value={answerObj.main || ''}
+                onChange={(val) => {
+                  const newAnswer = { ...answerObj, main: val };
+                  setAnswer(JSON.stringify(newAnswer));
+                }}
+                placeholder={question.placeholder}
+                type="number"
+              />
+
+              {/* Sous-questions */}
               {question.subQuestions.map((subQ, index) => (
                 <motion.div
                   key={subQ.key}
@@ -208,6 +259,25 @@ export default function QuizQuestionPage() {
                       options={subQ.choices}
                     />
                   )}
+                  {subQ.inputType === 'pills' && subQ.choices && (
+                    <div className="grid grid-cols-3 gap-2">
+                      {subQ.choices.map((choice, choiceIndex) => (
+                        <ChoiceCard
+                          key={choice.id}
+                          id={choice.id}
+                          label={choice.label}
+                          selected={answerObj[subQ.key] === choice.id}
+                          onClick={() => {
+                            const newAnswer = { ...answerObj, [subQ.key]: choice.id };
+                            setAnswer(JSON.stringify(newAnswer));
+                          }}
+                          index={choiceIndex}
+                          verticalPadding={29}
+                          hideCheckmark
+                        />
+                      ))}
+                    </div>
+                  )}
 
                   {/* Badge info orange */}
                   {subQ.infoBadge && (
@@ -240,6 +310,19 @@ export default function QuizQuestionPage() {
                   )}
                 </motion.div>
               ))}
+
+              {/* Info text en bas */}
+              {question.infoText && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 }}
+                  className="text-neutral-500 text-sm font-normal leading-5"
+                  style={{ fontFamily: 'var(--font-inter)' }}
+                >
+                  {question.infoText}
+                </motion.div>
+              )}
             </div>
           );
         }
@@ -248,9 +331,9 @@ export default function QuizQuestionPage() {
         const inputType = questionId === 2 || question.placeholder?.includes('email') || question.placeholder?.includes('@') ? 'text' : 'number';
 
         return (
-          <div className={(questionId === 8 || questionId === 10) ? 'lg:flex lg:flex-col lg:gap-5' : ''}>
-            {/* Input sur mobile uniquement pour questions 8 et 10 */}
-            {(questionId === 8 || questionId === 10) && (
+          <div className={questionId === 9 ? 'lg:flex lg:flex-col lg:gap-5' : ''}>
+            {/* Input sur mobile uniquement pour question 9 (email) */}
+            {questionId === 9 && (
               <div className="lg:hidden">
                 <TextInput
                   value={answer}
@@ -261,8 +344,8 @@ export default function QuizQuestionPage() {
               </div>
             )}
 
-            {/* Input pour questions 8 et 10 sur desktop */}
-            {(questionId === 8 || questionId === 10) && (
+            {/* Input pour question 9 sur desktop */}
+            {questionId === 9 && (
               <div className="hidden lg:flex lg:justify-end">
                 <TextInput
                   value={answer}
@@ -273,26 +356,8 @@ export default function QuizQuestionPage() {
               </div>
             )}
 
-            {/* Texte informatif pour la question 8 (desktop uniquement) - après l'input */}
-            {questionId === 8 && (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
-                className="hidden lg:flex lg:flex-col lg:gap-1 lg:items-end"
-                style={{ fontFamily: 'var(--font-satoshi)' }}
-              >
-                <div className="text-gray-900/60 text-[18px] font-normal leading-[110%] tracking-[-0.18px] text-right">
-                  Revenus nets mensuels en euros
-                </div>
-                <div className="text-gray-900/60 text-[18px] font-normal leading-[110%] tracking-[-0.18px] text-right">
-                  Ces infos restent 100% confidentielles. Promis, on n&apos;est pas des boulets.
-                </div>
-              </motion.div>
-            )}
-
-            {/* Texte informatif pour la question 10 (desktop uniquement) - après l'input */}
-            {questionId === 10 && (
+            {/* Texte informatif pour la question 9 (email) (desktop uniquement) - après l'input */}
+            {questionId === 9 && (
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -309,8 +374,8 @@ export default function QuizQuestionPage() {
               </motion.div>
             )}
 
-            {/* Texte informatif pour la question 10 sur mobile */}
-            {questionId === 10 && (
+            {/* Texte informatif pour la question 9 sur mobile */}
+            {questionId === 9 && (
               <motion.p
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -324,7 +389,7 @@ export default function QuizQuestionPage() {
             )}
 
             {/* Input pour les autres questions */}
-            {questionId !== 8 && questionId !== 10 && (
+            {questionId !== 9 && (
               <TextInput
                 value={answer}
                 onChange={setAnswer}
@@ -378,8 +443,8 @@ export default function QuizQuestionPage() {
         }
 
         // Pour les autres questions
-        // Question 9 : 4 cartes sur une seule ligne en desktop
-        if (questionId === 9) {
+        // Question 11 : 4 cartes sur une seule ligne en desktop (type de crédit)
+        if (questionId === 11) {
           return (
             <div className={`w-full lg:w-[750px] grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-[18px]`}>
               {question.choices?.map((choice, index) => (
@@ -402,8 +467,8 @@ export default function QuizQuestionPage() {
           );
         }
 
-        // Question 11 : 2 cartes avec largeCompactImage
-        if (questionId === 11) {
+        // Question 10 : 2 cartes avec largeCompactImage (crédits oui/non)
+        if (questionId === 10) {
           return (
             <div className={`w-full lg:w-[750px] grid grid-cols-2 gap-2 lg:gap-[18px]`}>
               {question.choices?.map((choice, index) => (
@@ -426,32 +491,8 @@ export default function QuizQuestionPage() {
           );
         }
 
-        // Question 12 : 4 cartes avec compactImage
+        // Question 12 : 3 cartes avec compactImage (apport)
         if (questionId === 12) {
-          return (
-            <div className={`w-full lg:w-[750px] grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-[18px]`}>
-              {question.choices?.map((choice, index) => (
-                <ChoiceComponent
-                  key={choice.id}
-                  id={choice.id}
-                  label={choice.label}
-                  subtitle={choice.subtitle}
-                  image={choice.image}
-                  desktopImage={choice.desktopImage}
-                  selected={answer === choice.id}
-                  onClick={() => setAnswer(choice.id)}
-                  compactImage={true}
-                  labelClassName={choice.labelClassName}
-                  subtitleClassName={choice.subtitleClassName}
-                  index={index}
-                />
-              ))}
-            </div>
-          );
-        }
-
-        // Question 13 : 3 cartes avec compactImage
-        if (questionId === 13) {
           return (
             <div className={`w-full lg:w-[750px] grid grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-[18px]`}>
               {question.choices?.map((choice, index) => (

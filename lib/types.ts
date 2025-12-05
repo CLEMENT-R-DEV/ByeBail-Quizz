@@ -10,7 +10,7 @@ export interface SubQuestion {
   key: string;
   titleText?: string;
   text: string;
-  inputType: 'text' | 'select';
+  inputType: 'text' | 'select' | 'pills';
   placeholder?: string;
   textInputType?: 'text' | 'email' | 'number';
   choices?: { id: string; label: string }[];

@@ -1,6 +1,6 @@
 import { Question } from './types';
 
-export const TOTAL_QUESTIONS = 13;
+export const TOTAL_QUESTIONS = 12;
 
 export const questions: Question[] = [
   {
@@ -77,6 +77,32 @@ export const questions: Question[] = [
   {
     id: 6,
     type: 'text',
+    text: 'Quel est le revenu net mensuel de ton foyer ?',
+    placeholder: '...€',
+    subQuestions: [
+      {
+        key: 'statut',
+        text: 'Quel est ton statut ?',
+        inputType: 'pills',
+        choices: [
+          { id: 'cdi', label: 'CDI' },
+          { id: 'cdd', label: 'CDD' },
+          { id: 'independant', label: 'Indépendant' },
+          { id: 'etudiant', label: 'Étudiant' },
+          { id: 'sans_emploi', label: 'Sans emploi' },
+          { id: 'autres', label: 'Autres' },
+        ],
+      },
+    ],
+    infoText: "Ces infos restent 100% confidentielles. Promis, on est pas des boulets.",
+    validation: (value: string) => {
+      const montant = parseFloat(value);
+      return !isNaN(montant) && montant >= 0;
+    },
+  },
+  {
+    id: 7,
+    type: 'text',
     text: 'On rentre dans le vif du sujet : tu payes combien de loyer ? (ou tu vis encore chez maman 😅)',
     placeholder: 'Montant du loyer',
     validation: (value: string) => {
@@ -85,7 +111,7 @@ export const questions: Question[] = [
     },
   },
   {
-    id: 7,
+    id: 8,
     type: 'choice',
     text: 'Tu cherches quel type de logement ?',
     choices: [
@@ -130,49 +156,7 @@ export const questions: Question[] = [
     ],
   },
   {
-    id: 8,
-    type: 'text',
-    text: 'Et niveau revenus, combien tu gagnes par mois ?',
-    infoText: '(Si t\'es en couple, compte vos deux revenus)',
-    placeholder: 'Ex: 850',
-    validation: (value: string) => {
-      const montant = parseFloat(value);
-      return !isNaN(montant) && montant >= 0;
-    },
-  },
-  {
     id: 9,
-    type: 'choice',
-    text: 'Côté boulot, tu fais quoi ?',
-    choices: [
-      {
-        id: 'cdi',
-        label: 'CDI',
-        image: '/images/image125.svg',
-        labelClassName: "text-center text-[#111827] text-base font-medium leading-[110%] font-['Satoshi']",
-      },
-      {
-        id: 'cdd',
-        label: 'CDD',
-        image: '/images/image126.svg',
-        labelClassName: "text-center text-[#111827] text-base font-medium leading-[110%] font-['Satoshi']",
-      },
-      {
-        id: 'independant',
-        label: 'Indépendant',
-        image: '/images/image127.svg',
-        labelClassName: "text-center text-[#111827] text-base font-medium leading-[110%] font-['Satoshi']",
-      },
-      {
-        id: 'autre',
-        label: 'Autre',
-        image: '/images/image128.svg',
-        labelClassName: "text-center text-[#111827] text-base font-medium leading-[110%] font-['Satoshi']",
-      },
-    ],
-  },
-  {
-    id: 10,
     type: 'text',
     titleText: 'OK, on rentre dans le vif du sujet.',
     text: "Pour te montrer tes appartements personnalisés, j'ai besoin de ton email.",
@@ -184,7 +168,7 @@ export const questions: Question[] = [
     },
   },
   {
-    id: 11,
+    id: 10,
     type: 'choice',
     titleText: 'Dernières questions, promis.',
     text: 'Tu as déjà des crédits en cours ?',
@@ -202,7 +186,7 @@ export const questions: Question[] = [
     ],
   },
   {
-    id: 12,
+    id: 11,
     type: 'choice',
     titleText: 'OK, et c\'est quoi exactement ?',
     text: 'Auto, conso, étudiant, immo ?',
@@ -234,7 +218,7 @@ export const questions: Question[] = [
     ],
   },
   {
-    id: 13,
+    id: 12,
     type: 'choice',
     titleText: 'Dernière question !',
     text: "T'as un peu d'apport de côté, ou c'est plutôt \"pâtes au beurre\" en fin de mois ?",

@@ -98,7 +98,7 @@ export default function EmmaPage() {
             background: 'rgba(250, 245, 241, 0.50)',
           }}
         >
-          {/* Image demenagement.svg */}
+          {/* Image demenagement.svg avec textes superposés */}
           <div className="w-full flex-1 relative rounded-2xl overflow-hidden">
             <Image
               src="/images/demenagement.svg"
@@ -107,6 +107,42 @@ export default function EmmaPage() {
               className="object-cover"
               priority
             />
+
+            {/* Texte côté gauche - Emma locataire */}
+            <div
+              className="absolute top-4 left-3 z-10"
+              style={{
+                fontFamily: 'var(--font-inter-display)',
+                fontSize: '18px',
+                fontWeight: 600,
+                lineHeight: 'normal',
+                letterSpacing: '-1.08px',
+              }}
+            >
+              <span style={{ color: '#F0F0F0' }}>Emma locataire</span>
+              <br />
+              <span style={{ color: '#F0F0F0' }}>depuis 3 ans -</span>
+              <br />
+              <span style={{ color: '#D0805B' }}>19 800€ perdus</span>
+            </div>
+
+            {/* Texte côté droit - Emma propriétaire */}
+            <div
+              className="absolute top-4 right-2 z-10 text-left"
+              style={{
+                fontFamily: 'var(--font-inter-display)',
+                fontSize: '18px',
+                fontWeight: 600,
+                lineHeight: 'normal',
+                letterSpacing: '-1.08px',
+              }}
+            >
+              <span style={{ color: '#F0F0F0' }}>Emma propriétaire</span>
+              <br />
+              <span style={{ color: '#F0F0F0' }}>depuis 3 ans -</span>
+              <br />
+              <span style={{ color: '#D0805B' }}>+19 800€ de capital</span>
+            </div>
           </div>
         </motion.div>
 
