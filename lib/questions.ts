@@ -74,8 +74,8 @@ export const questions: Question[] = [
       {
         key: 'ville',
         text: "|Tu vis où ?",
-        inputType: 'text',
-        placeholder: "J'habite à...",
+        inputType: 'city-search',
+        placeholder: "Rechercher une ville...",
       },
       {
         key: 'loyer',

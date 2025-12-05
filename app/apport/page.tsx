@@ -28,10 +28,7 @@ export default function ApportPage() {
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.4 }}
+    <div
       className="min-h-screen relative overflow-hidden"
       style={{ backgroundColor: '#F5EBE1' }}
     >
@@ -43,7 +40,7 @@ export default function ApportPage() {
       <div className="w-96 h-80 absolute left-[-127px] top-[301px] bg-white/25 rounded-full blur-3xl" />
 
       {/* Contenu principal avec layout similaire aux questions */}
-      <div className="relative px-4 py-10 min-h-screen flex flex-col gap-10">
+      <div className="relative px-4 pt-10 pb-24 lg:pb-10 min-h-screen flex flex-col gap-10">
         {/* Header simple avec bouton retour */}
         <motion.button
           onClick={handleBack}
@@ -117,7 +114,7 @@ export default function ApportPage() {
                   transition={{ duration: 0.6, delay: 0.2 }}
                   className="absolute inset-0 z-10 flex items-center justify-center px-4 sm:px-6"
                 >
-                  <div className="font-['Inter_Display']">
+                  <div style={{ fontFamily: 'var(--font-inter-tight)' }}>
                     <span className="text-white text-3xl font-bold">On t&apos;a toujours dit qu&apos;il fallait des </span>
                     <span className="text-orange-200 text-3xl font-bold">dizaines de milliers d&apos;euros d&apos;apport.</span>
                     <br /><br />
@@ -140,6 +137,6 @@ export default function ApportPage() {
           <ContinueButton onClick={handleContinue} disabled={false} />
         </motion.div>
       </div>
-    </motion.div>
+    </div>
   );
 }

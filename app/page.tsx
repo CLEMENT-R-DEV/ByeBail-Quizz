@@ -22,7 +22,7 @@ export default function HomePage() {
       <div className="absolute inset-0 bg-gradient-to-b from-black/0 to-black/80" />
 
       {/* Contenu principal */}
-      <main className="relative min-h-screen px-5 pt-10 pb-10 flex flex-col items-start">
+      <main className="relative min-h-screen px-5 pt-10 pb-24 lg:pb-10 flex flex-col items-start">
         {/* Logo ByeBail */}
         <div className="w-full">
           <Image
@@ -75,13 +75,13 @@ export default function HomePage() {
               <div className="flex flex-col gap-2">
                 <span
                   className="text-white text-base font-normal leading-4"
-                  style={{ fontFamily: 'var(--font-inter)' }}
+                  style={{ fontFamily: 'var(--font-inter-tight)' }}
                 >
                   Apport
                 </span>
                 <span
                   className="text-white text-sm font-light leading-4"
-                  style={{ fontFamily: 'var(--font-inter)' }}
+                  style={{ fontFamily: 'var(--font-inter-tight)' }}
                 >
                   L&apos;équivalent de 3 mois de loyer.
                 </span>
@@ -101,13 +101,13 @@ export default function HomePage() {
               <div className="flex flex-col gap-2">
                 <span
                   className="text-white text-base font-normal leading-4"
-                  style={{ fontFamily: 'var(--font-inter)' }}
+                  style={{ fontFamily: 'var(--font-inter-tight)' }}
                 >
                   Mensualités
                 </span>
                 <span
                   className="text-white text-sm font-light leading-4"
-                  style={{ fontFamily: 'var(--font-inter)' }}
+                  style={{ fontFamily: 'var(--font-inter-tight)' }}
                 >
                   Identiques à ton loyer
                 </span>
@@ -127,13 +127,13 @@ export default function HomePage() {
               <div className="flex flex-col gap-2">
                 <span
                   className="text-white text-base font-normal leading-4"
-                  style={{ fontFamily: 'var(--font-inter)' }}
+                  style={{ fontFamily: 'var(--font-inter-tight)' }}
                 >
                   Résultat
                 </span>
                 <span
                   className="text-white text-sm font-light leading-4"
-                  style={{ fontFamily: 'var(--font-inter)' }}
+                  style={{ fontFamily: 'var(--font-inter-tight)' }}
                 >
                   Tu deviens propriétaire
                 </span>

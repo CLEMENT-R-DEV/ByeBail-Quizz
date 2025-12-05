@@ -34,10 +34,7 @@ export default function LoyerPerduPage() {
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.4 }}
+    <div
       className="min-h-screen relative overflow-hidden"
       style={{ backgroundColor: '#F5EBE1' }}
     >
@@ -49,7 +46,7 @@ export default function LoyerPerduPage() {
       <div className="w-96 h-80 absolute left-[-127px] top-[301px] bg-white/25 rounded-full blur-3xl" />
 
       {/* Contenu principal avec layout similaire aux questions */}
-      <div className="relative px-4 py-10 min-h-screen flex flex-col gap-10">
+      <div className="relative px-4 pt-10 pb-24 lg:pb-10 min-h-screen flex flex-col gap-10">
         {/* Header simple avec bouton retour */}
         <motion.button
           onClick={handleBack}
@@ -145,6 +142,6 @@ export default function LoyerPerduPage() {
         {/* Bouton Continuer */}
         <ContinueButton onClick={handleContinue} disabled={false} />
       </div>
-    </motion.div>
+    </div>
   );
 }

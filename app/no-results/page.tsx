@@ -12,10 +12,7 @@ export default function NoResultsPage() {
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.4 }}
+    <div
       className="min-h-screen flex flex-col relative"
       style={{ backgroundColor: '#F5EBE1' }}
     >
@@ -95,6 +92,6 @@ export default function NoResultsPage() {
           </span>
         </motion.button>
       </div>
-    </motion.div>
+    </div>
   );
 }

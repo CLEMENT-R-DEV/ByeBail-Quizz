@@ -34,10 +34,7 @@ export default function MagicMomentPage() {
   }, [router]);
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.4 }}
+    <div
       className="min-h-screen w-full relative"
     >
       {/* Image de fond plein écran */}
@@ -148,6 +145,6 @@ export default function MagicMomentPage() {
           </div>
         </motion.div>
       </div>
-    </motion.div>
+    </div>
   );
 }

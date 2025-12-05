@@ -10,10 +10,7 @@ export default function ResultsPage() {
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.4 }}
+    <div
       className="min-h-screen flex flex-col"
       style={{ backgroundColor: '#F5EBE1' }}
     >
@@ -238,6 +235,6 @@ export default function ResultsPage() {
           </span>
         </motion.button>
       </div>
-    </motion.div>
+    </div>
   );
 }

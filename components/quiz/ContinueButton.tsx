@@ -14,7 +14,7 @@ export default function ContinueButton({ onClick, disabled = false, label = "Con
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.3, duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
-      className="pb-[0px] pt-[0px] lg:w-full lg:h-[172px] lg:px-[140px] lg:py-[40px] lg:border lg:border-black/10 lg:bg-white lg:shadow-[0_-10px_27.5px_0_rgba(104,137,228,0.04)] lg:flex lg:flex-col lg:items-center lg:gap-[10px]"
+      className="fixed bottom-5 left-4 right-4 z-50 lg:static lg:left-auto lg:right-auto lg:bottom-auto lg:z-auto lg:w-full lg:h-[172px] lg:px-[140px] lg:py-[40px] lg:border lg:border-black/10 lg:bg-white lg:shadow-[0_-10px_27.5px_0_rgba(104,137,228,0.04)] lg:flex lg:flex-col lg:items-center lg:gap-[10px]"
     >
       <div className="lg:w-[750px] lg:flex lg:flex-col lg:items-end lg:gap-[10px]">
         <motion.button

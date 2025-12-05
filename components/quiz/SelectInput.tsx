@@ -94,8 +94,9 @@ export default function SelectInput({
             <div
               key={option.id}
               onClick={() => handleSelect(option.id)}
-              className="p-3 lg:p-4 cursor-pointer hover:bg-gray-50 text-sm lg:text-lg font-normal font-['Satoshi'] text-gray-900 first:rounded-t-2xl last:rounded-b-2xl"
+              className="p-3 lg:p-4 cursor-pointer hover:bg-gray-50 text-sm lg:text-lg font-normal text-gray-900 first:rounded-t-2xl last:rounded-b-2xl"
               style={{
+                fontFamily: 'var(--font-inter-tight)',
                 backgroundColor: value === option.id ? 'rgba(0, 0, 0, 0.05)' : undefined
               }}
             >

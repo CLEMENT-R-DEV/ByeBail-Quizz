@@ -14,16 +14,13 @@ export default function VideoPausePage() {
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.4 }}
+    <div
       className="min-h-screen flex flex-col"
     >
       <SimpleHeader />
 
       {/* Main content */}
-      <main className="flex-1 flex flex-col lg:pt-[100px] lg:pb-[206px] mx-4 lg:mx-0 pt-5">
+      <main className="flex-1 flex flex-col lg:pt-[100px] lg:pb-[206px] mx-4 lg:mx-0 pt-5 pb-24 lg:pb-10">
         {/* Carte principale */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -38,8 +35,8 @@ export default function VideoPausePage() {
             transition={{ delay: 0.3 }}
             className="self-stretch flex flex-col justify-start items-center gap-2.5"
           >
-            <div className="self-stretch text-center justify-center text-gray-900 lg:text-[#111827] text-xl lg:text-[24px] font-semibold lg:font-semibold font-['Bricolage_Grotesque'] leading-5 lg:leading-[100%] lg:tracking-[-0.24px]">Petite pause.</div>
-            <div className="text-center justify-center text-gray-900 lg:text-[#111827] text-base lg:text-[20px] font-normal lg:font-normal font-['Satoshi'] leading-5 lg:leading-[120%] lg:tracking-[-0.2px]">David, le fondateur, veut te dire un truc important.</div>
+            <div className="self-stretch text-center justify-center text-gray-900 lg:text-[#111827] text-xl lg:text-[24px] font-semibold lg:font-semibold leading-5 lg:leading-[100%] lg:tracking-[-0.24px]" style={{ fontFamily: 'var(--font-inter-tight)' }}>Petite pause.</div>
+            <div className="text-center justify-center text-gray-900 lg:text-[#111827] text-base lg:text-[20px] font-normal lg:font-normal leading-5 lg:leading-[120%] lg:tracking-[-0.2px]" style={{ fontFamily: 'var(--font-inter-tight)' }}>David, le fondateur, veut te dire un truc important.</div>
           </motion.div>
 
           {/* Carte vidéo violette */}
@@ -122,8 +119,8 @@ export default function VideoPausePage() {
               transition={{ delay: 0.6 }}
               className="self-stretch flex flex-col justify-start items-center gap-2.5 z-10"
             >
-              <div className="text-center justify-center text-white text-lg lg:text-[24px] font-semibold lg:font-semibold font-['Bricolage_Grotesque'] leading-4 lg:leading-[100%] lg:tracking-[-0.24px]">Vidéo de David Brauman</div>
-              <div className="w-full text-center justify-center text-white text-base lg:text-[20px] font-normal lg:font-normal font-['Satoshi'] leading-5 lg:leading-[120%] lg:tracking-[-0.2px]">«À Tours, on a XX logements à partir de XXX€/mois. Oui, c&apos;est possible de devenir proprio.»</div>
+              <div className="text-center justify-center text-white text-lg lg:text-[24px] font-semibold lg:font-semibold leading-4 lg:leading-[100%] lg:tracking-[-0.24px]" style={{ fontFamily: 'var(--font-inter-tight)' }}>Vidéo de David Brauman</div>
+              <div className="w-full text-center justify-center text-white text-base lg:text-[20px] font-normal lg:font-normal leading-5 lg:leading-[120%] lg:tracking-[-0.2px]" style={{ fontFamily: 'var(--font-inter-tight)' }}>«À Tours, on a XX logements à partir de XXX€/mois. Oui, c&apos;est possible de devenir proprio.»</div>
             </motion.div>
           </motion.div>
 
@@ -178,6 +175,6 @@ export default function VideoPausePage() {
           <ContinueButton onClick={handleContinue} disabled={false} />
         </div>
       </main>
-    </motion.div>
+    </div>
   );
 }

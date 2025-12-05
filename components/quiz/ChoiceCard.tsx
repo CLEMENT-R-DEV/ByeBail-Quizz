@@ -204,11 +204,11 @@ export default function ChoiceCard({
 
           {/* Label + Subtitle */}
           <div className="inline-flex flex-col justify-start items-center gap-0.5">
-            <div className={labelClassName || "text-center justify-center text-gray-900 lg:text-[#111827] text-base lg:text-[22px] font-medium lg:font-medium font-['Satoshi'] leading-4 lg:leading-[110%]"}>
+            <div className={labelClassName || "text-center justify-center text-gray-900 lg:text-[#111827] text-base lg:text-[22px] font-medium lg:font-medium leading-4 lg:leading-[110%]"} style={{ fontFamily: 'var(--font-inter-tight)' }}>
               {label}
             </div>
             {subtitle && (
-              <div className={subtitleClassName || "text-center justify-center text-[rgba(17,24,39,0.60)] text-sm font-medium font-['Satoshi'] leading-[110%]"}>
+              <div className={subtitleClassName || "text-center justify-center text-[rgba(17,24,39,0.60)] text-sm font-medium leading-[110%]"} style={{ fontFamily: 'var(--font-inter-tight)' }}>
                 {subtitle}
               </div>
             )}

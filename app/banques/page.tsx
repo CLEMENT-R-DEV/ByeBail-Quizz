@@ -17,10 +17,7 @@ export default function BanquesPage() {
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.4 }}
+    <div
       className="min-h-screen relative overflow-hidden"
       style={{ backgroundColor: '#F5EBE1' }}
     >
@@ -28,7 +25,7 @@ export default function BanquesPage() {
       <div className="w-96 h-80 absolute left-[-127px] top-[301px] bg-white/25 rounded-full blur-3xl" />
 
       {/* Contenu principal */}
-      <div className="relative px-4 py-10 min-h-screen flex flex-col">
+      <div className="relative px-4 pt-10 pb-24 lg:pb-10 min-h-screen flex flex-col">
         {/* Header simple avec bouton retour */}
         <motion.button
           onClick={handleBack}
@@ -116,6 +113,6 @@ export default function BanquesPage() {
           <ContinueButton onClick={handleContinue} disabled={false} />
         </motion.div>
       </div>
-    </motion.div>
+    </div>
   );
 }

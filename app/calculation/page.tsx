@@ -54,15 +54,12 @@ export default function CalculationPage() {
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.4 }}
+    <div
       className="min-h-screen flex flex-col"
     >
       <SimpleHeader />
 
-      <main className="flex-1 flex flex-col mx-4 lg:mx-0">
+      <main className="flex-1 flex flex-col mx-4 lg:mx-0 pb-24 lg:pb-10">
         {/* Contenu principal */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -78,13 +75,13 @@ export default function CalculationPage() {
             transition={{ delay: 0.3 }}
             className="self-stretch flex flex-col justify-start items-center gap-1.5"
           >
-            <div className="self-stretch text-center justify-center text-[#111827] text-3xl lg:text-[28px] font-semibold lg:font-semibold font-['Bricolage_Grotesque'] leading-8 lg:leading-[120%] lg:tracking-[-0.28px]">
+            <div className="self-stretch text-center justify-center text-[#111827] text-3xl lg:text-[28px] font-semibold lg:font-semibold leading-8 lg:leading-[120%] lg:tracking-[-0.28px]" style={{ fontFamily: 'var(--font-inter-tight)' }}>
               Petite question rapide...
             </div>
-            <div className="self-stretch text-center justify-center">
-              <span className="text-[#111827] text-base lg:text-[20px] font-normal lg:font-normal font-['Satoshi'] leading-5 lg:leading-[120%] lg:tracking-[-0.2px]">Ton loyer de </span>
-              <span className="text-[#111827] text-base lg:text-[20px] font-bold lg:font-bold font-['Satoshi'] leading-5 lg:leading-[120%] lg:tracking-[-0.2px]">{loyer} €/mois</span>
-              <span className="text-[#111827] text-base lg:text-[20px] font-normal lg:font-normal font-['Satoshi'] leading-5 lg:leading-[120%] lg:tracking-[-0.2px]">, ça représente combien sur 10 ans ?</span>
+            <div className="self-stretch text-center justify-center" style={{ fontFamily: 'var(--font-inter-tight)' }}>
+              <span className="text-[#111827] text-base lg:text-[20px] font-normal lg:font-normal leading-5 lg:leading-[120%] lg:tracking-[-0.2px]">Ton loyer de </span>
+              <span className="text-[#111827] text-base lg:text-[20px] font-bold lg:font-bold leading-5 lg:leading-[120%] lg:tracking-[-0.2px]">{loyer} €/mois</span>
+              <span className="text-[#111827] text-base lg:text-[20px] font-normal lg:font-normal leading-5 lg:leading-[120%] lg:tracking-[-0.2px]">, ça représente combien sur 10 ans ?</span>
             </div>
           </motion.div>
 
@@ -135,10 +132,10 @@ export default function CalculationPage() {
               </div>
               {/* Texte au centre du cercle */}
               <div className="absolute inset-0 flex flex-col justify-center items-center gap-1">
-                <div className="text-center justify-center text-gray-900 text-4xl font-semibold font-['Bricolage_Grotesque'] leading-9">
+                <div className="text-center justify-center text-gray-900 text-4xl font-semibold leading-9" style={{ fontFamily: 'var(--font-inter-tight)' }}>
                   {Math.round(animatedPercentage)}%
                 </div>
-                <div className="text-center justify-center text-gray-900/60 text-sm font-normal font-['Satoshi'] leading-4">
+                <div className="text-center justify-center text-gray-900/60 text-sm font-normal leading-4" style={{ fontFamily: 'var(--font-inter-tight)' }}>
                   d&apos;un appartement
                 </div>
               </div>
@@ -151,10 +148,10 @@ export default function CalculationPage() {
               transition={{ delay: 0.7 }}
               className="self-stretch flex flex-col justify-start items-center"
             >
-              <div className="self-stretch text-center justify-center text-[#FE642A] text-3xl lg:text-[28px] font-semibold lg:font-semibold font-['Bricolage_Grotesque'] leading-7 lg:leading-[100%] lg:tracking-[-0.28px]">
+              <div className="self-stretch text-center justify-center text-[#FE642A] text-3xl lg:text-[28px] font-semibold lg:font-semibold leading-7 lg:leading-[100%] lg:tracking-[-0.28px]" style={{ fontFamily: 'var(--font-inter-tight)' }}>
                 {totalSur10Ans.toLocaleString('fr-FR')} €
               </div>
-              <div className="self-stretch text-center justify-center text-[#111827] text-base lg:text-lg font-normal lg:font-normal font-['Satoshi'] leading-5 lg:leading-[120%] lg:tracking-[-0.18px]">
+              <div className="self-stretch text-center justify-center text-[#111827] text-base lg:text-lg font-normal lg:font-normal leading-5 lg:leading-[120%] lg:tracking-[-0.18px]" style={{ fontFamily: 'var(--font-inter-tight)' }}>
                 C&apos;est ce que tu auras payé en 10 ans
               </div>
             </motion.div>
@@ -167,12 +164,12 @@ export default function CalculationPage() {
             transition={{ delay: 0.8 }}
             className="self-stretch flex flex-col justify-start items-start gap-4"
           >
-            <div className="self-stretch text-center justify-center">
-              <span className="text-[#111827] text-base lg:text-[20px] font-normal lg:font-normal font-['Satoshi'] leading-5 lg:leading-[120%] lg:tracking-[-0.2px]">Avec </span>
-              <span className="text-[#FE642A] text-base lg:text-[20px] font-bold lg:font-bold font-['Satoshi'] leading-5 lg:leading-[120%] lg:tracking-[-0.2px]">{totalSur10Ans.toLocaleString('fr-FR')} €</span>
-              <span className="text-[#111827] text-base lg:text-[20px] font-normal lg:font-normal font-['Satoshi'] leading-5 lg:leading-[120%] lg:tracking-[-0.2px]">, tu aurais déjà payé {pourcentageAppartement}% d&apos;un appartement à Tours.</span>
+            <div className="self-stretch text-center justify-center" style={{ fontFamily: 'var(--font-inter-tight)' }}>
+              <span className="text-[#111827] text-base lg:text-[20px] font-normal lg:font-normal leading-5 lg:leading-[120%] lg:tracking-[-0.2px]">Avec </span>
+              <span className="text-[#FE642A] text-base lg:text-[20px] font-bold lg:font-bold leading-5 lg:leading-[120%] lg:tracking-[-0.2px]">{totalSur10Ans.toLocaleString('fr-FR')} €</span>
+              <span className="text-[#111827] text-base lg:text-[20px] font-normal lg:font-normal leading-5 lg:leading-[120%] lg:tracking-[-0.2px]">, tu aurais déjà payé {pourcentageAppartement}% d&apos;un appartement à Tours.</span>
             </div>
-            <div className="self-stretch text-center justify-center text-[#111827] text-base lg:text-[20px] font-normal lg:font-normal font-['Satoshi'] leading-5 lg:leading-[120%] lg:tracking-[-0.2px]">
+            <div className="self-stretch text-center justify-center text-[#111827] text-base lg:text-[20px] font-normal lg:font-normal leading-5 lg:leading-[120%] lg:tracking-[-0.2px]" style={{ fontFamily: 'var(--font-inter-tight)' }}>
               Sauf que là, cet argent... il est parti. Pour toujours.
             </div>
           </motion.div>
@@ -185,6 +182,6 @@ export default function CalculationPage() {
         {/* Bouton Continue */}
         <ContinueButton onClick={handleContinue} disabled={false} />
       </main>
-    </motion.div>
+    </div>
   );
 }

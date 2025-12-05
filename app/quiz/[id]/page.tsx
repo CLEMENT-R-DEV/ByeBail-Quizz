@@ -3,17 +3,17 @@
 import { useState, useEffect } from 'react';
 import { useRouter, useParams } from 'next/navigation';
 import Image from 'next/image';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import QuizHeader from '@/components/quiz/QuizHeader';
 import QuestionBubble from '@/components/quiz/QuestionBubble';
 import TextInput from '@/components/quiz/TextInput';
 import SelectInput from '@/components/quiz/SelectInput';
+import CitySearchInput from '@/components/quiz/CitySearchInput';
 import ChoiceCard from '@/components/quiz/ChoiceCard';
 import ImageChoice from '@/components/quiz/ImageChoice';
 import ContinueButton from '@/components/quiz/ContinueButton';
 import { questions, TOTAL_QUESTIONS } from '@/lib/questions';
 import { storage } from '@/lib/storage';
-import { pageVariants } from '@/lib/animations';
 
 export default function QuizQuestionPage() {
   const router = useRouter();
@@ -230,6 +230,16 @@ export default function QuizQuestionPage() {
                         }}
                         placeholder={subQ.placeholder || 'Sélectionner'}
                         options={subQ.choices.map(c => ({ id: c.id, label: c.label }))}
+                      />
+                    )}
+                    {subQ.inputType === 'city-search' && (
+                      <CitySearchInput
+                        value={answerObj[subQ.key] || ''}
+                        onChange={(val) => {
+                          const newAnswer = { ...answerObj, [subQ.key]: val };
+                          setAnswer(JSON.stringify(newAnswer));
+                        }}
+                        placeholder={subQ.placeholder || 'Rechercher une ville...'}
                       />
                     )}
 
@@ -939,16 +949,10 @@ export default function QuizQuestionPage() {
   };
 
   return (
-    <AnimatePresence mode="wait">
-      <motion.div
-        key={questionId}
-        variants={pageVariants}
-        initial="initial"
-        animate="animate"
-        exit="exit"
-        className="min-h-screen relative overflow-hidden"
-        style={{ backgroundColor: '#F5EBE1' }}
-      >
+    <div
+      className="min-h-screen relative overflow-hidden"
+      style={{ backgroundColor: '#F5EBE1' }}
+    >
         {/* Éléments décoratifs */}
         <div
           className="w-72 h-96 absolute left-[49px] top-[225px]"
@@ -1016,7 +1020,7 @@ export default function QuizQuestionPage() {
         ) : null}
 
         {/* Contenu principal */}
-        <div className="relative px-4 py-10 min-h-screen flex flex-col gap-10">
+        <div className="relative px-4 pt-10 pb-24 lg:pb-10 min-h-screen flex flex-col gap-10">
           <QuizHeader currentQuestion={questionId} />
 
           {/* Contenu central - flex-1 pour prendre l'espace disponible */}
@@ -1043,7 +1047,6 @@ export default function QuizQuestionPage() {
             <ContinueButton onClick={handleContinue} disabled={!isValid} />
           )}
         </div>
-      </motion.div>
-    </AnimatePresence>
+    </div>
   );
 }

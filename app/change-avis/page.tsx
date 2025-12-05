@@ -29,16 +29,13 @@ export default function ChangeAvisPage() {
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.4 }}
+    <div
       className="min-h-screen flex flex-col"
     >
       <SimpleHeader />
 
       {/* Main content */}
-      <main className="flex-1 flex flex-col mx-4 lg:mx-0">
+      <main className="flex-1 flex flex-col mx-4 lg:mx-0 pb-24 lg:pb-10">
         {/* Carte principale blanche */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -53,7 +50,7 @@ export default function ChangeAvisPage() {
             transition={{ delay: 0.3 }}
             className="self-stretch flex flex-col justify-start items-center gap-2.5"
           >
-            <div className="self-stretch text-center justify-center text-gray-900 lg:text-[#111827] text-xl lg:text-[24px] font-semibold lg:font-semibold font-['Bricolage_Grotesque'] leading-5 lg:leading-[100%] lg:tracking-[-0.24px]">
+            <div className="self-stretch text-center justify-center text-gray-900 lg:text-[#111827] text-xl lg:text-[24px] font-semibold lg:font-semibold leading-5 lg:leading-[100%] lg:tracking-[-0.24px]" style={{ fontFamily: 'var(--font-inter-tight)' }}>
               <span className="lg:hidden">&quot;Mais... et si je change d&apos;avis et que je souhaite bouger ?&quot;</span>
               <span className="hidden lg:inline">&quot;Mais... et si je change d&apos;avis ?&quot;</span>
             </div>
@@ -78,7 +75,8 @@ export default function ChangeAvisPage() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5 }}
-              className="self-stretch text-center justify-center text-gray-900 lg:text-[#111827] text-base lg:text-[20px] font-normal lg:font-normal font-['Satoshi'] leading-5 lg:leading-[120%] lg:tracking-[-0.2px]"
+              className="self-stretch text-center justify-center text-gray-900 lg:text-[#111827] text-base lg:text-[20px] font-normal lg:font-normal leading-5 lg:leading-[120%] lg:tracking-[-0.2px]"
+              style={{ fontFamily: 'var(--font-inter-tight)' }}
             >
               Dans un jeu, tu sauvegardes ta partie pour pas tout perdre.
             </motion.div>
@@ -86,7 +84,8 @@ export default function ChangeAvisPage() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.55 }}
-              className="self-stretch text-center justify-center text-gray-900 lg:text-[#111827] text-base lg:text-[20px] font-normal lg:font-normal font-['Satoshi'] leading-5 lg:leading-[120%] lg:tracking-[-0.2px]"
+              className="self-stretch text-center justify-center text-gray-900 lg:text-[#111827] text-base lg:text-[20px] font-normal lg:font-normal leading-5 lg:leading-[120%] lg:tracking-[-0.2px]"
+              style={{ fontFamily: 'var(--font-inter-tight)' }}
             >
               Dans la vraie vie, c&apos;est pareil.
             </motion.div>
@@ -113,12 +112,12 @@ export default function ChangeAvisPage() {
                   />
                 </div>
                 <div className="flex-1 rounded-lg shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.10)] flex flex-col justify-center items-center gap-2.5">
-                  <div className="self-stretch justify-center text-gray-900 lg:text-[#111827] text-base lg:text-[20px] font-semibold lg:font-semibold font-['Bricolage_Grotesque'] leading-[100%] lg:leading-[100%] tracking-[-0.16px] lg:tracking-[-0.2px]">Quand tu es locataire et que tu déménages</div>
-                  <div className="self-stretch justify-center">
-                    <span className="text-gray-900 lg:text-[#111827] text-sm lg:text-[20px] font-normal lg:font-normal font-['Satoshi'] leading-[120%] lg:leading-[120%] tracking-[-0.14px] lg:tracking-[-0.2px]">→ Tu perds </span>
-                    <span className="text-[#E43030] text-sm lg:text-[20px] font-bold lg:font-bold font-['Satoshi_Variable'] leading-[120%] lg:leading-[120%] tracking-[-0.14px] lg:tracking-[-0.2px]">tout ce que tu as payé.</span>
+                  <div className="self-stretch justify-center text-gray-900 lg:text-[#111827] text-base lg:text-[20px] font-semibold lg:font-semibold leading-[100%] lg:leading-[100%] tracking-[-0.16px] lg:tracking-[-0.2px]" style={{ fontFamily: 'var(--font-inter-tight)' }}>Quand tu es locataire et que tu déménages</div>
+                  <div className="self-stretch justify-center" style={{ fontFamily: 'var(--font-inter-tight)' }}>
+                    <span className="text-gray-900 lg:text-[#111827] text-sm lg:text-[20px] font-normal lg:font-normal leading-[120%] lg:leading-[120%] tracking-[-0.14px] lg:tracking-[-0.2px]">→ Tu perds </span>
+                    <span className="text-[#E43030] text-sm lg:text-[20px] font-bold lg:font-bold leading-[120%] lg:leading-[120%] tracking-[-0.14px] lg:tracking-[-0.2px]">tout ce que tu as payé.</span>
                   </div>
-                  <div className="self-stretch justify-center text-gray-900/60 lg:text-[rgba(17,24,39,0.60)] text-sm lg:text-[18px] font-normal lg:font-normal font-['Satoshi'] leading-4 lg:leading-[110%]">Game over, tu recommences de zéro.</div>
+                  <div className="self-stretch justify-center text-gray-900/60 lg:text-[rgba(17,24,39,0.60)] text-sm lg:text-[18px] font-normal lg:font-normal leading-4 lg:leading-[110%]" style={{ fontFamily: 'var(--font-inter-tight)' }}>Game over, tu recommences de zéro.</div>
                 </div>
               </div>
             </motion.div>
@@ -142,12 +141,12 @@ export default function ChangeAvisPage() {
                   />
                 </div>
                 <div className="flex-1 rounded-lg shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.10)] flex flex-col justify-center items-center gap-2.5">
-                  <div className="self-stretch justify-center text-gray-900 lg:text-[#111827] text-base lg:text-[20px] font-semibold lg:font-semibold font-['Bricolage_Grotesque'] leading-[100%] lg:leading-[100%] tracking-[-0.16px] lg:tracking-[-0.2px]">Quand tu es proprio et que tu revends</div>
-                  <div className="self-stretch justify-center">
-                    <span className="text-gray-900 lg:text-[#111827] text-sm lg:text-[20px] font-normal lg:font-normal font-['Satoshi'] leading-[120%] lg:leading-[120%] tracking-[-0.14px] lg:tracking-[-0.2px]">→ Tu récupères </span>
-                    <span className="text-[#16A34A] text-sm lg:text-[20px] font-bold lg:font-bold font-['Satoshi_Variable'] leading-[120%] lg:leading-[120%] tracking-[-0.14px] lg:tracking-[-0.2px]">ce que tu as déjà remboursé.</span>
+                  <div className="self-stretch justify-center text-gray-900 lg:text-[#111827] text-base lg:text-[20px] font-semibold lg:font-semibold leading-[100%] lg:leading-[100%] tracking-[-0.16px] lg:tracking-[-0.2px]" style={{ fontFamily: 'var(--font-inter-tight)' }}>Quand tu es proprio et que tu revends</div>
+                  <div className="self-stretch justify-center" style={{ fontFamily: 'var(--font-inter-tight)' }}>
+                    <span className="text-gray-900 lg:text-[#111827] text-sm lg:text-[20px] font-normal lg:font-normal leading-[120%] lg:leading-[120%] tracking-[-0.14px] lg:tracking-[-0.2px]">→ Tu récupères </span>
+                    <span className="text-[#16A34A] text-sm lg:text-[20px] font-bold lg:font-bold leading-[120%] lg:leading-[120%] tracking-[-0.14px] lg:tracking-[-0.2px]">ce que tu as déjà remboursé.</span>
                   </div>
-                  <div className="self-stretch justify-center text-gray-900/60 lg:text-[rgba(17,24,39,0.60)] text-sm lg:text-[18px] font-normal lg:font-normal font-['Satoshi'] leading-4 lg:leading-[110%]">Ta progression est sauvegardée.</div>
+                  <div className="self-stretch justify-center text-gray-900/60 lg:text-[rgba(17,24,39,0.60)] text-sm lg:text-[18px] font-normal lg:font-normal leading-4 lg:leading-[110%]" style={{ fontFamily: 'var(--font-inter-tight)' }}>Ta progression est sauvegardée.</div>
                 </div>
               </div>
             </motion.div>
@@ -210,7 +209,7 @@ export default function ChangeAvisPage() {
 
               {/* Contenu au premier plan */}
               <img className="w-20 h-16 relative z-10" src="/images/image135.svg" alt="Crédit" />
-              <div className="self-stretch text-center justify-center text-white text-base lg:text-[20px] font-medium font-['Satoshi_Variable'] leading-[120%] tracking-[-0.16px] lg:tracking-[-0.2px] relative z-10">Le crédit, c&apos;est la seule partie que tu peux quitter en gardant tes points.</div>
+              <div className="self-stretch text-center justify-center text-white text-base lg:text-[20px] font-medium leading-[120%] tracking-[-0.16px] lg:tracking-[-0.2px] relative z-10" style={{ fontFamily: 'var(--font-inter-tight)' }}>Le crédit, c&apos;est la seule partie que tu peux quitter en gardant tes points.</div>
             </motion.div>
 
             {/* Carte jaune - Bonus */}
@@ -236,11 +235,11 @@ export default function ChangeAvisPage() {
                   />
                 </motion.div>
                 <div className="flex-1 rounded-lg flex flex-col justify-center items-center gap-2.5">
-                  <div className="self-stretch justify-center text-gray-900 lg:text-[#111827] text-base lg:text-[20px] font-semibold lg:font-semibold font-['Bricolage_Grotesque'] leading-4 lg:leading-[100%] lg:tracking-[-0.2px]">Bonus</div>
-                  <div className="self-stretch justify-center">
-                    <span className="text-gray-900 lg:text-[#111827] text-sm lg:text-[18px] font-normal lg:font-normal font-['Satoshi'] leading-4 lg:leading-[120%] lg:tracking-[-0.18px]">Et nous, on a même une </span>
-                    <span className="text-gray-900 lg:text-[#111827] text-sm lg:text-[18px] font-bold lg:font-bold font-['Satoshi_Variable'] leading-4 lg:leading-[120%] lg:tracking-[-0.18px]">garantie revente jusqu&apos;à 10 ans.</span>
-                    <span className="text-gray-900 lg:text-[#111827] text-sm lg:text-[18px] font-normal lg:font-normal font-['Satoshi'] leading-4 lg:leading-[120%] lg:tracking-[-0.18px]"> Si le marché baisse (spoiler : c&apos;est rare), on compense.</span>
+                  <div className="self-stretch justify-center text-gray-900 lg:text-[#111827] text-base lg:text-[20px] font-semibold lg:font-semibold leading-4 lg:leading-[100%] lg:tracking-[-0.2px]" style={{ fontFamily: 'var(--font-inter-tight)' }}>Bonus</div>
+                  <div className="self-stretch justify-center" style={{ fontFamily: 'var(--font-inter-tight)' }}>
+                    <span className="text-gray-900 lg:text-[#111827] text-sm lg:text-[18px] font-normal lg:font-normal leading-4 lg:leading-[120%] lg:tracking-[-0.18px]">Et nous, on a même une </span>
+                    <span className="text-gray-900 lg:text-[#111827] text-sm lg:text-[18px] font-bold lg:font-bold leading-4 lg:leading-[120%] lg:tracking-[-0.18px]">garantie revente jusqu&apos;à 10 ans.</span>
+                    <span className="text-gray-900 lg:text-[#111827] text-sm lg:text-[18px] font-normal lg:font-normal leading-4 lg:leading-[120%] lg:tracking-[-0.18px]"> Si le marché baisse (spoiler : c&apos;est rare), on compense.</span>
                   </div>
                 </div>
               </div>
@@ -254,6 +253,6 @@ export default function ChangeAvisPage() {
         {/* Bouton Continue */}
         <ContinueButton onClick={handleContinue} disabled={false} />
       </main>
-    </motion.div>
+    </div>
   );
 }

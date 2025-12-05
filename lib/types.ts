@@ -21,7 +21,7 @@ export interface CompositeQuestion {
   key: string;
   titleText?: string;
   text: string;
-  inputType: 'text' | 'select';
+  inputType: 'text' | 'select' | 'city-search';
   placeholder?: string;
   choices?: { id: string; label: string }[];
   infoBadge?: string; // Badge orange affiché après l'input
