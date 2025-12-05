@@ -41,8 +41,25 @@ export default function QuizQuestionPage() {
     }
 
     if (question.type === 'composite') {
-      // Questions composites : valider via la fonction validation
-      if (question.validation) {
+      // Question 9 : crédits en cours - validation spéciale
+      if (questionId === 9) {
+        try {
+          const answerObj = answer ? JSON.parse(answer) : {};
+          const selectedCredits = Array.isArray(answerObj.credit_type) ? answerObj.credit_type : [];
+
+          // Si aucun crédit sélectionné, c'est valide (pas de crédit)
+          if (selectedCredits.length === 0) {
+            setIsValid(true);
+          } else {
+            // Si crédit sélectionné, le montant doit être renseigné
+            const montant = answerObj.montant_credit || '';
+            setIsValid(montant.trim().length > 0);
+          }
+        } catch {
+          setIsValid(true); // Par défaut valide si pas de réponse (pas de crédit)
+        }
+      } else if (question.validation) {
+        // Autres questions composites : valider via la fonction validation
         setIsValid(question.validation(answer));
       } else {
         setIsValid(false);
@@ -112,6 +129,9 @@ export default function QuizQuestionPage() {
     } else if (questionId === 8) {
       // Après la question 8 (fin du mois), aller à la question 9
       router.push('/quiz/9');
+    } else if (questionId === 9) {
+      // Après la question 9 (crédits), aller à l'écran magic-moment
+      router.push('/magic-moment');
     } else if (questionId < TOTAL_QUESTIONS) {
       router.push(`/quiz/${questionId + 1}`);
     } else {
@@ -891,78 +911,6 @@ export default function QuizQuestionPage() {
         }
 
         // Pour les autres questions
-        // Question 10 : 4 cartes sur une seule ligne en desktop (type de crédit)
-        if (questionId === 10) {
-          return (
-            <div className={`w-full lg:w-[750px] grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-[18px]`}>
-              {question.choices?.map((choice, index) => (
-                <ChoiceComponent
-                  key={choice.id}
-                  id={choice.id}
-                  label={choice.label}
-                  subtitle={choice.subtitle}
-                  image={choice.image}
-                  desktopImage={choice.desktopImage}
-                  selected={answer === choice.id}
-                  onClick={() => setAnswer(choice.id)}
-                  compactImage={true}
-                  labelClassName={choice.labelClassName}
-                  subtitleClassName={choice.subtitleClassName}
-                  index={index}
-                />
-              ))}
-            </div>
-          );
-        }
-
-        // Question 9 : 2 cartes avec largeCompactImage (crédits oui/non)
-        if (questionId === 9) {
-          return (
-            <div className={`w-full lg:w-[750px] grid grid-cols-2 gap-2 lg:gap-[18px]`}>
-              {question.choices?.map((choice, index) => (
-                <ChoiceComponent
-                  key={choice.id}
-                  id={choice.id}
-                  label={choice.label}
-                  subtitle={choice.subtitle}
-                  image={choice.image}
-                  desktopImage={choice.desktopImage}
-                  selected={answer === choice.id}
-                  onClick={() => setAnswer(choice.id)}
-                  largeCompactImage={true}
-                  labelClassName={choice.labelClassName}
-                  subtitleClassName={choice.subtitleClassName}
-                  index={index}
-                />
-              ))}
-            </div>
-          );
-        }
-
-        // Question 11 : 3 cartes avec compactImage (apport)
-        if (questionId === 11) {
-          return (
-            <div className={`w-full lg:w-[750px] grid grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-[18px]`}>
-              {question.choices?.map((choice, index) => (
-                <ChoiceComponent
-                  key={choice.id}
-                  id={choice.id}
-                  label={choice.label}
-                  subtitle={choice.subtitle}
-                  image={choice.image}
-                  desktopImage={choice.desktopImage}
-                  selected={answer === choice.id}
-                  onClick={() => setAnswer(choice.id)}
-                  compactImage={true}
-                  labelClassName={choice.labelClassName}
-                  subtitleClassName={choice.subtitleClassName}
-                  index={index}
-                />
-              ))}
-            </div>
-          );
-        }
-
         return (
           <motion.div
             className="w-full lg:w-[750px] lg:h-[269px] grid grid-cols-2 gap-2 lg:gap-[18px]"

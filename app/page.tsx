@@ -37,7 +37,15 @@ export default function HomePage() {
         {/* Section texte et cartes - avec gap-10 (40px) du logo et flex-grow pour pousser le bouton en bas */}
         <div className="w-full flex flex-col gap-1.5 mt-10 flex-grow">
           {/* Titre et sous-titre */}
-          <div className="px-2.5 py-[30px] flex flex-col gap-4 backdrop-blur-sm bg-white/5 rounded-2xl">
+          <div
+            className="px-2.5 py-[30px] flex flex-col gap-4 backdrop-blur-sm bg-white/5 rounded-2xl"
+            style={{
+              borderTop: '1px solid rgba(255, 255, 255, 0.8)',
+              borderLeft: '1px solid rgba(255, 255, 255, 0.6)',
+              borderRight: '1px solid rgba(200, 200, 200, 0.3)',
+              borderBottom: '1px solid rgba(200, 200, 200, 0.3)',
+            }}
+          >
             <h1
               className="text-white text-5xl lg:text-6xl font-semibold leading-[1.1]"
               style={{ fontFamily: 'var(--font-inter)' }}
@@ -55,7 +63,15 @@ export default function HomePage() {
           {/* 3 cartes info */}
           <div className="w-full flex gap-1.5">
             {/* Carte Apport */}
-            <div className="flex-1 p-3 rounded-2xl backdrop-blur-sm bg-white/5">
+            <div
+              className="flex-1 p-3 rounded-2xl backdrop-blur-sm bg-white/5"
+              style={{
+                borderTop: '1px solid rgba(255, 255, 255, 0.8)',
+                borderLeft: '1px solid rgba(255, 255, 255, 0.6)',
+                borderRight: '1px solid rgba(200, 200, 200, 0.3)',
+                borderBottom: '1px solid rgba(200, 200, 200, 0.3)',
+              }}
+            >
               <div className="flex flex-col gap-2">
                 <span
                   className="text-white text-base font-normal leading-4"
@@ -73,7 +89,15 @@ export default function HomePage() {
             </div>
 
             {/* Carte Mensualités */}
-            <div className="flex-1 p-3 rounded-2xl backdrop-blur-sm bg-white/5">
+            <div
+              className="flex-1 p-3 rounded-2xl backdrop-blur-sm bg-white/5"
+              style={{
+                borderTop: '1px solid rgba(255, 255, 255, 0.8)',
+                borderLeft: '1px solid rgba(255, 255, 255, 0.6)',
+                borderRight: '1px solid rgba(200, 200, 200, 0.3)',
+                borderBottom: '1px solid rgba(200, 200, 200, 0.3)',
+              }}
+            >
               <div className="flex flex-col gap-2">
                 <span
                   className="text-white text-base font-normal leading-4"
@@ -91,7 +115,15 @@ export default function HomePage() {
             </div>
 
             {/* Carte Résultat */}
-            <div className="flex-1 p-3 rounded-2xl backdrop-blur-sm bg-white/5">
+            <div
+              className="flex-1 p-3 rounded-2xl backdrop-blur-sm bg-white/5"
+              style={{
+                borderTop: '1px solid rgba(255, 255, 255, 0.8)',
+                borderLeft: '1px solid rgba(255, 255, 255, 0.6)',
+                borderRight: '1px solid rgba(200, 200, 200, 0.3)',
+                borderBottom: '1px solid rgba(200, 200, 200, 0.3)',
+              }}
+            >
               <div className="flex flex-col gap-2">
                 <span
                   className="text-white text-base font-normal leading-4"

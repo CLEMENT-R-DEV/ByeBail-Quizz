@@ -1,6 +1,6 @@
 import { Question } from './types';
 
-export const TOTAL_QUESTIONS = 11;
+export const TOTAL_QUESTIONS = 9;
 
 export const questions: Question[] = [
   {
@@ -216,64 +216,6 @@ export const questions: Question[] = [
         inputType: 'text',
         textInputType: 'number',
         placeholder: '...€ par mois',
-      },
-    ],
-  },
-  {
-    id: 10,
-    type: 'choice',
-    titleText: 'OK, et c\'est quoi exactement ?',
-    text: 'Auto, conso, étudiant, immo ?',
-    choices: [
-      {
-        id: 'auto',
-        label: 'Auto',
-        image: '/images/image1250.svg',
-        labelClassName: "text-center text-[#111827] text-base font-medium leading-[110%] font-['Satoshi']",
-      },
-      {
-        id: 'conso',
-        label: 'Conso',
-        image: '/images/image1260.svg',
-        labelClassName: "text-center text-[#111827] text-base font-medium leading-[110%] font-['Satoshi']",
-      },
-      {
-        id: 'etudiant',
-        label: 'Etudiant',
-        image: '/images/image1270.svg',
-        labelClassName: "text-center text-[#111827] text-base font-medium leading-[110%] font-['Satoshi']",
-      },
-      {
-        id: 'immo',
-        label: 'Immo',
-        image: '/images/image1280.svg',
-        labelClassName: "text-center text-[#111827] text-base font-medium leading-[110%] font-['Satoshi']",
-      },
-    ],
-  },
-  {
-    id: 11,
-    type: 'choice',
-    titleText: 'Dernière question !',
-    text: "T'as un peu d'apport de côté, ou c'est plutôt \"pâtes au beurre\" en fin de mois ?",
-    choices: [
-      {
-        id: 'apport',
-        label: "J'ai de l'apport",
-        image: '/images/image143.svg',
-        labelClassName: "text-center text-[#111827] text-base font-medium leading-[110%] font-['Satoshi']",
-      },
-      {
-        id: 'rien',
-        label: 'Rien du tout',
-        image: '/images/image144.svg',
-        labelClassName: "text-center text-[#111827] text-base font-medium leading-[110%] font-['Satoshi']",
-      },
-      {
-        id: 'sais_pas',
-        label: 'Je sais pas',
-        image: '/images/image145.svg',
-        labelClassName: "text-center text-[#111827] text-base font-medium leading-[110%] font-['Satoshi']",
       },
     ],
   },
