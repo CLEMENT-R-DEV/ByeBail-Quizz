@@ -808,10 +808,10 @@ export default function QuizQuestionPage() {
         const inputType = questionId === 2 || question.placeholder?.includes('email') || question.placeholder?.includes('@') ? 'text' : 'number';
 
         return (
-          <div className={questionId === 8 ? 'lg:flex lg:flex-col lg:gap-5' : ''}>
-            {/* Input sur mobile uniquement pour question 8 (email) */}
+          <div>
+            {/* Input pour question 8 (email) */}
             {questionId === 8 && (
-              <div className="lg:hidden">
+              <div>
                 <TextInput
                   value={answer}
                   onChange={setAnswer}
@@ -821,43 +821,13 @@ export default function QuizQuestionPage() {
               </div>
             )}
 
-            {/* Input pour question 8 sur desktop */}
-            {questionId === 8 && (
-              <div className="hidden lg:flex lg:justify-end">
-                <TextInput
-                  value={answer}
-                  onChange={setAnswer}
-                  placeholder={question.placeholder}
-                  type={inputType}
-                />
-              </div>
-            )}
-
-            {/* Texte informatif pour la question 8 (email) (desktop uniquement) - après l'input */}
-            {questionId === 8 && (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
-                className="hidden lg:flex lg:flex-col lg:gap-1 lg:items-end"
-                style={{ fontFamily: 'var(--font-satoshi)' }}
-              >
-                <div className="text-gray-900/60 text-[18px] font-normal leading-[110%] tracking-[-0.18px] text-right">
-                  Aucun spam. Aucune pub.
-                </div>
-                <div className="text-gray-900/60 text-[18px] font-normal leading-[110%] tracking-[-0.18px] text-right">
-                  On n&apos;est pas là pour te saouler, juste pour t&apos;aider.
-                </div>
-              </motion.div>
-            )}
-
-            {/* Texte informatif pour la question 8 sur mobile */}
+            {/* Texte informatif pour la question 8 */}
             {questionId === 8 && (
               <motion.p
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
-                className="lg:hidden text-center text-[14px] font-normal leading-[110%] mt-4 text-[#111827]"
+                className="text-center text-[14px] font-normal leading-[110%] mt-4 text-[#111827]"
                 style={{ fontFamily: 'var(--font-satoshi)' }}
               >
                 Aucun spam. Aucune pub.<br />
@@ -995,7 +965,7 @@ export default function QuizQuestionPage() {
         // Pour les autres questions
         return (
           <motion.div
-            className="w-full lg:w-[750px] lg:h-[269px] grid grid-cols-2 gap-2 lg:gap-[18px]"
+            className="w-full grid grid-cols-2 gap-2"
             initial="initial"
             animate="animate"
           >
@@ -1025,7 +995,7 @@ export default function QuizQuestionPage() {
       className="min-h-screen relative overflow-hidden"
       style={{ backgroundColor: '#F5EBE1' }}
     >
-        {/* Éléments décoratifs */}
+      {/* Éléments décoratifs */}
         <div
           className="w-72 h-96 absolute left-[49px] top-[225px]"
         />
@@ -1063,7 +1033,7 @@ export default function QuizQuestionPage() {
           </div>
         ) : question.backgroundImage && questionId !== 6 ? (
           /* Autres questions : image centrée pleine largeur */
-          <div className="absolute left-1/2 top-[35%] -translate-x-1/2 w-screen h-[75%] pointer-events-none">
+          <div className="absolute left-1/2 top-[35%] -translate-x-1/2 w-full h-[75%] pointer-events-none">
             <Image
               src={question.backgroundImage}
               alt=""
@@ -1074,7 +1044,7 @@ export default function QuizQuestionPage() {
         ) : null}
 
         {/* Contenu principal */}
-        <div className="relative px-4 pt-10 pb-24 lg:pb-10 min-h-screen flex flex-col gap-10">
+        <div className="relative px-4 pt-10 pb-24 min-h-screen flex flex-col gap-10">
           <QuizHeader currentQuestion={questionId} />
 
           {/* Contenu central - flex-1 pour prendre l'espace disponible */}

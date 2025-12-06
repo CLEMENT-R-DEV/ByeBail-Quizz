@@ -18,8 +18,8 @@ export default function BanquesPage() {
   };
 
   return (
-    <div className="h-screen w-screen fixed inset-0 overflow-hidden">
-      {/* Background full-screen */}
+    <div className="min-h-screen w-full relative overflow-hidden">
+      {/* Background */}
       <Image
         src="/images/courbes_2.svg"
         alt="Comparaison gestion financière"
@@ -37,7 +37,7 @@ export default function BanquesPage() {
       />
 
       {/* Contenu superposé */}
-      <div className="relative z-10 h-full flex flex-col px-4 pt-10 pb-6">
+      <div className="relative z-10 min-h-screen w-full flex flex-col px-4 pt-10 pb-6">
         {/* Bouton retour */}
         <motion.button
           onClick={handleBack}

@@ -47,7 +47,7 @@ export default function MoneyInput({
       initial={{ opacity: 0, x: -20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
-      className="w-full lg:w-[388px]"
+      className="w-full"
     >
       <motion.div
         animate={{

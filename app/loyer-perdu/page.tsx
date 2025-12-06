@@ -35,8 +35,8 @@ export default function LoyerPerduPage() {
   };
 
   return (
-    <div className="h-screen w-screen fixed inset-0 overflow-hidden">
-      {/* Vidéo de fond plein écran */}
+    <div className="min-h-screen w-full relative overflow-hidden">
+      {/* Vidéo de fond */}
       <video
         autoPlay
         loop
@@ -56,7 +56,7 @@ export default function LoyerPerduPage() {
       />
 
       {/* Contenu superposé */}
-      <div className="relative z-10 h-full flex flex-col px-4 pt-10 pb-6">
+      <div className="relative z-10 min-h-screen w-full flex flex-col px-4 pt-10 pb-6">
         {/* Bouton retour */}
         <motion.button
           onClick={handleBack}

@@ -22,7 +22,7 @@ export default function HomePage() {
       <div className="absolute inset-0 bg-gradient-to-b from-black/0 to-black/80" />
 
       {/* Contenu principal */}
-      <main className="relative min-h-screen px-5 pt-10 pb-24 lg:pb-10 flex flex-col items-start">
+      <main className="relative w-full min-h-screen px-5 pt-10 pb-24 flex flex-col items-start">
         {/* Logo ByeBail */}
         <div className="w-full">
           <Image
@@ -47,13 +47,13 @@ export default function HomePage() {
             }}
           >
             <h1
-              className="text-white text-5xl lg:text-6xl font-semibold leading-[1.1]"
+              className="text-white text-5xl font-semibold leading-[1.1]"
               style={{ fontFamily: 'var(--font-inter)' }}
             >
               Devient propriétaire<br/>pour le prix de ton loyer
             </h1>
             <p
-              className="text-neutral-100 text-xl lg:text-2xl font-medium leading-8"
+              className="text-neutral-100 text-xl font-medium leading-8"
               style={{ fontFamily: 'var(--font-inter)' }}
             >
               Tout ce qui t&apos;en empêchait ?<br/>N&apos;existe plus.

@@ -45,7 +45,7 @@ export default function SelectInput({
   const selectedOption = options.find(opt => opt.id === value);
 
   return (
-    <div ref={containerRef} className="relative w-full lg:w-[388px]">
+    <div ref={containerRef} className="relative w-full">
       <div
         onClick={handleToggle}
         className="w-full h-[72px] p-4 rounded-[18px] border border-white/10 flex justify-center items-center gap-2.5 cursor-pointer backdrop-blur-md"
@@ -94,7 +94,7 @@ export default function SelectInput({
             <div
               key={option.id}
               onClick={() => handleSelect(option.id)}
-              className="p-3 lg:p-4 cursor-pointer hover:bg-gray-50 text-sm lg:text-lg font-normal text-gray-900 first:rounded-t-2xl last:rounded-b-2xl"
+              className="p-3 cursor-pointer hover:bg-gray-50 text-sm font-normal text-gray-900 first:rounded-t-2xl last:rounded-b-2xl"
               style={{
                 fontFamily: 'var(--font-inter-tight)',
                 backgroundColor: value === option.id ? 'rgba(0, 0, 0, 0.05)' : undefined

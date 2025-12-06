@@ -29,8 +29,8 @@ export default function ApportPage() {
   };
 
   return (
-    <div className="h-screen w-screen fixed inset-0 overflow-hidden">
-      {/* Background full-screen avec blur animé */}
+    <div className="min-h-screen w-full relative overflow-hidden">
+      {/* Background avec blur animé */}
       <motion.div
         className="absolute inset-0"
         animate={{ filter: showText ? 'blur(4px)' : 'blur(0px)' }}
@@ -54,7 +54,7 @@ export default function ApportPage() {
       />
 
       {/* Contenu superposé */}
-      <div className="relative z-10 h-full flex flex-col px-4 pt-10 pb-6">
+      <div className="relative z-10 min-h-screen w-full flex flex-col px-4 pt-10 pb-6">
         {/* Bouton retour */}
         <motion.button
           onClick={handleBack}

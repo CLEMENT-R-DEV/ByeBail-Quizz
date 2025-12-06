@@ -51,31 +51,21 @@ export default function ImageChoice({
           stiffness: 300,
           damping: 25,
         }}
-        className="relative w-full aspect-square lg:aspect-auto lg:h-full rounded-2xl overflow-hidden"
+        className="relative w-full aspect-square rounded-2xl overflow-hidden"
         style={{
           border: selected
             ? '8px solid rgba(155, 123, 248, 0.3)'
             : '8px solid white',
         }}
       >
-        {/* Image mobile */}
+        {/* Image */}
         {image && (
           <Image
             src={image}
             alt={label}
             fill
-            className={`object-fill ${desktopImage ? 'lg:hidden' : ''}`}
-            sizes="(max-width: 768px) 50vw, 25vw"
-          />
-        )}
-        {/* Image desktop */}
-        {desktopImage && (
-          <Image
-            src={desktopImage}
-            alt={label}
-            fill
-            className="object-fill hidden lg:block"
-            sizes="25vw"
+            className="object-fill"
+            sizes="50vw"
           />
         )}
       </motion.div>

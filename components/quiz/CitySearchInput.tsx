@@ -162,7 +162,7 @@ export default function CitySearchInput({
   const showSuggestionsSection = suggestions.length > 0;
 
   return (
-    <div ref={containerRef} className="relative w-full lg:w-[388px]">
+    <div ref={containerRef} className="relative w-full">
       {/* Input de recherche */}
       <div
         className="w-full h-[72px] px-4 rounded-[18px] border border-white/10 flex items-center gap-2.5 backdrop-blur-md"
@@ -232,7 +232,7 @@ export default function CitySearchInput({
                 <div
                   key={city.id}
                   onClick={() => handleSelect(city.label)}
-                  className={`p-3 lg:p-4 cursor-pointer flex items-center gap-2 ${
+                  className={`p-3 cursor-pointer flex items-center gap-2 ${
                     highlightedIndex === index ? 'bg-orange-50' : 'hover:bg-gray-50'
                   }`}
                   style={{
@@ -249,7 +249,7 @@ export default function CitySearchInput({
                   >
                     <path d="M8 0L9.79611 5.52786H15.6085L10.9062 8.94427L12.7023 14.4721L8 11.0557L3.29772 14.4721L5.09383 8.94427L0.391548 5.52786H6.20389L8 0Z" />
                   </svg>
-                  <span className="text-sm lg:text-lg font-medium text-gray-900">
+                  <span className="text-sm font-medium text-gray-900">
                     {city.label}
                   </span>
                 </div>
@@ -275,7 +275,7 @@ export default function CitySearchInput({
                   <div
                     key={cityName}
                     onClick={() => handleSelect(cityName)}
-                    className={`p-3 lg:p-4 cursor-pointer text-sm lg:text-lg font-normal text-gray-900 ${
+                    className={`p-3 cursor-pointer text-sm font-normal text-gray-900 ${
                       highlightedIndex === actualIndex ? 'bg-gray-100' : 'hover:bg-gray-50'
                     } last:rounded-b-2xl`}
                     style={{

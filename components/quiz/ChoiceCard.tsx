@@ -171,7 +171,7 @@ export default function ChoiceCard({
       >
         <div
           className={`w-full bg-[#FDFEFF] rounded-lg flex flex-col items-center justify-center gap-[10px] ${
-            fitContent ? 'py-[10px]' : (compactImage || largeCompactImage) ? 'aspect-square' : 'aspect-square lg:aspect-auto lg:h-full'
+            fitContent ? 'py-[10px]' : 'aspect-square'
           }`}
           style={{
             border: '0.8px solid rgba(0, 0, 0, 0.08)',
@@ -182,10 +182,10 @@ export default function ChoiceCard({
           <div
             className={`relative flex-shrink-0 flex justify-center items-center overflow-hidden ${
               largeCompactImage
-                ? 'w-[120px] h-[80px] lg:w-[172px] lg:h-[115px]'
+                ? 'w-[120px] h-[80px]'
                 : compactImage
                 ? 'w-[120px] h-[80px]'
-                : 'w-[92px] h-[92px] lg:w-[140px] lg:h-[140px]'
+                : 'w-[92px] h-[92px]'
             }`}
             style={{
               background: '#FFFFFF',
@@ -207,7 +207,7 @@ export default function ChoiceCard({
 
           {/* Label + Subtitle */}
           <div className="inline-flex flex-col justify-start items-center gap-0.5">
-            <div className={labelClassName || "text-center justify-center text-gray-900 lg:text-[#111827] text-base lg:text-[22px] font-medium lg:font-medium leading-4 lg:leading-[110%]"} style={{ fontFamily: 'var(--font-inter-tight)' }}>
+            <div className={labelClassName || "text-center justify-center text-gray-900 text-base font-medium leading-4"} style={{ fontFamily: 'var(--font-inter-tight)' }}>
               {label}
             </div>
             {subtitle && (

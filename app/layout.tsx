@@ -74,7 +74,19 @@ export default function RootLayout({
       <body
         className={`${satoshi.variable} ${optima.variable} ${crimsonPro.variable} ${bricolageGrotesque.variable} ${inter.variable} ${interTight.variable} antialiased`}
       >
-        {children}
+        {/* Gradient background visible sur les côtés */}
+        <div
+          className="min-h-screen flex justify-center"
+          style={{ background: 'linear-gradient(135deg, #E8DCD1 0%, #F5EBE1 50%, #E5D8CC 100%)' }}
+        >
+          {/* Container 550px centré - transform crée un containing block pour les éléments fixed */}
+          <div
+            className="w-full md:max-w-[550px] min-h-screen md:shadow-2xl relative"
+            style={{ transform: 'translateZ(0)' }}
+          >
+            {children}
+          </div>
+        </div>
       </body>
     </html>
   );

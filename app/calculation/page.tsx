@@ -56,16 +56,17 @@ export default function CalculationPage() {
   return (
     <div
       className="min-h-screen flex flex-col"
+      style={{ backgroundColor: '#F5EBE1' }}
     >
       <SimpleHeader />
 
-      <main className="flex-1 flex flex-col mx-4 lg:mx-0 pb-24 lg:pb-10">
+        <main className="flex-1 flex flex-col mx-4 pb-24">
         {/* Contenu principal */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, type: 'spring' as const, stiffness: 300, damping: 25 }}
-          className="w-full lg:w-[750px] lg:mt-[100px] mt-[20px] mx-auto p-5 bg-white rounded-3xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.04)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 flex flex-col justify-start items-start gap-5 mb-8"
+          className="w-full mt-[20px] mx-auto p-5 bg-white rounded-3xl shadow-[0px_0px_27.5px_0px_rgba(104,137,228,0.04)] outline outline-[0.80px] outline-offset-[-0.80px] outline-black/5 flex flex-col justify-start items-start gap-5 mb-8"
         >
 
           {/* Section 1 - Titre et question */}
@@ -75,13 +76,13 @@ export default function CalculationPage() {
             transition={{ delay: 0.3 }}
             className="self-stretch flex flex-col justify-start items-center gap-1.5"
           >
-            <div className="self-stretch text-center justify-center text-[#111827] text-3xl lg:text-[28px] font-semibold lg:font-semibold leading-8 lg:leading-[120%] lg:tracking-[-0.28px]" style={{ fontFamily: 'var(--font-inter-tight)' }}>
+            <div className="self-stretch text-center justify-center text-[#111827] text-3xl font-semibold leading-8" style={{ fontFamily: 'var(--font-inter-tight)' }}>
               Petite question rapide...
             </div>
             <div className="self-stretch text-center justify-center" style={{ fontFamily: 'var(--font-inter-tight)' }}>
-              <span className="text-[#111827] text-base lg:text-[20px] font-normal lg:font-normal leading-5 lg:leading-[120%] lg:tracking-[-0.2px]">Ton loyer de </span>
-              <span className="text-[#111827] text-base lg:text-[20px] font-bold lg:font-bold leading-5 lg:leading-[120%] lg:tracking-[-0.2px]">{loyer} €/mois</span>
-              <span className="text-[#111827] text-base lg:text-[20px] font-normal lg:font-normal leading-5 lg:leading-[120%] lg:tracking-[-0.2px]">, ça représente combien sur 10 ans ?</span>
+              <span className="text-[#111827] text-base font-normal leading-5">Ton loyer de </span>
+              <span className="text-[#111827] text-base font-bold leading-5">{loyer} €/mois</span>
+              <span className="text-[#111827] text-base font-normal leading-5">, ça représente combien sur 10 ans ?</span>
             </div>
           </motion.div>
 
@@ -148,10 +149,10 @@ export default function CalculationPage() {
               transition={{ delay: 0.7 }}
               className="self-stretch flex flex-col justify-start items-center"
             >
-              <div className="self-stretch text-center justify-center text-[#FE642A] text-3xl lg:text-[28px] font-semibold lg:font-semibold leading-7 lg:leading-[100%] lg:tracking-[-0.28px]" style={{ fontFamily: 'var(--font-inter-tight)' }}>
+              <div className="self-stretch text-center justify-center text-[#FE642A] text-3xl font-semibold leading-7" style={{ fontFamily: 'var(--font-inter-tight)' }}>
                 {totalSur10Ans.toLocaleString('fr-FR')} €
               </div>
-              <div className="self-stretch text-center justify-center text-[#111827] text-base lg:text-lg font-normal lg:font-normal leading-5 lg:leading-[120%] lg:tracking-[-0.18px]" style={{ fontFamily: 'var(--font-inter-tight)' }}>
+              <div className="self-stretch text-center justify-center text-[#111827] text-base font-normal leading-5" style={{ fontFamily: 'var(--font-inter-tight)' }}>
                 C&apos;est ce que tu auras payé en 10 ans
               </div>
             </motion.div>
@@ -165,11 +166,11 @@ export default function CalculationPage() {
             className="self-stretch flex flex-col justify-start items-start gap-4"
           >
             <div className="self-stretch text-center justify-center" style={{ fontFamily: 'var(--font-inter-tight)' }}>
-              <span className="text-[#111827] text-base lg:text-[20px] font-normal lg:font-normal leading-5 lg:leading-[120%] lg:tracking-[-0.2px]">Avec </span>
-              <span className="text-[#FE642A] text-base lg:text-[20px] font-bold lg:font-bold leading-5 lg:leading-[120%] lg:tracking-[-0.2px]">{totalSur10Ans.toLocaleString('fr-FR')} €</span>
-              <span className="text-[#111827] text-base lg:text-[20px] font-normal lg:font-normal leading-5 lg:leading-[120%] lg:tracking-[-0.2px]">, tu aurais déjà payé {pourcentageAppartement}% d&apos;un appartement à Tours.</span>
+              <span className="text-[#111827] text-base font-normal leading-5">Avec </span>
+              <span className="text-[#FE642A] text-base font-bold leading-5">{totalSur10Ans.toLocaleString('fr-FR')} €</span>
+              <span className="text-[#111827] text-base font-normal leading-5">, tu aurais déjà payé {pourcentageAppartement}% d&apos;un appartement à Tours.</span>
             </div>
-            <div className="self-stretch text-center justify-center text-[#111827] text-base lg:text-[20px] font-normal lg:font-normal leading-5 lg:leading-[120%] lg:tracking-[-0.2px]" style={{ fontFamily: 'var(--font-inter-tight)' }}>
+            <div className="self-stretch text-center justify-center text-[#111827] text-base font-normal leading-5" style={{ fontFamily: 'var(--font-inter-tight)' }}>
               Sauf que là, cet argent... il est parti. Pour toujours.
             </div>
           </motion.div>
