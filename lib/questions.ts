@@ -36,7 +36,7 @@ export const questions: Question[] = [
         titleText: "On t'a déjà dit que",
         text: "tu faisais plus jeune que ton âge ?|D'ailleurs, t'as quel âge ?",
         inputType: 'money',
-        placeholder: "25",
+        placeholder: "...",
         suffix: 'ans',
       },
       {
@@ -79,9 +79,9 @@ export const questions: Question[] = [
       },
       {
         key: 'loyer',
-        text: "ou combien tu pourrais\nmettre par mois ?|Et tu payes combien de loyer ?",
+        text: "|Et tu payes combien de loyer ?",
         inputType: 'money',
-        placeholder: "1200",
+        placeholder: "...",
         suffix: '€/mois',
       },
     ],
@@ -102,7 +102,7 @@ export const questions: Question[] = [
     text: "Cela nous permet de te proposer plus\nde possibilités.",
     inputType: 'money',
     suffix: '€/mois',
-    placeholder: '',
+    placeholder: '...',
     validation: (value: string) => {
       const montant = parseFloat(value);
       return !isNaN(montant) && montant >= 0;
@@ -111,7 +111,7 @@ export const questions: Question[] = [
   {
     id: 5,
     type: 'choice',
-    text: 'Tu cherches quel type de logement ?',
+    text: '|Tu cherches quel type de logement ?',
     backgroundImage: '/images/appart.svg',
     choices: [
       {
@@ -135,7 +135,7 @@ export const questions: Question[] = [
   {
     id: 6,
     type: 'choice',
-    text: "Tu achète seul ou à deux ?",
+    text: "|Tu achètes seul ou à deux ?",
     backgroundImage: '/images/rings.svg',
     choices: [
       {
@@ -152,7 +152,9 @@ export const questions: Question[] = [
     id: 7,
     type: 'text',
     text: 'Quel est le revenu net mensuel de ton foyer ?',
-    placeholder: '...€',
+    inputType: 'money',
+    suffix: '€/mois',
+    placeholder: '...',
     subQuestions: [
       {
         key: 'statut',
@@ -215,9 +217,9 @@ export const questions: Question[] = [
         key: 'montant_credit',
         titleText: 'Combien par mois ?',
         text: '',
-        inputType: 'text',
-        textInputType: 'number',
-        placeholder: '...€ par mois',
+        inputType: 'money',
+        suffix: '€/mois',
+        placeholder: '...',
       },
     ],
   },

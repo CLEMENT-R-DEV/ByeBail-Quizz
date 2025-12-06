@@ -3,7 +3,8 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatedText } from '@/components/ui/AnimatedText';
 
 const messages = [
   "On transforme ton loyer en vrais mètres carrés.",
@@ -14,48 +15,62 @@ const messages = [
 export default function MagicMomentPage() {
   const router = useRouter();
   const [currentMessage, setCurrentMessage] = useState(0);
+  const [startProgress, setStartProgress] = useState(false);
 
-  // Rotation des messages
+  // Démarrer la progress bar après un délai
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setStartProgress(true);
+    }, 1800);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Rotation des messages (3 messages sur 10s = ~3.3s par message)
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentMessage((prev) => (prev + 1) % messages.length);
-    }, 2000);
+    }, 3300);
 
     return () => clearInterval(interval);
   }, []);
 
-  // Auto-navigation après 6 secondes
+  // Auto-navigation après 10 secondes
   useEffect(() => {
     const timer = setTimeout(() => {
       router.push('/results');
-    }, 6000);
+    }, 10000);
 
     return () => clearTimeout(timer);
   }, [router]);
 
   return (
-    <div
-      className="min-h-screen w-full relative"
-    >
-      {/* Image de fond plein écran */}
-      <Image
-        src="/images/immeubles.png"
-        alt="Immeubles"
-        fill
-        className="object-cover"
-        priority
+    <div className="h-screen w-screen fixed inset-0 overflow-hidden">
+      {/* Background vidéo full-screen */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover"
+      >
+        <source src="/images/building.mp4" type="video/mp4" />
+      </video>
+
+      {/* Overlay radial gradient */}
+      <div
+        className="absolute inset-0 z-[5]"
+        style={{
+          background: 'radial-gradient(circle at center, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.3) 70%)'
+        }}
       />
 
-      {/* Overlay sombre */}
-      <div className="absolute inset-0 bg-black/40" />
-
-      {/* Contenu centré */}
-      <div className="absolute inset-0 flex flex-col justify-center items-center px-4">
+      {/* Contenu superposé */}
+      <div className="relative z-10 h-full flex flex-col justify-center items-center px-4">
         {/* Icône ByeBail */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.2 }}
+          transition={{ delay: 0.2, duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
           className="mb-10"
         >
           <Image
@@ -67,81 +82,97 @@ export default function MagicMomentPage() {
           />
         </motion.div>
 
-        {/* Titre principal */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-          className="w-full rounded-2xl flex flex-col justify-start items-center gap-7 overflow-hidden mb-10"
+        {/* Titre principal avec animation lettre par lettre */}
+        <div
+          className="w-full text-center mb-10 overflow-visible"
+          style={{ fontFamily: 'var(--font-inter-tight)', overflow: 'visible' }}
         >
-          <div className="w-full flex flex-col justify-start items-center gap-3.5">
-            <div
-              className="w-full text-center text-white text-3xl font-semibold leading-7"
-              style={{ fontFamily: 'var(--font-inter-tight)' }}
-            >
-              On prépare ton passage de locataire à propriétaire.
-            </div>
+          <div style={{
+            color: '#FFF',
+            fontSize: '28px',
+            fontWeight: 600,
+            lineHeight: '1.2',
+            letterSpacing: '-0.84px',
+            overflow: 'visible',
+          }}>
+            <AnimatedText text="On prépare ton passage" delay={0.3} />
+            <br />
+            <AnimatedText text="de locataire à" delay={0.8} />
+            <br />
+            <AnimatedText text="propriétaire." delay={1.2} />
           </div>
-        </motion.div>
+        </div>
 
-        {/* Messages rotatifs */}
+        {/* Messages rotatifs avec transitions smooth */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
+          transition={{ delay: 1.6, duration: 0.6 }}
           className="w-full flex justify-center items-center gap-1.5 mb-10"
         >
-          <div className="w-full max-w-[320px] h-14 flex justify-start items-center gap-1.5">
-            <motion.div
-              key={currentMessage}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.5 }}
-              className="flex-1 self-stretch p-3 bg-red-50/20 rounded-2xl flex justify-center items-center overflow-hidden"
-            >
-              <div
-                className="flex-1 text-center text-white text-sm font-light leading-4"
-                style={{ fontFamily: 'var(--font-inter-tight)' }}
+          <div className="w-full max-w-[320px] h-16 flex justify-center items-center">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentMessage}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{
+                  duration: 0.6,
+                  ease: [0.25, 0.1, 0.25, 1]
+                }}
+                className="w-full p-4 bg-white/10 backdrop-blur-sm rounded-2xl flex justify-center items-center"
+                style={{
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                }}
               >
-                {messages[currentMessage]}
-              </div>
-            </motion.div>
+                <div
+                  className="text-center text-white text-sm font-light leading-5"
+                  style={{ fontFamily: 'var(--font-inter-tight)' }}
+                >
+                  {messages[currentMessage]}
+                </div>
+              </motion.div>
+            </AnimatePresence>
           </div>
         </motion.div>
 
-        {/* Barre Magic Moment */}
+        {/* Progress bar Magic Moment améliorée */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7 }}
-          className="w-full h-11 px-3.5 py-2.5 bg-white/10 rounded-lg flex flex-col justify-center items-start gap-2"
-          style={{
-            boxShadow: 'inset 0px 0px 11px 0px rgba(0,0,0,0.10)',
-          }}
+          transition={{ delay: 1.8, duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+          className="w-full max-w-[320px]"
         >
           <div
-            className="w-full text-center text-white text-xs font-normal leading-3"
-            style={{ fontFamily: 'var(--font-inter-tight)' }}
+            className="text-center text-white/80 text-xs font-medium leading-3 mb-3"
+            style={{ fontFamily: 'var(--font-inter-tight)', letterSpacing: '0.5px' }}
           >
-            Magic Moment
+            MAGIC MOMENT
           </div>
-          <div className="w-full flex justify-start items-start gap-1">
-            {Array.from({ length: 9 }).map((_, index) => (
-              <motion.div
-                key={index}
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: 1 }}
-                transition={{ delay: 0.8 + index * 0.1 }}
-                className="flex-1 h-1.5 rounded-[226px]"
-                style={{
-                  backgroundColor: index < 6 ? '#A8A29E' : '#FEF2F2',
-                  boxShadow: index < 6
-                    ? 'inset 0px -1px 2px 0px rgba(255,255,255,0.25), inset 0px 1px 2px 0px rgba(255,255,255,0.25)'
-                    : 'inset 0px 0px 1px 0px rgba(0,0,0,0.09)',
-                }}
-              />
-            ))}
+
+          {/* Container de la progress bar */}
+          <div
+            className="w-full h-2 rounded-full overflow-hidden"
+            style={{
+              backgroundColor: 'rgba(255, 255, 255, 0.15)',
+              boxShadow: 'inset 0px 1px 3px rgba(0, 0, 0, 0.2)',
+            }}
+          >
+            {/* Barre de progression animée */}
+            <motion.div
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: startProgress ? 1 : 0 }}
+              transition={{
+                duration: 8.2, // 10s total - 1.8s delay
+                ease: "linear"
+              }}
+              className="h-full rounded-full origin-left"
+              style={{
+                background: 'linear-gradient(90deg, #D0805B 0%, #F6B292 50%, #FFD4C2 100%)',
+                boxShadow: '0 0 12px rgba(208, 128, 91, 0.6), 0 0 4px rgba(246, 178, 146, 0.8)',
+              }}
+            />
           </div>
         </motion.div>
       </div>

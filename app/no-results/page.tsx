@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
+import ContinueButton from '@/components/quiz/ContinueButton';
 
 export default function NoResultsPage() {
   const router = useRouter();
@@ -67,30 +68,10 @@ export default function NoResultsPage() {
         </div>
 
         {/* Bouton Retour */}
-        <motion.button
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
+        <ContinueButton
           onClick={handleRetour}
-          className="w-full py-4 rounded-2xl cursor-pointer"
-          style={{
-            background: 'linear-gradient(180deg, #34D399 0%, #10B981 100%)',
-            boxShadow: '0px 4px 14px 0px rgba(16, 185, 129, 0.40)',
-          }}
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-        >
-          <span
-            style={{
-              fontFamily: 'var(--font-inter-tight)',
-              fontSize: '18px',
-              fontWeight: 600,
-              color: '#FFFFFF',
-            }}
-          >
-            Retour
-          </span>
-        </motion.button>
+          label="Retour"
+        />
       </div>
     </div>
   );

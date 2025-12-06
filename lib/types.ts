@@ -10,8 +10,9 @@ export interface SubQuestion {
   key: string;
   titleText?: string;
   text: string;
-  inputType: 'text' | 'select' | 'pills';
+  inputType: 'text' | 'select' | 'pills' | 'money';
   placeholder?: string;
+  suffix?: string; // Pour les inputs money (€, €/mois)
   textInputType?: 'text' | 'email' | 'number';
   choices?: { id: string; label: string }[];
   infoBadge?: string; // Badge orange affiché après l'input

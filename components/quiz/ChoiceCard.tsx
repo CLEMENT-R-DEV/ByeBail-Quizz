@@ -21,6 +21,7 @@ interface ChoiceCardProps {
   index?: number;
   verticalPadding?: number; // padding vertical personnalisé pour les cartes sans image (en px)
   hideCheckmark?: boolean; // cacher l'icône de validation (pour les petites cartes)
+  textAlign?: 'left' | 'center'; // alignement du texte (par défaut: center)
 }
 
 export default function ChoiceCard({
@@ -40,6 +41,7 @@ export default function ChoiceCard({
   index = 0,
   verticalPadding,
   hideCheckmark = false,
+  textAlign = 'center',
 }: ChoiceCardProps) {
   // Style simplifié pour les cartes sans image
   if (!image) {
@@ -67,8 +69,9 @@ export default function ChoiceCard({
             stiffness: 300,
             damping: 25,
           }}
-          className="w-full h-full rounded-[18px] flex justify-center items-center gap-[10px]"
+          className="w-full h-full rounded-[18px] flex items-center gap-[10px]"
           style={{
+            justifyContent: textAlign === 'left' ? 'flex-start' : 'center',
             padding: verticalPadding ? `${verticalPadding}px 16px` : '16px',
             background: selected
               ? 'linear-gradient(180deg, rgba(210, 182, 143, 0.75) 0%, rgba(170, 131, 95, 0.75) 100%), rgba(250, 245, 241, 0.50)'
@@ -79,7 +82,7 @@ export default function ChoiceCard({
         >
           <motion.div
             layout
-            className="text-center whitespace-nowrap"
+            className={textAlign === 'left' ? 'whitespace-nowrap' : 'text-center whitespace-nowrap'}
             animate={{
               color: selected ? '#FFFFFF' : '#7A7572',
             }}

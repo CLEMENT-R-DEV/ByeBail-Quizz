@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import ContinueButton from '@/components/quiz/ContinueButton';
+import { AnimatedText } from '@/components/ui/AnimatedText';
 
 export default function InflationPage() {
   const router = useRouter();
@@ -17,22 +18,31 @@ export default function InflationPage() {
   };
 
   return (
-    <div
-      className="min-h-screen relative overflow-hidden"
-      style={{ backgroundColor: '#F5EBE1' }}
-    >
-      {/* Élément décoratif */}
-      <div className="w-96 h-80 absolute left-[-127px] top-[301px] bg-white/25 rounded-full blur-3xl" />
+    <div className="h-screen w-screen fixed inset-0 overflow-hidden">
+      {/* Background full-screen */}
+      <Image
+        src="/images/courbes.svg"
+        alt="Comparaison loyer vs crédit"
+        fill
+        className="object-cover"
+        priority
+      />
 
-      {/* Contenu principal */}
-      <div className="relative px-4 pt-10 pb-24 lg:pb-10 min-h-screen flex flex-col">
-        {/* Header simple avec bouton retour */}
+      {/* Overlay radial gradient */}
+      <div
+        className="absolute inset-0 z-[5]"
+        style={{
+          background: 'radial-gradient(circle at center, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0) 70%)'
+        }}
+      />
+
+      {/* Contenu superposé */}
+      <div className="relative z-10 h-full flex flex-col px-4 pt-10 pb-6">
+        {/* Bouton retour */}
         <motion.button
           onClick={handleBack}
           className="self-start px-5 py-3 bg-white rounded-lg cursor-pointer"
-          style={{
-            boxShadow: 'inset 0px 0px 4px 0px rgba(0,0,0,0.10)'
-          }}
+          style={{ boxShadow: 'inset 0px 0px 4px 0px rgba(0,0,0,0.10)' }}
           aria-label="Retour"
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
@@ -47,71 +57,44 @@ export default function InflationPage() {
           </div>
         </motion.button>
 
-        {/* Titre */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1, duration: 0.4 }}
-          className="flex flex-col gap-1 mt-4"
-          style={{ fontFamily: 'var(--font-inter-tight)' }}
-        >
-          <span
-            style={{
-              color: '#2D2A26',
+        {/* Texte centré avec animation lettre par lettre */}
+        <div className="flex-1 flex justify-center items-center overflow-visible">
+          <div
+            className="text-center px-4 overflow-visible"
+            style={{ fontFamily: 'var(--font-inter-tight)', overflow: 'visible' }}
+          >
+            <div style={{
+              color: '#FFF',
               fontSize: '28px',
               fontWeight: 600,
-              lineHeight: '110%',
+              lineHeight: '1.3',
               letterSpacing: '-0.84px',
-            }}
-          >
-            Tu as remarqué que ton loyer augmente un peu chaque année ?
-          </span>
-          <span
-            style={{
-              color: '#4A4543',
+              overflow: 'visible',
+            }}>
+              <AnimatedText text="Tu as remarqué que ton" delay={0.3} />
+              <br />
+              <AnimatedText text="loyer augmente un peu" delay={0.8} />
+              <br />
+              <AnimatedText text="chaque année ?" delay={1.3} />
+            </div>
+            <div style={{
+              color: '#F0F0F0',
               fontSize: '24px',
               fontWeight: 400,
-              lineHeight: '110%',
+              lineHeight: '1.4',
               letterSpacing: '-0.72px',
-            }}
-          >
-            Ta mensualité de crédit, elle, ne bouge pas.
-          </span>
-        </motion.div>
-
-        {/* Carte avec image */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, type: 'spring', stiffness: 300, damping: 25 }}
-          className="flex-1 flex flex-col items-center p-5 gap-5 mt-4"
-          style={{
-            borderRadius: '32px',
-            border: '1px solid rgba(255, 255, 255, 0.10)',
-            background: 'rgba(250, 245, 241, 0.50)',
-          }}
-        >
-          {/* Image courbes.svg */}
-          <div className="w-full flex-1 relative rounded-2xl overflow-hidden">
-            <Image
-              src="/images/courbes.svg"
-              alt="Comparaison loyer vs crédit"
-              fill
-              className="object-cover"
-              priority
-            />
+              marginTop: '16px',
+              overflow: 'visible',
+            }}>
+              <AnimatedText text="Ta mensualité de crédit," delay={1.8} />
+              <br />
+              <AnimatedText text="elle, ne bouge pas." delay={2.2} />
+            </div>
           </div>
-        </motion.div>
+        </div>
 
-        {/* Bouton Continuer - collé en bas */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="mt-auto pt-4"
-        >
-          <ContinueButton onClick={handleContinue} disabled={false} />
-        </motion.div>
+        {/* Bouton Continuer */}
+        <ContinueButton onClick={handleContinue} disabled={false} />
       </div>
     </div>
   );

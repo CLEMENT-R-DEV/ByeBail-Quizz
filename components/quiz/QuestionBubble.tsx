@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { TYPOGRAPHY } from '@/lib/typography';
 
 interface QuestionBubbleProps {
   questionNumber: number;
@@ -24,40 +25,18 @@ export default function QuestionBubble({ text, infoText, titleText }: QuestionBu
         {titleText && (
           <span
             className="whitespace-pre-line"
-            style={{
-              color: '#2D2A26',
-              fontSize: '28px',
-              fontWeight: 600,
-              lineHeight: '110%',
-              letterSpacing: '-0.84px',
-            }}
+            style={TYPOGRAPHY.heading}
           >
             {titleText}
           </span>
         )}
         {textParts[0] && (
-          <span
-            style={{
-              color: '#4A4543',
-              fontSize: '22px',
-              fontWeight: 400,
-              lineHeight: '110%',
-              letterSpacing: '-0.66px',
-            }}
-          >
+          <span style={TYPOGRAPHY.body}>
             {textParts[0]}
           </span>
         )}
         {textParts[1] && (
-          <span
-            style={{
-              color: '#2D2A26',
-              fontSize: '28px',
-              fontWeight: 600,
-              lineHeight: '110%',
-              letterSpacing: '-0.84px',
-            }}
-          >
+          <span style={TYPOGRAPHY.heading}>
             {textParts[1]}
           </span>
         )}

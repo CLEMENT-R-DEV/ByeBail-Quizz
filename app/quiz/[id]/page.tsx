@@ -342,24 +342,27 @@ export default function QuizQuestionPage() {
                               key={choice.id}
                               initial={{ opacity: 0, y: 10 }}
                               animate={{ opacity: 1, y: 0 }}
-                              transition={{ duration: 0.3, delay: choiceIndex * 0.03 }}
+                              transition={{ delay: 0.1 + choiceIndex * 0.05 }}
                               onClick={() => {
                                 const newAnswer = { ...answerObj, [subQ.key]: choice.id };
                                 setAnswer(JSON.stringify(newAnswer));
                               }}
                               className="cursor-pointer px-4 py-3 rounded-full transition-all"
                               style={{
-                                background: isSelected ? '#C9B89D' : 'rgba(250, 245, 241, 0.85)',
-                                border: isSelected ? 'none' : '1px solid rgba(255, 255, 255, 0.10)',
+                                background: isSelected
+                                  ? 'linear-gradient(180deg, rgba(210, 182, 143, 0.75) 0%, rgba(170, 131, 95, 0.75) 100%)'
+                                  : 'rgba(250, 245, 241, 0.85)',
+                                border: isSelected ? '1px solid rgba(170, 131, 95, 0.5)' : '1px solid rgba(0, 0, 0, 0.05)',
                               }}
                             >
                               <span
                                 style={{
                                   fontFamily: 'var(--font-inter-tight)',
-                                  fontSize: '16px',
+                                  fontSize: '14px',
                                   fontWeight: 500,
-                                  lineHeight: '110%',
-                                  color: isSelected ? '#FFFFFF' : '#737373',
+                                  lineHeight: '100%',
+                                  letterSpacing: '-0.28px',
+                                  color: isSelected ? '#FFFFFF' : '#2D2A26',
                                 }}
                               >
                                 {choice.label}
@@ -439,16 +442,16 @@ export default function QuizQuestionPage() {
                 </span>
               </motion.div>
 
-              {/* Pills en grille 2x2 */}
+              {/* Pills en grille 2x2 avec ChoiceCard */}
               <div className="grid grid-cols-2 gap-2">
                 {question.subQuestions[0]?.choices?.map((choice, choiceIndex) => {
                   const isSelected = selectedCredits.includes(choice.id);
                   return (
-                    <motion.div
+                    <ChoiceCard
                       key={choice.id}
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.3, delay: choiceIndex * 0.05 }}
+                      id={choice.id}
+                      label={choice.label}
+                      selected={isSelected}
                       onClick={() => {
                         let newSelected: string[];
                         if (isSelected) {
@@ -459,27 +462,11 @@ export default function QuizQuestionPage() {
                         const newAnswer = { ...answerObj, credit_type: newSelected };
                         setAnswer(JSON.stringify(newAnswer));
                       }}
-                      className="cursor-pointer flex items-center justify-center"
-                      style={{
-                        height: '72px',
-                        borderRadius: '16px',
-                        background: isSelected ? '#C9B89D' : 'rgba(254, 242, 242, 0.5)',
-                        outline: isSelected ? 'none' : '1px solid rgba(255, 255, 255, 0.10)',
-                        outlineOffset: '-1px',
-                      }}
-                    >
-                      <span
-                        style={{
-                          fontFamily: 'var(--font-inter-tight)',
-                          fontSize: '18px',
-                          fontWeight: 500,
-                          lineHeight: '20px',
-                          color: isSelected ? '#FFFFFF' : '#737373',
-                        }}
-                      >
-                        {choice.label}
-                      </span>
-                    </motion.div>
+                      index={choiceIndex}
+                      verticalPadding={20}
+                      textAlign="center"
+                      hideCheckmark={true}
+                    />
                   );
                 })}
               </div>
@@ -505,14 +492,14 @@ export default function QuizQuestionPage() {
               </motion.div>
 
               {/* Input montant */}
-              <TextInput
+              <MoneyInput
                 value={(answerObj.montant_credit as string) || ''}
                 onChange={(val) => {
                   const newAnswer = { ...answerObj, montant_credit: val };
                   setAnswer(JSON.stringify(newAnswer));
                 }}
-                placeholder={question.subQuestions[1]?.placeholder}
-                type="number"
+                placeholder={question.subQuestions[1]?.placeholder || '...'}
+                suffix={question.subQuestions[1]?.suffix || '€/mois'}
               />
             </div>
           );
@@ -660,15 +647,27 @@ export default function QuizQuestionPage() {
               </motion.div>
 
               {/* Input principal (revenu) */}
-              <TextInput
-                value={answerObj.main || ''}
-                onChange={(val) => {
-                  const newAnswer = { ...answerObj, main: val };
-                  setAnswer(JSON.stringify(newAnswer));
-                }}
-                placeholder={question.placeholder}
-                type="number"
-              />
+              {question.inputType === 'money' ? (
+                <MoneyInput
+                  value={answerObj.main || ''}
+                  onChange={(val) => {
+                    const newAnswer = { ...answerObj, main: val };
+                    setAnswer(JSON.stringify(newAnswer));
+                  }}
+                  placeholder={question.placeholder || '...'}
+                  suffix={question.suffix || '€'}
+                />
+              ) : (
+                <TextInput
+                  value={answerObj.main || ''}
+                  onChange={(val) => {
+                    const newAnswer = { ...answerObj, main: val };
+                    setAnswer(JSON.stringify(newAnswer));
+                  }}
+                  placeholder={question.placeholder}
+                  type="number"
+                />
+              )}
 
               {/* Sous-questions */}
               {question.subQuestions.map((subQ, index) => (
@@ -901,129 +900,42 @@ export default function QuizQuestionPage() {
         // Choisir le composant selon le choiceStyle
         const ChoiceComponent = question.choiceStyle === 'image' ? ImageChoice : ChoiceCard;
 
-        // Pour la question 5 (type de logement), disposition 2x2 avec image de fond
+        // Pour la question 5 (type de logement), disposition 2x2 avec ChoiceCard
         if (questionId === 5) {
           return (
             <div className="w-full grid grid-cols-2 gap-2">
-              {question.choices?.map((choice, index) => {
-                const isSelected = answer === choice.id;
-                return (
-                  <motion.div
-                    key={choice.id}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3, delay: index * 0.05 }}
-                    onClick={() => setAnswer(choice.id)}
-                    className="cursor-pointer flex items-center justify-center"
-                    style={{
-                      height: '78px',
-                      borderRadius: '16px',
-                      background: isSelected ? '#C9B89D' : 'rgba(254, 242, 242, 0.5)',
-                      boxShadow: '0px 0px 17.1px 0px rgba(210, 182, 143, 0.24)',
-                      outline: isSelected ? 'none' : '1px solid rgba(255, 255, 255, 0.25)',
-                      outlineOffset: '-1px',
-                    }}
-                  >
-                    <motion.div
-                      className="flex items-center justify-center"
-                      transition={{ duration: 0.2, ease: 'easeInOut' }}
-                    >
-                      <motion.span
-                        style={{
-                          fontFamily: 'var(--font-inter-tight)',
-                          fontSize: '18px',
-                          fontWeight: 500,
-                          lineHeight: '20px',
-                          color: isSelected ? '#FFFFFF' : '#737373',
-                        }}
-                      >
-                        {choice.label}
-                      </motion.span>
-                      <motion.div
-                        initial={{ opacity: 0, scale: 0.5, width: 0, marginLeft: 0 }}
-                        animate={{
-                          opacity: isSelected ? 1 : 0,
-                          scale: isSelected ? 1 : 0.5,
-                          width: isSelected ? 24 : 0,
-                          marginLeft: isSelected ? 10 : 0,
-                        }}
-                        transition={{ duration: 0.2, ease: 'easeInOut' }}
-                        style={{ overflow: 'hidden' }}
-                      >
-                        <Image
-                          src="/images/SVG_valide.svg"
-                          alt=""
-                          width={24}
-                          height={24}
-                        />
-                      </motion.div>
-                    </motion.div>
-                  </motion.div>
-                );
-              })}
+              {question.choices?.map((choice, index) => (
+                <ChoiceCard
+                  key={choice.id}
+                  id={choice.id}
+                  label={choice.label}
+                  selected={answer === choice.id}
+                  onClick={() => setAnswer(choice.id)}
+                  index={index}
+                  verticalPadding={24}
+                  textAlign="center"
+                />
+              ))}
             </div>
           );
         }
 
-        // Pour la question 8 (fin du mois), cartes pleine largeur avec 16px d'écart
+        // Pour la question 8 (fin du mois), utiliser ChoiceCard avec texte aligné à gauche
         if (questionId === 8) {
           return (
             <div className="w-full flex flex-col gap-4">
-              {question.choices?.map((choice, index) => {
-                const isSelected = answer === choice.id;
-                return (
-                  <motion.div
-                    key={choice.id}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3, delay: index * 0.05 }}
-                    onClick={() => setAnswer(choice.id)}
-                    className="cursor-pointer p-4 flex items-center justify-between"
-                    style={{
-                      height: '72px',
-                      borderRadius: '16px',
-                      background: isSelected ? '#C9B89D' : 'rgba(254, 242, 242, 0.5)',
-                      outline: isSelected ? 'none' : '1px solid rgba(255, 255, 255, 0.10)',
-                      outlineOffset: '-1px',
-                    }}
-                  >
-                    <motion.div
-                      className="flex items-center"
-                      transition={{ duration: 0.2, ease: 'easeInOut' }}
-                    >
-                      <motion.span
-                        style={{
-                          fontFamily: 'var(--font-inter-tight)',
-                          fontSize: '18px',
-                          fontWeight: 500,
-                          lineHeight: '20px',
-                          color: isSelected ? '#FFFFFF' : '#737373',
-                        }}
-                      >
-                        {choice.label}
-                      </motion.span>
-                      <motion.div
-                        initial={{ opacity: 0, scale: 0.5, width: 0, marginLeft: 0 }}
-                        animate={{
-                          opacity: isSelected ? 1 : 0,
-                          scale: isSelected ? 1 : 0.5,
-                          width: isSelected ? 24 : 0,
-                          marginLeft: isSelected ? 10 : 0,
-                        }}
-                        transition={{ duration: 0.2, ease: 'easeInOut' }}
-                        style={{ overflow: 'hidden' }}
-                      >
-                        <Image
-                          src="/images/SVG_valide.svg"
-                          alt=""
-                          width={24}
-                          height={24}
-                        />
-                      </motion.div>
-                    </motion.div>
-                  </motion.div>
-                );
-              })}
+              {question.choices?.map((choice, index) => (
+                <ChoiceCard
+                  key={choice.id}
+                  id={choice.id}
+                  label={choice.label}
+                  selected={answer === choice.id}
+                  onClick={() => setAnswer(choice.id)}
+                  index={index}
+                  verticalPadding={24}
+                  textAlign="left"
+                />
+              ))}
             </div>
           );
         }
@@ -1038,19 +950,43 @@ export default function QuizQuestionPage() {
               }}
             >
               {question.choices?.map((choice, index) => (
-                <ChoiceComponent
-                  key={choice.id}
-                  id={choice.id}
-                  label={choice.label}
-                  subtitle={choice.subtitle}
-                  image={choice.image}
-                  desktopImage={choice.desktopImage}
-                  selected={answer === choice.id}
-                  onClick={() => setAnswer(choice.id)}
-                  labelClassName={choice.labelClassName}
-                  subtitleClassName={choice.subtitleClassName}
-                  index={index}
-                />
+                <div key={choice.id} className="relative">
+                  {/* Image rings.svg derrière "à deux" quand sélectionné */}
+                  {choice.id === 'a_deux' && answer === 'a_deux' && question.backgroundImage && (
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.3 }}
+                      className="absolute pointer-events-none"
+                      style={{
+                        width: '120px',
+                        height: '103px',
+                        right: '-20px',
+                        top: '-30px',
+                        zIndex: 0,
+                      }}
+                    >
+                      <Image
+                        src={question.backgroundImage}
+                        alt=""
+                        fill
+                        className="object-contain"
+                      />
+                    </motion.div>
+                  )}
+                  <ChoiceComponent
+                    id={choice.id}
+                    label={choice.label}
+                    subtitle={choice.subtitle}
+                    image={choice.image}
+                    desktopImage={choice.desktopImage}
+                    selected={answer === choice.id}
+                    onClick={() => setAnswer(choice.id)}
+                    labelClassName={choice.labelClassName}
+                    subtitleClassName={choice.subtitleClassName}
+                    index={index}
+                  />
+                </div>
               ))}
             </div>
           );
@@ -1125,25 +1061,7 @@ export default function QuizQuestionPage() {
               style={{ background: 'transparent' }}
             />
           </div>
-        ) : question.backgroundImage && questionId === 6 ? (
-          /* Question 6 (seul/à deux) : rings.svg positionné en haut à droite */
-          <div
-            className="absolute pointer-events-none z-10"
-            style={{
-              width: '168px',
-              height: '145px',
-              right: '20px',
-              top: '225px',
-            }}
-          >
-            <Image
-              src={question.backgroundImage}
-              alt=""
-              fill
-              className="object-cover"
-            />
-          </div>
-        ) : question.backgroundImage ? (
+        ) : question.backgroundImage && questionId !== 6 ? (
           /* Autres questions : image centrée pleine largeur */
           <div className="absolute left-1/2 top-[35%] -translate-x-1/2 w-screen h-[75%] pointer-events-none">
             <Image
