@@ -1062,7 +1062,7 @@ export default function QuizQuestionPage() {
         ) : null}
 
         {/* Contenu principal */}
-        <div className="relative px-4 pt-10 pb-5 flex-1 flex flex-col gap-6 overflow-hidden">
+        <div className="relative px-4 pt-10 pb-5 flex-1 flex flex-col gap-6 overflow-visible">
           <QuizHeader currentQuestion={questionId} />
 
           {/* Contenu central - flex-1 pour prendre l'espace disponible */}
