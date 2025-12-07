@@ -283,52 +283,59 @@ export default function QuizQuestionPage() {
                           return isAvailableCity && propertyCounts[selectedCity] ? (
                             // UNIQUEMENT Tours ou Bourg-en-Bresse
                             <motion.div
-                              initial={{ opacity: 0, scale: 0.9 }}
-                              animate={{ opacity: 1, scale: 1 }}
+                              initial={{ opacity: 0, y: 10 }}
+                              animate={{ opacity: 1, y: 0 }}
                               transition={{ delay: 0.3 }}
-                              className="inline-flex justify-center items-center self-center"
+                              className="w-full rounded-xl overflow-hidden"
                               style={{
-                                padding: '8px 16px',
-                                borderRadius: '50px',
-                                border: '1px solid #AC6F53',
-                                background: 'linear-gradient(173deg, #F6B292 -0.82%, #D0805B 52.13%)',
+                                background: 'linear-gradient(135deg, rgba(254, 130, 83, 0.08) 0%, rgba(255, 255, 255, 0.9) 100%)',
+                                border: '1px solid rgba(254, 130, 83, 0.2)'
                               }}
                             >
-                              <span style={{
-                                color: '#FFE6DA',
-                                fontFamily: 'var(--font-inter-tight)',
-                                fontSize: '14px',
-                                fontWeight: 500,
-                                lineHeight: '100%',
-                                letterSpacing: '-0.28px',
-                              }}>
-                                Bonne nouvelle on a {propertyCounts[selectedCity]} biens autour de {selectedCity} !
-                              </span>
+                              <div className="flex items-center gap-3 p-4">
+                                {/* Barre accent gauche */}
+                                <div
+                                  className="w-1 h-10 rounded-full flex-shrink-0"
+                                  style={{ background: '#FE8253' }}
+                                />
+                                {/* Icône étoile */}
+                                <svg width="20" height="20" viewBox="0 0 16 16" fill="#FE8253" className="flex-shrink-0">
+                                  <path d="M8 0L9.79611 5.52786H15.6085L10.9062 8.94427L12.7023 14.4721L8 11.0557L3.29772 14.4721L5.09383 8.94427L0.391548 5.52786H6.20389L8 0Z" />
+                                </svg>
+                                {/* Texte */}
+                                <p className="text-sm font-medium text-gray-800" style={{ fontFamily: 'var(--font-inter-tight)' }}>
+                                  Bonne nouvelle on a {propertyCounts[selectedCity]} biens autour de {selectedCity} !
+                                </p>
+                              </div>
                             </motion.div>
                           ) : (
                             // Toutes les autres villes
                             <motion.div
-                              initial={{ opacity: 0, scale: 0.9 }}
-                              animate={{ opacity: 1, scale: 1 }}
+                              initial={{ opacity: 0, y: 10 }}
+                              animate={{ opacity: 1, y: 0 }}
                               transition={{ delay: 0.3 }}
-                              className="inline-flex justify-center items-center self-center"
+                              className="w-full rounded-xl overflow-hidden"
                               style={{
-                                padding: '8px 16px',
-                                borderRadius: '50px',
-                                border: '1px solid #6B7280',
-                                background: 'linear-gradient(173deg, #9CA3AF -0.82%, #6B7280 52.13%)',
+                                background: 'linear-gradient(135deg, rgba(156, 163, 175, 0.08) 0%, rgba(255, 255, 255, 0.9) 100%)',
+                                border: '1px solid rgba(156, 163, 175, 0.2)'
                               }}
                             >
-                              <span style={{
-                                color: '#F3F4F6',
-                                fontFamily: 'var(--font-inter-tight)',
-                                fontSize: '14px',
-                                fontWeight: 500,
-                                lineHeight: '100%',
-                                letterSpacing: '-0.28px',
-                              }}>
-                                On n'est pas encore à {selectedCity}, mais ça arrive très bientôt !
-                              </span>
+                              <div className="flex items-center gap-3 p-4">
+                                {/* Barre accent gauche - grise */}
+                                <div
+                                  className="w-1 h-10 rounded-full flex-shrink-0"
+                                  style={{ background: '#9CA3AF' }}
+                                />
+                                {/* Icône horloge/bientôt */}
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" className="flex-shrink-0">
+                                  <circle cx="10" cy="10" r="8" stroke="#9CA3AF" strokeWidth="1.5"/>
+                                  <path d="M10 6V10L13 12" stroke="#9CA3AF" strokeWidth="1.5" strokeLinecap="round"/>
+                                </svg>
+                                {/* Texte */}
+                                <p className="text-sm font-medium text-gray-600" style={{ fontFamily: 'var(--font-inter-tight)' }}>
+                                  On n'est pas encore à {selectedCity}, mais ça arrive très bientôt !
+                                </p>
+                              </div>
                             </motion.div>
                           );
                         })()}
@@ -1010,7 +1017,7 @@ export default function QuizQuestionPage() {
         <div
           className="w-72 h-96 absolute left-[49px] top-[225px]"
         />
-        <div className="w-96 h-80 absolute left-[-127px] top-[301px] bg-white/25 rounded-full blur-3xl" />
+        <div className="md:hidden w-96 h-80 absolute left-[-127px] top-[301px] bg-white/25 rounded-full blur-3xl" />
 
         {/* Logo en fond */}
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[400px] pointer-events-none">
