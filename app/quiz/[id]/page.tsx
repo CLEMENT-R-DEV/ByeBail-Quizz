@@ -130,8 +130,20 @@ export default function QuizQuestionPage() {
       // Après la question 2 (composite: âge + source), aller à la question 3 (ville + loyer)
       router.push('/quiz/3');
     } else if (questionId === 3) {
-      // Après la question 3 (ville + loyer), aller à la page loyer-perdu
-      router.push('/loyer-perdu');
+      // Après la question 3 (ville + loyer), vérifier si la ville est disponible
+      try {
+        const answerObj = JSON.parse(answer);
+        const selectedCity = answerObj.ville;
+        const AVAILABLE_CITIES = ['Tours', 'Bourg-en-Bresse'];
+
+        if (!AVAILABLE_CITIES.includes(selectedCity)) {
+          router.push('/no-results');
+        } else {
+          router.push('/loyer-perdu');
+        }
+      } catch {
+        router.push('/loyer-perdu');
+      }
     } else if (questionId === 4) {
       // Après la question 4, aller à l'écran "apport"
       router.push('/apport');
@@ -992,8 +1004,7 @@ export default function QuizQuestionPage() {
 
   return (
     <div
-      className="min-h-screen relative overflow-hidden"
-      style={{ backgroundColor: '#F5EBE1' }}
+      className="min-h-screen relative overflow-hidden bg-[#F5EBE1] md:bg-transparent"
     >
       {/* Éléments décoratifs */}
         <div

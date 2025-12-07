@@ -77,11 +77,11 @@ export default function RootLayout({
         {/* Gradient background visible sur les côtés */}
         <div
           className="min-h-screen flex justify-center"
-          style={{ background: 'linear-gradient(135deg, #E8DCD1 0%, #F5EBE1 50%, #E5D8CC 100%)' }}
+          style={{ background: 'linear-gradient(to bottom, #F5EBE1 50%, #FFFFFF 100%)' }}
         >
           {/* Container 550px centré - transform crée un containing block pour les éléments fixed */}
           <div
-            className="w-full md:max-w-[550px] min-h-screen md:shadow-2xl relative"
+            className="w-full md:max-w-[550px] min-h-screen relative"
             style={{ transform: 'translateZ(0)' }}
           >
             {children}

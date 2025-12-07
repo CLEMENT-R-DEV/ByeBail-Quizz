@@ -14,8 +14,7 @@ export default function NoResultsPage() {
 
   return (
     <div
-      className="min-h-screen flex flex-col relative"
-      style={{ backgroundColor: '#F5EBE1' }}
+      className="min-h-screen flex flex-col relative bg-[#F5EBE1] md:bg-transparent"
     >
         {/* Logo ByeBail watermark en arrière-plan */}
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[400px] pointer-events-none">

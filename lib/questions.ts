@@ -101,7 +101,7 @@ export const questions: Question[] = [
     titleText: "Quel budget peux-tu mettre\npour l'apport ?",
     text: "Cela nous permet de te proposer plus\nde possibilités.",
     inputType: 'money',
-    suffix: '€/mois',
+    suffix: '€',
     placeholder: '...',
     validation: (value: string) => {
       const montant = parseFloat(value);

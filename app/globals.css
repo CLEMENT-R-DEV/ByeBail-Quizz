@@ -11,10 +11,14 @@
   --font-sans: var(--font-satoshi);
 }
 
+html, body {
+  overflow: hidden;
+  height: 100%;
+}
+
 body {
   background: #F8F9FD;
   background: radial-gradient(circle at 40% 40%, #EDF3FD, #F9FBFC00 100%);
   color: var(--foreground);
   font-family: var(--font-satoshi), sans-serif;
-  min-height: 100vh;
 }

@@ -15,8 +15,7 @@ export default function VideoPausePage() {
 
   return (
     <div
-      className="min-h-screen flex flex-col"
-      style={{ backgroundColor: '#F5EBE1' }}
+      className="min-h-screen flex flex-col bg-[#F5EBE1] md:bg-transparent"
     >
       <SimpleHeader />
 
