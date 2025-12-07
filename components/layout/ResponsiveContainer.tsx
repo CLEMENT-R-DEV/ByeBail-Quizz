@@ -21,7 +21,7 @@ export default function ResponsiveContainer({
 }: ResponsiveContainerProps) {
   return (
     <div
-      className={`min-h-screen flex flex-col ${className}`}
+      className={`h-[100dvh] flex flex-col overflow-hidden ${className}`}
       style={{ backgroundColor: '#F5EBE1', ...style }}
     >
       {children}

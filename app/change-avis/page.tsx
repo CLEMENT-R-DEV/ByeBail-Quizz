@@ -30,12 +30,12 @@ export default function ChangeAvisPage() {
 
   return (
     <div
-      className="min-h-screen flex flex-col bg-[#F5EBE1] md:bg-transparent"
+      className="h-[100dvh] flex flex-col overflow-hidden bg-[#F5EBE1] md:bg-transparent"
     >
       <SimpleHeader />
 
         {/* Main content */}
-        <main className="flex-1 flex flex-col mx-4 pb-24">
+        <main className="flex-1 flex flex-col mx-4 pb-5 overflow-y-auto">
         {/* Carte principale blanche */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}

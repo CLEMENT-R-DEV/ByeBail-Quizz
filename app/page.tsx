@@ -8,7 +8,7 @@ export default function HomePage() {
   const router = useRouter();
 
   return (
-    <div className="w-full min-h-screen relative overflow-hidden">
+    <div className="w-full h-[100dvh] relative overflow-hidden flex flex-col">
       {/* Image de fond */}
       <Image
         src="/images/bg-home.png"
@@ -22,7 +22,7 @@ export default function HomePage() {
       <div className="absolute inset-0 bg-gradient-to-b from-black/0 to-black/80" />
 
       {/* Contenu principal */}
-      <main className="relative w-full min-h-screen px-5 pt-10 pb-24 flex flex-col items-start">
+      <main className="relative w-full flex-1 px-5 pt-10 pb-5 flex flex-col items-start overflow-hidden">
         {/* Logo ByeBail */}
         <div className="w-full">
           <Image

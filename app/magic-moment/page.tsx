@@ -44,7 +44,7 @@ export default function MagicMomentPage() {
   }, [router]);
 
   return (
-    <div className="min-h-screen w-full relative overflow-hidden">
+    <div className="h-[100dvh] w-full relative overflow-hidden flex flex-col">
       {/* Background vidéo */}
       <video
         autoPlay
@@ -65,7 +65,7 @@ export default function MagicMomentPage() {
       />
 
       {/* Contenu superposé */}
-      <div className="relative z-10 min-h-screen w-full flex flex-col justify-center items-center px-4">
+      <div className="relative z-10 flex-1 w-full flex flex-col justify-center items-center px-4 overflow-hidden">
         {/* Icône ByeBail */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
