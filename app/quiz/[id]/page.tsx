@@ -1011,7 +1011,7 @@ export default function QuizQuestionPage() {
 
   return (
     <div
-      className="min-h-screen relative overflow-hidden bg-[#F5EBE1] md:bg-transparent"
+      className="h-[100dvh] relative overflow-hidden bg-[#F5EBE1] md:bg-transparent flex flex-col"
     >
       {/* Éléments décoratifs */}
         <div
@@ -1062,11 +1062,11 @@ export default function QuizQuestionPage() {
         ) : null}
 
         {/* Contenu principal */}
-        <div className="relative px-4 pt-10 pb-24 min-h-screen flex flex-col gap-10">
+        <div className="relative px-4 pt-10 pb-5 flex-1 flex flex-col gap-6 overflow-hidden">
           <QuizHeader currentQuestion={questionId} />
 
           {/* Contenu central - flex-1 pour prendre l'espace disponible */}
-          <div className="flex-1 flex flex-col justify-start items-start gap-4">
+          <div className="flex-1 flex flex-col justify-start items-start gap-4 overflow-y-auto">
             {/* Question bubble - masqué pour les questions avec subQuestions, inputs ou compositeQuestions (elles ont leur propre titre) */}
             {!(question.subQuestions && question.subQuestions.length > 0) &&
              !(question.inputs && question.inputs.length > 0) &&
