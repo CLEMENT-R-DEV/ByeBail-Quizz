@@ -58,7 +58,7 @@ export default function ChoiceCard({
         }}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.98 }}
-        className="relative cursor-pointer w-full h-full"
+        className="relative cursor-pointer w-full"
       >
         <motion.div
           animate={{
@@ -69,7 +69,7 @@ export default function ChoiceCard({
             stiffness: 300,
             damping: 25,
           }}
-          className="w-full h-full rounded-[18px] flex items-center gap-[10px]"
+          className="w-full rounded-[18px] flex items-center gap-[10px]"
           style={{
             justifyContent: textAlign === 'left' ? 'flex-start' : 'center',
             padding: verticalPadding ? `${verticalPadding}px 16px` : '16px',
