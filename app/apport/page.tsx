@@ -36,13 +36,15 @@ export default function ApportPage() {
         animate={{ filter: showText ? 'blur(4px)' : 'blur(0px)' }}
         transition={{ duration: 0.8 }}
       >
-        <Image
-          src="/images/apport.png"
-          alt="Apport : la peur n°1 des français"
-          fill
-          className="object-cover"
-          priority
-        />
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <source src="/images/BFMplateau.mp4" type="video/mp4" />
+        </video>
       </motion.div>
 
       {/* Overlay radial gradient */}

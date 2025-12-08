@@ -53,7 +53,7 @@ export default function MagicMomentPage() {
         playsInline
         className="absolute inset-0 w-full h-full object-cover"
       >
-        <source src="/images/building.mp4" type="video/mp4" />
+        <source src="/images/building2.mp4" type="video/mp4" />
       </video>
 
       {/* Overlay radial gradient */}

@@ -756,7 +756,7 @@ export default function QuizQuestionPage() {
                     />
                   )}
                   {subQ.inputType === 'pills' && subQ.choices && (
-                    <div className="grid grid-cols-3 gap-2">
+                    <div className="grid grid-cols-3 gap-2 p-1">
                       {subQ.choices.map((choice, choiceIndex) => (
                         <ChoiceCard
                           key={choice.id}
@@ -892,7 +892,7 @@ export default function QuizQuestionPage() {
         // Pour la question 5 (type de logement), disposition 2x2 avec ChoiceCard
         if (questionId === 5) {
           return (
-            <div className="w-full grid grid-cols-2 gap-2">
+            <div className="w-full grid grid-cols-2 gap-2 p-1">
               {question.choices?.map((choice, index) => (
                 <ChoiceCard
                   key={choice.id}
@@ -912,7 +912,7 @@ export default function QuizQuestionPage() {
         // Pour la question 8 (fin du mois), utiliser ChoiceCard avec texte aligné à gauche
         if (questionId === 8) {
           return (
-            <div className="w-full flex flex-col gap-4">
+            <div className="w-full flex flex-col gap-4 p-1">
               {question.choices?.map((choice, index) => (
                 <ChoiceCard
                   key={choice.id}
@@ -933,7 +933,7 @@ export default function QuizQuestionPage() {
         if (questionId === 6) {
           return (
             <div
-              className="w-full grid grid-cols-2 gap-[8px]"
+              className="w-full grid grid-cols-2 gap-[8px] p-1"
               style={{
                 gridTemplateRows: '78px',
               }}
@@ -1066,7 +1066,7 @@ export default function QuizQuestionPage() {
           <QuizHeader currentQuestion={questionId} />
 
           {/* Contenu central - flex-1 pour prendre l'espace disponible */}
-          <div className="flex-1 flex flex-col justify-start items-start gap-4 overflow-y-auto">
+          <div className="flex-1 flex flex-col justify-start items-start gap-4 overflow-x-hidden overflow-y-auto">
             {/* Question bubble - masqué pour les questions avec subQuestions, inputs ou compositeQuestions (elles ont leur propre titre) */}
             {!(question.subQuestions && question.subQuestions.length > 0) &&
              !(question.inputs && question.inputs.length > 0) &&

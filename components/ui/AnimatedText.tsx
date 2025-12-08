@@ -21,7 +21,7 @@ export const AnimatedText = ({
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.035,
+        staggerChildren: 0.028, // Plus fluide
         delayChildren: delay
       }
     }
@@ -30,15 +30,17 @@ export const AnimatedText = ({
   const child = {
     hidden: {
       opacity: 0,
-      y: 8,
+      y: 12,
+      scale: 0.95,
     },
     visible: {
       opacity: 1,
       y: 0,
+      scale: 1,
       transition: {
         type: 'tween' as const,
-        ease: [0.25, 0.1, 0.25, 1] as [number, number, number, number],
-        duration: 0.4,
+        ease: [0.16, 1, 0.3, 1] as [number, number, number, number], // easeOutExpo
+        duration: 0.5,
       }
     }
   };
