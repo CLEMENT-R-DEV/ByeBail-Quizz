@@ -19,14 +19,16 @@ export default function BanquesPage() {
 
   return (
     <div className="h-[100dvh] w-full relative overflow-hidden flex flex-col">
-      {/* Background */}
-      <Image
-        src="/images/courbes_2.svg"
-        alt="Comparaison gestion financière"
-        fill
-        className="object-cover"
-        priority
-      />
+      {/* Background vidéo */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover"
+      >
+        <source src="/images/compressed/banques_compressed.mp4" type="video/mp4" />
+      </video>
 
       {/* Overlay radial gradient */}
       <div

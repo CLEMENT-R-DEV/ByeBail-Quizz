@@ -43,7 +43,7 @@ export default function ApportPage() {
           playsInline
           className="absolute inset-0 w-full h-full object-cover"
         >
-          <source src="/images/BFMplateau.mp4" type="video/mp4" />
+          <source src="/images/compressed/BFMplateau_compressed.mp4" type="video/mp4" />
         </video>
       </motion.div>
 

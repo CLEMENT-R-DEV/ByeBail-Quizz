@@ -44,7 +44,7 @@ export default function LoyerPerduPage() {
         playsInline
         className="absolute inset-0 w-full h-full object-cover"
       >
-        <source src="/images/billets.mp4" type="video/mp4" />
+        <source src="/images/compressed/billets_compressed.mp4" type="video/mp4" />
       </video>
 
       {/* Overlay sombre avec gradient radial */}

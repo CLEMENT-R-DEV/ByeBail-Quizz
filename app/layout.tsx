@@ -7,6 +7,7 @@ const satoshi = localFont({
   src: "../public/fonts/Satoshi-Variable.ttf",
   variable: "--font-satoshi",
   weight: "300 900",
+  display: "swap",
 });
 
 const optima = localFont({
@@ -28,30 +29,35 @@ const optima = localFont({
     },
   ],
   variable: "--font-optima",
+  display: "swap",
 });
 
 const crimsonPro = Crimson_Pro({
   subsets: ["latin"],
   weight: ["400", "600"],
   variable: "--font-crimson-pro",
+  display: "swap",
 });
 
 const bricolageGrotesque = Bricolage_Grotesque({
   subsets: ["latin"],
   weight: ["600"],
   variable: "--font-bricolage-grotesque",
+  display: "swap",
 });
 
 const inter = localFont({
   src: "../public/fonts/InterVariable.ttf",
   variable: "--font-inter",
   weight: "100 900",
+  display: "swap",
 });
 
 const interTight = localFont({
   src: "../public/fonts/InterTight-VariableFont_wght.ttf",
   variable: "--font-inter-tight",
   weight: "100 900",
+  display: "swap",
 });
 
 export const metadata: Metadata = {

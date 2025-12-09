@@ -1,5 +1,6 @@
 'use client';
 
+import { useMemo } from 'react';
 import { motion } from 'framer-motion';
 
 interface AnimatedTextProps {
@@ -8,42 +9,45 @@ interface AnimatedTextProps {
   style?: React.CSSProperties;
 }
 
+// Variants statiques pour éviter les re-créations
+const child = {
+  hidden: {
+    opacity: 0,
+    y: 12,
+    scale: 0.95,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      type: 'tween' as const,
+      ease: [0.16, 1, 0.3, 1] as [number, number, number, number], // easeOutExpo
+      duration: 0.5,
+    }
+  }
+};
+
 // Composant pour animer le texte lettre par lettre
 export const AnimatedText = ({
   text,
   delay = 0,
   style
 }: AnimatedTextProps) => {
-  const letters = text.split('');
+  // Mémoïser le split pour éviter les recréations
+  const letters = useMemo(() => text.split(''), [text]);
 
-  const container = {
+  // Mémoïser le container car il dépend du delay
+  const container = useMemo(() => ({
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.028, // Plus fluide
+        staggerChildren: 0.028,
         delayChildren: delay
       }
     }
-  };
-
-  const child = {
-    hidden: {
-      opacity: 0,
-      y: 12,
-      scale: 0.95,
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: {
-        type: 'tween' as const,
-        ease: [0.16, 1, 0.3, 1] as [number, number, number, number], // easeOutExpo
-        duration: 0.5,
-      }
-    }
-  };
+  }), [delay]);
 
   return (
     <motion.span

@@ -3,7 +3,11 @@
     "allow": [
       "Bash(npm run build:*)",
       "Bash(git checkout:*)",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "Bash(dir c:UsersqueucDocumentsByeBail2ByeBail-Quizzcomponents /s /b)",
+      "Bash(dir c:UsersqueucDocumentsByeBail2ByeBail-Quizzapp /s /b)",
+      "Bash(dir \"c:\\Users\\queuc\\Documents\\ByeBail2\\ByeBail-Quizz\\public\" /s /b)",
+      "Bash(del:*)"
     ],
     "deny": [],
     "ask": []
