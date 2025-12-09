@@ -84,57 +84,71 @@ export default function ApportPage() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5 }}
-                className="text-center px-4 overflow-visible"
-                style={{ fontFamily: 'var(--font-inter-tight)', overflow: 'visible' }}
+                className="px-6 py-8 rounded-3xl"
+                style={{
+                  backdropFilter: 'blur(12px)',
+                  WebkitBackdropFilter: 'blur(12px)',
+                  background: 'rgba(255, 255, 255, 0.08)',
+                  borderTop: '1px solid rgba(255, 255, 255, 0.4)',
+                  borderLeft: '1px solid rgba(255, 255, 255, 0.3)',
+                  borderRight: '1px solid rgba(255, 255, 255, 0.1)',
+                  borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+                  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.2)',
+                }}
               >
-                <div style={{
-                  color: '#FFF',
-                  fontSize: '26px',
-                  fontWeight: 600,
-                  lineHeight: '1.3',
-                  letterSpacing: '-0.78px',
-                  overflow: 'visible',
-                }}>
-                  <AnimatedText text="On t'a toujours dit qu'il" delay={0} />
-                  <br />
-                  <AnimatedText text="fallait des " delay={0.4} />
-                  <span style={{ color: '#F6B292' }}>
-                    <AnimatedText text="dizaines de" delay={0.6} />
-                  </span>
-                  <br />
-                  <span style={{ color: '#F6B292' }}>
-                    <AnimatedText text="milliers d'euros" delay={0.9} />
-                  </span>
-                  <AnimatedText text=" d'apport." delay={1.2} />
-                </div>
-                <div style={{
-                  color: '#FFF',
-                  fontSize: '26px',
-                  fontWeight: 600,
-                  lineHeight: '1.3',
-                  letterSpacing: '-0.78px',
-                  marginTop: '24px',
-                  overflow: 'visible',
-                }}>
-                  <AnimatedText text="Ce mythe s'arrête" delay={1.6} />
-                  <br />
-                  <AnimatedText text="aujourd'hui." delay={2.0} />
-                </div>
-                <div style={{
-                  color: '#F0F0F0',
-                  fontSize: '22px',
-                  fontWeight: 400,
-                  lineHeight: '1.4',
-                  letterSpacing: '-0.66px',
-                  marginTop: '16px',
-                  overflow: 'visible',
-                }}>
-                  <AnimatedText text="Avec ByeBail, environ" delay={2.4} />
-                  <br />
-                  <span style={{ color: '#F6B292' }}>
-                    <AnimatedText text="2 ou 3 mois de loyer" delay={2.7} />
-                  </span>
-                  <AnimatedText text=" suffisent." delay={3.0} />
+                <div
+                  className="text-center overflow-visible"
+                  style={{ fontFamily: 'var(--font-inter-tight)', overflow: 'visible' }}
+                >
+                  <div style={{
+                    color: '#FFF',
+                    fontSize: '26px',
+                    fontWeight: 600,
+                    lineHeight: '1.3',
+                    letterSpacing: '-0.78px',
+                    overflow: 'visible',
+                  }}>
+                    <AnimatedText text="On t'a toujours dit qu'il" delay={0} />
+                    <br />
+                    <AnimatedText text="fallait des " delay={0.4} />
+                    <span style={{ color: '#F6B292' }}>
+                      <AnimatedText text="dizaines de" delay={0.6} />
+                    </span>
+                    <br />
+                    <span style={{ color: '#F6B292' }}>
+                      <AnimatedText text="milliers d'euros" delay={0.9} />
+                    </span>
+                    <AnimatedText text=" d'apport." delay={1.2} />
+                  </div>
+                  <div style={{
+                    color: '#FFF',
+                    fontSize: '26px',
+                    fontWeight: 600,
+                    lineHeight: '1.3',
+                    letterSpacing: '-0.78px',
+                    marginTop: '24px',
+                    overflow: 'visible',
+                  }}>
+                    <AnimatedText text="Ce mythe s'arrête" delay={1.6} />
+                    <br />
+                    <AnimatedText text="aujourd'hui." delay={2.0} />
+                  </div>
+                  <div style={{
+                    color: '#F0F0F0',
+                    fontSize: '22px',
+                    fontWeight: 400,
+                    lineHeight: '1.4',
+                    letterSpacing: '-0.66px',
+                    marginTop: '16px',
+                    overflow: 'visible',
+                  }}>
+                    <AnimatedText text="Avec ByeBail, environ" delay={2.4} />
+                    <br />
+                    <span style={{ color: '#F6B292' }}>
+                      <AnimatedText text="2 ou 3 mois de loyer" delay={2.7} />
+                    </span>
+                    <AnimatedText text=" suffisent." delay={3.0} />
+                  </div>
                 </div>
               </motion.div>
             )}

@@ -78,9 +78,9 @@ export default function EmmaPage() {
         </motion.button>
 
         {/* Zone centrale */}
-        <div className="flex-1 flex flex-col justify-center items-center overflow-visible">
-          <AnimatePresence mode="wait">
-            {/* Phase 0: Texte intro */}
+        <div className="flex-1 flex flex-col justify-center items-center overflow-visible relative">
+          {/* Phase 0: Texte intro - Position absolute pour ne pas affecter le layout */}
+          <AnimatePresence>
             {phase === 0 && (
               <motion.div
                 key="intro"
@@ -96,156 +96,167 @@ export default function EmmaPage() {
                   duration: 0.8,
                   ease: easeOutQuart
                 }}
-                className="text-center px-4 overflow-visible"
-                style={{ fontFamily: 'var(--font-inter-tight)' }}
+                className="absolute inset-0 flex items-center justify-center px-4"
               >
-                <div style={{
-                  color: '#FFF',
-                  fontSize: '28px',
-                  fontWeight: 600,
-                  lineHeight: '1.3',
-                  letterSpacing: '-0.84px',
-                }}>
-                  <AnimatedText text="Imagine Emma :" delay={0.3} />
-                </div>
-                <div style={{
-                  color: '#F0F0F0',
-                  fontSize: '24px',
-                  fontWeight: 400,
-                  lineHeight: '1.4',
-                  letterSpacing: '-0.72px',
-                  marginTop: '16px',
-                }}>
-                  <AnimatedText text="Trois ans après avoir" delay={0.7} />
-                  <br />
-                  <AnimatedText text="emménagé, elle souhaite" delay={1.1} />
-                  <br />
-                  <AnimatedText text="changer d'appart :" delay={1.5} />
+                <div
+                  className="px-6 py-8 rounded-3xl"
+                  style={{
+                    backdropFilter: 'blur(12px)',
+                    WebkitBackdropFilter: 'blur(12px)',
+                    background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.06) 100%)',
+                    borderTop: '1px solid rgba(255, 255, 255, 0.4)',
+                    borderLeft: '1px solid rgba(255, 255, 255, 0.3)',
+                    borderRight: '1px solid rgba(255, 255, 255, 0.1)',
+                    borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+                    boxShadow: '0 8px 32px rgba(0, 0, 0, 0.2)',
+                    willChange: 'opacity, transform, backdrop-filter',
+                  }}
+                >
+                  <div
+                    className="text-center overflow-visible"
+                    style={{ fontFamily: 'var(--font-inter-tight)' }}
+                  >
+                    <div style={{
+                      color: '#FFF',
+                      fontSize: '28px',
+                      fontWeight: 600,
+                      lineHeight: '1.3',
+                      letterSpacing: '-0.84px',
+                    }}>
+                      <AnimatedText text="Imagine Emma :" delay={0.3} />
+                    </div>
+                    <div style={{
+                      color: '#F0F0F0',
+                      fontSize: '24px',
+                      fontWeight: 400,
+                      lineHeight: '1.4',
+                      letterSpacing: '-0.72px',
+                      marginTop: '16px',
+                    }}>
+                      <AnimatedText text="Trois ans après avoir" delay={0.7} />
+                      <br />
+                      <AnimatedText text="emménagé, elle souhaite" delay={1.1} />
+                      <br />
+                      <AnimatedText text="changer d'appart :" delay={1.5} />
+                    </div>
+                  </div>
                 </div>
               </motion.div>
             )}
+          </AnimatePresence>
 
-            {/* Phase 1: Labels comparaison */}
-            {phase === 1 && (
+          {/* Phase 1+: Labels comparaison (persistent, slide up in phase 2) */}
+          <div
+            className="w-full flex justify-between items-stretch gap-3 px-2"
+            style={{
+              transform: phase === 2 ? 'translateY(-80px) scale(0.85)' : 'translateY(0)',
+              opacity: phase >= 1 ? 1 : 0,
+              transition: phase >= 1 ? 'transform 1s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.8s ease-out' : 'opacity 0.8s ease-out',
+              pointerEvents: phase >= 1 ? 'auto' : 'none',
+            }}
+          >
+              {/* Label Locataire - gauche */}
               <motion.div
-                key="labels"
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{
-                  opacity: 0,
-                  y: -30,
-                  scale: 0.9,
-                  filter: 'blur(6px)'
-                }}
+                initial={{ opacity: 0 }}
+                animate={phase >= 1 ? { opacity: 1 } : { opacity: 0 }}
                 transition={{
-                  duration: 0.7,
+                  delay: 0.3,
+                  duration: 0.8,
                   ease: easeOutQuart
                 }}
-                className="w-full flex justify-between items-stretch gap-3 px-2"
+                className="flex-1 text-center p-4 rounded-xl"
+                style={{
+                  background: 'linear-gradient(135deg, rgba(239, 68, 68, 0.25) 0%, rgba(239, 68, 68, 0.15) 100%)',
+                  border: '1px solid rgba(239, 68, 68, 0.3)',
+                  backdropFilter: 'blur(8px)',
+                  WebkitBackdropFilter: 'blur(8px)',
+                  willChange: 'opacity, backdrop-filter',
+                }}
               >
-                {/* Label Locataire - gauche */}
-                <motion.div
-                  initial={{ opacity: 0, x: -50, scale: 0.85 }}
-                  animate={{ opacity: 1, x: 0, scale: 1 }}
-                  transition={{
-                    delay: 0.1,
-                    duration: 0.8,
-                    ease: easeOutBack
-                  }}
-                  className="flex-1 text-center p-4 rounded-xl"
-                  style={{
-                    background: 'rgba(239, 68, 68, 0.15)',
-                    border: '1px solid rgba(239, 68, 68, 0.3)',
-                    backdropFilter: 'blur(8px)',
-                  }}
+                <div
+                  className="text-red-400 font-semibold text-sm"
+                  style={{ fontFamily: 'var(--font-inter-tight)' }}
                 >
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.35, duration: 0.5, ease: easeOutExpo }}
-                    className="text-red-400 font-semibold text-sm"
-                    style={{ fontFamily: 'var(--font-inter-tight)' }}
-                  >
-                    Emma locataire
-                  </motion.div>
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.5, duration: 0.4, ease: easeOutExpo }}
-                    className="text-white text-xs mt-2"
-                    style={{ fontFamily: 'var(--font-inter-tight)' }}
-                  >
-                    550 €/mois × 3 ans
-                  </motion.div>
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.65, duration: 0.6, ease: easeOutBack }}
-                    className="text-red-300 font-bold text-base mt-2"
-                    style={{ fontFamily: 'var(--font-inter-tight)' }}
-                  >
-                    → 19 800 € perdus
-                  </motion.div>
-                </motion.div>
-
-                {/* Label Propriétaire - droite */}
-                <motion.div
-                  initial={{ opacity: 0, x: 50, scale: 0.85 }}
-                  animate={{ opacity: 1, x: 0, scale: 1 }}
-                  transition={{
-                    delay: 0.35,
-                    duration: 0.8,
-                    ease: easeOutBack
-                  }}
-                  className="flex-1 text-center p-4 rounded-xl"
-                  style={{
-                    background: 'rgba(34, 197, 94, 0.15)',
-                    border: '1px solid rgba(34, 197, 94, 0.3)',
-                    backdropFilter: 'blur(8px)',
-                  }}
+                  Emma locataire
+                </div>
+                <div
+                  className="text-white text-xs mt-2"
+                  style={{ fontFamily: 'var(--font-inter-tight)' }}
                 >
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.6, duration: 0.5, ease: easeOutExpo }}
-                    className="text-green-400 font-semibold text-sm"
-                    style={{ fontFamily: 'var(--font-inter-tight)' }}
-                  >
-                    Emma propriétaire
-                  </motion.div>
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.75, duration: 0.4, ease: easeOutExpo }}
-                    className="text-white text-xs mt-2"
-                    style={{ fontFamily: 'var(--font-inter-tight)' }}
-                  >
-                    550 €/mois × 3 ans
-                  </motion.div>
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.9, duration: 0.6, ease: easeOutBack }}
-                    className="text-green-300 font-bold text-base mt-2"
-                    style={{ fontFamily: 'var(--font-inter-tight)' }}
-                  >
-                    → 19 800 € gagnés
-                  </motion.div>
-                </motion.div>
+                  550 €/mois × 3 ans
+                </div>
+                <div
+                  className="text-red-300 font-bold text-base mt-2"
+                  style={{ fontFamily: 'var(--font-inter-tight)' }}
+                >
+                  → 19 800 € perdus
+                </div>
               </motion.div>
-            )}
 
-            {/* Phase 2: Texte conclusion */}
-            {phase === 2 && (
+              {/* Label Propriétaire - droite */}
               <motion.div
-                key="conclusion"
-                initial={{ opacity: 0, y: 30, scale: 0.95 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
+                initial={{ opacity: 0 }}
+                animate={phase >= 1 ? { opacity: 1 } : { opacity: 0 }}
                 transition={{
-                  duration: 0.7,
+                  delay: 0.4,
+                  duration: 0.8,
                   ease: easeOutQuart
                 }}
-                className="text-center px-4"
+                className="flex-1 text-center p-4 rounded-xl"
+                style={{
+                  background: 'linear-gradient(135deg, rgba(34, 197, 94, 0.25) 0%, rgba(34, 197, 94, 0.15) 100%)',
+                  border: '1px solid rgba(34, 197, 94, 0.3)',
+                  backdropFilter: 'blur(8px)',
+                  WebkitBackdropFilter: 'blur(8px)',
+                  willChange: 'opacity, backdrop-filter',
+                }}
+              >
+                <div
+                  className="text-green-400 font-semibold text-sm"
+                  style={{ fontFamily: 'var(--font-inter-tight)' }}
+                >
+                  Emma propriétaire
+                </div>
+                <div
+                  className="text-white text-xs mt-2"
+                  style={{ fontFamily: 'var(--font-inter-tight)' }}
+                >
+                  550 €/mois × 3 ans
+                </div>
+                <div
+                  className="text-green-300 font-bold text-base mt-2"
+                  style={{ fontFamily: 'var(--font-inter-tight)' }}
+                >
+                  → 19 800 € gagnés
+                </div>
+              </motion.div>
+            </div>
+
+          {/* Phase 2: Texte conclusion (below labels) */}
+          {phase === 2 && (
+            <motion.div
+              key="conclusion"
+              initial={{ opacity: 0, y: 30, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{
+                duration: 0.7,
+                ease: easeOutQuart
+              }}
+              className="px-6 py-6 rounded-3xl mt-4"
+              style={{
+                backdropFilter: 'blur(12px)',
+                WebkitBackdropFilter: 'blur(12px)',
+                background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.06) 100%)',
+                borderTop: '1px solid rgba(255, 255, 255, 0.4)',
+                borderLeft: '1px solid rgba(255, 255, 255, 0.3)',
+                borderRight: '1px solid rgba(255, 255, 255, 0.1)',
+                borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.2)',
+                willChange: 'opacity, transform, backdrop-filter',
+              }}
+            >
+              <div
+                className="text-center"
                 style={{ fontFamily: 'var(--font-inter-tight)' }}
               >
                 <div style={{
@@ -268,9 +279,9 @@ export default function EmmaPage() {
                   <br />
                   <AnimatedText text="qui a grimpé entre-temps." delay={1.7} />
                 </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+              </div>
+            </motion.div>
+          )}
         </div>
 
         {/* Bouton Continuer */}

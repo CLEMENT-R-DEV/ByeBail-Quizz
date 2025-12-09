@@ -62,33 +62,47 @@ export default function BanquesPage() {
         {/* Texte centré avec animation lettre par lettre */}
         <div className="flex-1 flex justify-center items-center overflow-visible">
           <div
-            className="text-center px-4 overflow-visible"
-            style={{ fontFamily: 'var(--font-inter-tight)', overflow: 'visible' }}
+            className="px-6 py-8 rounded-3xl"
+            style={{
+              backdropFilter: 'blur(12px)',
+              WebkitBackdropFilter: 'blur(12px)',
+              background: 'rgba(255, 255, 255, 0.08)',
+              borderTop: '1px solid rgba(255, 255, 255, 0.4)',
+              borderLeft: '1px solid rgba(255, 255, 255, 0.3)',
+              borderRight: '1px solid rgba(255, 255, 255, 0.1)',
+              borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+              boxShadow: '0 8px 32px rgba(0, 0, 0, 0.2)',
+            }}
           >
-            <div style={{
-              color: '#FFF',
-              fontSize: '28px',
-              fontWeight: 600,
-              lineHeight: '1.3',
-              letterSpacing: '-0.84px',
-              overflow: 'visible',
-            }}>
-              <AnimatedText text="Les banques préfèrent" delay={0.3} />
-              <br />
-              <AnimatedText text="ceux qui gèrent." delay={0.8} />
-            </div>
-            <div style={{
-              color: '#F0F0F0',
-              fontSize: '24px',
-              fontWeight: 400,
-              lineHeight: '1.4',
-              letterSpacing: '-0.72px',
-              marginTop: '16px',
-              overflow: 'visible',
-            }}>
-              <AnimatedText text="Pas ceux qui gagnent plus" delay={1.3} />
-              <br />
-              <AnimatedText text="mais dépensent tout." delay={1.7} />
+            <div
+              className="text-center overflow-visible"
+              style={{ fontFamily: 'var(--font-inter-tight)', overflow: 'visible' }}
+            >
+              <div style={{
+                color: '#FFF',
+                fontSize: '28px',
+                fontWeight: 600,
+                lineHeight: '1.3',
+                letterSpacing: '-0.84px',
+                overflow: 'visible',
+              }}>
+                <AnimatedText text="Les banques préfèrent" delay={0.3} />
+                <br />
+                <AnimatedText text="ceux qui gèrent." delay={0.8} />
+              </div>
+              <div style={{
+                color: '#F0F0F0',
+                fontSize: '24px',
+                fontWeight: 400,
+                lineHeight: '1.4',
+                letterSpacing: '-0.72px',
+                marginTop: '16px',
+                overflow: 'visible',
+              }}>
+                <AnimatedText text="Pas ceux qui gagnent plus" delay={1.3} />
+                <br />
+                <AnimatedText text="mais dépensent tout." delay={1.7} />
+              </div>
             </div>
           </div>
         </div>
