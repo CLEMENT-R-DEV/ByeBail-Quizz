@@ -60,6 +60,13 @@ const interTight = localFont({
   display: "swap",
 });
 
+const permanentMarker = localFont({
+  src: "../public/fonts/PermanentMarker-Regular.ttf",
+  variable: "--font-permanent-marker",
+  weight: "400",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "Quiz ByeBail",
   description: "Questionnaire ByeBail",
@@ -78,7 +85,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${satoshi.variable} ${optima.variable} ${crimsonPro.variable} ${bricolageGrotesque.variable} ${inter.variable} ${interTight.variable} antialiased`}
+        className={`${satoshi.variable} ${optima.variable} ${crimsonPro.variable} ${bricolageGrotesque.variable} ${inter.variable} ${interTight.variable} ${permanentMarker.variable} antialiased`}
       >
         {/* Gradient background visible sur les côtés */}
         <div

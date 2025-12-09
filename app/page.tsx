@@ -11,7 +11,7 @@ export default function HomePage() {
     <div className="w-full h-[100dvh] relative overflow-hidden flex flex-col">
       {/* Image de fond */}
       <Image
-        src="/images/bg-home.png"
+        src="/images/bgHome.jpg"
         alt="Background"
         fill
         className="object-cover"
@@ -19,12 +19,12 @@ export default function HomePage() {
       />
 
       {/* Overlay gradient noir */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/0 to-black/80" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/80" />
 
       {/* Contenu principal */}
-      <main className="relative w-full flex-1 px-5 pt-10 pb-5 flex flex-col items-start overflow-hidden">
+      <main className="relative w-full flex-1 px-5 pt-10 pb-5 flex flex-col items-center overflow-hidden">
         {/* Logo ByeBail */}
-        <div className="w-full">
+        <div className="w-full flex justify-center">
           <Image
             src="/images/byebail-icon.svg"
             alt="ByeBail"
@@ -34,112 +34,30 @@ export default function HomePage() {
           />
         </div>
 
-        {/* Section texte et cartes - avec gap-10 (40px) du logo et flex-grow pour pousser le bouton en bas */}
-        <div className="w-full flex flex-col gap-1.5 mt-10 flex-grow">
-          {/* Titre et sous-titre */}
-          <div
-            className="px-2.5 py-[30px] flex flex-col gap-4 backdrop-blur-sm bg-white/5 rounded-2xl"
-            style={{
-              borderTop: '1px solid rgba(255, 255, 255, 0.8)',
-              borderLeft: '1px solid rgba(255, 255, 255, 0.6)',
-              borderRight: '1px solid rgba(200, 200, 200, 0.3)',
-              borderBottom: '1px solid rgba(200, 200, 200, 0.3)',
-            }}
-          >
-            <h1
-              className="text-white text-5xl font-semibold leading-[1.1]"
-              style={{ fontFamily: 'var(--font-inter)' }}
+        {/* Section texte - centrée verticalement */}
+        <div className="w-full flex-1 flex flex-col justify-center items-center">
+          <h1 className="flex flex-col gap-0 text-center">
+            <span
+              className="text-white font-bold leading-[1.1]"
+              style={{ fontFamily: 'var(--font-inter)', fontSize: '52px' }}
             >
-              Devient propriétaire<br/>pour le prix de ton loyer
-            </h1>
-            <p
-              className="text-neutral-100 text-xl font-medium leading-8"
-              style={{ fontFamily: 'var(--font-inter)' }}
-            >
-              Tout ce qui t&apos;en empêchait ?<br/>N&apos;existe plus.
-            </p>
-          </div>
-
-          {/* 3 cartes info */}
-          <div className="w-full flex gap-1.5">
-            {/* Carte Apport */}
-            <div
-              className="flex-1 p-3 rounded-2xl backdrop-blur-sm bg-white/5"
+              Deviens propriétaire
+              <br />
+              pour le prix
+            </span>
+            <span
               style={{
-                borderTop: '1px solid rgba(255, 255, 255, 0.8)',
-                borderLeft: '1px solid rgba(255, 255, 255, 0.6)',
-                borderRight: '1px solid rgba(200, 200, 200, 0.3)',
-                borderBottom: '1px solid rgba(200, 200, 200, 0.3)',
+                fontFamily: 'var(--font-permanent-marker)',
+                color: '#22C55E',
+                fontSize: '58px',
+                lineHeight: 1,
+                transform: 'rotate(-5deg)',
+                display: 'inline-block',
               }}
             >
-              <div className="flex flex-col gap-2">
-                <span
-                  className="text-white text-base font-normal leading-4"
-                  style={{ fontFamily: 'var(--font-inter-tight)' }}
-                >
-                  Apport
-                </span>
-                <span
-                  className="text-white text-sm font-light leading-4"
-                  style={{ fontFamily: 'var(--font-inter-tight)' }}
-                >
-                  L&apos;équivalent de 3 mois de loyer.
-                </span>
-              </div>
-            </div>
-
-            {/* Carte Mensualités */}
-            <div
-              className="flex-1 p-3 rounded-2xl backdrop-blur-sm bg-white/5"
-              style={{
-                borderTop: '1px solid rgba(255, 255, 255, 0.8)',
-                borderLeft: '1px solid rgba(255, 255, 255, 0.6)',
-                borderRight: '1px solid rgba(200, 200, 200, 0.3)',
-                borderBottom: '1px solid rgba(200, 200, 200, 0.3)',
-              }}
-            >
-              <div className="flex flex-col gap-2">
-                <span
-                  className="text-white text-base font-normal leading-4"
-                  style={{ fontFamily: 'var(--font-inter-tight)' }}
-                >
-                  Mensualités
-                </span>
-                <span
-                  className="text-white text-sm font-light leading-4"
-                  style={{ fontFamily: 'var(--font-inter-tight)' }}
-                >
-                  Identiques à ton loyer
-                </span>
-              </div>
-            </div>
-
-            {/* Carte Résultat */}
-            <div
-              className="flex-1 p-3 rounded-2xl backdrop-blur-sm bg-white/5"
-              style={{
-                borderTop: '1px solid rgba(255, 255, 255, 0.8)',
-                borderLeft: '1px solid rgba(255, 255, 255, 0.6)',
-                borderRight: '1px solid rgba(200, 200, 200, 0.3)',
-                borderBottom: '1px solid rgba(200, 200, 200, 0.3)',
-              }}
-            >
-              <div className="flex flex-col gap-2">
-                <span
-                  className="text-white text-base font-normal leading-4"
-                  style={{ fontFamily: 'var(--font-inter-tight)' }}
-                >
-                  Résultat
-                </span>
-                <span
-                  className="text-white text-sm font-light leading-4"
-                  style={{ fontFamily: 'var(--font-inter-tight)' }}
-                >
-                  Tu deviens propriétaire
-                </span>
-              </div>
-            </div>
-          </div>
+              DE TON LOYER
+            </span>
+          </h1>
         </div>
 
         {/* Bouton CTA */}
